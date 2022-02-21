@@ -2,9 +2,9 @@
 
 # -- Project information
 
-project = 'Lumache'
-copyright = '2021, Graziella'
-author = 'Graziella'
+project = 'Cours BTS SIO'
+copyright = '2021, Bauer Baptiste'
+author = 'Bauer Baptiste'
 
 release = '0.1'
 version = '0.1.0'
