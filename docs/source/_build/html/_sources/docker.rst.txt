@@ -140,29 +140,48 @@ Dans une application monolithique : Généralement si l’on veut que plusieurs 
 Alors que dans le contexte d’une application micro-services chaque service peut être déployé indépendamment des autres services, nous avons plusieurs machines virtuelles sur lesquelles les services des différentes applications sont dispatchées.
 
 **Exemple d’architecture micro-services : l’application UBER**
+==================================================================
 
 .. image:: img/docker/image72.png
 
 Chaque processus métier est isolé dans un service :
 
-Paiement
-
+* Paiement
 * Notification
 * Facturation
-* Avantages de l’architecture micro-services ?
 
-Découpage de l’application en processus (services) indépendants.
-Chacun a sa propre responsabilité métier.
-Equipe dédiée pour chaque service.
-Plus de liberté de choix de langage.
-Mise à jour.
-Containers très adaptés pour les micro-services.
+Avantages de l’architecture micro-services :
+
+* Découpage de l’application en processus (services) indépendants.
+* Chacun a sa propre responsabilité métier.
+* Equipe dédiée pour chaque service.
+* Plus de liberté de choix de langage.
+* Mise à jour.
+* Containers très adaptés pour les micro-services.
+
 Inconvénients :
 
-Nécessite des interfaces bien définies.
-Focus sur les tests d’intégration.
-Déplace la complexité dans l’orchestration de l’application globale. (Docker SWARM ou Kubernetes).
+* Nécessite des interfaces bien définies.
+* Focus sur les tests d’intégration.
+* Déplace la complexité dans l’orchestration de l’application globale. (Docker SWARM ou Kubernetes).
 
+Application Cloud Native
+===========================
+
+
+On entend de plus en plus parler d’applications « Cloud Native », définies par plusieurs critères :
+
+* Applications qui suivent une architecture microservices.
+* Utilisant la technologie des containers.
+* L’orchestration est faite dynamiquement.
+
+Il existe une branche de la Linux Foundation : la CNCF (Cloud Native Computing Foundation) qui porte de nombreux projets « Cloud Native » comme :
+
+* Kubernetes
+* Prometheus
+* Fluentd
+  
+Site de la cncf : www.cncf.io
 
 
 2.0 La plateforme Docker
