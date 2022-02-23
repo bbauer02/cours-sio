@@ -3,9 +3,13 @@ Cours de BTS SIO.
 
 Vous trouverez sur cette page des cours en ligne pour le BTS SIO.
 
-.. note::
+.. note:: 
 
-   Ce dépôt est en cours de rédaction.
+   **Mise à jour** : 24/02/2022
+
+   Ce dépôt est en cours de rédaction. 
+
+   Auteur : **Bauer Baptiste**, Enseignant en BTS SIO au lycée Paul Claudel(02)
 
 Contents
 --------

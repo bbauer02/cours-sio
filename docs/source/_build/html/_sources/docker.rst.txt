@@ -98,7 +98,7 @@ Cela permet de limiter ce qu’un processus peut voir. Il existe **6** NameSpace
 #. **Ipc** : Isole les communications inter processus.
 #. **User** : permet de faire un mapping entre les utilisateurs de l’hôte et les containeurs.
 
-1.3.2 Containers Linux : Control Groups (cgroups) 
+1.3.3 Containers Linux : Control Groups (cgroups) 
 ===================================================
 
 Les **cgroups** sont une autre technologie Linux qui va permettre de limiter les ressources qu’un processus va utiliser. 
@@ -109,7 +109,7 @@ Par exemple, pour limiter l’utilisation :
 * des **I/O** (périphériques d’entrées et de sorties)
 * du **Réseau**
 
-1.3.3 Containers Linux : VM/Container
+1.3.4 Containers Linux : VM/Container
 ===================================================
 
 .. image:: img/docker/image70.png
@@ -121,7 +121,7 @@ Alors que l’approche du container est **beaucoup plus légère** car chacun pa
 
 La machine virtuelle consomme plus de disque mémoire et de ram que les containers. **Cela implique que beaucoup plus de containers peuvent fonctionner sur une même machine hôte.**
 
-1.3.4 Architecture micro-services
+1.3.5 Architecture micro-services
 ===================================================
 
 Depuis quelques années, les applications sont développées autour d’une architecture appelée **micro-services**. 
@@ -396,9 +396,8 @@ Nous pouvons lancer un autre container basé sur l’image de **Ubuntu** et lui 
 
 .. image:: img/docker/image11.png
 
-
-  Analyser le contenu des cadres ci-dessus.
-  A quelles actions correspondent-ils ?  
+Analyser le contenu des cadres ci-dessus.
+A quelles actions correspondent-ils ?  
 
 3.2 Un container dans un mode Interactif
 ************************************************
