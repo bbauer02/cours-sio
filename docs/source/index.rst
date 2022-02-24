@@ -17,6 +17,10 @@ Contents
 --------
 
 .. toctree::
+   :caption: Cours Docker
+   :maxdepth: 2
+   :hidden:
+
    cours/docker/1.0 Introduction
    cours/docker/2.0 La plateforme Docker
    cours/docker/3.0 Les containers avec Docker
