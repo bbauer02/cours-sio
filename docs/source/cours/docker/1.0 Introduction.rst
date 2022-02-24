@@ -2,7 +2,7 @@
 ###########################
 
 Ce cours est découpé en différents chapitres et permet un apprentissage progressif des différents concepts Docker et de leur mise en pratique. 
-On commencera par donner quelques exemples de ce qu’il est possible de faire avec Docker dans la section **Quick Wins**.
+On commencera par donner quelques exemples de ce qu’il est possible de faire avec Docker dans la section **Pour qui ? pourquoi ?**.
 Nous ferons références à des concepts utiles comme les **containers** Linux, les Micro services, le Dev Ops.etc. 
 
 Nous aurons un chapitre sur la **plateforme Docker**, son architecture, son fonctionnement et sa mise en place. 
