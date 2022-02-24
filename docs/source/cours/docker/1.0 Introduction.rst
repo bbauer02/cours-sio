@@ -18,16 +18,6 @@ Dans le chapitre sur le stockage, nous apprendrons à utiliser **Docker** pour q
 *	Le **réseau** dans Docker.
 *	La **sécurité**. 
 
-.. note::
-  **Prérequis :** Installation de **WSL 2** sur **windows 10**.
-  Afin de pouvoir utiliser des commandes linux dans une console **POWERSHELL**.
-   
-    .. code-block:: language
-
-      wsl –install -d ubuntu
-      wsl --set-version ubuntu 2
-
-  Dans la console, tapez : ``ubuntu`` pour basculer dans un environnement **Ubuntu**.
 
 1.1 Pour qui ? pourquoi ? 
 ****************************
