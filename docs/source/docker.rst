@@ -306,6 +306,112 @@ Sur la gauche vous verrez alors un menu vous permettant de sélectionner différ
 
 Comme nous pouvons le constater, Docker peut être installé sur des systèmes divers: machine de développement, l'infrastructure d'un cloud provider, et même des devices de type Raspberry PI.
 
+
+Installation sur un poste élève du Lycée Paul Claudel -LAON (02)
+*******************************************************************
+
+Normalement, il faudrait télécharger ``Docker Desktop`` depuis le site officiel. 
+Mais pour économiser la bande passante, utilisez le fichier d’installation présent dans le répertoire ``\\COMMUN\BAUER\Docker\``.
+
+Doucle cliquez sur l’installateur et laissez les options d’installation cochées par défaut.
+``WSL 2`` est nécessaire pour faire fonctionner **DOCKER**.
+
+Si tout se passe bien vous devriez avoir cet écran vous invitant à redémarrer la machine :
+
+.. image:: img/docker/image8_bis.png
+
+**  Lancer l’application : Docker Desktop**
+
+.. image:: img/docker/image10_bis.png
+
+.. image:: img/docker/image9_bis.png
+
+  
+Si vous tentez d’exécuter l’application, il est fort probable que vous ayez un message d’erreur vous indiquant :
+
+.. image:: img/docker/image12_bis.png
+
+Pour résoudre ce problème, nous avons besoin d’ajouter les utilisateurs de la machine au groupe ``docker-users`` nouvellement créé par l’installation.
+
+Ouvrez une session en ``administrateur`` de la machine locale : compte ``INFO/INFO``.
+Dans **WINDOWS 10**, tapez dans le champ de recherche situé en bas à gauche :
+
+**« modifier les utilisateurs et les groupes locaux »**
+
+Cette fenêtre devrait s’ouvrir :
+
+.. image:: img/docker/image11_bis.png
+
+ .. image:: img/docker/image2_bis.png 
+
+Double cliquez sur le groupe ``docker-users``.
+
+Et ajoutez un nouvel utilisateur : votre compte issu du domaine ``sio`` 
+
+ .. image:: img/docker/image1_bis.png 
+
+Le système vous demandera de saisir l’identifiant et le mot de passe du compte à intégrer à ce groupe.
+
+Redémarrer la machine et reconnectez-vous maintenant à votre compte WINDOWS standard.
+
+Lancez L’application **Docker Desktop** et validez les conditions d’utilisation.
+Vous devriez avoir ce message d’erreur :
+
+ .. image:: img/docker/image4_bis.png 
+
+Fermez alors la fenêtre et rendez-vous sur ce site :
+
+`Étapes d’installation manuelle pour les versions antérieures de WSL | Microsoft Docs <https://docs.microsoft.com/fr-fr/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package>`_
+
+Suivez les étapes d’installation :
+
+Vous allez installer ``WSL2`` qui est un sous-système **Linux** pour **WINDOWS**.
+Cela va permettre d’utiliser des commandes **Linux** dans un terminal Windows.
+
+Tapez  ensuite la commande :
+
+.. code-block:: 
+
+  wsl.exe --set-default-version 2
+
+
+Nous pouvons en profiter pour installer le nouveau **Terminal de Windows**. 
+Cela va apporter plus de confort durant la pratique de ce cours.
+
+`Lien vers la page Terminal Windows <https://docs.microsoft.com/fr-fr/windows/terminal/install>`_
+
+Il faut un compte « **Microsoft** » .
+
+Redémarrez la machine encore une fois pour que **WSL2** soit pris en compte.
+
+**Docker** devrait maintenant pouvoir démarrer :
+
+.. image:: img/docker/image3_bis.png 
+  
+Il faut maintenant configurer le client en cliquant sur l’engrenage en haut à droite.
+
+Cochez les options comme sur la capture d’écran :
+
+.. image:: img/docker/image7_bis.png
+
+N’oubliez pas de cliquer sur « **Apply & Restart** »
+
+Configurez le PROXY
+
+.. image:: img/docker/image5_bis.png
+
+Si vous allez dans l’onglet **WSL** intégration :
+
+.. image:: img/docker/image6_bis.png
+
+**Vous êtes maintenant prêt !**
+
+**Bienvenue dans le monde de DOCKER.**
+
+Passez directement à la partie : 
+**Vérification de l'installation**
+
+
 Installation pour Windows 10 ou MacOS
 ***************************************************
 
