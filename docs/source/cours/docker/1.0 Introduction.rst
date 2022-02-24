@@ -29,8 +29,8 @@ Dans le chapitre sur le stockage, nous apprendrons à utiliser **Docker** pour q
 
   Dans la console, tapez : ``ubuntu`` pour basculer dans un environnement **Ubuntu**.
 
-1.1 Quick Wins
-******************
+1.1 Pour qui ? pourquoi ? 
+****************************
 Très souvent le premier contact que l’on a avec **Docker** s’effectue via le **Docker Hub** accessible sur https://hub.docker.com.
 
 .. image:: img/docker/image64.png
