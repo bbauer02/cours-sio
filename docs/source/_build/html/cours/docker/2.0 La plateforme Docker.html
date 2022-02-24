@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>2.0 La plateforme Docker &#8212; Cours BTS SIO 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="la-plateforme-docker">
+<h1>2.0 La plateforme Docker<a class="headerlink" href="#la-plateforme-docker" title="Permalink to this headline">¶</a></h1>
+<p><strong>Docker</strong> apporte une facilité de développement, de packaging et de déploiement d’applications <strong>quelque soit le langage de programmation</strong>.
+Un développeur peut <strong>tester une application</strong> sur sa machine en <strong>imitant</strong> les conditions de l’environnement de <strong>production</strong> tout en nécessitant une <strong>configuration minimale</strong>.
+Si l’application est soumise à un <strong>fort stresse</strong>, <strong>Docker</strong> peut orchestrer l’allocation d’autres containers.
+La <strong>scalabilité</strong> s’effectue très rapidement car un container peut être lancé en quelques secondes.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Cherchez la définition du terme <strong>scalabilité</strong>.</p>
+</div>
+<p><strong>Docker</strong> permet également d’ <strong>augmenter</strong> le rythme de <strong>mise à jour</strong> des logiciels.</p>
+<section id="le-modele-client-serveur">
+<h2>2.1 Le modèle client/serveur<a class="headerlink" href="#le-modele-client-serveur" title="Permalink to this headline">¶</a></h2>
+<img alt="../../_images/image55.png" src="../../_images/image55.png" />
+<p><strong>Docker</strong> utilise un modèle <strong>client/serveur</strong>.
+D’une part nous avons le client <strong>Docker</strong>, un fichier binaire écrit en <strong>GO</strong>. Et d’autre part nous avons le <strong>Docker Daemon</strong> (appelé <strong>dockerd</strong>), écrit aussi en GO, et qui expose une <strong>API REST</strong> consommée par le client.
+Le client envoie des commandes au <strong>Docker Daemon</strong> pour gérer les containers, les images entre autres.</p>
+<section id="le-serveur-dockerd">
+<h3>2.1.1 Le serveur : Dockerd<a class="headerlink" href="#le-serveur-dockerd" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Processus</strong><span class="classifier">dockerd</span></dt><dd><ul>
+<li><p>Gestion des images, networks, volumes, cluster, …</p></li>
+<li><p>Délègue la gestion des containers à containerd.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Expose une <strong>API Rest</strong>.</p></li>
+<li><p>Ecoute sur le <strong>socket unix</strong> <code class="docutils literal notranslate"><span class="pre">/var/run/docker.sock</span></code> par défaut.</p></li>
+<li><p>Peut-être configuré pour écouter sur un socket tcp.</p></li>
+</ul>
+</section>
+<section id="le-client-docker">
+<h3>2.1.2 Le client : docker<a class="headerlink" href="#le-client-docker" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Installé en même temps que <strong>dockerd</strong>.</p></li>
+<li><p>Communique avec le <strong>daemon local</strong> par défaut via <code class="docutils literal notranslate"><span class="pre">/var/run/docker.sock</span></code>.</p></li>
+<li><p>Peut être configuré pour communiquer avec un <strong>daemon distant</strong>.</p></li>
+</ul>
+</section>
+<section id="concepts-essentiels">
+<h3>2.1.3 Concepts essentiels<a class="headerlink" href="#concepts-essentiels" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Docker</strong> facilite la manipulation des <strong>containers Linux</strong>. Et cache la complexité sous-jacente.</p></li>
+<li><p>Introduction de la <strong>notion d’image</strong> : Format d’un package qui contient une application.</p></li>
+<li><p>Une image est un <strong>template</strong> qui sert pour la création d’un container.</p></li>
+<li><p>Pour créer une image on utilise un <strong>Dockerfile</strong>. Un fichier texte qui contient une liste d’instructions.</p></li>
+<li><p>La distribution de ces images se fait par l’intermédiaire d’un <strong>Registry</strong>.</p></li>
+<li><p>Docker permet de lancer des containers sur une machine unique ou sur un ensemble d’hôtes regroupées en un <strong>cluster Swarm</strong>.</p></li>
+</ul>
+<p>Voici un schéma qui montre le <strong>fonctionnement global des composants de base de Docker</strong>.</p>
+<img alt="../../_images/image56.png" src="../../_images/image56.png" />
+<p>Quand on installe la plateforme Docker nous avons donc :
+un client et un serveur (ou daemon) qui tourne constamment et qui est responsable de la gestion des containers et des images.</p>
+</section>
+<section id="docker-hub">
+<h3>2.1.4 Docker Hub<a class="headerlink" href="#docker-hub" title="Permalink to this headline">¶</a></h3>
+<p>Par défaut le <strong>daemon Dockerd</strong> communique avec le <strong>Docker Hub</strong>, qui est le <strong>Registry</strong> officiel de Docker disponible à l’adresse : <a class="reference external" href="https://hub.docker.com">https://hub.docker.com</a></p>
+<p>Il existe bien entendu beaucoup d’autres Registry que l’on peut utiliser si on le souhaite.</p>
+<img alt="../../_images/image57.png" src="../../_images/image57.png" />
+<p><strong>Les images du Docker Hub peuvent être classées en plusieurs catégories.</strong></p>
+<ul class="simple">
+<li><p>Les images officielles qui sont validées et que l’on peut utiliser avec confiance.</p></li>
+<li><p>Les images publiques à utiliser avec précaution.</p></li>
+<li><p>Les images privées dédiées qu’aux utilisateurs autorisés ( partage d’images au sein d’une entreprise par exemple).</p></li>
+</ul>
+</section>
+<section id="cluster-swarm">
+<h3>2.1.4 Cluster Swarm<a class="headerlink" href="#cluster-swarm" title="Permalink to this headline">¶</a></h3>
+<p>Un Cluster Swarm est un ensemble de <strong>Docker Host</strong>, c’est-à-dire un ensemble de machines sur lesquel le <strong>Docker Démon</strong> est installé.</p>
+<img alt="../../_images/image58.png" src="../../_images/image58.png" />
+<p>Ses machines vont communiquer entres elles afin d’orchestrer des applications et d’assurer qu’elles fonctionnent de la manière voulue.</p>
+</section>
+</section>
+<section id="installation-de-docker">
+<h2>2.2 Installation de Docker<a class="headerlink" href="#installation-de-docker" title="Permalink to this headline">¶</a></h2>
+<p>Nous allons voir ici comment installer <strong>Docker</strong> sur votre environnement.</p>
+<p>Rendez-vous tout d’abord dans le <a class="reference external" href="https://hub.docker.com">Docker hub</a> puis sélectionner l’onglet <strong>Explore</strong>:</p>
+<img alt="../../_images/image59.png" src="../../_images/image59.png" />
+<p>Sélectionnez ensuite l’onglet <strong>Docker</strong> dans le sous menu:</p>
+<img alt="../../_images/image60.png" src="../../_images/image60.png" />
+<p>Sur la gauche vous verrez alors un menu vous permettant de sélectionner différents éléments :</p>
+<ul class="simple">
+<li><p>plateforme</p></li>
+<li><p>système d’exploitation</p></li>
+<li><p>architecture</p></li>
+</ul>
+<p>Comme nous pouvons le constater, Docker peut être installé sur des systèmes divers: machine de développement, l’infrastructure d’un cloud provider, et même des devices de type Raspberry PI.</p>
+</section>
+<section id="installation-sur-un-poste-eleve-du-lycee-paul-claudel-laon-02">
+<h2>Installation sur un poste élève du Lycée Paul Claudel -LAON (02)<a class="headerlink" href="#installation-sur-un-poste-eleve-du-lycee-paul-claudel-laon-02" title="Permalink to this headline">¶</a></h2>
+<p>Normalement, il faudrait télécharger <code class="docutils literal notranslate"><span class="pre">Docker</span> <span class="pre">Desktop</span></code> depuis le site officiel.
+Mais pour économiser la bande passante, utilisez le fichier d’installation présent dans le répertoire <code class="docutils literal notranslate"><span class="pre">\\COMMUN\BAUER\Docker\</span></code>.</p>
+<p>Doucle cliquez sur l’installateur et laissez les options d’installation cochées par défaut.
+<code class="docutils literal notranslate"><span class="pre">WSL</span> <span class="pre">2</span></code> est nécessaire pour faire fonctionner <strong>DOCKER</strong>.</p>
+<p>Si tout se passe bien vous devriez avoir cet écran vous invitant à redémarrer la machine :</p>
+<img alt="../../_images/image8_bis.png" src="../../_images/image8_bis.png" />
+<p>**  Lancer l’application : Docker Desktop**</p>
+<img alt="../../_images/image10_bis.png" src="../../_images/image10_bis.png" />
+<img alt="../../_images/image9_bis.png" src="../../_images/image9_bis.png" />
+<p>Si vous tentez d’exécuter l’application, il est fort probable que vous ayez un message d’erreur vous indiquant :</p>
+<img alt="../../_images/image12_bis.png" src="../../_images/image12_bis.png" />
+<p>Pour résoudre ce problème, nous avons besoin d’ajouter les utilisateurs de la machine au groupe <code class="docutils literal notranslate"><span class="pre">docker-users</span></code> nouvellement créé par l’installation.</p>
+<p>Ouvrez une session en <code class="docutils literal notranslate"><span class="pre">administrateur</span></code> de la machine locale : compte <code class="docutils literal notranslate"><span class="pre">INFO/INFO</span></code>.
+Dans <strong>WINDOWS 10</strong>, tapez dans le champ de recherche situé en bas à gauche :</p>
+<p><strong>« modifier les utilisateurs et les groupes locaux »</strong></p>
+<p>Cette fenêtre devrait s’ouvrir :</p>
+<p>Double cliquez sur le groupe <code class="docutils literal notranslate"><span class="pre">docker-users</span></code>.</p>
+<p>Et ajoutez un nouvel utilisateur : votre compte issu du domaine <code class="docutils literal notranslate"><span class="pre">sio</span></code></p>
+<blockquote>
+<div><img alt="../../_images/image1_bis.png" src="../../_images/image1_bis.png" />
+</div></blockquote>
+<p>Le système vous demandera de saisir l’identifiant et le mot de passe du compte à intégrer à ce groupe.</p>
+<p>Redémarrer la machine et reconnectez-vous maintenant à votre compte WINDOWS standard.</p>
+<p>Lancez L’application <strong>Docker Desktop</strong> et validez les conditions d’utilisation.
+Vous devriez avoir ce message d’erreur :</p>
+<blockquote>
+<div><img alt="../../_images/image4_bis.png" src="../../_images/image4_bis.png" />
+</div></blockquote>
+<p>Fermez alors la fenêtre et rendez-vous sur ce site :</p>
+<p><a class="reference external" href="https://docs.microsoft.com/fr-fr/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package">Étapes d’installation manuelle pour les versions antérieures de WSL | Microsoft Docs</a></p>
+<p>Suivez les étapes d’installation :</p>
+<p>Vous allez installer <code class="docutils literal notranslate"><span class="pre">WSL2</span></code> qui est un sous-système <strong>Linux</strong> pour <strong>WINDOWS</strong>.
+Cela va permettre d’utiliser des commandes <strong>Linux</strong> dans un terminal Windows.</p>
+<p>Tapez  ensuite la commande :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wsl</span><span class="o">.</span><span class="n">exe</span> <span class="o">--</span><span class="nb">set</span><span class="o">-</span><span class="n">default</span><span class="o">-</span><span class="n">version</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>Nous pouvons en profiter pour installer le nouveau <strong>Terminal de Windows</strong>.
+Cela va apporter plus de confort durant la pratique de ce cours.</p>
+<p><a class="reference external" href="https://docs.microsoft.com/fr-fr/windows/terminal/install">Lien vers la page Terminal Windows</a></p>
+<p>Il faut un compte « <strong>Microsoft</strong> » .</p>
+<p>Redémarrez la machine encore une fois pour que <strong>WSL2</strong> soit pris en compte.</p>
+<p><strong>Docker</strong> devrait maintenant pouvoir démarrer :</p>
+<img alt="../../_images/image3_bis.png" src="../../_images/image3_bis.png" />
+<p>Il faut maintenant configurer le client en cliquant sur l’engrenage en haut à droite.</p>
+<p>Cochez les options comme sur la capture d’écran :</p>
+<img alt="../../_images/image7_bis.png" src="../../_images/image7_bis.png" />
+<p>N’oubliez pas de cliquer sur « <strong>Apply &amp; Restart</strong> »</p>
+<p>Configurez le PROXY</p>
+<img alt="../../_images/image5_bis.png" src="../../_images/image5_bis.png" />
+<p>Si vous allez dans l’onglet <strong>WSL</strong> intégration :</p>
+<img alt="../../_images/image6_bis.png" src="../../_images/image6_bis.png" />
+<p><strong>Vous êtes maintenant prêt !</strong></p>
+<p><strong>Bienvenue dans le monde de DOCKER.</strong></p>
+<p>Passez directement à la partie :
+<strong>Vérification de l’installation</strong></p>
+</section>
+<section id="installation-pour-windows-10-ou-macos">
+<h2>Installation pour Windows 10 ou MacOS<a class="headerlink" href="#installation-pour-windows-10-ou-macos" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Si vous êtes sur <strong>MacOS</strong> ou <strong>Windows 10 (Entreprise ou Pro)</strong> vous pouvez installer <strong>Docker Desktop</strong>, un environnement compatible pour chacune de ces plateformes:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docker Desktop for Windows</a></p></li>
+<li><p><a class="reference external" href="https://hub.docker.com/editions/community/docker-ce-desktop-mac">Docker Desktop for Mac</a></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="installation-pour-linux">
+<h2>Installation pour Linux<a class="headerlink" href="#installation-pour-linux" title="Permalink to this headline">¶</a></h2>
+<p>Si vous êtes sur <strong>Linux</strong>, vous pouvez sélectionner la distribution que vous utilisez (<strong>Fedora</strong>, <strong>CentOS</strong>, <strong>Ubuntu</strong>, <strong>Debian</strong>) et vous obtiendrez alors un lien vers la documentation à suivre pour installer <strong>Docker</strong> sur la distribution en question.</p>
+<p>Pour aller un peu plus vite, vous pouvez également lancer la commande suivante (compatible avec les principales distribution <strong>Linux</strong>) :</p>
+<div class="highlight-language notranslate"><div class="highlight"><pre><span></span>curl -sSL https://get.docker.com | sh
+</pre></div>
+</div>
+<p>En quelques dizaines de secondes, cela installera <strong>la plateforme Docker</strong> sur votre distribution.
+Il sera ensuite nécessaire d’<strong>ajouter votre utilisateur</strong> dans le <strong>groupe docker</strong> afin de pouvoir intéragir avec le <strong>daemon</strong> sans avoir à utiliser <strong>sudo</strong> (il faudra cependant lancer un nouveau <strong>shell</strong> afin que ce changement de groupe soit pris en compte.)</p>
+<div class="highlight-language notranslate"><div class="highlight"><pre><span></span>sudo usermod -aG docker &lt;UTILISATEUR&gt;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Il est également possible d’installer <strong>Docker</strong> sur d’autres types d’<strong>architecture infrastructure</strong>.</p>
+</div>
+</section>
+<section id="verification-de-l-installation">
+<h2>Vérification de l’installation<a class="headerlink" href="#verification-de-l-installation" title="Permalink to this headline">¶</a></h2>
+<p>Une fois installé, lancez la commande suivante afin de vérifier que tout est fonctionnel :</p>
+<div class="highlight-language notranslate"><div class="highlight"><pre><span></span>docker info
+</pre></div>
+</div>
+<img alt="../../_images/image61.png" src="../../_images/image61.png" />
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Cours BTS SIO</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.0%20Introduction.html">1.0 Introduction</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Bauer Baptiste.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/cours/docker/2.0 La plateforme Docker.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

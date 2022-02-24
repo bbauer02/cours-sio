@@ -7,6 +7,8 @@ Vous trouverez sur cette page des cours en ligne pour le BTS SIO.
 
    **Mise à jour** : 24/02/2022
 
+   **Version** : 1.01
+
    Ce dépôt est en cours de rédaction. 
 
    Auteur : **Bauer Baptiste**, Enseignant en BTS SIO au lycée Paul Claudel(02)
@@ -15,4 +17,5 @@ Contents
 --------
 
 .. toctree::
-   docker
+   cours/docker/1.0 Introduction
+   cours/docker/2.0 La plateforme Docker

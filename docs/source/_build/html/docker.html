@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>1.0 Introduction &#8212; Cours BTS SIO 0.1 documentation</title>
+    <title>3.0 Les containers avec Docker &#8212; Cours BTS SIO 0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -15,7 +15,6 @@
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Cours de BTS SIO." href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -32,315 +31,7 @@
 
           <div class="body" role="main">
             
-  <section id="introduction">
-<h1>1.0 Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>Ce cours est découpé en différents chapitres et permet un apprentissage progressif des différents concepts Docker et de leur mise en pratique.
-On commencera par donner quelques exemples de ce qu’il est possible de faire avec Docker dans la section <strong>Quick Wins</strong>.
-Nous ferons références à des concepts utiles comme les <strong>containers</strong> Linux, les Micro services, le Dev Ops.etc.</p>
-<p>Nous aurons un chapitre sur la <strong>plateforme Docker</strong>, son architecture, son fonctionnement et sa mise en place.
-Nous verrons comment Docker rend très simple la manipulation des <strong>containeurs</strong>.
-Nous parlerons de la notion d’images qui permet de <strong>packager</strong> une application et ses dépendances.
-Dans le chapitre sur le stockage, nous apprendrons à utiliser <strong>Docker</strong> pour que les données puissent persister dans les conteneurs.</p>
-<p><strong>Thèmes abordé dans ce cours :</strong></p>
-<ul class="simple">
-<li><p><strong>Docker Machine</strong> pour créer des hôtes Docker.</p></li>
-<li><p><strong>Docker compose</strong> qui permet de créer des applications en multi container.</p></li>
-<li><p><strong>Docker Swarm</strong>, la solution d’orchestration de <strong>Docker</strong> qui permet de gérer des applications qui tournent dans des containers.</p></li>
-<li><p>Le <strong>réseau</strong> dans Docker.</p></li>
-<li><p>La <strong>sécurité</strong>.</p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><strong>Prérequis :</strong> Installation de <strong>WSL 2</strong> sur <strong>windows 10</strong>.
-Afin de pouvoir utiliser des commandes linux dans une console <strong>POWERSHELL</strong>.</p>
-<blockquote>
-<div><div class="highlight-language notranslate"><div class="highlight"><pre><span></span>wsl –install -d ubuntu
-wsl --set-version ubuntu 2
-</pre></div>
-</div>
-</div></blockquote>
-<p>Dans la console, tapez : <code class="docutils literal notranslate"><span class="pre">ubuntu</span></code> pour basculer dans un environnement <strong>Ubuntu</strong>.</p>
-</div>
-<section id="quick-wins">
-<h2>1.1 Quick Wins<a class="headerlink" href="#quick-wins" title="Permalink to this headline">¶</a></h2>
-<p>Très souvent le premier contact que l’on a avec <strong>Docker</strong> s’effectue via le <strong>Docker Hub</strong> accessible sur <a class="reference external" href="https://hub.docker.com">https://hub.docker.com</a>.</p>
-<img alt="Docker Hub" src="_images/image64.png" />
-<p>Il s’agit d’un <strong>registre</strong> (ou <strong>registry</strong>) dans lequel nous retrouvons beaucoup d’applications packagées dans des images <strong>Docker</strong>.
-Cette notion d’image est la base de ce qu’apporte <strong>Docker</strong>.
-Voici un exemple de services qui peuvent être contenu dans une image <strong>Docker</strong> :</p>
-<img alt="_images/image66.png" src="_images/image66.png" />
-<p>Par exemple, grâce à <strong>Docker</strong> nous pouvons lancer un interpréteur interactif (<strong>REPL</strong>) pour des langages de programmation comme le <strong>Python</strong>, le <strong>Ruby On Rail</strong> ou le <strong>Javascript</strong>.</p>
-<img alt="_images/image65.png" src="_images/image65.png" />
-<p>Nous avons alors accès à un environnement <strong>Python</strong> en interactif et c’est le flag <code class="docutils literal notranslate"><span class="pre">-ti</span></code> qui permet l’interactivité avec le processus du containeur.</p>
-<p>De la même manière, nous pouvons lancer un environnement <strong>NodeJs</strong>, ici contenant le Tag <code class="docutils literal notranslate"><span class="pre">8.12-alpine</span></code>.
-<strong>8.12</strong> est la version de <strong>NodeJs</strong> et <strong>alpine</strong> est le nom de la distribution Linux utilisée dans le container.</p>
-<p>Par exemple si nous avons besoin d’une base de données <strong>MongoDB</strong> dans la version 4.0.Nous n’avons qu’à trouver une image disponible dans le <strong>Docker Hub</strong>.</p>
-<img alt="_images/image68.png" src="_images/image68.png" />
-<p>On peut imaginer avoir besoin de lancer plusieurs containers <strong>MongoDB</strong> avec des versions différentes.
-Cela peut être utile pour tester une différence de comportement entre deux versions par exemple.</p>
-</section>
-<section id="des-stacks-completes">
-<h2>1.2 Des Stacks complètes<a class="headerlink" href="#des-stacks-completes" title="Permalink to this headline">¶</a></h2>
-<p>Une application fonctionne rarement seule et est souvent constituée d’un ensemble de services.
-Cet ensemble constitue une <strong>Stack applicative</strong>.
-Par exemple, prenons le cas de la Stack <strong>Elastic</strong>, qui est souvent utilisée pour la gestion des log.
-Elle est constituée de <strong>BEATS</strong> et <strong>LOGSTASH</strong> qui est là pour l’ingestion des logs, de <strong>ELASTICSEARCH</strong> pour l’analyse et
-le stockage des logs et <strong>KIBANA</strong> qui permet de visualiser tout cela.</p>
-<img alt="_images/image67.png" src="_images/image67.png" />
-<p>Il existe une multitude d’applications prêtent à être utilisée avec Docker, accessible en ligne de commande.
-Nous verrons rapidement comment Docker permet de créer notre propre package d’application pour faciliter : l’installation, l’utilisation et le déploiement.</p>
-</section>
-<section id="quelques-concepts-utiles-pour-les-developpeurs">
-<h2>1.3 Quelques concepts utiles pour les Développeurs<a class="headerlink" href="#quelques-concepts-utiles-pour-les-developpeurs" title="Permalink to this headline">¶</a></h2>
-<section id="un-container-linux-cest-quoi">
-<h3>1.3.1 Un container Linux, c’est quoi ?<a class="headerlink" href="#un-container-linux-cest-quoi" title="Permalink to this headline">¶</a></h3>
-<p>Un <strong>container</strong> est simplement un <strong>processus</strong> particulier qui tourne sur le système.
-Il est isolé des autres <strong>processus</strong>. Il possède sa <strong>propre vision</strong> du système sur lequel il tourne, on appelle cela les <strong>Namespaces</strong>.
-On peut limiter les ressources utilisées par ce processus en utilisant les <strong>Controls Groups</strong> (ou <strong>Cgroups</strong>).
-Le même système peut exécuter plusieurs containers en même temps, c’est d’ailleurs ce qui constitue l’avantage de cette technologie.
-Le noyau Linux de la machine hôte est <strong>partagé</strong> entre tous ses containeurs.</p>
-</section>
-<section id="containers-linux-les-namespaces">
-<h3>1.3.2 Containers Linux : Les Namespaces<a class="headerlink" href="#containers-linux-les-namespaces" title="Permalink to this headline">¶</a></h3>
-<p>Les <strong>Namespaces</strong> sont des technologies Linux qui servent à isoler un processus.
-Cela permet de limiter ce qu’un processus peut voir. Il existe <strong>6</strong> NameSpaces différents :</p>
-<ol class="arabic simple">
-<li><p><strong>Pid</strong> : Permet de donner à un processus la vision de lui-même et de ses processus enfant.</p></li>
-<li><p><strong>Net</strong> : Permet de donner au processus son propre réseau privé.</p></li>
-<li><p><strong>Mount</strong> : Permet de donner au processus un système de fichiers privé.</p></li>
-<li><p><strong>Uts</strong> : Permet la gestion du nom de l’hôte.</p></li>
-<li><p><strong>Ipc</strong> : Isole les communications inter processus.</p></li>
-<li><p><strong>User</strong> : permet de faire un mapping entre les utilisateurs de l’hôte et les containeurs.</p></li>
-</ol>
-</section>
-<section id="containers-linux-control-groups-cgroups">
-<h3>1.3.3 Containers Linux : Control Groups (cgroups)<a class="headerlink" href="#containers-linux-control-groups-cgroups" title="Permalink to this headline">¶</a></h3>
-<p>Les <strong>cgroups</strong> sont une autre technologie Linux qui va permettre de limiter les ressources qu’un processus va utiliser.
-Par exemple, pour limiter l’utilisation :</p>
-<ul class="simple">
-<li><p><strong>RAM</strong></p></li>
-<li><p><strong>CPU</strong></p></li>
-<li><p>des <strong>I/O</strong> (périphériques d’entrées et de sorties)</p></li>
-<li><p>du <strong>Réseau</strong></p></li>
-</ul>
-</section>
-<section id="containers-linux-vm-container">
-<h3>1.3.4 Containers Linux : VM/Container<a class="headerlink" href="#containers-linux-vm-container" title="Permalink to this headline">¶</a></h3>
-<img alt="_images/image70.png" src="_images/image70.png" />
-<p>On compare souvent les containers à des machines virtuelles, car elles permettent d’exécuter des applications de manière isolée.</p>
-<p>Mais la virtualisation nécessite un <strong>hyperviseur</strong> qui s’exécute <strong>sur le système d’exploitation de l’hôte</strong> et nécessite également que <strong>haque machine virtuelle</strong> ait son propre système d’exploitation.
-Alors que l’approche du container est <strong>beaucoup plus légère</strong> car chacun partage le <strong>Kernel Linux de la machine hôte</strong>.</p>
-<p>La machine virtuelle consomme plus de disque mémoire et de ram que les containers. <strong>Cela implique que beaucoup plus de containers peuvent fonctionner sur une même machine hôte.</strong></p>
-</section>
-<section id="architecture-micro-services">
-<h3>1.3.5 Architecture micro-services<a class="headerlink" href="#architecture-micro-services" title="Permalink to this headline">¶</a></h3>
-<p>Depuis quelques années, les applications sont développées autour d’une architecture appelée <strong>micro-services</strong>.
-Alors qu’avant une application était souvent un gros bloc unique <strong>monolithique</strong>.</p>
-<img alt="_images/image69.png" src="_images/image69.png" />
-<p>Aujourd’hui, une application est constituée de <strong>plusieurs petits composants</strong> qui sont des services qui ont leur propre rôle et fonctionnalité.
-Et c’est l’<strong>interconnexion</strong> de l’ensemble de ces services qui permettent de définir l’application globale.</p>
-<img alt="_images/image73.png" src="_images/image73.png" />
-<p>Dans une <strong>application monolithique</strong>, si l’on veut que plusieurs instances de l’application soient déployées il faut créer plusieurs machines virtuelles contenant l’application dans son entièreté.</p>
-<img alt="_images/image32.png" src="_images/image32.png" />
-<p>Alors que dans le contexte d’une application micro-services chaque service peut être déployé indépendamment des autres services, nous avons plusieurs machines virtuelles sur lesquelles les services des différentes applications sont dispatchées.</p>
-<p><strong>Exemple d’architecture micro-services : l’application UBER</strong></p>
-<img alt="_images/image72.png" src="_images/image72.png" />
-<p>Chaque processus métier est isolé dans un service :</p>
-<ul class="simple">
-<li><p><strong>Paiement</strong></p></li>
-<li><p><strong>Notification</strong></p></li>
-<li><p><strong>Facturation</strong></p></li>
-</ul>
-<p><em>Avantages de l’architecture micro-services</em> :</p>
-<ul class="simple">
-<li><p><strong>Découpage</strong> de l’application en <strong>processus</strong> (services) indépendants.</p></li>
-<li><p>Chacun a sa propre <strong>responsabilité métier</strong>.</p></li>
-<li><p><strong>Equipe dédiée</strong> pour chaque service.</p></li>
-<li><p>Plus de <strong>liberté</strong> de choix de langage.</p></li>
-<li><p><strong>Mise à jour</strong>.</p></li>
-<li><p>Containers très adaptés pour les micro-services.</p></li>
-</ul>
-<p><em>Inconvénients</em> :</p>
-<ul class="simple">
-<li><p>Nécessite des interfaces bien définies.</p></li>
-<li><p>Focus sur les tests d’intégration.</p></li>
-<li><p>Déplace la complexité dans l’orchestration de l’application globale. (Docker SWARM ou Kubernetes).</p></li>
-</ul>
-<p><strong>APPLICATION CLOUD NATIVE</strong></p>
-<p>On entend de plus en plus parler d’applications <strong>Cloud Native</strong> définies par plusieurs critères :</p>
-<ul class="simple">
-<li><p>Applications qui suivent une architecture <strong>microservices</strong>.</p></li>
-<li><p>Utilisant la <strong>technologie des containers</strong>.</p></li>
-<li><p>L’orchestration est faite <strong>dynamiquement</strong>.</p></li>
-</ul>
-<p>Il existe une branche de la <strong>Linux Foundation</strong> : la <strong>CNCF</strong> ( <strong>C</strong> loud <strong>N</strong> ative <strong>C</strong> omputing <strong>F</strong> oundation ) qui porte de nombreux projets <strong>Cloud Native</strong> comme :</p>
-<ul>
-<li><p><strong>Kubernetes</strong></p></li>
-<li><p><strong>Prometheus</strong></p></li>
-<li><p><strong>Fluentd</strong></p>
-<p><a class="reference external" href="www.cncf.io">Site de la cncf</a></p>
-</li>
-</ul>
-</section>
-<section id="questionnaire-de-synthese">
-<h3>1.3.5 Questionnaire de synthèse<a class="headerlink" href="#questionnaire-de-synthese" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ol class="arabic simple">
-<li><p><strong>Quels sont les éléments permettant la création d’un container sous Linux ?</strong></p>
-<ul class="simple">
-<li><p>Le kernel Linux et le système de fichiers.</p></li>
-<li><p>Les namespaces et les control groups.</p></li>
-<li><p>Les control groups et le système de fichiers.</p></li>
-</ul>
-</li>
-<li><p><strong>Les cgroups permettent :</strong></p>
-<ul class="simple">
-<li><p>De limiter la vision d’un processus</p></li>
-<li><p>De limiter les ressources que peux utiliser un processus</p></li>
-<li><p>D’isoler le système de fichiers d’un processus</p></li>
-<li><p>De faire un chroot</p></li>
-</ul>
-</li>
-<li><p><strong>Un container c’est</strong></p>
-<ul class="simple">
-<li><p>Une mini machine virtuelle</p></li>
-<li><p>Un répertoire sur le système de fichiers</p></li>
-<li><p>Un processus qui tourne de manière isolée des autres processus</p></li>
-<li><p>Une technologie créée par Docker</p></li>
-</ul>
-</li>
-</ol>
-</div></blockquote>
-</section>
-</section>
-</section>
-<section id="la-plateforme-docker">
-<h1>2.0 La plateforme Docker<a class="headerlink" href="#la-plateforme-docker" title="Permalink to this headline">¶</a></h1>
-<p><strong>Docker</strong> apporte une facilité de développement, de packaging et de déploiement d’applications <strong>quelque soit le langage de programmation</strong>.
-Un développeur peut <strong>tester une application</strong> sur sa machine en <strong>imitant</strong> les conditions de l’environnement de <strong>production</strong> tout en nécessitant une <strong>configuration minimale</strong>.
-Si l’application est soumise à un <strong>fort stresse</strong>, <strong>Docker</strong> peut orchestrer l’allocation d’autres containers.
-La <strong>scalabilité</strong> s’effectue très rapidement car un container peut être lancé en quelques secondes.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Cherchez la définition du terme <strong>scalabilité</strong>.</p>
-</div>
-<p><strong>Docker</strong> permet également d’ <strong>augmenter</strong> le rythme de <strong>mise à jour</strong> des logiciels.</p>
-<section id="le-modele-client-serveur">
-<h2>2.1 Le modèle client/serveur<a class="headerlink" href="#le-modele-client-serveur" title="Permalink to this headline">¶</a></h2>
-<img alt="_images/image55.png" src="_images/image55.png" />
-<p><strong>Docker</strong> utilise un modèle <strong>client/serveur</strong>.
-D’une part nous avons le client <strong>Docker</strong>, un fichier binaire écrit en <strong>GO</strong>. Et d’autre part nous avons le <strong>Docker Daemon</strong> (appelé <strong>dockerd</strong>), écrit aussi en GO, et qui expose une <strong>API REST</strong> consommée par le client.
-Le client envoie des commandes au <strong>Docker Daemon</strong> pour gérer les containers, les images entre autres.</p>
-<section id="le-serveur-dockerd">
-<h3>2.1.1 Le serveur : Dockerd<a class="headerlink" href="#le-serveur-dockerd" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><dl class="simple">
-<dt><strong>Processus</strong><span class="classifier">dockerd</span></dt><dd><ul>
-<li><p>Gestion des images, networks, volumes, cluster, …</p></li>
-<li><p>Délègue la gestion des containers à containerd.</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><p>Expose une <strong>API Rest</strong>.</p></li>
-<li><p>Ecoute sur le <strong>socket unix</strong> <code class="docutils literal notranslate"><span class="pre">/var/run/docker.sock</span></code> par défaut.</p></li>
-<li><p>Peut-être configuré pour écouter sur un socket tcp.</p></li>
-</ul>
-</section>
-<section id="le-client-docker">
-<h3>2.1.2 Le client : docker<a class="headerlink" href="#le-client-docker" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>Installé en même temps que <strong>dockerd</strong>.</p></li>
-<li><p>Communique avec le <strong>daemon local</strong> par défaut via <code class="docutils literal notranslate"><span class="pre">/var/run/docker.sock</span></code>.</p></li>
-<li><p>Peut être configuré pour communiquer avec un <strong>daemon distant</strong>.</p></li>
-</ul>
-</section>
-<section id="concepts-essentiels">
-<h3>2.1.3 Concepts essentiels<a class="headerlink" href="#concepts-essentiels" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p><strong>Docker</strong> facilite la manipulation des <strong>containers Linux</strong>. Et cache la complexité sous-jacente.</p></li>
-<li><p>Introduction de la <strong>notion d’image</strong> : Format d’un package qui contient une application.</p></li>
-<li><p>Une image est un <strong>template</strong> qui sert pour la création d’un container.</p></li>
-<li><p>Pour créer une image on utilise un <strong>Dockerfile</strong>. Un fichier texte qui contient une liste d’instructions.</p></li>
-<li><p>La distribution de ces images se fait par l’intermédiaire d’un <strong>Registry</strong>.</p></li>
-<li><p>Docker permet de lancer des containers sur une machine unique ou sur un ensemble d’hôtes regroupées en un <strong>cluster Swarm</strong>.</p></li>
-</ul>
-<p>Voici un schéma qui montre le <strong>fonctionnement global des composants de base de Docker</strong>.</p>
-<img alt="_images/image56.png" src="_images/image56.png" />
-<p>Quand on installe la plateforme Docker nous avons donc :
-un client et un serveur (ou daemon) qui tourne constamment et qui est responsable de la gestion des containers et des images.</p>
-</section>
-<section id="docker-hub">
-<h3>2.1.4 Docker Hub<a class="headerlink" href="#docker-hub" title="Permalink to this headline">¶</a></h3>
-<p>Par défaut le <strong>daemon Dockerd</strong> communique avec le <strong>Docker Hub</strong>, qui est le <strong>Registry</strong> officiel de Docker disponible à l’adresse : <a class="reference external" href="https://hub.docker.com">https://hub.docker.com</a></p>
-<p>Il existe bien entendu beaucoup d’autres Registry que l’on peut utiliser si on le souhaite.</p>
-<img alt="_images/image57.png" src="_images/image57.png" />
-<p><strong>Les images du Docker Hub peuvent être classées en plusieurs catégories.</strong></p>
-<ul class="simple">
-<li><p>Les images officielles qui sont validées et que l’on peut utiliser avec confiance.</p></li>
-<li><p>Les images publiques à utiliser avec précaution.</p></li>
-<li><p>Les images privées dédiées qu’aux utilisateurs autorisés ( partage d’images au sein d’une entreprise par exemple).</p></li>
-</ul>
-</section>
-<section id="cluster-swarm">
-<h3>2.1.4 Cluster Swarm<a class="headerlink" href="#cluster-swarm" title="Permalink to this headline">¶</a></h3>
-<p>Un Cluster Swarm est un ensemble de <strong>Docker Host</strong>, c’est-à-dire un ensemble de machines sur lesquel le <strong>Docker Démon</strong> est installé.</p>
-<img alt="_images/image58.png" src="_images/image58.png" />
-<p>Ses machines vont communiquer entres elles afin d’orchestrer des applications et d’assurer qu’elles fonctionnent de la manière voulue.</p>
-</section>
-</section>
-<section id="installation-de-docker">
-<h2>2.2 Installation de Docker<a class="headerlink" href="#installation-de-docker" title="Permalink to this headline">¶</a></h2>
-<p>Nous allons voir ici comment installer <strong>Docker</strong> sur votre environnement.</p>
-<p>Rendez-vous tout d’abord dans le <a class="reference external" href="https://hub.docker.com">Docker hub</a> puis sélectionner l’onglet <strong>Explore</strong>:</p>
-<img alt="_images/image59.png" src="_images/image59.png" />
-<p>Sélectionnez ensuite l’onglet <strong>Docker</strong> dans le sous menu:</p>
-<img alt="_images/image60.png" src="_images/image60.png" />
-<p>Sur la gauche vous verrez alors un menu vous permettant de sélectionner différents éléments :</p>
-<ul class="simple">
-<li><p>plateforme</p></li>
-<li><p>système d’exploitation</p></li>
-<li><p>architecture</p></li>
-</ul>
-<p>Comme nous pouvons le constater, Docker peut être installé sur des systèmes divers: machine de développement, l’infrastructure d’un cloud provider, et même des devices de type Raspberry PI.</p>
-</section>
-<section id="installation-pour-windows-10-ou-macos">
-<h2>Installation pour Windows 10 ou MacOS<a class="headerlink" href="#installation-pour-windows-10-ou-macos" title="Permalink to this headline">¶</a></h2>
-<dl class="simple">
-<dt>Si vous êtes sur <strong>MacOS</strong> ou <strong>Windows 10 (Entreprise ou Pro)</strong> vous pouvez installer <strong>Docker Desktop</strong>, un environnement compatible pour chacune de ces plateformes:</dt><dd><ul class="simple">
-<li><p><a class="reference external" href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docker Desktop for Windows</a></p></li>
-<li><p><a class="reference external" href="https://hub.docker.com/editions/community/docker-ce-desktop-mac">Docker Desktop for Mac</a></p></li>
-</ul>
-</dd>
-</dl>
-</section>
-<section id="installation-pour-linux">
-<h2>Installation pour Linux<a class="headerlink" href="#installation-pour-linux" title="Permalink to this headline">¶</a></h2>
-<p>Si vous êtes sur <strong>Linux</strong>, vous pouvez sélectionner la distribution que vous utilisez (<strong>Fedora</strong>, <strong>CentOS</strong>, <strong>Ubuntu</strong>, <strong>Debian</strong>) et vous obtiendrez alors un lien vers la documentation à suivre pour installer <strong>Docker</strong> sur la distribution en question.</p>
-<p>Pour aller un peu plus vite, vous pouvez également lancer la commande suivante (compatible avec les principales distribution <strong>Linux</strong>) :</p>
-<div class="highlight-language notranslate"><div class="highlight"><pre><span></span>curl -sSL https://get.docker.com | sh
-</pre></div>
-</div>
-<p>En quelques dizaines de secondes, cela installera <strong>la plateforme Docker</strong> sur votre distribution.
-Il sera ensuite nécessaire d’<strong>ajouter votre utilisateur</strong> dans le <strong>groupe docker</strong> afin de pouvoir intéragir avec le <strong>daemon</strong> sans avoir à utiliser <strong>sudo</strong> (il faudra cependant lancer un nouveau <strong>shell</strong> afin que ce changement de groupe soit pris en compte.)</p>
-<div class="highlight-language notranslate"><div class="highlight"><pre><span></span>sudo usermod -aG docker &lt;UTILISATEUR&gt;
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Il est également possible d’installer <strong>Docker</strong> sur d’autres types d’<strong>architecture infrastructure</strong>.</p>
-</div>
-</section>
-<section id="verification-de-l-installation">
-<h2>Vérification de l’installation<a class="headerlink" href="#verification-de-l-installation" title="Permalink to this headline">¶</a></h2>
-<p>Une fois installé, lancez la commande suivante afin de vérifier que tout est fonctionnel :</p>
-<div class="highlight-language notranslate"><div class="highlight"><pre><span></span>docker info
-</pre></div>
-</div>
-<img alt="_images/image61.png" src="_images/image61.png" />
-</section>
-</section>
-<section id="les-containers-avec-docker">
+  <section id="les-containers-avec-docker">
 <h1>3.0 Les containers avec Docker<a class="headerlink" href="#les-containers-avec-docker" title="Permalink to this headline">¶</a></h1>
 <p>Après avoir présenté la plateforme Docker, nous allons voir comment créer des <strong>containers</strong> en ligne de commande pour lancer des services en tâche de fond et/ou pour rendre disponible dans un container des repertoires de la <strong>machine hôte</strong>.</p>
 <p>Nous verrons comment lancer un container dans un mode d’<strong>accès privilégié</strong>, ainsi que les commandes de bases pour la gestion du cycle de vie des containers.</p>
@@ -588,8 +279,8 @@ Nous verrons par la suite comme il est possible de configurer le <code class="do
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="o">&lt;</span><span class="n">command</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<table class="colwidths-given docutils align-default" id="id16">
-<caption><span class="caption-text">Les commandes de base de docker container</span><a class="headerlink" href="#id16" title="Permalink to this table">¶</a></caption>
+<table class="colwidths-given docutils align-default" id="id14">
+<caption><span class="caption-text">Les commandes de base de docker container</span><a class="headerlink" href="#id14" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 50%" />
 <col style="width: 50%" />
@@ -914,8 +605,8 @@ Ressources à consulter pour comprendre comment Docker fonction sous Windows :</
 Le fichier original est alors copier dans la layer qui est en <strong>lecture / écriture</strong> et la modification peut être <strong>persistée</strong>.</p>
 <img alt="_images/image35.png" src="_images/image35.png" />
 </section>
-<section id="id2">
-<h2>4.2 Exercices<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<section id="id1">
+<h2>4.2 Exercices<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <section id="exercice-1-container-s-layer">
 <h3>4.2.1 Exercice 1 : Container’s layer<a class="headerlink" href="#exercice-1-container-s-layer" title="Permalink to this headline">¶</a></h3>
 <p>La layer d’un container, est la layer <strong>read-write</strong> créé lorsqu’un container est lancé.
@@ -1487,7 +1178,7 @@ L’ID de l’image (dans sa version courte) est 00a905f2bd5a, nous allons voir 
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">overlay2</span><span class="o">/</span><span class="mi">49908</span><span class="n">d07e177f9b61dc273ec7089efed9223d3798ad1d86c78d4fe953e227668</span><span class="o">/</span><span class="n">diff</span><span class="o">/</span>
 </pre></div>
 </div>
-<p><a href="#id5"><span class="problematic" id="id6">**</span></a>- LastUpdated <a href="#id7"><span class="problematic" id="id8">**</span></a>: ce fichier contient la date de dernière mise à jour de l’image</p>
+<p><a href="#id3"><span class="problematic" id="id4">**</span></a>- LastUpdated <a href="#id5"><span class="problematic" id="id6">**</span></a>: ce fichier contient la date de dernière mise à jour de l’image</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">image</span><span class="o">/</span><span class="n">overlay2</span> <span class="c1"># cat ./imagedb/metadata/sha256/00a905f2bd5...459dc05816/lastUpdated</span>
 <span class="mi">2018</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">31</span><span class="n">T07</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mf">04.6840553</span><span class="n">Z</span>
 </pre></div>
@@ -1512,7 +1203,7 @@ L’ID de l’image (dans sa version courte) est 00a905f2bd5a, nous allons voir 
 <h2>4.6 Multi-Stages Build<a class="headerlink" href="#multi-stages-build" title="Permalink to this headline">¶</a></h2>
 <p>Depuis la version <code class="docutils literal notranslate"><span class="pre">17.05</span></code> de Docker, nous pouvons découper le Build d’une image en plusieurs étapes.</p>
 <p>Un cas d’usage courant :</p>
-<p><a href="#id9"><span class="problematic" id="id10">**</span></a>Etape 1 <a href="#id11"><span class="problematic" id="id12">**</span></a>: Avoir une image de base contenant l’ensemble des librairies et binaires nécessaires pour la création d’artéfacts.</p>
+<p><a href="#id7"><span class="problematic" id="id8">**</span></a>Etape 1 <a href="#id9"><span class="problematic" id="id10">**</span></a>: Avoir une image de base contenant l’ensemble des librairies et binaires nécessaires pour la création d’artéfacts.</p>
 <p><strong>Etape 2</strong> : Utiliser une image de base plus light et d’y copier les artéfacts générés à l’étape précédente.</p>
 <p><strong>Exemple :</strong></p>
 <p>Considérons une application <strong>ReactJs</strong>.
@@ -1531,8 +1222,8 @@ La premiere instruction <strong>FROM</strong> utilise une image NODE dans laquel
 <p>Et la seconde instruction <strong>FROM</strong> utilise utilise une image <strong>NGINX</strong> dans laquelle les assets web buildés précédemment sont copiés. Et au final nous avons une seule image qui contient notre application.</p>
 <p>Cela peut être vérifié en faisant le Build de l’image :</p>
 <img alt="_images/image30.png" src="_images/image30.png" />
-<section id="id13">
-<h3>4.6.1 Mise en pratique<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<section id="id11">
+<h3>4.6.1 Mise en pratique<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <p>Dans cette mise en pratique, nous allons illustrer le multi stage build.</p>
 <section id="rappel">
 <h4>Rappel<a class="headerlink" href="#rappel" title="Permalink to this headline">¶</a></h4>
@@ -1745,7 +1436,7 @@ Mais avant il faut avoir précisé ses identifiants de connexion au registry ave
 <p>Save permet de sauvegarder une image
 et Load permet de charger une image à partir d’une sauvegarde.</p>
 <img alt="_images/image44.png" src="_images/image44.png" />
-<p><a href="#id14"><span class="problematic" id="id15">**</span></a>La commande : rm **</p>
+<p><a href="#id12"><span class="problematic" id="id13">**</span></a>La commande : rm **</p>
 <p>Supprime une image avec l’ensemble de ses layers.
 Plusieurs images peuvent être supprimées en même temps.</p>
 <img alt="_images/image45.png" src="_images/image45.png" />
@@ -1791,126 +1482,14 @@ Plusieurs images peuvent être supprimées en même temps.</p>
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">1.0 Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#quick-wins">1.1 Quick Wins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#des-stacks-completes">1.2 Des Stacks complètes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#quelques-concepts-utiles-pour-les-developpeurs">1.3 Quelques concepts utiles pour les Développeurs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#un-container-linux-cest-quoi">1.3.1 Un container Linux, c’est quoi ?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#containers-linux-les-namespaces">1.3.2 Containers Linux : Les Namespaces</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#containers-linux-control-groups-cgroups">1.3.3 Containers Linux : Control Groups (cgroups)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#containers-linux-vm-container">1.3.4 Containers Linux : VM/Container</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#architecture-micro-services">1.3.5 Architecture micro-services</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#questionnaire-de-synthese">1.3.5 Questionnaire de synthèse</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#la-plateforme-docker">2.0 La plateforme Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#le-modele-client-serveur">2.1 Le modèle client/serveur</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#le-serveur-dockerd">2.1.1 Le serveur : Dockerd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#le-client-docker">2.1.2 Le client : docker</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#concepts-essentiels">2.1.3 Concepts essentiels</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#docker-hub">2.1.4 Docker Hub</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cluster-swarm">2.1.4 Cluster Swarm</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#installation-de-docker">2.2 Installation de Docker</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installation-pour-windows-10-ou-macos">Installation pour Windows 10 ou MacOS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installation-pour-linux">Installation pour Linux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#verification-de-l-installation">Vérification de l’installation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#les-containers-avec-docker">3.0 Les containers avec Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#hello-world">3.1 Hello World</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ubuntu-sous-docker">3.2 Ubuntu sous docker</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#un-container-dans-un-mode-interactif">3.2 Un container dans un mode Interactif</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#container-nginx-en-foreground">Container NGINX en <strong>foreground</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#container-nginx-en-background">Container NGINX en <strong>background</strong></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#publication-de-port">3.3 Publication de port.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#bind-mount">3.4 Bind-mount</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#exemple-1-monter-un-dossier-www">3.4.1 Exemple 1 : monter un dossier ‘www’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exemple-2-interagir-avec-le-docker-daemom">3.4.2 Exemple 2 : Intéragir avec le Docker Daemom</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#pour-linux-uniquement">Pour LINUX UNIQUEMENT</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pour-windows-uniquement">Pour WINDOWS UNIQUEMENT</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#exemple-3-ecouter-les-actions-demandees-au-docker-daemon">3.4.3 Exemple 3 : Ecouter les actions demandées au Docker Daemon</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#limitation-des-ressources">3.5 Limitation des ressources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#les-droits-dans-un-container">3.6 Les droits dans un container</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#des-options-utiles">3.6 Des options utiles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#les-commandes-de-base-avec-docker">3.7 Les commandes de base avec Docker</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#en-pratique">3.8 En pratique :</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#exercices">3.9 Exercices :</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-1-hello-from-alpine">3.9.1 Exercice 1 : Hello From Alpine</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-2-shell-interactif">3.9.2 Exercice 2 : Shell intéractif</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-3-foreground-background">3.9.3 Exercice 3 : foreground / background</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-4-publication-de-port">3.9.4 Exercice 4 : Publication de port</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-5-liste-des-containers">3.9.5 Exercice 5 : Liste des containers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-6-inspection-d-un-container">3.9.6 Exercice 6 : Inspection d’un container</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-7-exec-dans-un-container">3.9.7 Exercice 7 : exec dans un container</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-8-cleanup">3.9.8 Exercice 8 : cleanup</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#en-resume">3.10 En résumé</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#les-images-docker">4.0 Les images Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#union-filesystem">4.1 Union Filesystem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">4.2 Exercices</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-1-container-s-layer">4.2.1 Exercice 1 : Container’s layer</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#dockerfile">4.3 DockerFile</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#creation-dimages">4.3 Création d’images</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#mise-en-pratique">4.4 Mise en pratique</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#exercices-creation-dimages">4.5 Exercices : Création d’images</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-1-creation-dune-image-a-partir-dun-container">4.5.1 Exercice 1 : Création d’une image à partir d’un container</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-2-dockerizez-un-serveur-web-simple">4.5.2 Exercice 2 : Dockerizez un serveur web simple</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-3-entrypoint-et-cmd">4.5.3 Exercice 3 : ENTRYPOINT et CMD</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#format">Format</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#re-ecriture-a-lexecution-dun-container">Ré-écriture à l’exécution d’un container</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#instruction-entrypoint-utilisee-seule">Instruction ENTRYPOINT utilisée seule</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#instructions-cmd-utilisee-seule">Instructions CMD utilisée seule</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#instructions-entrypoint-et-cmd">Instructions ENTRYPOINT et CMD</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pour-aller-plus-loin-ou-est-stockee-mon-image">Pour aller plus loin : ou est stockée mon image ?</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#stockage-d-une-image">Stockage d’une image</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#multi-stages-build">4.6 Multi-Stages Build</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id13">4.6.1 Mise en pratique</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#rappel">Rappel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#un-serveur-http-ecrit-en-go">Un serveur http écrit en Go</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#dockerfile-traditionel">Dockerfile traditionel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#dockerfile-utilisant-un-build-multi-stage">Dockerfile utilisant un build multi-stage</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#prise-en-compte-du-cache">4.7 Prise en compte du cache</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-prise-en-compte-du-cache">4.7.1 Exercice : Prise en compte du cache</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#le-contexte-de-build">4.8 Le contexte de Build</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#les-commandes-de-base-avec-docker-image">4.9 Les commandes de base avec docker image.</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-analyse-du-contenu-d-une-image">4.9.1 Exercice : Analyse du contenu d’une image</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cours/docker/1.0%20Introduction.html">1.0 Introduction</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">Cours de BTS SIO.</a></li>
   </ul></li>
 </ul>
 </div>
