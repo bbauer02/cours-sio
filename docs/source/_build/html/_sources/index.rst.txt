@@ -13,12 +13,9 @@ Vous trouverez sur cette page des cours en ligne pour le BTS SIO.
 
    Auteur : **Bauer Baptiste**, Enseignant en BTS SIO au lycée Paul Claudel(02)
 
-Contents
---------
 
 .. toctree::
    :caption: Cours Docker
-   :maxdepth: 2
    :hidden:
 
    cours/docker/1.0 Introduction

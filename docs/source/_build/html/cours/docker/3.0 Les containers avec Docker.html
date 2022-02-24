@@ -1,0 +1,636 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>3.0 Les containers avec Docker &#8212; Cours BTS SIO 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="les-containers-avec-docker">
+<h1>3.0 Les containers avec Docker<a class="headerlink" href="#les-containers-avec-docker" title="Permalink to this headline">¶</a></h1>
+<p>Après avoir présenté la plateforme Docker, nous allons voir comment créer des <strong>containers</strong> en ligne de commande pour lancer des services en tâche de fond et/ou pour rendre disponible dans un container des repertoires de la <strong>machine hôte</strong>.</p>
+<p>Nous verrons comment lancer un container dans un mode d’<strong>accès privilégié</strong>, ainsi que les commandes de bases pour la gestion du cycle de vie des containers.</p>
+<p>Avant la 1.13, lancer un <strong>container</strong> s’effectuait avec la commande : <code class="docutils literal notranslate"><span class="pre">Docker</span> <span class="pre">Run</span></code> sans le mot clé <code class="docutils literal notranslate"><span class="pre">container</span></code>.
+Il est toujours possible de le faire.
+Mais maintenant les commandes ont été regroupé aux composant auquel elles se rapportent. C’est la raison pour laquelle le mot clé <code class="docutils literal notranslate"><span class="pre">container</span></code> a été rajouté pour les commandes relatifs à la gestion des containers.
+<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">run</span> <span class="pre">[OPTIONS]</span> <span class="pre">IMAGE</span> <span class="pre">[COMMAND]</span> <span class="pre">[ARG]</span></code>
+D’autres groupes de commande existent et nous les étudierons plus tard.</p>
+<section id="hello-world">
+<h2>3.1 Hello World<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h2>
+<p>Lançons notre premier container <strong>Hello-World</strong>.</p>
+<img alt="../../_images/image62.png" src="../../_images/image62.png" />
+<p>Ouvrez un <strong>terminal</strong> et tapez :</p>
+<div class="highlight-language notranslate"><div class="highlight"><pre><span></span>docker container run hello-world
+</pre></div>
+</div>
+<img alt="../../_images/image63.png" src="../../_images/image63.png" />
+<p>Le client demande au <strong>daemon</strong> (processus) de lancer un <strong>container</strong> basé sur l’image <strong>Hello-World</strong> .
+Cette image ,n’étant pas disponible en local, est téléchargée et le <strong>processus</strong> présent dans cette image est automatiquement exécuté.</p>
+<p>Et dans le cas de notre <strong>Hello-world</strong>, il s’agit seulement d’écrire du texte sur la sortie standard : <strong>Hello from Docker</strong> suivi d’un texte.</p>
+<p>Cet exemple est simple mais il met en avant le mécanisme sous-jacent.
+A la fin du texte on nous demande d’essayer un exemple plus ambitieux, c’est ce que nous allons faire par la suite.</p>
+<p>Expérimentez la commande : <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">run</span> <span class="pre">hello-world</span></code> sur votre machine</p>
+</section>
+<section id="ubuntu-sous-docker">
+<h2>3.2 Ubuntu sous docker<a class="headerlink" href="#ubuntu-sous-docker" title="Permalink to this headline">¶</a></h2>
+<p>Nous pouvons lancer un autre container basé sur l’image de <strong>Ubuntu</strong> et lui demander d’afficher <code class="docutils literal notranslate"><span class="pre">Hello</span></code> dans  le contexte de cette image.</p>
+<div class="highlight-language notranslate"><div class="highlight"><pre><span></span>docker container run ubuntu echo hello
+</pre></div>
+</div>
+<img alt="../../_images/image11.png" src="../../_images/image11.png" />
+<p>Analyser le contenu des cadres ci-dessus.
+A quelles actions correspondent-ils ?</p>
+</section>
+<section id="un-container-dans-un-mode-interactif">
+<h2>3.2 Un container dans un mode Interactif<a class="headerlink" href="#un-container-dans-un-mode-interactif" title="Permalink to this headline">¶</a></h2>
+<p>Le mode <strong>interactif</strong> permet d’avoir accès à un <code class="docutils literal notranslate"><span class="pre">shell</span></code> depuis le client local  qui tourne dans le <strong>contexte du container</strong>.</p>
+<p>Pour cela il faut rajouter deux options à notre commande :</p>
+<p><code class="docutils literal notranslate"><span class="pre">-t</span></code> qui permet d’allouer un pseudo terminal à notre container.</p>
+<p><code class="docutils literal notranslate"><span class="pre">-i</span></code> qui va permettre de laisser l’entrée standard du container ouverte.</p>
+<p>Nous allons utiliser l’image <strong>Ubuntu</strong> qui contient les binaires et les bibliothèques du système d’exploitation Ubuntu. Le processus du <strong>container</strong> s’exécutera donc dans cette environnement, c’est-à-dire dans le <strong>système de fichier</strong> qui est amené par le système Ubuntu.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">t</span> <span class="o">-</span><span class="n">i</span> <span class="n">ubuntu</span> <span class="n">bash</span>
+</pre></div>
+</div>
+<p>ou</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">ti</span> <span class="n">ubuntu</span> <span class="n">bash</span>
+</pre></div>
+</div>
+<img alt="../../_images/image12.png" src="../../_images/image12.png" />
+<p>Nous voyons que nous avons accès à un <code class="docutils literal notranslate"><span class="pre">shell</span></code> ( <em>coquille en anglais, interface système</em>).
+Nous reconnaissons sans peine le prompt <strong>Ubuntu/Linux</strong> dans lequel nous pouvons écrire par exemple une commande Linux : <code class="docutils literal notranslate"><span class="pre">ls</span></code></p>
+<p>Tapez dans le <code class="docutils literal notranslate"><span class="pre">shell</span></code>, la commande : <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">/etc/issue</span></code>.</p>
+<blockquote>
+<div><p>Quelle information obtenez-vous ?</p>
+</div></blockquote>
+<p>Pour sortir du container on va tuer le processus avec la commande : <code class="docutils literal notranslate"><span class="pre">exit</span></code></p>
+<p>Nous aurions pu faire la même chose en utilisant une autre image que celle d’Ubuntu.
+Par exemple :
+Nous souhaitons lancer un container basé sur la distribution <strong>Linux Alpine</strong>.
+C’est une distribution légère et sécurisée.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">t</span> <span class="o">-</span><span class="n">i</span> <span class="n">alpine</span>
+</pre></div>
+</div>
+<p>ou</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">ti</span> <span class="n">alpine</span>
+</pre></div>
+</div>
+<img alt="../../_images/image13.png" src="../../_images/image13.png" />
+<p>Vous savez maintenant lancer un <code class="docutils literal notranslate"><span class="pre">shell</span></code> interactif dans un container.</p>
+<p>Quand on lance un <strong>container</strong> avec seulement la commande <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">run</span></code>
+par défaut le container est exécuté en <strong>foreground</strong>, mais si l’on veut l’exécuter en <strong>background</strong>, c’est-à-dire en tâche de fond, il faudra utiliser l’option <code class="docutils literal notranslate"><span class="pre">-d</span></code> et la commande retournera alors l’ <strong>identifiant</strong> du conteneur que l’on pourra utiliser par la suite pour effectuer différentes actions.</p>
+<p>Par exemple nous pouvons lancer un container basé sur l’image <code class="docutils literal notranslate"><span class="pre">nginx</span></code>, un <strong>serveur http</strong>.</p>
+<section id="container-nginx-en-foreground">
+<h3>Container NGINX en <strong>foreground</strong><a class="headerlink" href="#container-nginx-en-foreground" title="Permalink to this headline">¶</a></h3>
+<p>Création du <strong>conteneur</strong> en <strong>foreground</strong>, cela signifie que l’on ne récupère pas la main</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="n">nginx</span>
+</pre></div>
+</div>
+<img alt="../../_images/image14.png" src="../../_images/image14.png" />
+<p>Le conteneur est lancé et occupe notre console. Nous n’avons pas la main.</p>
+</section>
+<section id="container-nginx-en-background">
+<h3>Container NGINX en <strong>background</strong><a class="headerlink" href="#container-nginx-en-background" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="n">nginx</span>
+</pre></div>
+</div>
+<img alt="../../_images/image15.png" src="../../_images/image15.png" />
+<p>Nous voyons ici que nous avons <strong>NGINX</strong> qui tourne en tâche de fond et nous pouvons accéder à ce container par la suite grâce à son <strong>identifiant</strong>.</p>
+<p>Nous pourrions aussi accéder à ce serveur web depuis un <strong>navigateur</strong>.
+Cela n’est actuellement pas possible car nous n’avons pas publié de <strong>port</strong>.</p>
+</section>
+</section>
+<section id="publication-de-port">
+<h2>3.3 Publication de port.<a class="headerlink" href="#publication-de-port" title="Permalink to this headline">¶</a></h2>
+<p>La publication d’un port est utilisée pour qu’un <strong>container</strong> puisse être accessible depuis l’extérieur.
+Afin de publier un port nous utilisons l’option <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">HOST_PORT:CONTAINER_PORT</span></code>.</p>
+<p>Cela permet de publier un <strong>port du conteneur</strong> sur un <strong>port de la machine hôte</strong>.</p>
+<p>L’option <code class="docutils literal notranslate"><span class="pre">-P</span></code> quant à elle laisse le choix du port au <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">démon</span></code>.</p>
+<p>Reprenons notre container <strong>NGINX</strong> qui est un serveur <strong>http</strong>.
+Par défaut, <strong>NGINX</strong> est un processus qui se lance sur le <strong>port 80</strong> dans le container.
+Si nous souhaitons accéder à notre container depuis <strong>un navigateur de la machine hôte</strong> sur le <strong>port 8080</strong> de la machine hôte,
+nous lançerons le container <strong>nginx</strong> avec la commande suivante :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8080</span><span class="p">:</span><span class="mi">80</span> <span class="n">nginx</span>
+</pre></div>
+</div>
+<img alt="../../_images/image16.png" src="../../_images/image16.png" />
+<p>Maintenant, nous pouvons ouvrir notre navigateur sur l’adresse : <a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
+<img alt="../../_images/image17.png" src="../../_images/image17.png" />
+</section>
+<section id="bind-mount">
+<h2>3.4 Bind-mount<a class="headerlink" href="#bind-mount" title="Permalink to this headline">¶</a></h2>
+<p>Nous allons maintenant voir comment <strong>monter un répertoire de la machine hôte</strong> dans un container.</p>
+<p>Cela s’effectue grâce à l’option <code class="docutils literal notranslate"><span class="pre">-v</span> <span class="pre">&lt;HOST_PATH&gt;:&lt;CONTAINER_PATH&gt;</span></code></p>
+<p>Il existe une autre notation avec l’option <code class="docutils literal notranslate"><span class="pre">--mount</span> <span class="pre">type=bind,</span> <span class="pre">src=&lt;HOST_PATH&gt;,dst=&lt;CONTAINER_PATH&gt;</span></code></p>
+<p>Cela permet de partager,par exemple,le code source d’un programme présent sur une <strong>machine hôte</strong> avec des <strong>containers</strong>
+ou de monter la <strong>socket Unix</strong> du <strong>daemon Docker</strong> (<code class="docutils literal notranslate"><span class="pre">/var/run/docker.sock</span></code>) pour permettre à un container de dialoguer avec le <strong>daemon</strong>.</p>
+<section id="exemple-1-monter-un-dossier-www">
+<h3>3.4.1 Exemple 1 : monter un dossier ‘www’<a class="headerlink" href="#exemple-1-monter-un-dossier-www" title="Permalink to this headline">¶</a></h3>
+<p>Quand vous développez une application et que vous modifiez le code source, il peut être intéressant que cela soit pris en compte dans le conteneur.
+C’est le cas lors du développement d’une <strong>application web</strong>.
+Nos <strong>fichiers sources</strong> sont sur une <strong>machine locale</strong>, et dans <strong>un conteneur</strong> nous avons un serveur <strong>WEB</strong> avec <strong>NGINX</strong> par exemple.
+Nous allons alors monter le dossier <code class="docutils literal notranslate"><span class="pre">www</span></code> local dans le <strong>container</strong>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker container run -v $PWD/www:/usr/share/nginx/html -d -p 80:80 nginx
+</pre></div>
+</div>
+<p>Ou</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker container run –mount type=bind,src=$PWD/www,dst=/usr/share/nginx/html -d -p 80:80 nginx
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">$PWD</span></code> est une variable d’environnement qui va être créé par le <strong>SHELL</strong> et prendra comme valeur le <strong>chemin du répertoire courant</strong> dans lequel la commande a été lancé.</p>
+<img alt="../../_images/image18.png" src="../../_images/image18.png" />
+</section>
+<section id="exemple-2-interagir-avec-le-docker-daemom">
+<h3>3.4.2 Exemple 2 : Intéragir avec le Docker Daemom<a class="headerlink" href="#exemple-2-interagir-avec-le-docker-daemom" title="Permalink to this headline">¶</a></h3>
+<p>Dans cet exemple nous allons voir comment lier(bind) <code class="docutils literal notranslate"><span class="pre">/var/run/docker.sock</span></code>.
+Ce qui nous permettra d’interagir avec le <code class="docutils literal notranslate"><span class="pre">Docker</span> <span class="pre">Daemon</span></code> directement depuis le container et cela nous donnera accès à l’ <strong>API du Daemon</strong>.</p>
+<img alt="../../_images/image19.png" src="../../_images/image19.png" />
+<section id="pour-linux-uniquement">
+<h4>Pour LINUX UNIQUEMENT<a class="headerlink" href="#pour-linux-uniquement" title="Permalink to this headline">¶</a></h4>
+<p>Créons donc un simple container : avec l’image d’ <strong>Alpine</strong>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">it</span> <span class="o">--</span><span class="n">name</span> <span class="n">admin</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">sock</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">sock</span> <span class="n">alpine</span>
+</pre></div>
+</div>
+<p>Maintenant que le container est monté, et branché au <code class="docutils literal notranslate"><span class="pre">Docker</span> <span class="pre">Daemon</span></code>, nous pouvons lui envoyer des requêtes.</p>
+<p><strong>Depuis le Shell</strong>:
+Installons <strong>CURL</strong> :</p>
+<p><code class="docutils literal notranslate"><span class="pre">apk</span> <span class="pre">add</span> <span class="pre">curl</span></code> pour ajouter l’utilitaire <code class="docutils literal notranslate"><span class="pre">CURL</span></code>.</p>
+<p>Nous allons lancer une requête <strong>http POST</strong> sur le <code class="docutils literal notranslate"><span class="pre">Docker</span> <span class="pre">DAEMON</span></code> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>curl -X POST –unix-socket /var/run/docker.sock -d &#39;{&quot;Image&quot;:&quot;nginx:1.12.2&quot;}&#39; -H &#39;Content-Type: application/json&#39; http://localhost/containers/create
+</pre></div>
+</div>
+<p>Cela aura pour effet de demander au <strong>Docker Daemon</strong> de créer un nouveau container avec l’image <strong>NGINX version 1.12.2</strong>.</p>
+<p>Le paramètre <code class="docutils literal notranslate"><span class="pre">-X</span> <span class="pre">POST</span></code> permet d’effectuer quel type de requête <code class="docutils literal notranslate"><span class="pre">http</span></code> ?
+Sous quel format sont envoyés les instructions de configuration de l’image <strong>Docker</strong> à créer ?</p>
+<p>Pour lancer le container depuis le container <strong>ADMIN</strong> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>curl -XPOST –unix-socket /var/run/docker.sock http://localhost/containers/6b24...283b/start
+</pre></div>
+</div>
+<p>Dans cette commande, à votre avis à quoi corresponde la chaine de caractère : <code class="docutils literal notranslate"><span class="pre">6b24...283b</span></code> ?</p>
+</section>
+<section id="pour-windows-uniquement">
+<h4>Pour WINDOWS UNIQUEMENT<a class="headerlink" href="#pour-windows-uniquement" title="Permalink to this headline">¶</a></h4>
+<p>Bientôt disponible ….</p>
+</section>
+</section>
+<section id="exemple-3-ecouter-les-actions-demandees-au-docker-daemon">
+<h3>3.4.3 Exemple 3 : Ecouter les actions demandées au Docker Daemon<a class="headerlink" href="#exemple-3-ecouter-les-actions-demandees-au-docker-daemon" title="Permalink to this headline">¶</a></h3>
+<p>Nous allons lancer un autre dans laquel le <strong>socket</strong> est monté.
+Et nous allons écouter les actions demandées sur le <strong>Docker Daemon</strong>. <strong>Même ceux provenant d’autres containers</strong>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker container run –name admin -ti -v /var/run/docker.sock:/var/run/docker.sock alpine
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>curl –unix-socket /var/run/docker.sock http://localhost/events
+</pre></div>
+</div>
+</section>
+</section>
+<section id="limitation-des-ressources">
+<h2>3.5 Limitation des ressources<a class="headerlink" href="#limitation-des-ressources" title="Permalink to this headline">¶</a></h2>
+<p>Nous avons dit que le lancement d’un <strong>containeur</strong> revient en fait à exécuter un <strong>processeur</strong> , et par défaut, il n’y a pas de limite de consommation des ressources matériels.
+Par exemple, Un container pourra utiliser toute la RAM  et impacter tout les autres containeurs qui tournent sur la même machine hôte.</p>
+<p>Nous pouvons toutefois imposer des limites à un containeur.</p>
+<p>Lançons un containeur avec l’image <code class="docutils literal notranslate"><span class="pre">estesp/hogit</span></code> qui a pour objectif de consommer de la ram.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">--</span><span class="n">memory</span> <span class="mi">32</span><span class="n">m</span> <span class="n">estesp</span><span class="o">/</span><span class="n">hogit</span>
+</pre></div>
+</div>
+<p>Avec <code class="docutils literal notranslate"><span class="pre">--memory</span> <span class="pre">32m</span></code>, nous avons fixé une limite : quand le processus aura atteint la limite de <code class="docutils literal notranslate"><span class="pre">32M</span></code> de <strong>RAM</strong> consomméecho, il sera tué par <strong>Docker</strong>.</p>
+<p>Nous pouvons limiter l’utilisation du <strong>CPU</strong> également.
+Lançons un containeur avec l’image <code class="docutils literal notranslate"><span class="pre">progrium/stress</span></code> qui va se charger de stresser les cœurs du <strong>CPU</strong>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker container run -it –rm progrium/stress -–cpu 4
+</pre></div>
+</div>
+<p>Ici les <strong>4</strong> cœurs du <strong>CPU</strong> serons utilisés car nous n’avons pas imposé de limite.</p>
+<p>Maintenant lançons la même commande avec le flag <code class="docutils literal notranslate"><span class="pre">--cpus</span> <span class="pre">0.5</span></code> pour limiter l’utilisation du <strong>CPU à la moitié d’un cœur</strong>. (<strong>12%</strong> d’utilisation)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker container run -it --rm progrium/stress -–cpu 4 –-cpus 0.5
+</pre></div>
+</div>
+<p>En utilisant la valeur du flag : <code class="docutils literal notranslate"><span class="pre">--cpus</span> <span class="pre">2</span></code> , nous limitons l’utilisation à 2 cœurs seulement. (<strong>50%</strong> d’utilisation)</p>
+</section>
+<section id="les-droits-dans-un-container">
+<h2>3.6 Les droits dans un container<a class="headerlink" href="#les-droits-dans-un-container" title="Permalink to this headline">¶</a></h2>
+<p>Dans un containeur, s’il n’est pas précisé explicitement, l’utilisateur <code class="docutils literal notranslate"><span class="pre">root</span></code> sera utilisé comme propriétaire.
+L’utilisateur <code class="docutils literal notranslate"><span class="pre">root</span></code> du containeur correspond à l’utilisateur <code class="docutils literal notranslate"><span class="pre">root</span></code> de la machine hôte.</p>
+<p>Une bonne pratique est d’utiliser un autre utilisateur pour lancer le containeur.</p>
+<p>Il y a plusieurs façons de le définir : soit à la création de l’image, soit en utilisant l’option <code class="docutils literal notranslate"><span class="pre">–user</span></code>, soit en changeant l’utilisateur dans le processus du container (<code class="docutils literal notranslate"><span class="pre">gosu</span></code>).</p>
+<p>Lançons un container basé sur l’image <strong>Alpine</strong> et exécutons l’instruction sleep 10000.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="n">alpine</span> <span class="n">sleep</span> <span class="mi">10000</span>
+</pre></div>
+</div>
+<p>Nous allons vérifier le <code class="docutils literal notranslate"><span class="pre">owner</span></code> du processus depuis la machine hôte :</p>
+<p><strong>Pour LINUX :</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ps</span> <span class="n">aux</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">sleep</span>
+</pre></div>
+</div>
+<p><strong>pour WINDOWS :</strong></p>
+<p>Sous Windows, nous n’avons pas accès aux commandes LINUX nativement.
+Il faut utiliser les commandes Docker natives pour avoir accès aux informations liées aux processus des containeurs par l’intermédiaire de leur identifiant ou nom et
+via la commande <code class="docutils literal notranslate"><span class="pre">top</span></code>.</p>
+<p>Récupérez l’identifiant ou le nom du container obtenue avec la commande précédente puis :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">top</span> <span class="o">&lt;</span><span class="n">identifiant</span> <span class="n">ou</span> <span class="n">nom</span> <span class="n">du</span> <span class="n">container</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="../../_images/image74.png" src="../../_images/image74.png" />
+<p>Faisons la même manipulation, mais cette fois avec l’image officielle de <strong>MongoDB</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="n">mongo</span>
+</pre></div>
+</div>
+<img alt="../../_images/image75.png" src="../../_images/image75.png" />
+<p>On constate que le processus est la propriété d’un <code class="docutils literal notranslate"><span class="pre">owner</span></code> qui posséde un <code class="docutils literal notranslate"><span class="pre">UID</span></code> de <strong>999</strong>.
+Nous verrons par la suite comme il est possible de configurer le <code class="docutils literal notranslate"><span class="pre">owner</span></code> d’un processus lors du montage de <strong>container</strong>.</p>
+</section>
+<section id="des-options-utiles">
+<h2>3.6 Des options utiles<a class="headerlink" href="#des-options-utiles" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--name</span></code> qui permet de donner un nom au container.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--rm</span></code> pour supprimer le container quand il est stoppé.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--restart=on-failure</span></code> pour relancer le container en cas d’erreur.</p></li>
+</ul>
+</div>
+</section>
+<section id="les-commandes-de-base-avec-docker">
+<h2>3.7 Les commandes de base avec Docker<a class="headerlink" href="#les-commandes-de-base-avec-docker" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="o">&lt;</span><span class="n">command</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<table class="colwidths-given docutils align-default" id="id1">
+<caption><span class="caption-text">Les commandes de base de docker container</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Commande</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>run</p></td>
+<td><p>Création d’un container</p></td>
+</tr>
+<tr class="row-odd"><td><p>ls</p></td>
+<td><p>Liste des containers</p></td>
+</tr>
+<tr class="row-even"><td><p>inspect</p></td>
+<td><p>Détails d’un container</p></td>
+</tr>
+<tr class="row-odd"><td><p>logs</p></td>
+<td><p>Visualisation des logs</p></td>
+</tr>
+<tr class="row-even"><td><p>exec</p></td>
+<td><p>Lancement d’un processus dans un container existant</p></td>
+</tr>
+<tr class="row-odd"><td><p>stop</p></td>
+<td><p>Arrêt d’un container</p></td>
+</tr>
+<tr class="row-even"><td><p>rm</p></td>
+<td><p>Suppression d’un container</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>La commande <code class="docutils literal notranslate"><span class="pre">ls</span></code> :</p></li>
+</ul>
+<p>La commande <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">ls</span></code> montre les containers qui sont en cours d’execution.</p>
+<img alt="../../_images/image20.png" src="../../_images/image20.png" />
+<p>Pour lister tout les containers actifs et stoppés : <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">ls</span> <span class="pre">-a</span></code>.</p>
+<img alt="../../_images/image1.png" src="../../_images/image1.png" />
+<p>Pour lister les identifiants des containers actifs et stoppés : <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">ls</span> <span class="pre">-a</span> <span class="pre">-q</span></code>.</p>
+<img alt="../../_images/image2.png" src="../../_images/image2.png" />
+<p>A partir d’un nom ou identifiant d’un container on peut l’inspecter :</p>
+<img alt="../../_images/image3.png" src="../../_images/image3.png" />
+<p>La commande renvoie une multitude d’information de configuration du container.
+On peut utiliser des templates (<strong>Go Template</strong>) pour formater les données reçues et même extraire seulement des informations nécessaires :
+par exemple : <strong>Obtenir l’IP</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">inspect</span> <span class="o">--</span><span class="nb">format</span> <span class="s1">&#39;{{ .NetworkSettings.IPAddress }}&#39;</span> <span class="n">clever_kilby</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>La commande <code class="docutils literal notranslate"><span class="pre">logs</span></code> :</p></li>
+</ul>
+<p>Cette commande,nous permets de visualiser les logs d’un container , l’option <code class="docutils literal notranslate"><span class="pre">-f</span></code> permet de les lire en temps réel.</p>
+<p>Créons un container sous une image <strong>alpine</strong> qui exécutera une commande <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">8.8.8.8</span></code> et qui sera nommé : <strong>ping</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">--</span><span class="n">name</span> <span class="n">ping</span> <span class="o">-</span><span class="n">d</span> <span class="n">alpine</span> <span class="n">ping</span> <span class="mf">8.8.8.8</span>
+</pre></div>
+</div>
+<p>Puis, écoutons en temps réel les <strong>logs</strong> du container nommé <strong>ping</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">logs</span> <span class="o">-</span><span class="n">f</span> <span class="n">ping</span>
+</pre></div>
+</div>
+<img alt="../../_images/image4.png" src="../../_images/image4.png" />
+<ul class="simple">
+<li><p>La commande <code class="docutils literal notranslate"><span class="pre">exec</span></code> :</p></li>
+</ul>
+<p>Cette commande permet de lancer un processus dans un container existant pour faire du débug par exemple.
+Dans ce cas nous utiliserons les options <code class="docutils literal notranslate"><span class="pre">-t</span></code> et <code class="docutils literal notranslate"><span class="pre">-i</span></code> pour obtenir un  <code class="docutils literal notranslate"><span class="pre">shell</span></code> intéractif.</p>
+<p><strong>Exemple</strong> : lançons un container qui attend 100000 secondes, et demandons ensuite d’ouvrir un shell pour lister les processus de ce container.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">--</span><span class="n">name</span> <span class="n">debug</span> <span class="n">alpine</span> <span class="n">sleep</span> <span class="mi">100000</span>
+</pre></div>
+</div>
+<p>On lance le container avec l’option <code class="docutils literal notranslate"><span class="pre">-d</span></code> pour le mettre en tâche de fond et récupérer la main sur le terminal et on lui donne le nom <code class="docutils literal notranslate"><span class="pre">debug</span></code> pour le manipuler facilement.</p>
+<p>Ensuite nous utilisons la commande <code class="docutils literal notranslate"><span class="pre">exec</span></code> qui injectera dans notre container une commande, à savoir ici, la demande d’ouverture d’un <code class="docutils literal notranslate"><span class="pre">shell</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">exec</span> <span class="o">-</span><span class="n">ti</span> <span class="n">debug</span> <span class="n">sh</span>
+</pre></div>
+</div>
+<img alt="../../_images/image5.png" src="../../_images/image5.png" />
+<p>Sur la capture d’écran :
+Dans le shell, nous avons exécuté la commande <code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">aux</span></code>. Qui permet de lister les processus et leur <code class="docutils literal notranslate"><span class="pre">owner</span></code>.
+On constact que le processus de <strong>PID 1</strong> , correspond à la commande <code class="docutils literal notranslate"><span class="pre">sleep</span></code>.
+Et le processus de PID 15 correspond à notre <code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">aux</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Si l’on <code class="docutils literal notranslate"><span class="pre">kill</span></code> le processus de <strong>PID 1</strong>, le container s’arrêtera, car un container n’est actif que tant que son processus de <strong>PID 1</strong> spécifié au lancement est en cours d’exécution.</p>
+</div>
+<ul class="simple">
+<li><p>La commande <code class="docutils literal notranslate"><span class="pre">stop</span></code> :</p></li>
+</ul>
+<p>Cette commande permet de stopper un ou plusieurs containers.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">stop</span> <span class="o">&lt;</span><span class="n">ID</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">stop</span> <span class="o">&lt;</span><span class="n">NAME</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Nous pouvons combiner des commandes !</p>
+<p><strong>Rappel :</strong>  Obtenir la liste des containers en cours d’exécution :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">ls</span> <span class="o">-</span><span class="n">q</span>
+</pre></div>
+</div>
+<p>Donc pour stopper les containers en cours d’exécution :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker container stop $(docker container ls -q)
+</pre></div>
+</div>
+<p>Les containers stoppés existent toujours :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">ls</span> <span class="o">-</span><span class="n">a</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>La commande <code class="docutils literal notranslate"><span class="pre">rm</span></code> :</p></li>
+</ul>
+<p>Pour supprimer un container.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">rm</span> <span class="o">&lt;</span><span class="n">ID</span><span class="o">&gt;</span>
+<span class="n">docker</span> <span class="n">container</span> <span class="n">rm</span> <span class="o">&lt;</span><span class="n">NAME</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Donc, par combinaison de commande, nous pouvons supprimer définitivement un ou plusieurs containers qui sont déjà stoppé.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker container rm $(docker container ls -aq)
+</pre></div>
+</div>
+<p>Avec l’option <code class="docutils literal notranslate"><span class="pre">-f</span></code> nous pouvons forcer l’arrêt d’un container et le supprimer dans la foulée.</p>
+</section>
+<section id="en-pratique">
+<h2>3.8 En pratique :<a class="headerlink" href="#en-pratique" title="Permalink to this headline">¶</a></h2>
+<p>Lançons quelques containers pour pratiquer, vous devez être en mesure de comprendre maintenant la finalité de ces 3 commandes :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">80</span><span class="p">:</span><span class="mi">80</span> <span class="o">--</span><span class="n">name</span> <span class="n">www</span> <span class="n">nginx</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">--</span><span class="n">name</span> <span class="n">ping</span> <span class="n">alpine</span> <span class="n">ping</span> <span class="mf">8.8.8.8</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="n">hello</span><span class="o">-</span><span class="n">world</span>
+</pre></div>
+</div>
+<p>Listons les containers :</p>
+<img alt="../../_images/image6.png" src="../../_images/image6.png" />
+<p>Nous voyons les 2 premiers containers avec le statut <strong>UP</strong>.
+Nous ne voyons pas le 3 ieme container pour la simple raison qu’une fois qu’il a effectué son action : <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">hello</span> <span class="pre">world</span></code> , il s’est arrêté automatiquement.
+Par contre avec un :
+<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">ls</span> <span class="pre">-a</span></code> celui-ci est visible.</p>
+<img alt="../../_images/image7.png" src="../../_images/image7.png" />
+<p>Son statut est <strong>exited</strong>, indiquant qu’il n’est pas démarré.</p>
+<p>Nous pouvons inspecter les containers et en particulier extraire une information comme l’<strong>adresse IP</strong> de notre serveur web <strong>NGINX</strong> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">inspect</span> <span class="o">--</span><span class="nb">format</span> <span class="s1">&#39;{{ .NetworkSettings.IPAddress }}&#39;</span> <span class="n">www</span>
+</pre></div>
+</div>
+<img alt="../../_images/image8.png" src="../../_images/image8.png" />
+<p>Nous pouvons lancer une commande dans un container en cours : par exemple nous voulons lister la liste des processus en cours dans le container <strong>ping</strong> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">exec</span> <span class="o">-</span><span class="n">ti</span> <span class="n">ping</span> <span class="n">sh</span>
+</pre></div>
+</div>
+<p>Un <code class="docutils literal notranslate"><span class="pre">shell</span></code> est alors disponible, et dedans nous pouvons taper la commande : <code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">aux</span></code></p>
+<img alt="../../_images/image9.png" src="../../_images/image9.png" />
+<p>Tapez : <code class="docutils literal notranslate"><span class="pre">exit</span></code> pour sortir du <code class="docutils literal notranslate"><span class="pre">shell</span></code>.</p>
+<p>Stoppons les containers : <strong>ping</strong> et <strong>www</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">stop</span> <span class="n">ping</span> <span class="n">www</span>
+</pre></div>
+</div>
+<p>faites ensuite : <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">ls</span></code></p>
+<blockquote>
+<div><p>Que constatez vous ?  Pourquoi ?</p>
+</div></blockquote>
+<p>Même question avec : <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">ls</span> <span class="pre">-a</span></code></p>
+<p>Supprimons maintenant les containers créés :</p>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">rm</span> <span class="pre">$(docker</span> <span class="pre">container</span> <span class="pre">ls</span> <span class="pre">-a</span> <span class="pre">-q)</span></code></p>
+</section>
+<section id="exercices">
+<h2>3.9 Exercices :<a class="headerlink" href="#exercices" title="Permalink to this headline">¶</a></h2>
+<section id="exercice-1-hello-from-alpine">
+<h3>3.9.1 Exercice 1 : Hello From Alpine<a class="headerlink" href="#exercice-1-hello-from-alpine" title="Permalink to this headline">¶</a></h3>
+<p>Le but de ce premier exercice est de lancer des containers basés sur l’image <strong>alpine</strong>.</p>
+<ol class="arabic simple">
+<li><p>Lancez un container basé sur alpine en lui fournissant la command echo hello</p></li>
+<li><p>Quelles sont les étapes effectuées par le docker daemon ?</p></li>
+<li><p>Lancez un container basé sur alpine sans lui spécifier de commande. Qu’observez-vous ?</p></li>
+</ol>
+</section>
+<section id="exercice-2-shell-interactif">
+<h3>3.9.2 Exercice 2 : Shell intéractif<a class="headerlink" href="#exercice-2-shell-interactif" title="Permalink to this headline">¶</a></h3>
+<p>Le but de cet exercice est lancer des containers en mode <strong>intéractif</strong>.</p>
+<ol class="arabic simple">
+<li><p>Lancez un container basé sur alpine en mode <strong>interactif</strong> sans lui spécifier de commande</p></li>
+<li><p>Que s’est-il passé ?</p></li>
+<li><p>Quelle est la commande par défaut d’un container basé sur <strong>alpine</strong> ?</p></li>
+<li><p>Naviguez dans le <strong>système de fichiers</strong></p></li>
+<li><p>Utilisez le gestionnaire de package d’alpine (<code class="docutils literal notranslate"><span class="pre">apk</span></code>) pour ajouter un package :  <code class="docutils literal notranslate"><span class="pre">apk</span> <span class="pre">update</span></code> et <code class="docutils literal notranslate"><span class="pre">apk</span> <span class="pre">add</span> <span class="pre">curl</span></code>.</p></li>
+</ol>
+</section>
+<section id="exercice-3-foreground-background">
+<h3>3.9.3 Exercice 3 : foreground / background<a class="headerlink" href="#exercice-3-foreground-background" title="Permalink to this headline">¶</a></h3>
+<p>Le but de cet exercice est de créer des containers en <strong>foreground</strong> et en <strong>background</strong>.</p>
+<ol class="arabic simple">
+<li><p>Lancez un container basé sur alpine en lui spécifiant la commande <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">8.8.8.8</span></code>.</p></li>
+<li><p>Arrêter le container avec <code class="docutils literal notranslate"><span class="pre">CTRL-C</span></code></p></li>
+</ol>
+<p>Le container est t-il toujours en cours d’exécution ?</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Vous pouvez utiliser la commande <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code> que nous détaillerons prochainement, et qui permet de lister les containers qui tournent sur la machine.</p>
+</div>
+<ol class="arabic simple">
+<li><p>Lancez un container en mode interactif en lui spécifiant la commande <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">8.8.8.8</span></code>.</p></li>
+<li><p>Arrêter le container avec <code class="docutils literal notranslate"><span class="pre">CTRL-P</span> <span class="pre">CTRL-Q</span></code></p></li>
+</ol>
+<p>Le container est t-il toujours en cours d’exécution ?</p>
+<ol class="arabic simple">
+<li><p>Lancez un container en <strong>background</strong>, toujours en lui spécifiant la commande <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">8.8.8.8</span></code>.</p></li>
+</ol>
+<p>Le container est t-il toujours en cours d’exécution ?</p>
+</section>
+<section id="exercice-4-publication-de-port">
+<h3>3.9.4 Exercice 4 : Publication de port<a class="headerlink" href="#exercice-4-publication-de-port" title="Permalink to this headline">¶</a></h3>
+<p>Le but de cet exercice est de créer un container <strong>en exposant un port</strong> sur la machine <strong>hôte</strong>.</p>
+<ol class="arabic simple">
+<li><p>Lancez un container basé sur <code class="docutils literal notranslate"><span class="pre">nginx</span></code> et publiez le <code class="docutils literal notranslate"><span class="pre">port</span> <span class="pre">80</span></code> du container sur le <code class="docutils literal notranslate"><span class="pre">port</span> <span class="pre">8080</span></code> de l’hôte.</p></li>
+<li><p>Vérifiez depuis votre navigateur que la page par défaut de <code class="docutils literal notranslate"><span class="pre">nginx</span></code> est servie sur <code class="docutils literal notranslate"><span class="pre">http://localhost:8080</span></code>.</p></li>
+<li><p>Lancez un second container en publiant le même port.</p></li>
+</ol>
+<p>Qu’observez-vous ?</p>
+</section>
+<section id="exercice-5-liste-des-containers">
+<h3>3.9.5 Exercice 5 : Liste des containers<a class="headerlink" href="#exercice-5-liste-des-containers" title="Permalink to this headline">¶</a></h3>
+<p>Le but de cet exercice est de montrer les différentes options pour lister les containers du système.</p>
+<ol class="arabic simple">
+<li><p>Listez les containers en cours d’exécution.</p></li>
+</ol>
+<p>Est ce que tous les containers que vous avez créés sont listés ?</p>
+<ol class="arabic simple">
+<li><p>Utilisez l’option <code class="docutils literal notranslate"><span class="pre">-a</span></code> pour voir également les containers qui ont été stoppés.</p></li>
+<li><p>Utilisez l’option <code class="docutils literal notranslate"><span class="pre">-q</span></code> pour ne lister que les IDs des containers (en cours d’exécution ou stoppés).</p></li>
+</ol>
+</section>
+<section id="exercice-6-inspection-d-un-container">
+<h3>3.9.6 Exercice 6 : Inspection d’un container<a class="headerlink" href="#exercice-6-inspection-d-un-container" title="Permalink to this headline">¶</a></h3>
+<p>Le but de cet exercice est l’inspection d’un container.</p>
+<ol class="arabic simple">
+<li><p>Lancez, en <strong>background</strong>, un nouveau container basé sur <strong>nginx</strong> en publiant le <strong>port 80</strong> du container sur le <strong>port 3000</strong> de la machine host.</p></li>
+</ol>
+<p>Notez l’identifiant du container retourné par la commande précédente.</p>
+<ol class="arabic simple">
+<li><p>Inspectez le container en utilisant son identifiant.</p></li>
+<li><p>En utilisant le <strong>format Go template</strong>, récupérez le nom et l’<strong>IP</strong> du container.</p></li>
+<li><p>Manipuler les <strong>Go template</strong> pour récupérer d’autres information.</p></li>
+</ol>
+</section>
+<section id="exercice-7-exec-dans-un-container">
+<h3>3.9.7 Exercice 7 : exec dans un container<a class="headerlink" href="#exercice-7-exec-dans-un-container" title="Permalink to this headline">¶</a></h3>
+<p>Le but de cet exercice est de montrer comment lancer un processus dans un container existant.</p>
+<ol class="arabic simple">
+<li><p>Lancez un container en background, basé sur l’image alpine. Spécifiez la commande <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">8.8.8.8</span></code> et le nom ping avec l’option <code class="docutils literal notranslate"><span class="pre">--name</span></code>.</p></li>
+<li><p>Observez les logs du container en utilisant l’ID retourné par la commande précédente ou bien le nom du container.</p></li>
+</ol>
+<p>Quittez la commande de logs avec <code class="docutils literal notranslate"><span class="pre">CTRL-C</span></code>.</p>
+<ol class="arabic simple">
+<li><p>Lancez un shell <code class="docutils literal notranslate"><span class="pre">sh</span></code>, en mode <strong>interactif</strong>, dans le container précédent.</p></li>
+<li><p>Listez les processus du container.</p></li>
+</ol>
+<p>Qu’observez vous par rapport aux identifiants des processus ?</p>
+</section>
+<section id="exercice-8-cleanup">
+<h3>3.9.8 Exercice 8 : cleanup<a class="headerlink" href="#exercice-8-cleanup" title="Permalink to this headline">¶</a></h3>
+<p>Le but de cet exercice est de stopper et de supprimer les containers existants.</p>
+<ol class="arabic simple">
+<li><p>Listez tous les containers (<strong>actifs</strong> et <strong>inactifs</strong>)</p></li>
+<li><p>Stoppez tous les containers encore actifs en fournissant la liste des IDs à la commande <code class="docutils literal notranslate"><span class="pre">stop</span></code>.</p></li>
+<li><p>Vérifiez qu’il n’y a plus de containers actifs.</p></li>
+<li><p>Listez les containers arrêtés.</p></li>
+<li><p>Supprimez tous les containers.</p></li>
+<li><p>Vérifiez qu’il n’y a plus de containers.</p></li>
+</ol>
+</section>
+</section>
+<section id="en-resume">
+<h2>3.10 En résumé<a class="headerlink" href="#en-resume" title="Permalink to this headline">¶</a></h2>
+<p>Nous avons commencé à jouer avec les containers et vu les commandes les plus utilisées pour la gestion du cycle de vie des containers
+(<code class="docutils literal notranslate"><span class="pre">run</span></code>, <code class="docutils literal notranslate"><span class="pre">exec</span></code>, <code class="docutils literal notranslate"><span class="pre">ls</span></code>, <code class="docutils literal notranslate"><span class="pre">rm</span></code>, <code class="docutils literal notranslate"><span class="pre">inspect</span></code>). Nous les utiliserons souvent dans la suite du cours.</p>
+<p>C’est parfois utile d’avoir un <code class="docutils literal notranslate"><span class="pre">Shell</span></code> directement sur la machine hôte.
+C’est-à-dire la machine sur laquelle le <code class="docutils literal notranslate"><span class="pre">Docker</span> <span class="pre">Daemon</span></code> tourne.
+Si l’on est sur <code class="docutils literal notranslate"><span class="pre">linux</span></code>, le client et le <code class="docutils literal notranslate"><span class="pre">daemon</span></code> tournent sur la <strong>même machine.</strong>
+Par contre le <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">daemon</span></code> va tourner sur une <strong>machine virtuelle</strong> sous Windows alors que le client sera lui sur une machine locale.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Cours BTS SIO</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Cours Docker</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.0%20Introduction.html">1.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.0%20La%20plateforme%20Docker.html">2.0 La plateforme Docker</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Bauer Baptiste.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/cours/docker/3.0 Les containers avec Docker.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

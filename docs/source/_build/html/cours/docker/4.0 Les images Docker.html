@@ -1,0 +1,1003 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>4.0 Les images Docker &#8212; Cours BTS SIO 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="les-images-docker">
+<h1>4.0 Les images Docker<a class="headerlink" href="#les-images-docker" title="Permalink to this headline">¶</a></h1>
+<p>Nous allons parler des images <strong>Docker</strong>.
+Une image est un système de fichier qui contient une application et l’ensemble des éléments nécessaires pour la faire tourner.
+On peut voir une image comme étant un <strong>template</strong> permettant la création d’un container.
+L’image est portable sur n’importe quel environnement où tourne <strong>Docker</strong> et est composée de <strong>couches</strong> (<strong>layers</strong>) qui peuvent être réutilisé par d’autres images.
+On distribue une image via un <strong>registry</strong> ( ex : Docker Hub)</p>
+<p>Contenu d’une image :</p>
+<img alt="../../_images/image10.png" src="../../_images/image10.png" />
+<p>La construction du fichier image, se fait dans l’ordre inverse du contenu d’une image que l’on vient de lister.</p>
+<p>On part d’un OS de base qui va ajouter une ou plusieurs couches comme le système de fichiers.
+A cet OS on va ajouter une ou plusieurs couches liées à l’environnement de notre application puis de la même façon les dépendances et le code applicatifs.</p>
+<p>Et l’ensemble de ses couches forment l’image.</p>
+<img alt="../../_images/image34.png" src="../../_images/image34.png" />
+<section id="union-filesystem">
+<h2>4.1 Union Filesystem<a class="headerlink" href="#union-filesystem" title="Permalink to this headline">¶</a></h2>
+<p>Une image est donc constituée d’un ensemble de <strong>layers</strong> ou <strong>couches</strong> et chacune d’elles est en <strong>lectures seules</strong>. Et c’est le rôle du <strong>storage/graph driver</strong> de constituer le système de fichier global de l’instance du container.</p>
+<p>Le <strong>Graph driver</strong> ajoute en plus une couche qui est en <strong>lecture/écriture</strong> pour permettre au processus de modifier le filesystem sans que les modifications ne soient persistées dans les layers de l’image.
+Il existe plusieurs <strong>filesystem</strong> et le choix du système dépend principalement du <strong>filesystem hôte</strong>.
+Par default, toutes les layers sont installées dans le répertoire <code class="docutils literal notranslate"><span class="pre">/var/lib/docker</span></code> sur la machine hôte et c’est à cette endroit que sont stockées toutes les layers des images.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Sur windows 10, docker s’exécute sur une VM.
+Ressources à consulter pour comprendre comment Docker fonction sous Windows :</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://docs.docker.com/desktop/windows/">https://docs.docker.com/desktop/windows/</a></p></li>
+<li><p><a class="reference external" href="https://forums.docker.com/t/the-location-of-images-in-docker-for-windows/19647">https://forums.docker.com/t/the-location-of-images-in-docker-for-windows/19647</a></p></li>
+</ol>
+</div>
+<p>Pour accèder à ce dossier sous Windows, il faut alors créer un container et le lier avec Docker :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="o">--</span><span class="n">privileged</span> <span class="o">--</span><span class="n">pid</span><span class="o">=</span><span class="n">host</span> <span class="n">debian</span> <span class="n">nsenter</span> <span class="o">-</span><span class="n">t</span> <span class="mi">1</span> <span class="o">-</span><span class="n">m</span> <span class="o">-</span><span class="n">u</span> <span class="o">-</span><span class="n">i</span> <span class="n">sh</span>
+</pre></div>
+</div>
+<p>Nous pouvons alors lister le dossier <code class="docutils literal notranslate"><span class="pre">/var/lib/docker</span></code> dans le shell.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">docker</span>
+</pre></div>
+</div>
+<p>Il est possible de modifier des fichiers qui sont apportés par une layer ; cela s’appelle : <strong>copy-On-Write</strong>.
+Le fichier original est alors copier dans la layer qui est en <strong>lecture / écriture</strong> et la modification peut être <strong>persistée</strong>.</p>
+<img alt="../../_images/image35.png" src="../../_images/image35.png" />
+</section>
+<section id="exercices">
+<h2>4.2 Exercices<a class="headerlink" href="#exercices" title="Permalink to this headline">¶</a></h2>
+<section id="exercice-1-container-s-layer">
+<h3>4.2.1 Exercice 1 : Container’s layer<a class="headerlink" href="#exercice-1-container-s-layer" title="Permalink to this headline">¶</a></h3>
+<p>La layer d’un container, est la layer <strong>read-write</strong> créé lorsqu’un container est lancé.
+C’est la layer dans laquelle tous les changements effectués dans le container sont sauvegardés.
+Cette layer est supprimée avec le container et ne doit donc pas être utilisée comme un stockage persistant.</p>
+<p><strong>Lancement d’un container</strong></p>
+<p>Utilisez la commande suivante pour lancer un <strong>shell intéractif</strong> dans un container basé sur l’image <code class="docutils literal notranslate"><span class="pre">ubuntu</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">ti</span> <span class="n">ubuntu</span>
+</pre></div>
+</div>
+<p><strong>Installation d’un package</strong></p>
+<p><strong>figlet</strong> est un package qui prend un texte en entrée et le formatte de façon amusante.
+Par défaut ce package n’est pas disponible dans l’image ubuntu.</p>
+<p>Vérifiez le avec la commande suivante:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">figlet</span>
+</pre></div>
+</div>
+<p>La commande devrait donner le résultat suivant :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bash</span><span class="p">:</span> <span class="n">figlet</span><span class="p">:</span> <span class="n">command</span> <span class="ow">not</span> <span class="n">found</span>
+</pre></div>
+</div>
+<p>Installez le package <strong>figlet</strong> avec les commandes suivantes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> <span class="o">-</span><span class="n">y</span>
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">figlet</span>
+</pre></div>
+</div>
+<p>Vérifiez que le binaire fonctionne :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">figlet</span> <span class="n">Hola</span>
+</pre></div>
+</div>
+<p>Ce qui devrait donner le résultat suivant</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>| | | | ___ | | __ _
+| |_| |/ _ \| |/ _` |
+|  _  | (_) | | (_| |
+|_| |_|\___/|_|\__,_|
+</pre></div>
+</div>
+<p>Sortez du container.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exit</span>
+</pre></div>
+</div>
+<p><strong>Lancement d’un nouveau container</strong></p>
+<p>Lancez un nouveau container basé sur <code class="docutils literal notranslate"><span class="pre">ubuntu</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">ti</span> <span class="n">ubuntu</span>
+</pre></div>
+</div>
+<p>Vérifiez si le package figlet est présent :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">figlet</span>
+</pre></div>
+</div>
+<p>Vous devriez obtenir l’erreur suivante:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bash</span><span class="p">:</span> <span class="n">figlet</span><span class="p">:</span> <span class="n">command</span> <span class="ow">not</span> <span class="n">found</span>
+</pre></div>
+</div>
+<p>Comment expliquez-vous ce résultat ?
+Chaque container lancé à partir de l’image <strong>ubuntu</strong> est différent des autres.
+Le second container est différent de celui dans lequel <strong>figlet</strong> a été installé.
+Chacun correspond à une instance de l’image ubuntu et a sa propre <strong>layer</strong>, ajoutée au dessus des layers de l’image, et dans laquelle tous les changements effectués dans le container sont sauvegardés.</p>
+<p>Sortez du container.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exit</span>
+</pre></div>
+</div>
+<p><strong>Redémarrage du container</strong></p>
+<p>Listez les containers (en exécution ou non) sur la machine hôte.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">ls</span> <span class="o">-</span><span class="n">a</span>
+</pre></div>
+</div>
+<p>Depuis cette liste, récuperez l’ID du container dans lequel le package figlet a été installé et redémarrez le avec la commande suivante.</p>
+<p><strong>Note:</strong> la commande <code class="docutils literal notranslate"><span class="pre">start</span></code> permet de démarrer un container se trouvant dans l’état <code class="docutils literal notranslate"><span class="pre">Exited</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">start</span> <span class="o">&lt;</span><span class="n">CONTAINER_ID</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Lancez un <strong>shell intéractif</strong> dans ce container en utilisant la commande <code class="docutils literal notranslate"><span class="pre">exec</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">exec</span> <span class="o">-</span><span class="n">ti</span> <span class="o">&lt;</span><span class="n">CONTAINER_ID</span><span class="o">&gt;</span> <span class="n">bash</span>
+</pre></div>
+</div>
+<p>Vérifez que <strong>figlet</strong> est présent dans ce container.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">figlet</span> <span class="n">Hola</span>
+</pre></div>
+</div>
+<p>Résultat :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>| | | | ___ | | __ _
+| |_| |/ _ \| |/ _` |
+|  _  | (_) | | (_| |
+|_| |_|\___/|_|\__,_|
+</pre></div>
+</div>
+<p>Vous pouvez maintenant sortir du container.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exit</span>
+</pre></div>
+</div>
+<p><strong>Nettoyage</strong></p>
+<p>Listez les containers (en exécution ou non) sur la machine hôte</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">ls</span> <span class="o">-</span><span class="n">a</span>
+</pre></div>
+</div>
+<p>Pour supprimer tous les containers, nous pouvons utiliser les commandes <code class="docutils literal notranslate"><span class="pre">rm</span></code> et <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-aq</span></code> conjointement. Nous ajoutons l’option <code class="docutils literal notranslate"><span class="pre">-f</span></code> afin de forcer la suppression des containers encore en exécution. Il faudrait sinon arrêter les containers et les supprimer.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker container rm -f $(docker container ls -aq)
+</pre></div>
+</div>
+<p>Tous les containers ont été supprimés, vérifiez le une nouvelle fois avec la commande suivante:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">ls</span> <span class="o">-</span><span class="n">a</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="dockerfile">
+<h2>4.3 DockerFile<a class="headerlink" href="#dockerfile" title="Permalink to this headline">¶</a></h2>
+<p>Le <strong>DockerFile</strong> est un fichier texte qui est utilisé pour la construction d’<strong>une image DOCKER</strong>.
+Il contient des instructions pour la construction du système de fichier d’une image.
+Nous allons partir d’un fichier de base qui sera enrichie par notre application et l’ensemble de ses dépendances.</p>
+<ul class="simple">
+<li><p>Exemple d’un <strong>Docker File</strong> dans laquelle est packagée une application <strong>NODEJS</strong>.</p></li>
+</ul>
+<img alt="../../_images/image36.png" src="../../_images/image36.png" />
+<p>Avec l’instruction <strong>FROM</strong> nous définissons une image de base dans laquelle l’application <strong>NODEJS</strong> sera packagée.</p>
+<ul class="simple">
+<li><p><strong>COPY</strong> qui permet d’ajouter la liste des dépendances.</p></li>
+<li><p><strong>RUN</strong> permet de définir la commande d’installation des dépendances.</p></li>
+<li><p><strong>EXPOSE</strong> défini le port utilisé par l’application.</p></li>
+<li><p><strong>WORKDIR</strong> nous positionnes dans le répertoire de travail.</p></li>
+<li><p><strong>CMD</strong> défini la commande à lancer lorsqu’un container sera lancer à partir de cette image.</p></li>
+</ul>
+<p>Voici la liste des principales instructions à utiliser dans un <strong>DockerFile</strong>.</p>
+<img alt="../../_images/image37.png" src="../../_images/image37.png" />
+<p><strong>L’instruction FROM.</strong></p>
+<p>Il s’agit de la première instruction dans un DOckerFile. Elle permet de spécifier l’image à partir de laquelle nous allons créer une nouvelle image.
+On peut partir d’une image d’un OS, ou d’une image contenant déjà des applications comme un serveur web, ou un environnement d’exécution enveloppé dans une image contenant un OS de base.</p>
+<p>Nous pouvons utiliser également une image particulière qui s’appelle <strong>SCRATCH</strong>, c’est une image au sens <strong>DOCKER</strong> même si elle est vide, et peut etre utilisé par example dans une application écrite en langage GO qui n’a pas besoin d’être packagé dans un système de fichier.</p>
+<p><strong>L’instruction ENV.</strong></p>
+<p>Cette instruction nous permet de définir des variables d’environnement. Et pourront être utilisée dans les instructions suivantes lors de la construction de l’image. On les retrouvera dans l’environnement des containers lancés à partir de cette image.</p>
+<img alt="../../_images/image38.png" src="../../_images/image38.png" />
+<p>Dans cet exemple, nous construisons une image basée sur NGINX et on défini une variable <code class="docutils literal notranslate"><span class="pre">path</span></code> que l’on pourra utiliser dans les instructions suivantes : <strong>WORKDIR</strong> et <strong>COPY</strong>.</p>
+<p><strong>L’instruction COPY / ADD.</strong></p>
+<p>Permet de copier des ressources locales vers le système de fichier de l’image que l’on créé.</p>
+<p>Et cela engendre la création d’une nouvelle layer pour l’image.</p>
+<p>Avec l’option <code class="docutils literal notranslate"><span class="pre">–chown</span></code> on peut définir les droits sur ces fichiers qu’auront les utilisateurs de l’image.</p>
+<p>ADD permet des actions supplémentaires comme récupérer des ressources à partir d’une URL.
+Ou de Dézipper des fichiers.</p>
+<p>Il est préférable d’utiliser <strong>COPY</strong> par rapport à <strong>ADD</strong> car l’on maitrise davantage comment la copie est faite.</p>
+<p><strong>L’instruction RUN.</strong></p>
+<p><strong>RUN</strong> est une instruction qui va engendrer la construction d’une nouvelle <strong>layer</strong> pour l’image.</p>
+<p>Elle permet d’exécuter une commande dans le système de fichier de l’image comme l’installation d’un package.
+Il y a 2 formats pour définir la commande.
+Le format <strong>SHELL</strong> qui va lancer la commande dans le contexte d’un <strong>shell</strong>.
+Et le format <strong>Exec</strong> qui va définir la commande comme une liste de <strong>string</strong> et qui n’est pas lancée dans le contexte d’un <strong>shell</strong>.</p>
+<img alt="../../_images/image39.png" src="../../_images/image39.png" />
+<p><strong>L’instruction EXPOSE.</strong></p>
+<p>Permet de spécifier les ports sur lesquels l’application écoute au lancement du container. Mais cela peut être modifié par l’option : <code class="docutils literal notranslate"><span class="pre">-p</span></code> lors de la création du container.
+Nous pouvons utiliser aussi un mapping comme vu précédemment : <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">HOST_PORT:CONTAINER_PORT</span></code>.</p>
+<p>On peut aussi utiliser l’option <code class="docutils literal notranslate"><span class="pre">P</span></code> dans ce cas le démon <strong>DOCKER</strong> va publier l’ensemble des ports en attribuant à chacun un port de la machine hôte.</p>
+<img alt="../../_images/image40.png" src="../../_images/image40.png" />
+<p><strong>L’instruction VOLUME.</strong></p>
+<p>Permet de définir un répertoire dont les données sont découplées du cycle de vie du container.
+Les fichiers ne seront pas stockés dans la layer <strong>lecture/écriture</strong> du container mais dans le système de fichier de la machine hôte. Et si le container est supprimé, les données de ce répertoire seront toujours là.</p>
+<p>Si on reprend l’exemple du <strong>dockerfile</strong> de <strong>MongoDB</strong>.</p>
+<img alt="../../_images/image41.png" src="../../_images/image41.png" />
+<p>L’instruction <em>VOLUME</em> est utilisée pour créer 2 volumes. Au lancement de cette image, deux répertoires seront créés sur la machine hôte.</p>
+<p><strong>L’instruction USER.</strong></p>
+<p>Si on ne définit pas l’utilisateur, par défaut se sera <code class="docutils literal notranslate"><span class="pre">ROOT</span></code> qui sera utilisé. Ce qui pose des problèmes de sécurité évident.</p>
+<p><strong>L’instruction HEALTHCHECK.</strong></p>
+<p>Vérifie l’état de santé du processus qui tourne dans un container. On peut définir des options comme la fréquence d’inspection.</p>
+<img alt="../../_images/image42.png" src="../../_images/image42.png" />
+<p><strong>L’instruction ENTRYPOINT / CMD.</strong></p>
+<p>Spécifie la commande qui sera exécuté lorsque l’on lancera un container basé sur cette image.
+Les instruction <strong>CMD</strong> et <strong>ENTRYPOINT</strong> sont les dernières instructions du fichier <strong>DOCKERFILE</strong>.</p>
+<p>On précise souvent le binaire de l’application dans <strong>ENTRYPOINT</strong> et les paramètres dans CMD.</p>
+<p>La commande alors exécuté correspondra à la concaténation de <strong>ENTRYPOINT</strong> et <strong>CMD</strong>.</p>
+<p>On peut modifier ses paramètres au lancement du container si besoin avec l’annotation <strong>Shell</strong> ou <strong>Exec</strong> vu précédemment.</p>
+<img alt="../../_images/image43.png" src="../../_images/image43.png" />
+</section>
+<section id="creation-dimages">
+<h2>4.3 Création d’images<a class="headerlink" href="#creation-dimages" title="Permalink to this headline">¶</a></h2>
+<p>Il est temps maintenant de créer notre image.
+Dans un premier temps il faut : créer un fichier <strong>DockerFile</strong> qui contiendra les instructions nécessaires.
+Ensuite il faut utiliser la commande :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">image</span> <span class="n">builde</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">PATH</span> <span class="o">|</span> <span class="n">URL</span> <span class="o">|</span> <span class="o">-</span>
+</pre></div>
+</div>
+<p>Des options courantes :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-f</span></code> : spécifie le fichier à utiliser pour la construction (<strong>DockerFile</strong> par défaut)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--tag</span> <span class="pre">/</span> <span class="pre">-t</span></code> : spécifie le nom de l’image ([registry/]user/repository :tag)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--label</span></code> : ajout de métadonnées à l’image.</p></li>
+</ul>
+</section>
+<section id="mise-en-pratique">
+<h2>4.4 Mise en pratique<a class="headerlink" href="#mise-en-pratique" title="Permalink to this headline">¶</a></h2>
+<p>Nous allons créer une simple application <strong>NODEJS</strong> qui renverra la date et l’heure.
+Tout l’environnement nécessaire à l’exécution de ce script sera intégré dans une image que nous allons créer.</p>
+<p>Dans un dossier, créez le fichier <code class="docutils literal notranslate"><span class="pre">index.js</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">util</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;util&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="s1">&#39;text/plain&#39;</span><span class="p">);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nx">util</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="s1">&#39;%s - %s\n&#39;</span><span class="p">,</span> <span class="ow">new</span> <span class="nb">Date</span><span class="p">(),</span> <span class="s1">&#39;Got Request&#39;</span><span class="p">));</span>
+<span class="p">});</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="mf">8080</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Puis créez le fichier <code class="docutils literal notranslate"><span class="pre">package.js</span></code> dans le même dossier :</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;testnode&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;main&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index.js&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;node index.js&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;dependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;express&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^4.14.0&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Dans une console, placez vous dans le dossier dans lequel vous avez déposé les fichiers et tapez :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>puis</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">start</span>
+</pre></div>
+</div>
+<p>Ouvrez un navigateur à l’adresse : <a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
+<p>Si tout se passe comme prévu alors vous dévriez avoir ceci :</p>
+<img alt="../../_images/image33.png" src="../../_images/image33.png" />
+<p>Notre application fonctionne, mais cela est lourd pour l’utilisateur :</p>
+<ol class="arabic simple">
+<li><p>Il doit avoir NODEJS d’installé sur sa machine.</p></li>
+<li><p>Il doit installer les dépendances du projet, ici <code class="docutils literal notranslate"><span class="pre">express</span></code>.</p></li>
+<li><p>Il doit lancer le serveur Nodejs.</p></li>
+</ol>
+<p>Il faudrait donc créer une image réalisant ces étapes !!</p>
+<p>Nous allons créer un <strong>DockerFile</strong>.</p>
+<p>Il nous faut trouver une image de base sur : <a class="reference external" href="https://hub.docker.com/search?type=image">Docker Hub</a></p>
+<p><strong>Cochez</strong> : « <strong>Official Images</strong> » pour n’avoir que des images officielles.
+Nous voyons que nous avons une multitude de possibilité pour concevoir notre image.</p>
+<img alt="../../_images/image23.png" src="../../_images/image23.png" />
+<p>Nous pouvons partir sur une image <strong>LINUX</strong> : <strong>UBUNTU</strong>, <strong>ALPINE</strong> …Etc mais aussi une image où le runtime <strong>NODEJS</strong> est déjà packagé.
+C’est ce que nous allons choisir.</p>
+<img alt="../../_images/image24.png" src="../../_images/image24.png" />
+<p>En cliquant dessus, sélectionnez l’onglet <strong>TAGS</strong>.</p>
+<img alt="../../_images/image25.png" src="../../_images/image25.png" />
+<p>Et dans la liste, nous allons nous intéresser à une version de <strong>NODEJS</strong> sous Alpine3.15.</p>
+<img alt="../../_images/image26.png" src="../../_images/image26.png" />
+<p>Et conservons en mémoire le tag de cette version de node : current-alpine3.15</p>
+<p>Maintenant dans le dossier contenant notre application, créons un fichier : <strong>Dockerfile</strong>. Sans extension.</p>
+<p><strong>Fichier : Dockerfile</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nous renseignons dans l&#39;instruction FROM le Tag de notre image qui servira de base à notre application</span>
+<span class="n">FROM</span> <span class="n">node</span><span class="p">:</span><span class="n">current</span><span class="o">-</span><span class="n">alpine3</span><span class="mf">.15</span>
+
+<span class="c1"># Nous allons copier nos fichiers sources du répertoire courant du fichier Dockerfile dans le repertoire /app/.</span>
+<span class="c1"># C&#39;est un répertoire qui sera créé dans l&#39;image lorsque l&#39;on va faire le build</span>
+<span class="n">COPY</span> <span class="o">.</span> <span class="o">/</span><span class="n">app</span><span class="o">/</span>
+<span class="n">RUN</span> <span class="n">cd</span> <span class="o">/</span><span class="n">app</span> <span class="o">&amp;&amp;</span> <span class="n">npm</span> <span class="n">install</span>
+<span class="n">EXPOSE</span> <span class="mi">8080</span>
+<span class="n">WORKDIR</span> <span class="o">/</span><span class="n">app</span>
+<span class="n">CMD</span> <span class="p">[</span><span class="s2">&quot;npm&quot;</span><span class="p">,</span> <span class="s2">&quot;start&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>A partir de ce <strong>Dockerfile</strong>, nous allons pouvoir créer une <strong>image</strong>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">image</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">appbts</span><span class="p">:</span><span class="mf">0.1</span> <span class="o">.</span>
+</pre></div>
+</div>
+<img alt="../../_images/image27.png" src="../../_images/image27.png" />
+<p>Nous voyons que pour chaque instruction nous avons une étape.</p>
+<p>Si nous allons dans <strong>Docker Desktop</strong> , onglet « <strong>Images</strong> » :</p>
+<img alt="../../_images/image28.png" src="../../_images/image28.png" />
+<p>Nous voyons notre image, avec son nom et son numéro de version.
+Nous pouvons maintenant créer un containeur avec notre application,
+en précisant que nous utiliserons le <code class="docutils literal notranslate"><span class="pre">port</span> <span class="pre">8080</span></code> du container sur le <code class="docutils literal notranslate"><span class="pre">port</span> <span class="pre">8080</span></code> de ma machine hôte.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8080</span><span class="p">:</span><span class="mi">8080</span> <span class="n">appbts</span><span class="p">:</span><span class="mf">0.1</span>
+</pre></div>
+</div>
+<p>Et je peux maintenant utiliser mon navigateur à l’adresse : <a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
+</section>
+<section id="exercices-creation-dimages">
+<h2>4.5 Exercices : Création d’images<a class="headerlink" href="#exercices-creation-dimages" title="Permalink to this headline">¶</a></h2>
+<section id="exercice-1-creation-dune-image-a-partir-dun-container">
+<h3>4.5.1 Exercice 1 : Création d’une image à partir d’un container<a class="headerlink" href="#exercice-1-creation-dune-image-a-partir-dun-container" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Lancez une container basé sur une image <strong>alpine</strong>, en mode <strong>interactif</strong>, et en lui donnant le nom <code class="docutils literal notranslate"><span class="pre">c1</span></code>.</p></li>
+<li><p>Lancez la commande <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">google.com</span></code>.</p></li>
+</ol>
+<p>Qu’observez-vous ?</p>
+<ol class="arabic simple">
+<li><p>Installez <code class="docutils literal notranslate"><span class="pre">curl</span></code> à l’aide du gestionnaire de package <code class="docutils literal notranslate"><span class="pre">apk</span></code>.</p></li>
+<li><p>Quittez le container avec <code class="docutils literal notranslate"><span class="pre">CTRL-P</span> <span class="pre">CTRL-Q</span></code> (pour ne pas killer le processus de <strong>PID 1</strong>).</p></li>
+<li><p>Créez une image, nommée <code class="docutils literal notranslate"><span class="pre">curly</span></code>, à partir du container <code class="docutils literal notranslate"><span class="pre">c1</span></code>.</p></li>
+</ol>
+<p>Utilisez pour cela la commande <code class="docutils literal notranslate"><span class="pre">commit</span></code> (<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">commit</span> <span class="pre">--help</span></code> pour voir le fonctionnment de cette commande).</p>
+<ol class="arabic simple">
+<li><p>Lancez un <code class="docutils literal notranslate"><span class="pre">shell</span></code> intéractif dans un container basée sur l’image <code class="docutils literal notranslate"><span class="pre">curly</span></code> et vérifiez que <code class="docutils literal notranslate"><span class="pre">curl</span></code> est présent.</p></li>
+</ol>
+</section>
+<section id="exercice-2-dockerizez-un-serveur-web-simple">
+<h3>4.5.2 Exercice 2 : Dockerizez un serveur web simple<a class="headerlink" href="#exercice-2-dockerizez-un-serveur-web-simple" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Créer un nouveau répertoire et développez un serveur <strong>HTTP</strong> qui expose le endpoint <code class="docutils literal notranslate"><span class="pre">/ping</span></code> sur le <strong>port 80</strong> et répond par <strong>PONG</strong>. Inspirez vous de l’exemple du cours ci-dessus.</p></li>
+<li><p>Dans le même répertoire, créez le fichier <strong>Dockerfile</strong> qui servira à construire l’image de l’application. Ce fichier devra décrire les actions suivantes :</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>spécification d’une image de base.</p></li>
+<li><p>installation du runtime correspondant au langage choisi.</p></li>
+<li><p>installation des dépendances de l’application.</p></li>
+<li><p>copie du code applicatif.</p></li>
+<li><p>exposition du port d’écoute de l’application.</p></li>
+<li><p>spécification de la commande à exécuter pour lancer le serveur.</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p>Construire l’image en la taguant <code class="docutils literal notranslate"><span class="pre">pong:v1.0</span></code>.</p></li>
+<li><p>Lancez un container basé sur cette image en publiant le <code class="docutils literal notranslate"><span class="pre">port</span> <span class="pre">80</span></code> sur le <code class="docutils literal notranslate"><span class="pre">port</span> <span class="pre">8080</span></code> de la machine hôte.</p></li>
+<li><p>Tester l’application.</p></li>
+<li><p>Supprimez le container.</p></li>
+</ol>
+</section>
+<section id="exercice-3-entrypoint-et-cmd">
+<h3>4.5.3 Exercice 3 : ENTRYPOINT et CMD<a class="headerlink" href="#exercice-3-entrypoint-et-cmd" title="Permalink to this headline">¶</a></h3>
+<p>Nous allons illustrer sur plusieurs exemples l’utilisation des instructions <strong>ENTRYPOINT</strong> et <strong>CMD</strong>.
+Ces instructions sont utilisées dans un <strong>Dockerfile</strong> pour définir la commande qui sera lancée dans un container.</p>
+<section id="format">
+<h4>Format<a class="headerlink" href="#format" title="Permalink to this headline">¶</a></h4>
+<p>Dans un <strong>Dockerfile</strong>, les instructions <strong>ENTRYPOINT</strong> et <strong>CMD</strong> peuvent être spécifiées selon 2 formats:</p>
+<ul class="simple">
+<li><p>le format <code class="docutils literal notranslate"><span class="pre">shell</span></code>, ex: <code class="docutils literal notranslate"><span class="pre">ENTRYPOINT</span> <span class="pre">/usr/bin/node</span> <span class="pre">index.js</span></code>. Une commande spécifée dans ce format sera exécutée via un shell présent dans l’image. Cela peut notamment poser des problématiques car les signaux ne sont pas forwardés aux processus forkés.</p></li>
+<li><p>le format <code class="docutils literal notranslate"><span class="pre">exec</span></code>, ex: <code class="docutils literal notranslate"><span class="pre">CMD</span> <span class="pre">[&quot;node&quot;,</span> <span class="pre">&quot;index.js&quot;]</span></code>. Une commande spécifiée dans ce format ne nécessitera pas la présence d’un shell dans l’image. On utilisera souvent le format exec pour ne pas avoir de problème si aucun shell n’est présent.</p></li>
+</ul>
+</section>
+<section id="re-ecriture-a-lexecution-dun-container">
+<h4>Ré-écriture à l’exécution d’un container<a class="headerlink" href="#re-ecriture-a-lexecution-dun-container" title="Permalink to this headline">¶</a></h4>
+<p><strong>ENTRYPOINT</strong> et <strong>CMD</strong> sont 2 instructions du Dockerfile, mais elle peuvent cependant être écrasées au lancement d’un container:</p>
+<ul class="simple">
+<li><p>pour spécifier une autre valeur pour l’<strong>ENTRYPOINT</strong>, on utilisera l’option <code class="docutils literal notranslate"><span class="pre">--entrypoint</span></code>, par exemple: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">run</span> <span class="pre">--entrypoint</span> <span class="pre">echo</span> <span class="pre">alpine</span> <span class="pre">hello</span></code>.</p></li>
+<li><p>pour spécifier une autre valeur pour CMD, on précisera celle-ci après le nom de l’image, par exemple: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">run</span> <span class="pre">alpine</span> <span class="pre">echo</span> <span class="pre">hello</span></code>.</p></li>
+</ul>
+</section>
+<section id="instruction-entrypoint-utilisee-seule">
+<h4>Instruction ENTRYPOINT utilisée seule<a class="headerlink" href="#instruction-entrypoint-utilisee-seule" title="Permalink to this headline">¶</a></h4>
+<p>L’utilisation de l’instruction <strong>ENTRYPOINT</strong> seule permet de créer un wrapper autour de l’application.
+Nous pouvons définir une commande de base et lui donner des paramètres suplémentaires, si nécessaire, au lancement d’un container.</p>
+<p>Dans ce premier exemple, vous allez créer un fichier <strong>Dockerfile-v1</strong> contenant les instructions suivantes:</p>
+<p>Créez ensuite une image, nommée <code class="docutils literal notranslate"><span class="pre">ping:1.0</span></code>, à partir de ce fichier.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">image</span> <span class="n">build</span> <span class="o">-</span><span class="n">f</span> <span class="n">Dockerfile</span><span class="o">-</span><span class="n">v1</span> <span class="o">-</span><span class="n">t</span> <span class="n">ping</span><span class="p">:</span><span class="mf">1.0</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>Lancez maintenant un container basé sur l’image <strong>ping:1.0</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="n">ping</span><span class="p">:</span><span class="mf">1.0</span>
+</pre></div>
+</div>
+<p>La commande <code class="docutils literal notranslate"><span class="pre">ping</span></code> est lancée dans le container (car elle est spécifiée dans <strong>ENTRYPOINT</strong>), ce qui produit le message suivant:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BusyBox</span> <span class="n">v1</span><span class="mf">.26.2</span> <span class="p">(</span><span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">23</span> <span class="mi">16</span><span class="p">:</span><span class="mi">46</span><span class="p">:</span><span class="mi">25</span> <span class="n">GMT</span><span class="p">)</span> <span class="n">multi</span><span class="o">-</span><span class="n">call</span> <span class="n">binary</span><span class="o">.</span>
+<span class="n">Usage</span><span class="p">:</span> <span class="n">ping</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">HOST</span>
+<span class="n">Send</span> <span class="n">ICMP</span> <span class="n">ECHO_REQUEST</span> <span class="n">packets</span> <span class="n">to</span> <span class="n">network</span> <span class="n">hosts</span>
+      <span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">6</span>           <span class="n">Force</span> <span class="n">IP</span> <span class="ow">or</span> <span class="n">IPv6</span> <span class="n">name</span> <span class="n">resolution</span>
+      <span class="o">-</span><span class="n">c</span> <span class="n">CNT</span>          <span class="n">Send</span> <span class="n">only</span> <span class="n">CNT</span> <span class="n">pings</span>
+      <span class="o">-</span><span class="n">s</span> <span class="n">SIZE</span>         <span class="n">Send</span> <span class="n">SIZE</span> <span class="n">data</span> <span class="nb">bytes</span> <span class="ow">in</span> <span class="n">packets</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span><span class="mi">56</span><span class="p">)</span>
+      <span class="o">-</span><span class="n">t</span> <span class="n">TTL</span>          <span class="n">Set</span> <span class="n">TTL</span>
+      <span class="o">-</span><span class="n">I</span> <span class="n">IFACE</span><span class="o">/</span><span class="n">IP</span>     <span class="n">Use</span> <span class="n">interface</span> <span class="ow">or</span> <span class="n">IP</span> <span class="n">address</span> <span class="k">as</span> <span class="n">source</span>
+      <span class="o">-</span><span class="n">W</span> <span class="n">SEC</span>          <span class="n">Seconds</span> <span class="n">to</span> <span class="n">wait</span> <span class="k">for</span> <span class="n">the</span> <span class="n">first</span> <span class="n">response</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span><span class="mi">10</span><span class="p">)</span>
+                      <span class="p">(</span><span class="n">after</span> <span class="nb">all</span> <span class="o">-</span><span class="n">c</span> <span class="n">CNT</span> <span class="n">packets</span> <span class="n">are</span> <span class="n">sent</span><span class="p">)</span>
+      <span class="o">-</span><span class="n">w</span> <span class="n">SEC</span>          <span class="n">Seconds</span> <span class="n">until</span> <span class="n">ping</span> <span class="n">exits</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span><span class="n">infinite</span><span class="p">)</span>
+                      <span class="p">(</span><span class="n">can</span> <span class="n">exit</span> <span class="n">earlier</span> <span class="k">with</span> <span class="o">-</span><span class="n">c</span> <span class="n">CNT</span><span class="p">)</span>
+      <span class="o">-</span><span class="n">q</span>              <span class="n">Quiet</span><span class="p">,</span> <span class="n">only</span> <span class="n">display</span> <span class="n">output</span> <span class="n">at</span> <span class="n">start</span>
+                      <span class="ow">and</span> <span class="n">when</span> <span class="n">finished</span>
+      <span class="o">-</span><span class="n">p</span>              <span class="n">Pattern</span> <span class="n">to</span> <span class="n">use</span> <span class="k">for</span> <span class="n">payload</span>
+</pre></div>
+</div>
+<p>Par défaut, aucune machine hôte n’est ciblée, et à chaque lancement d’un container il est nécessaire de préciser un <strong>FQDN</strong> ou une <strong>IP</strong>.
+La commande suivante lance un nouveau container en lui donnant l’adresse IP d’un DNS Google (<code class="docutils literal notranslate"><span class="pre">8.8.8.8</span></code>),
+nous ajoutons également l’option <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">3</span></code> pour limiter le nombre de ping envoyés.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="n">ping</span><span class="p">:</span><span class="mf">1.0</span> <span class="o">-</span><span class="n">c</span> <span class="mi">3</span> <span class="mf">8.8.8.8</span>
+</pre></div>
+</div>
+<p>Nous obtenons alors le résultat suivant :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PING</span> <span class="mf">8.8.8.8</span> <span class="p">(</span><span class="mf">8.8.8.8</span><span class="p">):</span> <span class="mi">56</span> <span class="n">data</span> <span class="nb">bytes</span>
+<span class="mi">64</span> <span class="nb">bytes</span> <span class="kn">from</span> <span class="mf">8.8.8.8</span><span class="p">:</span> <span class="n">seq</span><span class="o">=</span><span class="mi">0</span> <span class="n">ttl</span><span class="o">=</span><span class="mi">37</span> <span class="n">time</span><span class="o">=</span><span class="mf">8.731</span> <span class="n">ms</span>
+<span class="mi">64</span> <span class="nb">bytes</span> <span class="kn">from</span> <span class="mf">8.8.8.8</span><span class="p">:</span> <span class="n">seq</span><span class="o">=</span><span class="mi">1</span> <span class="n">ttl</span><span class="o">=</span><span class="mi">37</span> <span class="n">time</span><span class="o">=</span><span class="mf">8.503</span> <span class="n">ms</span>
+<span class="mi">64</span> <span class="nb">bytes</span> <span class="kn">from</span> <span class="mf">8.8.8.8</span><span class="p">:</span> <span class="n">seq</span><span class="o">=</span><span class="mi">2</span> <span class="n">ttl</span><span class="o">=</span><span class="mi">37</span> <span class="n">time</span><span class="o">=</span><span class="mf">8.507</span> <span class="n">ms</span>
+<span class="o">---</span> <span class="mf">8.8.8.8</span> <span class="n">ping</span> <span class="n">statistics</span> <span class="o">---</span>
+<span class="mi">3</span> <span class="n">packets</span> <span class="n">transmitted</span><span class="p">,</span> <span class="mi">3</span> <span class="n">packets</span> <span class="n">received</span><span class="p">,</span> <span class="mi">0</span><span class="o">%</span>
+<span class="nb">round</span><span class="o">-</span><span class="n">trip</span> <span class="nb">min</span><span class="o">/</span><span class="n">avg</span><span class="o">/</span><span class="nb">max</span> <span class="o">=</span> <span class="mf">8.503</span><span class="o">/</span><span class="mf">8.580</span><span class="o">/</span><span class="mf">8.731</span> <span class="n">ms</span>
+</pre></div>
+</div>
+<p>La commande lancée dans le container est donc la concaténation de l’<strong>ENTRYPOINT</strong> et de la commande spécifiée lors du lancement du container (tout ce qui est situé après le nom de l’image).
+Comme nous pouvons le voir dans cet exemple, l’image que nous avons créée est un wrapper autour de l’utilitaire <code class="docutils literal notranslate"><span class="pre">ping</span></code> et nécessite de spécifier des paramêtres supplémentaires au lancement d’un container.</p>
+</section>
+<section id="instructions-cmd-utilisee-seule">
+<h4>Instructions CMD utilisée seule<a class="headerlink" href="#instructions-cmd-utilisee-seule" title="Permalink to this headline">¶</a></h4>
+<p>De la même manière, il est possible de n’utiliser que l’instruction <strong>CMD</strong> dans un <strong>Dockerfile</strong>, c’est d’ailleurs très souvent l’approche qui est utilisée car il est plus simple de manipuler les instructions <strong>CMD</strong> que les <strong>ENTRYPOINT</strong>.
+Créez un fichier <strong>Dockerfile-v2</strong> contenant les instructions suivantes:</p>
+<p>Créez une image, nommée <strong>ping:2.0</strong> , à partir de ce fichier.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">image</span> <span class="n">build</span> <span class="o">-</span><span class="n">f</span> <span class="n">Dockerfile</span><span class="o">-</span><span class="n">v2</span> <span class="o">-</span><span class="n">t</span> <span class="n">ping</span><span class="p">:</span><span class="mf">2.0</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>Si nous lançons maintenant un nouveau container, il lancera la commande ping comme c’était le cas avec l’exemple précédent dans lequel seul l’ENTRYPOINT était défini.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker container run ping:2.0
+
+BusyBox v1.26.2 (2017-05-23 16:46:25 GMT) multi-call binary.
+Usage: ping [OPTIONS] HOST
+Send ICMP ECHO_REQUEST packets to network hosts
+        -4,-6           Force IP or IPv6 name resolution
+        -c CNT          Send only CNT pings
+        -s SIZE         Send SIZE data bytes in packets (default:56)
+        -t TTL          Set TTL
+        -I IFACE/IP     Use interface or IP address as source
+        -W SEC          Seconds to wait for the first response (default:10)
+                        (after all -c CNT packets are sent)
+        -w SEC          Seconds until ping exits (default:infinite)
+                        (can exit earlier with -c CNT)
+        -q              Quiet, only display output at start
+                        and when finished
+        -p              Pattern to use for payload
+</pre></div>
+</div>
+<p>Nous n’avons cependant pas le même comportement que précédemment, car pour spécifier la machine à cibler, il faut redéfinir la commande complète à la suite du nom de l’image.</p>
+<p>Si nous ne spécifions que les paramètres de la commande ping, nous obtenons un message d’erreur car la commande lancée dans le container ne peut pas être interpretée.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="n">ping</span><span class="p">:</span><span class="mf">2.0</span> <span class="o">-</span><span class="n">c</span> <span class="mi">3</span> <span class="mf">8.8.8.8</span>
+</pre></div>
+</div>
+<p>Vous devriez alors obtenir l’erreur suivante:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">container_linux</span><span class="o">.</span><span class="n">go</span><span class="p">:</span><span class="mi">247</span><span class="p">:</span> <span class="n">starting</span> <span class="n">container</span> <span class="n">process</span> <span class="n">caused</span> <span class="s2">&quot;exec: </span><span class="se">\&quot;</span><span class="s2">-c</span><span class="se">\&quot;</span><span class="s2">: executable file not found in $PATH&quot;</span>
+<span class="n">docker</span><span class="p">:</span> <span class="n">Error</span> <span class="n">response</span> <span class="kn">from</span> <span class="nn">daemon</span><span class="p">:</span> <span class="n">oci</span> <span class="n">runtime</span> <span class="n">error</span><span class="p">:</span> <span class="n">container_linux</span><span class="o">.</span><span class="n">go</span><span class="p">:</span><span class="mi">247</span><span class="p">:</span> <span class="n">starting</span> <span class="n">container</span> <span class="n">process</span> <span class="n">ca</span>
+<span class="n">used</span> <span class="s2">&quot;exec: </span><span class="se">\&quot;</span><span class="s2">-c</span><span class="se">\&quot;</span><span class="s2">: executable file not found in $PATH&quot;</span><span class="o">.</span>
+<span class="n">ERRO</span><span class="p">[</span><span class="mi">0000</span><span class="p">]</span> <span class="n">error</span> <span class="n">getting</span> <span class="n">events</span> <span class="kn">from</span> <span class="nn">daemon</span><span class="p">:</span> <span class="n">net</span><span class="o">/</span><span class="n">http</span><span class="p">:</span> <span class="n">request</span> <span class="n">canceled</span>
+</pre></div>
+</div>
+<p>Il faut redéfinir la commande dans sa totalité, ce qui est fait en la spécifiant à la suite du nom de l’image.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker container run ping:2.0 ping -c 3 8.8.8.8
+PING 8.8.8.8 (8.8.8.8): 56 data bytes
+64 bytes from 8.8.8.8: seq=0 ttl=37 time=10.223 ms
+64 bytes from 8.8.8.8: seq=1 ttl=37 time=8.523 ms
+64 bytes from 8.8.8.8: seq=2 ttl=37 time=8.512 ms
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 8.512/9.086/10.223 ms
+</pre></div>
+</div>
+</section>
+<section id="instructions-entrypoint-et-cmd">
+<h4>Instructions ENTRYPOINT et CMD<a class="headerlink" href="#instructions-entrypoint-et-cmd" title="Permalink to this headline">¶</a></h4>
+<p>Il est également possible d’utiliser ENTRYPOINT et CMD en même temps dans un Dockerfile, ce qui permet à la fois de créer un wrapper autour d’une application et de spécifier un comportement par défaut.</p>
+<p>Nous allons illustrer cela sur un nouvel exemple et créer un fichier Dockerfile-v3 contenant les instructions suivantes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">alpine</span>
+<span class="n">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&quot;ping&quot;</span><span class="p">]</span>
+<span class="n">CMD</span> <span class="p">[</span><span class="s2">&quot;-c3&quot;</span><span class="p">,</span> <span class="s2">&quot;localhost&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Ici, nous définissons ENTRYPOINT et CMD, la commande lancée dans un container sera la concaténation de ces 2 instructions: ping -c3 localhost.
+Créez une image à partir de ce Dockerfile, nommez la ping:3.0, et lançez un nouveau container à partir de celle-ci.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker image build -f Dockerfile-v3 -t ping:3.0 .
+$ docker container run ping:3.0
+</pre></div>
+</div>
+<p>Vous devriez alors obtenir le résultat suivant:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PING</span> <span class="n">localhost</span> <span class="p">(</span><span class="mf">127.0.0.1</span><span class="p">):</span> <span class="mi">56</span> <span class="n">data</span> <span class="nb">bytes</span>
+<span class="mi">64</span> <span class="nb">bytes</span> <span class="kn">from</span> <span class="mf">127.0.0.1</span><span class="p">:</span> <span class="n">seq</span><span class="o">=</span><span class="mi">0</span> <span class="n">ttl</span><span class="o">=</span><span class="mi">64</span> <span class="n">time</span><span class="o">=</span><span class="mf">0.062</span> <span class="n">ms</span>
+<span class="mi">64</span> <span class="nb">bytes</span> <span class="kn">from</span> <span class="mf">127.0.0.1</span><span class="p">:</span> <span class="n">seq</span><span class="o">=</span><span class="mi">1</span> <span class="n">ttl</span><span class="o">=</span><span class="mi">64</span> <span class="n">time</span><span class="o">=</span><span class="mf">0.102</span> <span class="n">ms</span>
+<span class="mi">64</span> <span class="nb">bytes</span> <span class="kn">from</span> <span class="mf">127.0.0.1</span><span class="p">:</span> <span class="n">seq</span><span class="o">=</span><span class="mi">2</span> <span class="n">ttl</span><span class="o">=</span><span class="mi">64</span> <span class="n">time</span><span class="o">=</span><span class="mf">0.048</span> <span class="n">ms</span>
+<span class="o">---</span> <span class="n">localhost</span> <span class="n">ping</span> <span class="n">statistics</span> <span class="o">---</span>
+<span class="mi">3</span> <span class="n">packets</span> <span class="n">transmitted</span><span class="p">,</span> <span class="mi">3</span> <span class="n">packets</span> <span class="n">received</span><span class="p">,</span> <span class="mi">0</span><span class="o">%</span> <span class="n">packet</span> <span class="n">loss</span>
+<span class="nb">round</span><span class="o">-</span><span class="n">trip</span> <span class="nb">min</span><span class="o">/</span><span class="n">avg</span><span class="o">/</span><span class="nb">max</span> <span class="o">=</span> <span class="mf">0.048</span><span class="o">/</span><span class="mf">0.070</span><span class="o">/</span><span class="mf">0.102</span> <span class="n">ms</span>
+</pre></div>
+</div>
+<p>Nous pouvons écraser la commande par défaut et spécifier une autre adresse IP</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="n">ping</span><span class="p">:</span><span class="mf">3.0</span> <span class="mf">8.8.8.8</span>
+</pre></div>
+</div>
+<p>Nous obtenons alors le résultat suivant:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PING</span> <span class="mf">8.8.8.8</span> <span class="p">(</span><span class="mf">8.8.8.8</span><span class="p">):</span> <span class="mi">56</span> <span class="n">data</span> <span class="nb">bytes</span>
+<span class="mi">64</span> <span class="nb">bytes</span> <span class="kn">from</span> <span class="mf">8.8.8.8</span><span class="p">:</span> <span class="n">seq</span><span class="o">=</span><span class="mi">0</span> <span class="n">ttl</span><span class="o">=</span><span class="mi">38</span> <span class="n">time</span><span class="o">=</span><span class="mf">9.235</span> <span class="n">ms</span>
+<span class="mi">64</span> <span class="nb">bytes</span> <span class="kn">from</span> <span class="mf">8.8.8.8</span><span class="p">:</span> <span class="n">seq</span><span class="o">=</span><span class="mi">1</span> <span class="n">ttl</span><span class="o">=</span><span class="mi">38</span> <span class="n">time</span><span class="o">=</span><span class="mf">8.590</span> <span class="n">ms</span>
+<span class="mi">64</span> <span class="nb">bytes</span> <span class="kn">from</span> <span class="mf">8.8.8.8</span><span class="p">:</span> <span class="n">seq</span><span class="o">=</span><span class="mi">2</span> <span class="n">ttl</span><span class="o">=</span><span class="mi">38</span> <span class="n">time</span><span class="o">=</span><span class="mf">8.585</span> <span class="n">ms</span>
+</pre></div>
+</div>
+<p>Il faut alors faire un CTRL-C pour arrêter le container car l’option -c3 limitant le nombre de ping n’a pas été spécifiée.
+Cela nous permet à la fois d’avoir un comportement par défaut et de pouvoir facilement le modifier en spécifiant une autre commande.</p>
+</section>
+<section id="pour-aller-plus-loin-ou-est-stockee-mon-image">
+<h4>Pour aller plus loin : ou est stockée mon image ?<a class="headerlink" href="#pour-aller-plus-loin-ou-est-stockee-mon-image" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="stockage-d-une-image">
+<h4>Stockage d’une image<a class="headerlink" href="#stockage-d-une-image" title="Permalink to this headline">¶</a></h4>
+<p>Dans un exercice précédent, nous avons créé une image nommée ping:1.0, nous allons voir ici ou cette image est stockée.</p>
+<p>Reprenons le Dockerfile de l’exercice :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">ubuntu</span><span class="p">:</span><span class="mf">16.04</span>
+<span class="n">RUN</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> <span class="o">-</span><span class="n">y</span> <span class="o">&amp;&amp;</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">iputils</span><span class="o">-</span><span class="n">ping</span>
+<span class="n">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&quot;ping&quot;</span><span class="p">]</span>
+<span class="n">CMD</span> <span class="p">[</span><span class="s2">&quot;8.8.8.8&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>A partir de ce Dockerfile, l’image est buildée avec la commande suivante :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker image build -t ping:1.0 .
+
+Sending build context to Docker daemon  2.048kB
+Step 1/4 : FROM ubuntu:16.04
+---&gt; 5e8b97a2a082
+Step 2/4 : RUN apt-get update -y &amp;&amp; apt-get install -y iputils-ping
+---&gt; Using cache
+---&gt; 4cd5304ad0fb
+Step 3/4 : ENTRYPOINT [&quot;ping&quot;]
+---&gt; Using cache
+---&gt; d2846bbd30e8
+Step 4/4 : CMD [&quot;8.8.8.8&quot;]
+---&gt; Using cache
+---&gt; 00a905f2bd5a
+Successfully built 00a905f2bd5a
+Successfully tagged ping:1.0
+</pre></div>
+</div>
+<p>Pour lister les images présentes localement on utilise la commande <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">image</span> <span class="pre">ls</span></code> (on reverra cette commande un peu plus loin). Pour ne lister que les images qui ont le nom <code class="docutils literal notranslate"><span class="pre">ping</span></code> on le précise à la suite de <code class="docutils literal notranslate"><span class="pre">ls</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker image ls ping
+
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ping                1.0                 00a905f2bd5a        4 weeks ago         159MB
+</pre></div>
+</div>
+<p>Notre image est constituée d’un ensemble de layers, il faut voir chaque layer comme un morceau de système de fichiers.
+L’ID de l’image (dans sa version courte) est 00a905f2bd5a, nous allons voir à partir de cette identifiant comment l’image est stockée sur la machine hôte (la machine sur laquelle tourne le daemon Docker).</p>
+<p>Tout se passe dans le répertoire <code class="docutils literal notranslate"><span class="pre">/var/lib/docker</span></code>, c’est le répertoire au Docker gère l’ensemble des primitives (containers, images, volumes, networks, …). Et plus précisément dans <code class="docutils literal notranslate"><span class="pre">/var/lib/docker/image/overlay2/</span></code>, overlay2 étant le driver en charge du stockage des images.</p>
+<p><strong>Note:</strong> si vous utilisez <strong>Docker for Mac</strong> ou <strong>Docker for Windows</strong>, il est nécessaire d’utiliser la commande suivante pour lancer un <code class="docutils literal notranslate"><span class="pre">shell</span></code> dans la machine virtuelle dans laquelle tourne le daemon Docker. On pourra ensuite explorer le répertoire <code class="docutils literal notranslate"><span class="pre">/var/lib/docker</span></code> depuis ce shell.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="o">--</span><span class="n">privileged</span> <span class="o">--</span><span class="n">pid</span><span class="o">=</span><span class="n">host</span> <span class="n">debian</span> <span class="n">nsenter</span> <span class="o">-</span><span class="n">t</span> <span class="mi">1</span> <span class="o">-</span><span class="n">m</span> <span class="o">-</span><span class="n">u</span> <span class="o">-</span><span class="n">n</span> <span class="o">-</span><span class="n">i</span> <span class="n">sh</span>
+</pre></div>
+</div>
+<p>Plusieurs <strong>fichiers / répertoires</strong> ont un nom qui contient l’ID de notre image comme on peut le voir ci-dessous :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">image</span><span class="o">/</span><span class="n">overlay2</span> <span class="c1"># find . | grep 00a905f2bd5a</span>
+<span class="o">./</span><span class="n">imagedb</span><span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">sha256</span><span class="o">/</span><span class="mi">00</span><span class="n">a905f2bd5aa3b1c4e28611704717679352a619bcdc4f8f6851cf459dc05816</span>
+<span class="o">./</span><span class="n">imagedb</span><span class="o">/</span><span class="n">metadata</span><span class="o">/</span><span class="n">sha256</span><span class="o">/</span><span class="mi">00</span><span class="n">a905f2bd5aa3b1c4e28611704717679352a619bcdc4f8f6851cf459dc05816</span>
+<span class="o">./</span><span class="n">imagedb</span><span class="o">/</span><span class="n">metadata</span><span class="o">/</span><span class="n">sha256</span><span class="o">/</span><span class="mi">00</span><span class="n">a905f2bd5aa3b1c4e28611704717679352a619bcdc4f8f6851cf459dc05816</span><span class="o">/</span><span class="n">lastUpdated</span>
+<span class="o">./</span><span class="n">imagedb</span><span class="o">/</span><span class="n">metadata</span><span class="o">/</span><span class="n">sha256</span><span class="o">/</span><span class="mi">00</span><span class="n">a905f2bd5aa3b1c4e28611704717679352a619bcdc4f8f6851cf459dc05816</span><span class="o">/</span><span class="n">parent</span>
+</pre></div>
+</div>
+<p><strong>- Content</strong> : le premier fichier contient un ensemble d’information concernant cette image, notamment les paramètres de configuration, l’historique de création (ensemble des commandes qui ont servi à construire le système de fichiers contenu dans l’image), et également l’ensemble des layers qui la constituent. Une grande partie de ces informations peuvent également être retrouvées avec la commande :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">image</span> <span class="n">inspect</span> <span class="n">ping</span><span class="p">:</span><span class="mf">1.0</span>
+</pre></div>
+</div>
+<p>Parmi ces éléments, on a donc les identifiants de chaque layer :</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;rootfs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;layers&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;diff_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;sha256:644879075e24394efef8a7dddefbc133aad42002df6223cacf98bd1e3d5ddde2&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;sha256:d7ff1dc646ba52a02312b535446d6c9b72cd09fda0480524e4828554efb2f748&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;sha256:686245e78935e73b737c9a82111c3c7df35f5529d06ce8c2f9a7cd32ec90b456&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;sha256:d73dd9e652956dccbbef716de4b172cc15fff644cc92fc69d221cc3a1cb89a39&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;sha256:2de391e51d731ba02b708038a7f98b7103061b916727bcd165e9ee6402f4cdde&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;sha256:3045bfad4cfefecabc342600d368863445b12ed18188f5f2896c5389b0e84b66&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Si l’on considère la première layer (celle dont l’ID est 6448…), on voit dans <code class="docutils literal notranslate"><span class="pre">/var/lib/docker/image/overlay2</span></code> qu’il y a un répertoire dont le nom correspond à l’ID de cette layer, celui-ci contient plusieurs fichiers :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">image</span><span class="o">/</span><span class="n">overlay2</span> <span class="c1"># find . | grep &#39;644879075e24394efef8a7dddefbc133aad42&#39;</span>
+<span class="o">./</span><span class="n">layerdb</span><span class="o">/</span><span class="n">sha256</span><span class="o">/</span><span class="mf">644879075e24394</span><span class="n">efef8a7dddefbc133aad42002df6223cacf98bd1e3d5ddde2</span>
+<span class="o">./</span><span class="n">layerdb</span><span class="o">/</span><span class="n">sha256</span><span class="o">/</span><span class="mf">644879075e24394</span><span class="n">efef8a7dddefbc133aad42002df6223cacf98bd1e3d5ddde2</span><span class="o">/</span><span class="n">size</span>
+<span class="o">./</span><span class="n">layerdb</span><span class="o">/</span><span class="n">sha256</span><span class="o">/</span><span class="mf">644879075e24394</span><span class="n">efef8a7dddefbc133aad42002df6223cacf98bd1e3d5ddde2</span><span class="o">/</span><span class="n">tar</span><span class="o">-</span><span class="n">split</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">gz</span>
+<span class="o">./</span><span class="n">layerdb</span><span class="o">/</span><span class="n">sha256</span><span class="o">/</span><span class="mf">644879075e24394</span><span class="n">efef8a7dddefbc133aad42002df6223cacf98bd1e3d5ddde2</span><span class="o">/</span><span class="n">diff</span>
+<span class="o">./</span><span class="n">layerdb</span><span class="o">/</span><span class="n">sha256</span><span class="o">/</span><span class="mf">644879075e24394</span><span class="n">efef8a7dddefbc133aad42002df6223cacf98bd1e3d5ddde2</span><span class="o">/</span><span class="n">cache</span><span class="o">-</span><span class="nb">id</span>
+<span class="o">./</span><span class="n">distribution</span><span class="o">/</span><span class="n">v2metadata</span><span class="o">-</span><span class="n">by</span><span class="o">-</span><span class="n">diffid</span><span class="o">/</span><span class="n">sha256</span><span class="o">/</span><span class="mf">644879075e24394</span><span class="n">efef8a7dddefbc133aad42002df6223cacf98bd1e3d</span>
+</pre></div>
+</div>
+<p>Ceux-ci contiennent différentes information sur la layer en question. Parmi celles-ci, le fichier <strong>cache-id</strong> nous donne l’identifiant du cache qui a été généré pour cette layer.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">image</span><span class="o">/</span><span class="n">overlay2</span> <span class="c1"># cat ./layerdb/sha256/644879075e24394efef8a7dddefbc133aad42002df6223cacf98bd1e3d5ddde2/cache-id</span>
+<span class="mi">49908</span><span class="n">d07e177f9b61dc273ec7089efed9223d3798ad1d86c78d4fe953e227668</span>
+</pre></div>
+</div>
+<p>Le système de fichier construit dans cette layer est alors accessible dans le répertoire :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">overlay2</span><span class="o">/</span><span class="mi">49908</span><span class="n">d07e177f9b61dc273ec7089efed9223d3798ad1d86c78d4fe953e227668</span><span class="o">/</span><span class="n">diff</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><a href="#id2"><span class="problematic" id="id3">**</span></a>- LastUpdated <a href="#id4"><span class="problematic" id="id5">**</span></a>: ce fichier contient la date de dernière mise à jour de l’image</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">image</span><span class="o">/</span><span class="n">overlay2</span> <span class="c1"># cat ./imagedb/metadata/sha256/00a905f2bd5...459dc05816/lastUpdated</span>
+<span class="mi">2018</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">31</span><span class="n">T07</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mf">04.6840553</span><span class="n">Z</span>
+</pre></div>
+</div>
+<p><strong>- parent</strong> : ce fichier contient l’identifiant du container qui a servi à créer l’image.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">image</span><span class="o">/</span><span class="n">overlay2</span> <span class="c1"># cat ./imagedb/metadata/sha256/00a905f2bd5459dc05816/parent</span>
+<span class="n">sha256</span><span class="p">:</span><span class="n">d2846bbd30e811ac8baaf759fc6c4f424c8df2365c42dab34d363869164881ae</span>
+</pre></div>
+</div>
+<p>On retrouve d’ailleurs ce container dans l’avant dernière étape de création de l’image.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Step</span> <span class="mi">3</span><span class="o">/</span><span class="mi">4</span> <span class="p">:</span> <span class="n">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&quot;ping&quot;</span><span class="p">]</span>
+<span class="o">---&gt;</span> <span class="n">Using</span> <span class="n">cache</span>
+<span class="o">---&gt;</span> <span class="n">d2846bbd30e8</span>
+</pre></div>
+</div>
+<p>Ce container est celui qui a été commité pour créer l’image finale.</p>
+<p><strong>En résumé :</strong> il est important de garder en tête qu’une image est constituée de plusieurs layers. Chaque layer est une partie du système de fichiers de l’image finale. C’est le rôle du driver de stockage de stocker ces différentes layers et de construire le système de fichiers de chaque container lancé à partir de cette image.</p>
+</section>
+</section>
+</section>
+<section id="multi-stages-build">
+<h2>4.6 Multi-Stages Build<a class="headerlink" href="#multi-stages-build" title="Permalink to this headline">¶</a></h2>
+<p>Depuis la version <code class="docutils literal notranslate"><span class="pre">17.05</span></code> de Docker, nous pouvons découper le Build d’une image en plusieurs étapes.</p>
+<p>Un cas d’usage courant :</p>
+<p><a href="#id6"><span class="problematic" id="id7">**</span></a>Etape 1 <a href="#id8"><span class="problematic" id="id9">**</span></a>: Avoir une image de base contenant l’ensemble des librairies et binaires nécessaires pour la création d’artéfacts.</p>
+<p><strong>Etape 2</strong> : Utiliser une image de base plus light et d’y copier les artéfacts générés à l’étape précédente.</p>
+<p><strong>Exemple :</strong></p>
+<p>Considérons une application <strong>ReactJs</strong>.
+Pour créer le squelette d’un projet React nous utilisons la commande :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">init</span> <span class="n">react</span><span class="o">-</span><span class="n">app</span> <span class="n">api</span>
+</pre></div>
+</div>
+<p>un dossier <code class="docutils literal notranslate"><span class="pre">api</span></code> est créé.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">api</span>
+</pre></div>
+</div>
+<p>En utilisant le <strong>multistage build</strong> nous allons construire des artéfacts Web. Et nous aurons seulement besoin de copier ces artefacts dans un serveur <strong>WEB NGINX</strong> dans un second temps.</p>
+<img alt="../../_images/image29.png" src="../../_images/image29.png" />
+<p><strong>Dans le DockerFile</strong> :
+La premiere instruction <strong>FROM</strong> utilise une image NODE dans laquelle les dépendances de l’application seront installées. Et le code applicatif Buildé.</p>
+<p>Et la seconde instruction <strong>FROM</strong> utilise utilise une image <strong>NGINX</strong> dans laquelle les assets web buildés précédemment sont copiés. Et au final nous avons une seule image qui contient notre application.</p>
+<p>Cela peut être vérifié en faisant le Build de l’image :</p>
+<img alt="../../_images/image30.png" src="../../_images/image30.png" />
+<section id="id10">
+<h3>4.6.1 Mise en pratique<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>Dans cette mise en pratique, nous allons illustrer le multi stage build.</p>
+<section id="rappel">
+<h4>Rappel<a class="headerlink" href="#rappel" title="Permalink to this headline">¶</a></h4>
+<p>Comme nous l’avons vu, le Dockerfile contient une liste d’instructions qui permet de créer une image. La première instruction est FROM, elle définit l’image de base utilisée. Cette image de base contient souvent beaucoup d’éléments (binaires et librairies) dont l’application finale n’a pas besoin (compilateur, …). Ceci qui peut impacter de façon considérable la taille de l’image et également sa sécurité puisque cela peut considérablement augmenter sa surface d’attaque. C’est la qu’intervint le multistage build…</p>
+</section>
+<section id="un-serveur-http-ecrit-en-go">
+<h4>Un serveur http écrit en Go<a class="headerlink" href="#un-serveur-http-ecrit-en-go" title="Permalink to this headline">¶</a></h4>
+<p>Prenons l’exemple du programme suivant écrit en Go.</p>
+<p>Dans un nouveau répertoire, créez le fichier http.go contenant le code suivant. Celui-ci définit un simple serveur http qui écoute sur le port 8080 et qui expose le endpoint /whoami en GET. A chaque requête, il renvoie le nom de la machine hôte sur laquelle il tourne.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package</span> <span class="n">main</span>
+<span class="kn">import</span> <span class="p">(</span>
+        <span class="s2">&quot;io&quot;</span>
+        <span class="s2">&quot;net/http&quot;</span>
+        <span class="s2">&quot;os&quot;</span>
+<span class="p">)</span>
+<span class="n">func</span> <span class="n">handler</span><span class="p">(</span><span class="n">w</span> <span class="n">http</span><span class="o">.</span><span class="n">ResponseWriter</span><span class="p">,</span> <span class="n">req</span> <span class="o">*</span><span class="n">http</span><span class="o">.</span><span class="n">Request</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">host</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">os</span><span class="o">.</span><span class="n">Hostname</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
+         <span class="n">io</span><span class="o">.</span><span class="n">WriteString</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="s2">&quot;unknown&quot;</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="n">io</span><span class="o">.</span><span class="n">WriteString</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">host</span><span class="p">)</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">http</span><span class="o">.</span><span class="n">HandleFunc</span><span class="p">(</span><span class="s2">&quot;/whoami&quot;</span><span class="p">,</span> <span class="n">handler</span><span class="p">)</span>
+        <span class="n">http</span><span class="o">.</span><span class="n">ListenAndServe</span><span class="p">(</span><span class="s2">&quot;:8080&quot;</span><span class="p">,</span> <span class="n">nil</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="dockerfile-traditionel">
+<h4>Dockerfile traditionel<a class="headerlink" href="#dockerfile-traditionel" title="Permalink to this headline">¶</a></h4>
+<p>Afin de créer une image pour cette application, créez tout dabord le fichier Dockerfile avec le contenu suivant (placez ce fichier dans le même répertoire que http.go):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">golang</span><span class="p">:</span><span class="mf">1.17</span>
+<span class="n">WORKDIR</span> <span class="o">/</span><span class="n">go</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">app</span>
+<span class="n">COPY</span> <span class="n">http</span><span class="o">.</span><span class="n">go</span> <span class="o">.</span>
+<span class="n">RUN</span> <span class="n">go</span> <span class="n">mod</span> <span class="n">init</span>
+<span class="n">RUN</span> <span class="n">CGO_ENABLED</span><span class="o">=</span><span class="mi">0</span> <span class="n">GOOS</span><span class="o">=</span><span class="n">linux</span> <span class="n">go</span> <span class="n">build</span> <span class="o">-</span><span class="n">o</span> <span class="n">http</span> <span class="o">.</span>
+<span class="n">CMD</span> <span class="p">[</span><span class="s2">&quot;./http&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Note: dans ce Dockerfile, l’image officielle golang est utilisée comme image de base, le fichier source http.go est copié puis compilé.</p>
+<p>Vous pouvez ensuite builder l’image et la nommer whoami:1.0:.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">image</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">whoami</span><span class="p">:</span><span class="mf">1.0</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>Listez les images présentes et notez la taille de l’image whoami:1.0</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker image ls whoami
+  REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+  whoami       1.0       16795cf36deb   2 seconds ago   962MB
+</pre></div>
+</div>
+<p>L’image obtenue a une taille très conséquente car elle contient l’ensemble de la toolchain du langage Go. Or, une fois que le binaire a été compilé, nous n’avons plus besoin du compilateur dans l’image finale.</p>
+</section>
+<section id="dockerfile-utilisant-un-build-multi-stage">
+<h4>Dockerfile utilisant un build multi-stage<a class="headerlink" href="#dockerfile-utilisant-un-build-multi-stage" title="Permalink to this headline">¶</a></h4>
+<p>Le multi-stage build, introduit dans la version 17.05 de Docker permet, au sein d’un seul Dockerfile, d’effectuer le process de build en plusieurs étapes. Chacune des étapes peut réutiliser des artefacts (fichiers résultant de compilation, assets web, …) créés lors des étapes précédentes. Ce Dockerfile aura plusieurs instructions FROM mais seule la dernière sera utilisée pour la construction de l’image finale.</p>
+<p>Si nous reprenons l’exemple du serveur http ci dessus, nous pouvons dans un premier temps compiler le code source en utilisant l’image golang contenant le compilateur. Une fois le binaire créé, nous pouvons utiliser une image de base vide, nommée scratch, et copier le binaire généré précédemment.</p>
+<p>Remplacer le contenu du fichier Dockerfile avec les instructions suivantes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">golang</span><span class="p">:</span><span class="mf">1.17</span> <span class="k">as</span> <span class="n">build</span>
+<span class="n">WORKDIR</span> <span class="o">/</span><span class="n">go</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">app</span>
+<span class="n">COPY</span> <span class="n">http</span><span class="o">.</span><span class="n">go</span> <span class="o">.</span>
+<span class="n">RUN</span> <span class="n">go</span> <span class="n">mod</span> <span class="n">init</span>
+<span class="n">RUN</span> <span class="n">CGO_ENABLED</span><span class="o">=</span><span class="mi">0</span> <span class="n">GOOS</span><span class="o">=</span><span class="n">linux</span> <span class="n">go</span> <span class="n">build</span> <span class="o">-</span><span class="n">o</span> <span class="n">http</span> <span class="o">.</span>
+
+<span class="n">FROM</span> <span class="n">scratch</span>
+<span class="n">COPY</span> <span class="o">--</span><span class="n">from</span><span class="o">=</span><span class="n">build</span> <span class="o">/</span><span class="n">go</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">app</span> <span class="o">.</span>
+<span class="n">CMD</span> <span class="p">[</span><span class="s2">&quot;./http&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>L’exemple que nous avons utilisé ici se base sur une application écrite en Go. ce langage a la particularité de pouvoir être compilé en un binaire static, c’est à dire ne nécessitant pas d’être “linké” à des librairies externes. C’est la raison pour laquelle nous pouvons partir de l’image scratch. Pour d’autres langages, l’image de base utilisée lors de la dernière étape du build pourra être différente (alpine, …)</p>
+<p>Buildez l’image dans sa version 2 avec la commande suivante.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">image</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">whoami</span><span class="p">:</span><span class="mf">2.0</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>Listez les images et observez la différence de taille entre celles-ci:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker image ls whoami
+  REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+  whoami       2.0       0a97315aeaaa   6 seconds ago   6.07MB
+  whoami       1.0       16795cf36deb   2 minutes ago   962MB
+</pre></div>
+</div>
+<p>Lancez un container basé sur l’image whoami:2.0</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8080</span><span class="p">:</span><span class="mi">8080</span> <span class="n">whoami</span><span class="p">:</span><span class="mf">2.0</span>
+</pre></div>
+</div>
+<p>A l’aide de la commande curl, envoyez une requête GET sur le endpoint exposé. Vous devriez avoir, en retour, l’identifiant du container qui a traité la requète.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl localhost:8080/whoami
+  7562306c6c5e
+</pre></div>
+</div>
+<p>Pour cette simple application, le multistage build a permit de supprimer les binaires et librairies dont la présence est inutile dans l’image finale. L’exemple d’une application écrite en go est extrème, mais le multistage build fait partie des bonnes pratiques à adopter pour de nombreux languages de développement.</p>
+</section>
+</section>
+</section>
+<section id="prise-en-compte-du-cache">
+<h2>4.7 Prise en compte du cache<a class="headerlink" href="#prise-en-compte-du-cache" title="Permalink to this headline">¶</a></h2>
+<p>Quand on écrit un Dockerfile, on doit prendre en compte le mécanisme de cache.</p>
+<p>Pour optimiser le temps nécessaire pour construire l’image.</p>
+<p>Quand une image est créée chaque instruction créée une layer et en fonction de la complexité du Dockerfile, le premier build peut prendre un peu de temps mais les suivant seront très rapide parce que les layers existantes seront réutilisés.</p>
+<p>Un Dockerfile qui est créé doit s’assurer que le cache est bien utilisé.</p>
+<p>On peut l’utiliser pour reconstruire une image après qu’un changement ait été effectué, dans un fichier de configuration par exemple de sorte qu’il empêche le code source d’être compilé à nouveau si cela n’est pas nécessaire.</p>
+<p>Il y a plusieurs façons de forcer la recréation des layers d’une image si besoin.
+Notamment par la modification de la valeur d’une variable d’environnement ou si on modifie le code source qui est pris en compte dans les instructions ADD ou COPY.</p>
+<p>Si une instruction invalide le cache, alors toutes les instructions après ne l’utiliseront pas.</p>
+<p>A partir de l’exemple de l’application NODEJS vue précédemment :</p>
+<img alt="../../_images/image31.png" src="../../_images/image31.png" />
+<p>Si on lance une nouvelle fois le build de l’image on voit que pour chaque instruction le cache est utilisé.
+Cela signifie que pour chaque instruction la layer qui a déjà été créé, la première version, est réutilisé.
+Lorsque que l’image est créée pour la première fois, cela prend un peu de temps car il faut récupérer les dépendances et l’image.
+Mais à l’aide du cache cela prend quelque seconde.</p>
+<p>Faites l’expérience :
+Dans le dossier contenant l’application NODEJS, tapez la commande :</p>
+<p>Docker image build -t app :0.1 .</p>
+<img alt="../../_images/image21.png" src="../../_images/image21.png" />
+<p>Nous allons maintenant modifier le code de l’application.
+Ouvrons : index.js et modifions le label</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">util</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;util&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="s1">&#39;text/plain&#39;</span><span class="p">);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nx">util</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="s1">&#39;%s - %s\n&#39;</span><span class="p">,</span> <span class="ow">new</span> <span class="nb">Date</span><span class="p">(),</span> <span class="s1">&#39;==&gt; Test Modification&#39;</span><span class="p">));</span>
+<span class="p">});</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="mf">8080</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>et rebuildons l’image</p>
+<img alt="../../_images/image22.png" src="../../_images/image22.png" />
+<p>Lorsque l’on a changé le code source, cela a entrainé la reconstruction des dépendances de package.json.
+Ici ce n’est pas très long car nous n’avons que le package Express mais dans des applications plus lourdes cela peut impacter les performances.</p>
+<p>Pour éviter ce problème nous allons modifier le DockerFile.</p>
+<p>Nous allons faire en sorte de séparer le COPY en deux.</p>
+<p>Dans le premier nous ne copierons que le fichier PACKAGE.JSON.
+Puis nous déplacerons l’instruction RUN de façon à récupérer les dépendances.</p>
+<p>Ensuite nous copierons le code applicatif.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">FROM</span> <span class="nx">node</span><span class="o">:</span><span class="nx">current</span><span class="o">-</span><span class="nx">alpine3</span><span class="mf">.15</span>
+<span class="nx">COPY</span> <span class="kr">package</span><span class="p">.</span><span class="nx">json</span> <span class="o">/</span><span class="nx">app</span><span class="o">/</span><span class="kr">package</span><span class="p">.</span><span class="nx">json</span>
+<span class="nx">RUN</span> <span class="nx">cd</span> <span class="o">/</span><span class="nx">app</span> <span class="o">&amp;&amp;</span> <span class="nx">npm</span> <span class="nx">install</span>
+<span class="nx">COPY</span> <span class="p">.</span> <span class="o">/</span><span class="nx">app</span><span class="o">/</span>
+<span class="nx">EXPOSE</span> <span class="mf">8080</span>
+<span class="nx">WORKDIR</span> <span class="o">/</span><span class="nx">app</span>
+<span class="nx">CMD</span> <span class="p">[</span><span class="s2">&quot;npm&quot;</span><span class="p">,</span> <span class="s2">&quot;start&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Nous rebuildons ensuite notre image.
+Le cache n’est pas utilisé car le DOCKERFILE a été modifié alors tout est reconstruit.</p>
+<p>Remodifions le code source.</p>
+<img alt="../../_images/image46.png" src="../../_images/image46.png" />
+<p>Le code source est rechargé sans avoir à reconstruire les dépendances.</p>
+<section id="exercice-prise-en-compte-du-cache">
+<h3>4.7.1 Exercice : Prise en compte du cache<a class="headerlink" href="#exercice-prise-en-compte-du-cache" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Modifiez le code du serveur pong de l’exercice précédent. Vous pouvez par exemple ajouter une instruction qui loggue une chaine de caractère.</p></li>
+<li><p>Construisez une nouvelle image en la taguant pong:1.1</p></li>
+<li><p>Qu’observez-vous dans la sortie de la commande de build ?</p></li>
+<li><p>Modifiez le Dockerfile pour faire en sorte que les dépendances ne soient pas rebuildées si un changement est effectué dans le code. Créez l’image pong:1.2 à partir de ce nouveau Dockerfile.</p></li>
+<li><p>Modifiez une nouvelle fois le code de l’application et créez l’image pong:1.3. Observez la prise en compte du cache</p></li>
+</ol>
+</section>
+</section>
+<section id="le-contexte-de-build">
+<h2>4.8 Le contexte de Build<a class="headerlink" href="#le-contexte-de-build" title="Permalink to this headline">¶</a></h2>
+<p>Quand on construit une image Docker avec la commande Docker image build.
+La première chose que le client Docker fait, c’est d’envoyer au Daemon, sous forme d’une archive Tar, l’ensemble des fichiers nécessaire pour construire le système de fichier de l’image.
+Cet ensemble constitue le Build Context.
+Par défaut, c’est tout les fichiers qui sont envoyés. Cela peut être dangereux si l’on a des informations sensibles.
+D’où l’intérêt d’utiliser un fichier .DOCKERIGNORE pour filtrer les fichier et les répertoires qui ne doivent pas être répertorié par le contexte de build.</p>
+<p>C’est le même principe que le fichier .gitignore sur GIT par exemple.</p>
+<p>Reprenons l’exemple de notre application NODEJS.</p>
+<p>Refaisons un build :</p>
+<img alt="../../_images/image47.png" src="../../_images/image47.png" />
+<p>Durant le build nous constatons qu’avant de transférer le context de build au Daemon Docker, on essaie de charger le fichier .dockerignore.</p>
+<p>Le contexte ici, correspond au répertoire courant symbolisé par le « . » à la fin de la commande docker image build.</p>
+<p>On ne veut pas forcement que certains fichiers arrivent au Docker Daemon, comme un historique GIT ou de données sensibles comme des mots de passe stockés dans un fichier ENV ..ETC</p>
+<p>Testons cela, en créant un dépôt git :</p>
+<p>Dans le répertoire du projet NODEJS :</p>
+<p>Git init</p>
+<img alt="../../_images/image48.png" src="../../_images/image48.png" />
+<p>Et relançons le build :</p>
+<p>Et constatons que le context transféré passe de : 21.28 Kb à 46.15kb. Cela signifie que l’ensemble des répertoires de git ont été transféré dans le Docker Daemon.</p>
+<p>Créons donc un fichier .dockerignore et ajoutons le dossier .git.</p>
+<img alt="../../_images/image49.png" src="../../_images/image49.png" />
+<img alt="../../_images/image50.png" src="../../_images/image50.png" />
+<p>Relançons le build et constatons la taille du context :</p>
+<p>=&gt; =&gt; transferring context: 21.02kB</p>
+<p>Le .GIT n’est plus envoyé dans le context.</p>
+<p>Dans une application NODEJS, nous pourrions aussi ajouter le répertoire node_module qui contient les dépendances de l’application dans le .dockerignore.</p>
+</section>
+<section id="les-commandes-de-base-avec-docker-image">
+<h2>4.9 Les commandes de base avec docker image.<a class="headerlink" href="#les-commandes-de-base-avec-docker-image" title="Permalink to this headline">¶</a></h2>
+<p><strong>La commande PULL.</strong></p>
+<p>Permet de télécharger une image à partir d’un registry, par défault : Docker Hub.</p>
+<img alt="../../_images/image51.png" src="../../_images/image51.png" />
+<p>Format de nommage : USER/IMAGE :VERSION</p>
+<p>Si l’on ne précise pas de numéro de version, par défaut c’est « latest » qui est retenu.</p>
+<p><strong>La commande : push</strong></p>
+<p>La commande Push permet d’uploader une image dans un registry.
+Pour cela il faut avoir les droits sur ses images.
+Mais avant il faut avoir précisé ses identifiants de connexion au registry avec docker login.</p>
+<p><strong>La commande : Inspect</strong></p>
+<p>Permet de voir la liste des layer qui composent une image.  On peut utiliser ici aussi le formaliste Go Template.</p>
+<img alt="../../_images/image52.png" src="../../_images/image52.png" />
+<p><strong>La commande : History</strong></p>
+<p>Permet de voir l’historique d’une image.</p>
+<p><strong>La commande : ls</strong></p>
+<p>Permet d’énumérer les images localement.</p>
+<img alt="../../_images/image53.png" src="../../_images/image53.png" />
+<p><strong>Les commandes Save et Load.</strong></p>
+<p>Save permet de sauvegarder une image
+et Load permet de charger une image à partir d’une sauvegarde.</p>
+<img alt="../../_images/image44.png" src="../../_images/image44.png" />
+<p><a href="#id11"><span class="problematic" id="id12">**</span></a>La commande : rm **</p>
+<p>Supprime une image avec l’ensemble de ses layers.
+Plusieurs images peuvent être supprimées en même temps.</p>
+<img alt="../../_images/image45.png" src="../../_images/image45.png" />
+<section id="exercice-analyse-du-contenu-d-une-image">
+<h3>4.9.1 Exercice : Analyse du contenu d’une image<a class="headerlink" href="#exercice-analyse-du-contenu-d-une-image" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Télécharger l’image mongo:3.6 en local</p></li>
+<li><p>Quelles sont les différentes étapes de constructions de l’image</p></li>
+</ol>
+<p>Comparez ces étapes avec le contenu du Dockerfile utilsé pour builder cette image.</p>
+<ol class="arabic simple">
+<li><p>Inspectez l’image</p></li>
+<li><p>En utilisant la notation Go template, listez les ports exposés</p></li>
+<li><p>Exportez l’image mongo:3.6 dans un tar</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>Extrayez le contenu de cette archive avec la commande tar -xvf, qu’observez-vous ?</p></li>
+<li><p>Extrayez le contenu d’une des layers, qu’observez-vous ?</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p>Supprimez l’image mongo:3.6</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Cours BTS SIO</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Cours Docker</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.0%20Introduction.html">1.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.0%20La%20plateforme%20Docker.html">2.0 La plateforme Docker</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Bauer Baptiste.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/cours/docker/4.0 Les images Docker.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
