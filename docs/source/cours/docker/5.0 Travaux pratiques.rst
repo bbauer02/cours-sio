@@ -3,7 +3,7 @@
 
 Cette série de travaux reprend les concepts de base de Docker et vous guides dans leur mise en pratique. 
 
-5.1 TD 1: Mise en place d'un simple serveur WEB
+5.1 Mise en place d'un simple serveur WEB
 ***************************************************
 
 .. image:: img/docker/image76.png
@@ -27,8 +27,10 @@ La force de Docker est de posséder une sorte de « **AppStore** », un « **Hub
 Recherchons donc une image correspondant à notre besoin : 
 `Docker Hub <https://hub.docker.com/>`_
 
+
 .. image:: img/docker/image77.png
     :align: center
+
 
 Examinons les distributions **Linux** qui accompagnent **Apache** en cliquant dessus. 
 Nous constatons qu'**Alpine** est la distribution par défaut. C'est un bon choix, car c’est une distribution **Linux Légère**. 
@@ -86,7 +88,7 @@ et listons les fichiers le contenant :
 
 .. code-block::
 
-ls
+    ls
 
 
 .. image:: img/docker/image81.png
@@ -104,6 +106,8 @@ Ajoutez le code suivant entre les lignes 250 et 251 et actualisé le navigateur 
 
 .. image:: img/docker/image82.png
     :align: center
+
+
 
 .. note::
 
