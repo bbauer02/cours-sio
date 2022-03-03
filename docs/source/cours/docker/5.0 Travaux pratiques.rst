@@ -27,13 +27,13 @@ La force de Docker est de posséder une sorte de « **AppStore** », un « **Hub
 Recherchons donc une image correspondant à notre besoin : 
 `Docker Hub <https://hub.docker.com/>`_
 
-.. image:: img/docker/image76.png
+.. image:: img/docker/image77.png
     :align: center
 
 Examinons les distributions **Linux** qui accompagnent **Apache** en cliquant dessus. 
 Nous constatons qu'**Alpine** est la distribution par défaut. C'est un bon choix, car c’est une distribution **Linux Légère**. 
 
-.. image:: img/docker/image77.png
+.. image:: img/docker/image78.png
     :align: center
 
 En parcourant la page dédiée de l'image `Apache  <https://hub.docker.com/_/httpd>`_  nous trouvons le sous-titre « **How to use this image** » qui nous permettra de comprendre comment utiliser ce container. 
@@ -59,12 +59,12 @@ Au final, la commande pour installer et lancer notre container sera :
 
     docker container run -d --name serveur_http -v $PWD/Documents/docker/td/www/esport:/usr/local/apache2/htdocs -p 2000:80 httpd
 
-.. image:: img/docker/image78.png
+.. image:: img/docker/image79.png
     :align: center
 
 Pour tester, ouvrez votre navigateur et saisissez l’adresse : `http://localhost:2000/ <http://localhost:2000/>`_
 
-.. image:: img/docker/image79.png
+.. image:: img/docker/image80.png
     :align: center
 
 Nous allons ouvrir un **shell** dans le container pour consulter le contenu du dossier : ``/usr/local/apache2/htdocs``
@@ -89,7 +89,7 @@ et listons les fichiers le contenant :
 ls
 
 
-.. image:: img/docker/image80.png
+.. image:: img/docker/image81.png
     :align: center
 
 Nous voyons que le dossier **HTDOCS** de notre container contient les fichiers de notre application provenant de notre dossier **esport**.
@@ -102,7 +102,7 @@ Ajoutez le code suivant entre les lignes 250 et 251 et actualisé le navigateur 
 
     <h4 class="text-white landing-title">mode dev</h4>
 
-.. image:: img/docker/image80.png
+.. image:: img/docker/image82.png
     :align: center
 
 .. note::
