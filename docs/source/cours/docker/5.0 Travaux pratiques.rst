@@ -11,7 +11,7 @@ Cette série de travaux reprend les concepts de base de Docker et vous guides da
 
 Nous allons vous guider à chaque étape de la mise en place d’un serveur **WEB APACHE** sous **DOCKER**. 
 
-Une équipe d’**ESPORT** : **NECROMANCERS**, a confié la création de son site web à une agence de communication dont la maquette HTML est disponible dans fichier ``esport.zip``.
+Une équipe d’**ESPORT** : **NECROMANCERS**, a confié la création de son site web à une agence de communication dont la maquette HTML est disponible dans le fichier ``esport.zip``.
 
 * **Créez** un dossier « **docker** » dans « **mes documents** » et créez un autre dossier à l’intérieur nommé « **www** ».
 * **Téléchargez** ce fichier sur votre disque dur, et **dézippez** l’archive. Vous obtenez un dossier qui se nomme : « **esport** ».
@@ -394,5 +394,111 @@ Notre serveur est maintenant correctement configuré !
 
 **Création d'une image Docker**
 
-    En cours de rédaction ...
+Nous avons jusqu'alors créé des containers à partir d'images de bases que nous avons modifié. 
+Il temps de créer notre propre image qui servira de "moule" pour des containers ayant besoin des caractéristiques que nous avons paramétrées.
 
+Mais avant faisons un peu de ménage dans notre container.
+Supprimons le fichier ``index.html`` du dossier ``/var/www/html/esport`` 
+
+.. code-block::
+
+    rm /var/www/html/esport/index.html
+
+
+La commande pour créer une nouvelle image à partir d'un container est : 
+
+``docker commit <CONTAINER_ID> <NOM_DE_L_IMAGE>``
+
+Il nous faut donc récupérer l'identifiant de notre container dans un premier temps : 
+
+
+.. code-block::
+
+    docker ps -a
+
+.. image:: img/docker/image92.png
+    :align: center
+
+
+``Serveur_https`` possède bien l’identifiant : ``00e15c9f63ea``
+
+Maintenant, nous pouvons créer une nouvelle image à partir de cet identifiant. 
+Nous respecterons les conventions de nommage : ``<Nom du constructeur>`` **/** ``<Nom de l'image>`` **:** ``<Numéro de version>``.
+
+Notre image s'appelera alors : ``siolaon/https:1.0``.
+
+Lançons la création de l'image avec l'option ``-a`` pour définir le nom de l'auteur, mettez le votre car vous l'avez bien mérité: 
+
+.. code-block::
+
+    docker commit -a Bauer 00e15c9f63ea siolaon/https:1.0
+
+
+Vérifions si l'image a bien été créée en listant les images disponibles sur notre machine hôte. 
+
+.. code-block::
+
+    docker images
+
+.. image:: img/docker/image95.png
+    :align: center
+
+Nous pouvons retrouver l'image également dans l'application Docker Desktop, onglet "Images".
+
+.. image:: img/docker/image96.png
+    :align: center
+
+
+Stoppons maintenant notre container ``serveur_https`` :
+
+.. code-block::
+
+    docker container stop serveur_https
+
+
+Maintenant, voici venu le grand moment tant attendu ! Celui de monter notre image, dans un nouveau container avec le dossier web esport ! 
+
+Positionnons nous dans le répertoire contenant notre dossier ``www``*, pour ma part : 
+*Le dossier www, doit contenir le dossier esport
+
+.. code-block::
+
+    cd C:\Users\baptiste\Documents\docker\td\www
+
+
+.. code-block::
+
+    docker container run -itd --name server_esport -v $PWD/esport:/var/www/html/esport -p 80:80 -p 443:443  siolaon/https:1.0
+
+
+Maintenant il faut lancer le serveur apache2 manuellement depuis le serveur :
+
+.. code-block::
+
+    docker container exec -ti server_esport sh
+
+et dans le ``shell`` lancer la commande : 
+
+.. code-block::
+
+    service apache2 start
+
+
+Ouvrez le navigateur et contemplez votre oeuvre : 
+
+.. image:: img/docker/image97.png
+    :align: center
+
+
+5.3 Création d'un Dockerfile
+***************************************************
+
+Nous sommes satisfait du résultat mais il reste un goût d'inachevé n'est ce pas ? 
+
+Créer un container à partir de notre image, et devoir lancer la commande ``service apache2 start`` à partir de son ``shell``, demande une manipulation dont on aimerait pouvoir se passer ...
+
+Cela va être possible en créer un fichier ``Dockerfile``.
+
+Lisez le chapitre dédié et tentez de créer une nouvelle image, à partir d'un fichier Dockerfile.
+
+A vous de jouer !!
