@@ -7,7 +7,7 @@ Vous trouverez sur cette page des cours en ligne pour le BTS SIO.
 
    **Mise à jour** : 24/02/2022
 
-   **Version** : 1.01
+   **Version** : 1.02
 
    Ce dépôt est en cours de rédaction. 
 
@@ -22,3 +22,4 @@ Vous trouverez sur cette page des cours en ligne pour le BTS SIO.
    cours/docker/2.0 La plateforme Docker
    cours/docker/3.0 Les containers avec Docker
    cours/docker/4.0 Les images Docker
+   cours/docker/5.0 Travaux pratiques
