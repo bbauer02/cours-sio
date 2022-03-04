@@ -5,9 +5,9 @@ Vous trouverez sur cette page des cours en ligne pour le BTS SIO.
 
 .. note:: 
 
-   **Mise à jour** : 24/02/2022
+   **Mise à jour** : 03/03/2022
 
-   **Version** : 1.02
+   **Version** : 1.03
 
    Ce dépôt est en cours de rédaction. 
 
