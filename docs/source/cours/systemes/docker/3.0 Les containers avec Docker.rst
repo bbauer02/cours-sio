@@ -19,7 +19,7 @@ Lançons notre premier container **Hello-World**.
 
 Ouvrez un **terminal** et tapez :
 
-.. code-block:: language
+.. code-block::
 
   docker container run hello-world
 
@@ -40,7 +40,7 @@ Expérimentez la commande : ``docker container run hello-world`` sur votre machi
 
 Nous pouvons lancer un autre container basé sur l’image de **Ubuntu** et lui demander d’afficher ``Hello`` dans  le contexte de cette image.
 
-.. code-block:: language
+.. code-block::
 
   docker container run ubuntu echo hello
 

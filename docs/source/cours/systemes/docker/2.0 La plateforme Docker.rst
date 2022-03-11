@@ -136,7 +136,7 @@ Cette fenêtre devrait s’ouvrir :
 
 .. image:: img/docker/image11_bis.png
 
- .. image:: img/docker/image2_bis.png 
+.. image:: img/docker/image2_bis.png 
 
 Double cliquez sur le groupe ``docker-users``.
 
@@ -222,14 +222,14 @@ Si vous êtes sur **Linux**, vous pouvez sélectionner la distribution que vous 
 
 Pour aller un peu plus vite, vous pouvez également lancer la commande suivante (compatible avec les principales distribution **Linux**) :
 
-.. code-block:: language
+.. code-block::
 
    curl -sSL https://get.docker.com | sh
 
 En quelques dizaines de secondes, cela installera **la plateforme Docker** sur votre distribution.
 Il sera ensuite nécessaire d'**ajouter votre utilisateur** dans le **groupe docker** afin de pouvoir intéragir avec le **daemon** sans avoir à utiliser **sudo** (il faudra cependant lancer un nouveau **shell** afin que ce changement de groupe soit pris en compte.)
 
-.. code-block:: language
+.. code-block::
 
    sudo usermod -aG docker <UTILISATEUR>
 
@@ -242,7 +242,7 @@ Vérification de l'installation
 
 Une fois installé, lancez la commande suivante afin de vérifier que tout est fonctionnel :
 
-.. code-block:: language
+.. code-block::
 
    docker info
 

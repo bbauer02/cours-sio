@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>13.0 Mise en pratique &mdash; Cours BTS SIO 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="prev" title="12.0 Gestion des logs" href="12.0%20Gestion%20des%20logs.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Cours BTS SIO
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Système</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="sommaire_docker.html">La plateforme Docker</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1.0%20Introduction.html">1.0 Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.0%20La%20plateforme%20Docker.html">2.0 La plateforme Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20Les%20containers%20avec%20Docker.html">3.0 Les containers avec Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.0%20Les%20images%20Docker.html">4.0 Les images Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.0%20Registry.html">5.0 Registry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.0%20Stockage.html">6.0 Stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.0%20Docker%20Machine.html">7.0 Docker Machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8.0%20Docker%20Compose.html">8.0 Docker Compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="9.0%20Swarm.html">9.0 Swarm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10.0%20Network.html">10.0 Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11.0%20S%C3%A9curit%C3%A9.html">11.0 Sécurité</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12.0%20Gestion%20des%20logs.html">12.0 Gestion des logs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">13.0 Mise en pratique</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#serveur-http-avec-docker">13.1 Serveur HTTP avec Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#serveur-https-avec-docker">13.2 Serveur HTTPS avec Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creation-d-un-dockerfile">13.3 Création d’un Dockerfile</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cours BTS SIO</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="sommaire_docker.html">La plateforme Docker</a> &raquo;</li>
+      <li>13.0 Mise en pratique</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/cours/systeme/docker/13.0 Mise en pratique.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mise-en-pratique">
+<h1>13.0 Mise en pratique<a class="headerlink" href="#mise-en-pratique" title="Permalink to this headline"></a></h1>
+<p>Cette série de travaux reprend les concepts de base de Docker et vous guides dans leur mise en pratique.</p>
+<section id="serveur-http-avec-docker">
+<h2>13.1 Serveur HTTP avec Docker<a class="headerlink" href="#serveur-http-avec-docker" title="Permalink to this headline"></a></h2>
+<img alt="../../../_images/image76.png" class="align-center" src="../../../_images/image76.png" />
+<p>Nous allons vous guider à chaque étape de la mise en place d’un serveur <strong>WEB APACHE</strong> sous <strong>DOCKER</strong>.</p>
+<p>Une équipe d’<strong>ESPORT</strong> : <strong>NECROMANCERS</strong>, a confié la création de son site web à une agence de communication dont la maquette HTML est disponible dans le fichier <code class="docutils literal notranslate"><span class="pre">esport.zip</span></code>.</p>
+<ul class="simple">
+<li><p><strong>Créez</strong> un dossier « <strong>docker</strong> » dans « <strong>mes documents</strong> » et créez un autre dossier à l’intérieur nommé « <strong>www</strong> ».</p></li>
+<li><p><strong>Téléchargez</strong> ce fichier sur votre disque dur, et <strong>dézippez</strong> l’archive. Vous obtenez un dossier qui se nomme : « <strong>esport</strong> ».</p></li>
+<li><p><strong>Déplacez</strong> le dossier « <strong>esport</strong> » dans le dossier.</p></li>
+</ul>
+<p>Votre première mission sera de mettre en place un serveur <strong>WEB</strong> sous <strong>Apache</strong> avec <strong>Docker</strong>.</p>
+<ul class="simple">
+<li><p>Nous avons plusieurs possibilités qui s’offrent à nous :
+* Soit nous téléchargeons une image d’une distribution Linux puis nous installons et configurons nous-même Apache.
+* Soit nous trouvons une image contenant déjà Apache.</p></li>
+</ul>
+<p>La force de Docker est de posséder une sorte de « <strong>AppStore</strong> », un « <strong>Hub</strong> » appelé le « <strong>dockerHub</strong> » qui regroupe des images officielles et non officielles utilisables.
+Recherchons donc une image correspondant à notre besoin :
+<a class="reference external" href="https://hub.docker.com/">Docker Hub</a></p>
+<img alt="../../../_images/image77.png" class="align-center" src="../../../_images/image77.png" />
+<p>Examinons les distributions <strong>Linux</strong> qui accompagnent <strong>Apache</strong> en cliquant dessus.
+Nous constatons qu’<strong>Alpine</strong> est la distribution par défaut. C’est un bon choix, car c’est une distribution <strong>Linux Légère</strong>.</p>
+<img alt="../../../_images/image78.png" class="align-center" src="../../../_images/image78.png" />
+<p>En parcourant la page dédiée de l’image <a class="reference external" href="https://hub.docker.com/_/httpd">Apache</a>  nous trouvons le sous-titre « <strong>How to use this image</strong> » qui nous permettra de comprendre comment utiliser ce container.</p>
+<p>Nous l’installerons grâce au nom de l’image : <code class="docutils literal notranslate"><span class="pre">httpd</span></code>.</p>
+<p>Nous allons avoir besoin de dire au container <strong>Apache</strong> où trouver les fichiers de la maquette pour les interpréter.
+Nous savons qu’ils sont stockés sur notre machine ,appelée la <strong>machine hôte</strong>, au chemin suivant dans mon cas : <code class="docutils literal notranslate"><span class="pre">C:\Users\baptiste\Documents\docker\td\www\esport</span></code>.
+Le container Apache, (<em>lire la documentation</em>) est configuré pour aller lire les fichiers Web dans son dossier interne : <code class="docutils literal notranslate"><span class="pre">/usr/local/apache2/htdocs/</span></code>.</p>
+<p>Il faut donc <strong>monter</strong> notre répertoire de la <strong>machine hôte</strong> dans le dossier <strong>htdocs</strong> de Apache2.
+Cela est possible grâce à l’option : <code class="docutils literal notranslate"><span class="pre">-v</span> <span class="pre">&lt;HOST_PATH&gt;:&lt;CONTAINER_PATH&gt;</span></code></p>
+<p>Apache, le serveur Web, écoute par défaut sur le <strong>port 80</strong> du container.  Il faut donc lier un port de la machine hôte avec le port 80 du container. Nous décidons arbitrairement de publier le <strong>port 80 du container</strong> sur le <strong>port 2000 de notre machine hôte</strong>.  Grâce à l’option <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">HOST_PORT:CONTAINER_PORT</span></code>.</p>
+<p>Une fois que notre container est lancé, nous voulons continuer à avoir la main sur notre terminal. Par conséquent il faudra donc utiliser l’option <code class="docutils literal notranslate"><span class="pre">-d</span></code> pour lancer le container en <strong>background</strong> (tâche de fond).</p>
+<p>Nous nommerons ce container avec l’option : <code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">serveur_http</span></code>.</p>
+<p>Au final, la commande pour installer et lancer notre container sera :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker container run -d --name serveur_http -v $PWD/Documents/docker/td/www/esport:/usr/local/apache2/htdocs -p 2000:80 httpd
+</pre></div>
+</div>
+<img alt="../../../_images/image79.png" class="align-center" src="../../../_images/image79.png" />
+<p>Pour tester, ouvrez votre navigateur et saisissez l’adresse : <a class="reference external" href="http://localhost:2000/">http://localhost:2000/</a></p>
+<img alt="../../../_images/image80.png" class="align-center" src="../../../_images/image80.png" />
+<p>Nous allons ouvrir un <strong>shell</strong> dans le container pour consulter le contenu du dossier : <code class="docutils literal notranslate"><span class="pre">/usr/local/apache2/htdocs</span></code></p>
+<p>Tapez la commande :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">exec</span> <span class="o">-</span><span class="n">ti</span> <span class="n">serveur_http</span> <span class="n">sh</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">exec</span></code> permet de donner l’ordre à notre container de lancer une commande et l’option <code class="docutils literal notranslate"><span class="pre">-ti</span></code> permet de garder la main sur le <strong>shell</strong>.</p>
+<p>À partir du shell, plaçons-nous donc dans le répertoire <code class="docutils literal notranslate"><span class="pre">htdocs</span></code>.
+.. code-block:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">htdocs</span>
+</pre></div>
+</div>
+<p>et listons les fichiers le contenant :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span>
+</pre></div>
+</div>
+<img alt="../../../_images/image81.png" class="align-center" src="../../../_images/image81.png" />
+<p>Nous voyons que le dossier <strong>HTDOCS</strong> de notre container contient les fichiers de notre application provenant de notre dossier <strong>esport</strong>.</p>
+<p>Avec un éditeur de code comme <strong>Visual Studio Code</strong>, ouvrez le fichier <code class="docutils literal notranslate"><span class="pre">/www/esport/index.html</span></code> à partir de la machine hôte.</p>
+<p>Ajoutez le code suivant entre les lignes 250 et 251 et actualisé le navigateur :</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h4</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-white landing-title&quot;</span><span class="p">&gt;</span>mode dev<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<img alt="../../../_images/image82.png" class="align-center" src="../../../_images/image82.png" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Nous constatons que les fichiers de notre application ne sont pas réellement dans le container.
+Nous l’avons prouvé en modifiant le fichier à partir de la machine hôte et en observant que la modification a été prise en compte par le navigateur
+Nous n’avons créé qu’un <strong>lien symbolique</strong> de nos fichiers locaux dans le container.</p>
+</div>
+<p><strong>Notre site, est accessible !!!
+Nous avons rempli notre première mission !</strong></p>
+</section>
+<section id="serveur-https-avec-docker">
+<h2>13.2 Serveur HTTPS avec Docker<a class="headerlink" href="#serveur-https-avec-docker" title="Permalink to this headline"></a></h2>
+<p>Dans la partie 13.1, nous avons mis en place un container Apache permettant d’accéder à notre site web par l’intermédiaire de l’adresse : <a class="reference external" href="http://localhost:2000">http://localhost:2000</a>
+Mais la connexion <code class="docutils literal notranslate"><span class="pre">http</span></code> n’est pas sécurisée. Pour cela, il faut que le protocole soit <code class="docutils literal notranslate"><span class="pre">https</span></code>.</p>
+<p><strong>Rappel : Création des certificats SSL</strong></p>
+<p>Les applications Web utilisent le protocole <code class="docutils literal notranslate"><span class="pre">HTTPS</span></code> pour s’assurer que les communications entre les clients et le serveur soient cryptées et ne puissent pas être interceptées.
+De plus, <strong>Google</strong> pénalise le contenu des sites web qui utilisent le protocole <code class="docutils literal notranslate"><span class="pre">HTTP</span></code> seul dans le référencement.
+Il est donc obligatoire de configurer notre serveur pour lui permettre d’être accessible via le protocole <code class="docutils literal notranslate"><span class="pre">HTTPS</span></code>.</p>
+<p>Pendant le développement local, les développeurs utilisent :</p>
+<ul>
+<li><p>Soit le protocole <strong>HTTP</strong>.</p>
+<p>Cela signifie alors que les versions du projet en local ou en production sont développées dans un environnement différent. Cela peut être plus difficile pour repérer les problèmes.</p>
+</li>
+<li><p>Soit un (faux) certificat <strong>SSL Autosigné</strong>.</p>
+<p>L’environnement de développement est alors proche de l’environnement de production, mais le navigateur continue de traiter les requêtes différemment. Par exemple, les fausses requêtes SSL ne sont pas mis en cache.</p>
+</li>
+</ul>
+<p>Toutes les communications clients/serveurs ont besoin d’être sécurisés avec un protocole. Nous utiliserons SSL (Secure Socket Layer).</p>
+<p>Les communications sécurisées entre des applications se font grâce à des certificats (CERT) distribués par une autorité certifiante (CA) qui est mutuellement agréé par le client et le serveur.</p>
+<p><strong>Le format CERT</strong></p>
+<p>La plupart des certificats ont pour extension <code class="docutils literal notranslate"><span class="pre">.pem</span></code>, <code class="docutils literal notranslate"><span class="pre">.cer</span></code>, <code class="docutils literal notranslate"><span class="pre">.crt</span></code>, <code class="docutils literal notranslate"><span class="pre">.key</span></code>.
+Les clients (navigateurs) communiquant avec le serveur vont garder le fichier <code class="docutils literal notranslate"><span class="pre">*.pem</span></code> (PRIVACY ENHANCED MAIL) ou <code class="docutils literal notranslate"><span class="pre">*.CER</span></code> (extension pour les certificats SSL) pour établir une connexion sécurisée.</p>
+<img alt="../../../_images/image83.png" class="align-center" src="../../../_images/image83.png" />
+<p>L’algorithme RSA (<em>Rivest Shamir Adleman</em>) est utilisé pour crypter et décrypter les messages dans une communication où une clé est gardée publique et l’autre clé est privée. C’est le concept de chiffrage asymétrique.</p>
+<ol class="arabic simple">
+<li><p>Le client demande une ressource protégée au serveur.</p></li>
+<li><p>Le client présente les informations cryptées avec sa clé publique au serveur.</p></li>
+<li><p>Le serveur évalue la requête avec sa clé privée (disponible seulement coté serveur) et répond en retour en rapport avec la ressource demandée par le client.</p></li>
+</ol>
+<p>Cela fonctionnerait de la même manière pour l’authentification mutuelle où le client et le serveur fournissent tous deux leurs clés publiques et déchiffrent leurs messages avec leurs propres clés privées disponibles de leur côté.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Nous avons déjà configuré <code class="docutils literal notranslate"><span class="pre">HTTPS</span></code> sur un serveur <code class="docutils literal notranslate"><span class="pre">apache</span></code> sous <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> lors de d’exercices précédents avec des machines virtuelles.
+Aujourd’hui nous allons donc travailler sur cette distribution, revoir les étapes de création d’un certificat SSL auto-signé et l’intégration dans une image Docker.
+Bien entendu, il existe déjà des images toutes prêtes sur <strong>Docker Hub</strong> … mais nous n’apprendrons rien de nouveau aujourd’hui si nous nous contenterions d’utiliser un existant.</p>
+</div>
+<p>Maintenant, construisons notre container.</p>
+<p>Comme nous sommes en local, il nous faudra <strong>autosigner</strong> nos certificats <strong>SSL</strong>.</p>
+<p>Stoppons d’abord le container <code class="docutils literal notranslate"><span class="pre">serveur_http</span></code> précédent qui utilise le port <code class="docutils literal notranslate"><span class="pre">2000</span></code> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">stop</span> <span class="n">serveur_http</span>
+</pre></div>
+</div>
+<p>Nous allons installer un container avec une image <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> et mapper les <code class="docutils literal notranslate"><span class="pre">ports</span> <span class="pre">80</span></code> et <code class="docutils literal notranslate"><span class="pre">443</span></code> de la machine hôte avec les même ports du container.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="o">-</span><span class="n">p</span> <span class="mi">80</span><span class="p">:</span><span class="mi">80</span> <span class="o">-</span><span class="n">p</span> <span class="mi">443</span><span class="p">:</span><span class="mi">443</span> <span class="o">--</span><span class="n">name</span> <span class="n">serveur_https</span> <span class="n">ubuntu</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">sh</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Installons un éditeur de texte <code class="docutils literal notranslate"><span class="pre">nano</span></code> ,  <code class="docutils literal notranslate"><span class="pre">apache2</span></code> notre serveur http et <code class="docutils literal notranslate"><span class="pre">opennss</span></code> qui permettra de générer des certificats.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>apt update
+apt install nano apache2 openssl –y
+</pre></div>
+</div>
+<p>Il faut maintenant démarrer le serveur <strong>Apache</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="n">apache2</span> <span class="n">start</span>
+</pre></div>
+</div>
+<p>Testons dans le navigateur : <a class="reference external" href="http://localhost">http://localhost</a></p>
+<p>Nous voulons un site pour notre équipe de <strong>Esport</strong> : Les <em>Necromancers</em> !</p>
+<p>Créons donc un dossier spécialement pour eux!</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">esport</span>
+</pre></div>
+</div>
+<p>Et créons dedans un fichier <code class="docutils literal notranslate"><span class="pre">index.html</span></code> qui contiendra le code suivant :</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Page de test des NECROMANCERS !!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Pour cela nous utiliserons notre éditeur de texte <code class="docutils literal notranslate"><span class="pre">nano</span></code> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span>  <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">esport</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span>
+</pre></div>
+</div>
+<p>Rappel : Pour sauvegarder, tapez au clavier sur les touches <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">O</span></code> et <code class="docutils literal notranslate"><span class="pre">Entrée</span></code> et pour quitter <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">X</span></code></p>
+<p>Nous allons maintenant modifier notre fichier HOSTS sur la machine hôte afin de forcer la redirection du domaine <a class="reference external" href="http://necromancers.esport">necromancers.esport</a> sur notre serveur local en cours de conception.</p>
+<p>Ouvrez Visual Studio Code ou un autre éditeur comme NotePad++ avec des droits d’administrateur, et éditez le fichier :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">Windows</span>\<span class="n">System32</span>\<span class="n">drivers</span>\<span class="n">etc</span>\<span class="n">hosts</span>
+</pre></div>
+</div>
+<p>Ajoutez la ligne suivante :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">127.0.0.1</span> <span class="n">necromancers</span><span class="o">.</span><span class="n">esport</span>
+</pre></div>
+</div>
+<p>Puis modifiez les paramètres du proxy comme suit :</p>
+<img alt="../../../_images/image91.png" class="align-center" src="../../../_images/image91.png" />
+<p>Ainsi, nous ne passerons pas par le proxy, ni par le DNS pour accéder à notre site avec l’url <a class="reference external" href="http://necromancers.esport">necromancers.esport</a> , mais sur le serveur local d’addresse IP directement: <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code>.</p>
+<p>Maintenant, il faut configurer <strong>Apache</strong> dans notre container pour que notre URL pointe vers le dossiers WEB du serveur.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Apache</span></code> permet de faire des redirections de connexions entrantes sur un de ses ports vers un dossier de notre choix.
+Cela se fait grâce aux <code class="docutils literal notranslate"><span class="pre">VirtualHost</span></code>. Copions le fichier <code class="docutils literal notranslate"><span class="pre">VirtualHost</span></code> de base nommé <code class="docutils literal notranslate"><span class="pre">000-default.conf</span></code> et appelons cette copie <code class="docutils literal notranslate"><span class="pre">esport.conf</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="mi">000</span><span class="o">-</span><span class="n">default</span><span class="o">.</span><span class="n">conf</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">esport</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>Modifions maintenant ce nouveau fichier :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">esport</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<img alt="../../../_images/image84.png" class="align-center" src="../../../_images/image84.png" />
+<p>Profitons-en aussi pour modifier le fichier <code class="docutils literal notranslate"><span class="pre">/etc/apache2/apache2.conf</span></code>.
+Et lui rajouter une ligne : <code class="docutils literal notranslate"><span class="pre">ServerName</span> <span class="pre">localhost</span></code>.
+Cela va permettre de nommer notre serveur local, et d’éviter d’avoir des avertissements au redémarrage.</p>
+<p>Le fichier <code class="docutils literal notranslate"><span class="pre">esport.conf</span></code> est prêt ! Il faut le charger dans la configuration du serveur <strong>Apache2</strong>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a2ensite</span> <span class="n">esport</span>
+</pre></div>
+</div>
+<p>Pour que les modifications soient prise en compte, redémarrons le serveur.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="n">apache2</span> <span class="n">restart</span>
+</pre></div>
+</div>
+<p>Maintenant que notre serveur <strong>Apache</strong> est configuré pour que l’adresse : <a class="reference external" href="http://necromancers.esport">necromancers.esport</a> pointe vers notre dossier web. ( Testez ! )</p>
+<p>Il nous faut installer un certificat pour obtenir une connexion sécurisée en <code class="docutils literal notranslate"><span class="pre">HTTPS</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">x509</span> <span class="o">-</span><span class="n">nodes</span> <span class="o">-</span><span class="n">days</span> <span class="mi">365</span> <span class="o">-</span><span class="n">newkey</span> <span class="n">rsa</span><span class="p">:</span><span class="mi">2048</span> <span class="o">-</span><span class="n">keyout</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssl</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">esport</span><span class="o">.</span><span class="n">key</span> <span class="o">-</span><span class="n">out</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssl</span><span class="o">/</span><span class="n">certs</span><span class="o">/</span><span class="n">esport</span><span class="o">.</span><span class="n">crt</span>
+</pre></div>
+</div>
+<p>Cette commande va créer 2 certificats dans les emplacements : <code class="docutils literal notranslate"><span class="pre">/etc/ssl/private/esport.key</span></code> et <code class="docutils literal notranslate"><span class="pre">/etc/ssl/certs/esport.crt</span></code>.</p>
+<p>Il faut maintenant installer les certificats sur le serveur et les associés à notre domaine.</p>
+<p>Copions le fichier de base <code class="docutils literal notranslate"><span class="pre">default-ssl.conf</span></code> et renommons le en <code class="docutils literal notranslate"><span class="pre">esport-ssl.conf</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">default</span><span class="o">-</span><span class="n">ssl</span><span class="o">.</span><span class="n">conf</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">esport</span><span class="o">-</span><span class="n">ssl</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>Il s’agit simplement d’un <code class="docutils literal notranslate"><span class="pre">VirtualHost</span></code> qui est chargé de rediriger les connexions entrantes provenant du port 443, le port dédié au protocole <code class="docutils literal notranslate"><span class="pre">HTTPS</span></code>.</p>
+<p>Editons ce fichier :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">esport</span><span class="o">-</span><span class="n">ssl</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<img alt="../../../_images/image85.png" class="align-center" src="../../../_images/image85.png" />
+<p>Pour tester notre configuration, il faut executer la commande :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apachectl</span> <span class="n">configtest</span>
+</pre></div>
+</div>
+<p>Et si tout ce passe bien, la réponse devrait être :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># apachectl configtest</span>
+<span class="n">Syntax</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<p>Chargeons le module SSL dans apache pour qu’il puisse prendre en compte les connexions HTTPS et les certificats.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a2enmod</span> <span class="n">ssl</span>
+</pre></div>
+</div>
+<p>Chargeons aussi le nouveau <code class="docutils literal notranslate"><span class="pre">VirtualHost</span></code> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a2ensite</span> <span class="n">esport</span><span class="o">-</span><span class="n">ssl</span>
+</pre></div>
+</div>
+<p>En test l’adresse <cite>https://necromancers.esport &lt;https://necromancers.esport&gt;</cite> depuis votre navigateur,
+Vous devriez avoir cela :</p>
+<img alt="../../../_images/image86.png" class="align-center" src="../../../_images/image86.png" />
+<p>Il faut autoriser la connexion au site :</p>
+<img alt="../../../_images/image87.png" class="align-center" src="../../../_images/image87.png" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pourquoi nous avons ce message d’alerte ?</p>
+<p>Tout simplement parce que le navigateur a détecté que nous sommes connecté avec le protocole <code class="docutils literal notranslate"><span class="pre">HTTPS</span></code>. Notre serveur lui a fourni un certificat … qui est … <strong>autosigné</strong> ! <strong>Cela alerte donc le navigateur</strong>.</p>
+</div>
+<p>Nous voulons que si l’utilisateur tape <code class="docutils literal notranslate"><span class="pre">HTTP</span></code> dans l’adresse au lieu de <code class="docutils literal notranslate"><span class="pre">HTTPS</span></code> le serveur puisse le rediriger automatiquement.</p>
+<p>Activons le mode <code class="docutils literal notranslate"><span class="pre">rewrite</span></code> de Apache qui permet à Apache de réécrire/reformater les URL captées :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a2enmod</span> <span class="n">rewrite</span>
+</pre></div>
+</div>
+<p>Et éditons le fichier</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">esport</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>Ajoutons cette régle de réécriture d’url :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>RewriteEngine On
+RewriteRule ^(.*)$ https://%{HTTP_HOST}$1 [R=301,L]
+</pre></div>
+</div>
+<p>Redémarrons Apache :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="n">apache2</span> <span class="n">restart</span>
+</pre></div>
+</div>
+<p>Notre serveur est maintenant correctement configuré !</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Vous pouvez être fier du travail accompli jusqu’alors ! Et pourquoi ne pas créer une image basée sur cette configuration ? Afin de pouvoir créer une infinité de container avec les même caractéristiques. Cela évitera de recommencer toutes les étapes que nous avons suivies jusqu’alors.</p>
+</div>
+<p><strong>Création d’une image Docker</strong></p>
+<p>Nous avons jusqu’alors créé des containers à partir d’images de bases que nous avons modifié.
+Il temps de créer notre propre image qui servira de “moule” pour des containers ayant besoin des caractéristiques que nous avons paramétrées.</p>
+<p>Mais avant faisons un peu de ménage dans notre container.
+Supprimons le fichier <code class="docutils literal notranslate"><span class="pre">index.html</span></code> du dossier <code class="docutils literal notranslate"><span class="pre">/var/www/html/esport</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">esport</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span>
+</pre></div>
+</div>
+<p>La commande pour créer une nouvelle image à partir d’un container est :</p>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">commit</span> <span class="pre">&lt;CONTAINER_ID&gt;</span> <span class="pre">&lt;NOM_DE_L_IMAGE&gt;</span></code></p>
+<p>Il nous faut donc récupérer l’identifiant de notre container dans un premier temps :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">ps</span> <span class="o">-</span><span class="n">a</span>
+</pre></div>
+</div>
+<img alt="../../../_images/image92.png" class="align-center" src="../../../_images/image92.png" />
+<p><code class="docutils literal notranslate"><span class="pre">Serveur_https</span></code> possède bien l’identifiant : <code class="docutils literal notranslate"><span class="pre">00e15c9f63ea</span></code></p>
+<p>Maintenant, nous pouvons créer une nouvelle image à partir de cet identifiant.
+Nous respecterons les conventions de nommage : <code class="docutils literal notranslate"><span class="pre">&lt;Nom</span> <span class="pre">du</span> <span class="pre">constructeur&gt;</span></code> <strong>/</strong> <code class="docutils literal notranslate"><span class="pre">&lt;Nom</span> <span class="pre">de</span> <span class="pre">l'image&gt;</span></code> <strong>:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;Numéro</span> <span class="pre">de</span> <span class="pre">version&gt;</span></code>.</p>
+<p>Notre image s’appelera alors : <code class="docutils literal notranslate"><span class="pre">siolaon/https:1.0</span></code>.</p>
+<p>Lançons la création de l’image avec l’option <code class="docutils literal notranslate"><span class="pre">-a</span></code> pour définir le nom de l’auteur, mettez le votre car vous l’avez bien mérité:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">commit</span> <span class="o">-</span><span class="n">a</span> <span class="n">Bauer</span> <span class="mf">00e15</span><span class="n">c9f63ea</span> <span class="n">siolaon</span><span class="o">/</span><span class="n">https</span><span class="p">:</span><span class="mf">1.0</span>
+</pre></div>
+</div>
+<p>Vérifions si l’image a bien été créée en listant les images disponibles sur notre machine hôte.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">images</span>
+</pre></div>
+</div>
+<img alt="../../../_images/image95.png" class="align-center" src="../../../_images/image95.png" />
+<p>Nous pouvons retrouver l’image également dans l’application Docker Desktop, onglet “Images”.</p>
+<img alt="../../../_images/image96.png" class="align-center" src="../../../_images/image96.png" />
+<p>Stoppons maintenant notre container <code class="docutils literal notranslate"><span class="pre">serveur_https</span></code> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">stop</span> <span class="n">serveur_https</span>
+</pre></div>
+</div>
+<p>Maintenant, voici venu le grand moment tant attendu ! Celui de monter notre image, dans un nouveau container avec le dossier web esport !</p>
+<p>Positionnons nous dans le répertoire contenant notre dossier <code class="docutils literal notranslate"><span class="pre">www</span></code>, pour ma part:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">baptiste</span>\<span class="n">Documents</span>\<span class="n">docker</span>\<span class="n">td</span>\<span class="n">www</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker container run -itd --name server_esport -v $PWD/esport:/var/www/html/esport -p 80:80 -p 443:443  siolaon/https:1.0
+</pre></div>
+</div>
+<p>Maintenant il faut lancer le serveur apache2 manuellement depuis le serveur :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">exec</span> <span class="o">-</span><span class="n">ti</span> <span class="n">server_esport</span> <span class="n">sh</span>
+</pre></div>
+</div>
+<p>et dans le <code class="docutils literal notranslate"><span class="pre">shell</span></code> lancer la commande :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="n">apache2</span> <span class="n">start</span>
+</pre></div>
+</div>
+<p>Ouvrez le navigateur et contemplez votre oeuvre :</p>
+<img alt="../../../_images/image97.png" class="align-center" src="../../../_images/image97.png" />
+</section>
+<section id="creation-d-un-dockerfile">
+<h2>13.3 Création d’un Dockerfile<a class="headerlink" href="#creation-d-un-dockerfile" title="Permalink to this headline"></a></h2>
+<p>Nous sommes satisfait du résultat mais il reste un goût d’inachevé, n’est ce pas ?</p>
+<p>Créer un container à partir de notre image, et devoir lancer la commande <code class="docutils literal notranslate"><span class="pre">service</span> <span class="pre">apache2</span> <span class="pre">start</span></code> à partir de son <code class="docutils literal notranslate"><span class="pre">shell</span></code>, demande une manipulation dont on aimerait pouvoir se passer …</p>
+<p>Cela va être possible en créant un fichier <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>.
+Ce fichier contient une liste de commande à exécuter pour concevoir notre propre image.</p>
+<p>Listons les actions effectuées dans la partie <strong>13.2</strong></p>
+<ul class="simple">
+<li><p>Création d’un container avec une image <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code>.</p></li>
+<li><p>Nous avons mis à jour les dépôts <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code>.</p></li>
+<li><p>Nous avons installé <code class="docutils literal notranslate"><span class="pre">Apache2</span></code>.</p></li>
+<li><p>Nous avons installé <code class="docutils literal notranslate"><span class="pre">Nano</span></code>.</p></li>
+<li><p>Nous avons installé <code class="docutils literal notranslate"><span class="pre">OpenSSL</span></code> et récupéré 2 fichiers : <code class="docutils literal notranslate"><span class="pre">esport.key</span></code> et <code class="docutils literal notranslate"><span class="pre">esport.crt</span></code>.</p></li>
+<li><p>Nous avons créé 2 fichiers <strong>VirtualHost</strong> <code class="docutils literal notranslate"><span class="pre">esport</span></code> et <code class="docutils literal notranslate"><span class="pre">vesport-ssl</span></code> pour le site en <strong>http</strong> et <strong>https</strong>.</p></li>
+<li><p>Nous avons activé les modules <code class="docutils literal notranslate"><span class="pre">ssl</span></code> et <code class="docutils literal notranslate"><span class="pre">rewrite</span></code> dans <strong>Apache</strong>.</p></li>
+<li><p>Nous avons chargé les <strong>VirtualHost</strong> <code class="docutils literal notranslate"><span class="pre">esport</span></code> et <code class="docutils literal notranslate"><span class="pre">esport-ssl</span></code> dans <strong>Apache</strong>.</p></li>
+<li><p>Nous avons redémarré <strong>Apache</strong> pour que les modifications soient prises en compte.</p></li>
+<li><p>Nous avons lancé <strong>Apache</strong>.</p></li>
+</ul>
+<p>Il va falloir créer un dossier nommé par exemple : <code class="docutils literal notranslate"><span class="pre">esport_image</span></code>, qui contiendra :</p>
+<img alt="../../../_images/image98.png" class="align-center" src="../../../_images/image98.png" />
+<ul class="simple">
+<li><p>Notre dossier <strong>esport</strong>, avec dedans les pages html.</p></li>
+<li><p>Nos fichiers <strong>VirtualHost</strong> déjà rédigés qui seront ensuite copiés dans <strong>Apache</strong> automatiquement : <code class="docutils literal notranslate"><span class="pre">esport.conf</span></code> et <code class="docutils literal notranslate"><span class="pre">esport-ssl.conf</span></code>.</p></li>
+<li><p>Un fichier <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>, fichier spécial composé des commandes à envoyer au <strong>Daemon Docker</strong> afin de générer une nouvelle image <strong>Docker</strong> conforme à nos objectifs.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Le fichier <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> n’a pas d’extension.</p>
+</div>
+<p>Créez 2 fichiers : <code class="docutils literal notranslate"><span class="pre">esport.conf</span></code> et <code class="docutils literal notranslate"><span class="pre">esport-ssl.conf</span></code>.
+Dont le contenu est :</p>
+<p>Fichier : <code class="docutils literal notranslate"><span class="pre">esport.conf</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;VirtualHost *:80&gt;
+    ServerName necromancers.esport
+    ServerAlias www.necromancers.esport
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html/esport
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+    RewriteEngine On
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}$1 [R=301,L]
+&lt;/VirtualHost&gt;
+</pre></div>
+</div>
+<p>Fichier : <code class="docutils literal notranslate"><span class="pre">esport-ssl.conf</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;VirtualHost *:443&gt;
+    ServerAdmin webmaster@localhost
+    ServerName necromancers.esport
+    ServerAlias www.necromancers.esport
+    DocumentRoot /var/www/html/esport
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+    SSLEngine on
+    SSLCertificateFile  /etc/ssl/certs/esport.crt
+    SSLCertificateKeyFile /etc/ssl/private/esport.key
+    &lt;FilesMatch &quot;\.(cgi|shtml|phtml|php)$&quot;&gt;
+        SSLOptions +StdEnvVars
+    &lt;/FilesMatch&gt;
+    &lt;Directory /usr/lib/cgi-bin&gt;
+        SSLOptions +StdEnvVars
+    &lt;/Directory&gt;
+&lt;/VirtualHost&gt;
+</pre></div>
+</div>
+<p>Maintenant nous allons pouvoir rédiger notre fichier <strong>Dockerfile</strong> :</p>
+<p>La première ligne doit contenir l’instruction <code class="docutils literal notranslate"><span class="pre">FROM</span></code> qui définie l’image qui servira de référence.
+Nous allons construire notre projet autour de la distribution linux <strong>Ubuntu</strong> dans sa dernière version.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">ubuntu</span><span class="p">:</span><span class="n">latest</span>
+</pre></div>
+</div>
+<p>La dernière ligne contiendra l’instruction <code class="docutils literal notranslate"><span class="pre">CMD</span></code>. Il s’agit de la commande à exécuter dès que notre container sera lancé. Nous voulons lancer apache par la commande : <code class="docutils literal notranslate"><span class="pre">service</span> <span class="pre">apache2</span> <span class="pre">start</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CMD</span> <span class="p">[</span><span class="s2">&quot;service&quot;</span><span class="p">,</span> <span class="s2">&quot;apache2&quot;</span><span class="p">,</span> <span class="s2">&quot;start&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Entre les deux, il faut maintenant programmer la mise en place de notre serveur WEB avec un certificat SSL autosigné et les fichiers de notre projet dedans.</p>
+<p>L’instruction <code class="docutils literal notranslate"><span class="pre">RUN</span></code> permet d’établir une liste de commandes à exécuter. Chaque instruction <code class="docutils literal notranslate"><span class="pre">RUN</span></code> créé une couche (layer) dans notre container.
+Donc au lieu de lancer une instruction <code class="docutils literal notranslate"><span class="pre">RUN</span></code> par commandes, nous allons les chaîner, grâce à l’opérateur logique <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Chaîner 2 ou 3 ou 4 commandes peut vite créer une ligne extrêmement longue. Par soucis de lisibilité, il est bien de pouvoir sauter une ligne entre chaque commande. Mais le compilateur qui va se charger de créer l’image ne va pas comprendre, pour l’aider, il faut ajouter un `` `` après notre opérateur logique.</p>
+<p>Exemple :
+.. code-block:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RUN</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">apache2</span> <span class="o">-</span><span class="n">y</span> <span class="o">&amp;&amp;</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">openssl</span> <span class="o">-</span><span class="n">y</span>
+</pre></div>
+</div>
+<p>deviendra sur 2 lignes :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RUN</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">apache2</span> <span class="o">-</span><span class="n">y</span> <span class="o">&amp;&amp;</span> \
+<span class="n">apt</span> <span class="n">install</span> <span class="n">openssl</span> <span class="o">-</span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<p>Donc nous aurons une instruction <code class="docutils literal notranslate"><span class="pre">RUN</span></code> qui contiendra toutes les commandes que nous avons saisi.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ENV</span> <span class="n">DEBIAN_FRONTEND</span><span class="o">=</span><span class="n">nonintercative</span>
+<span class="n">RUN</span> <span class="n">apt</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> \
+    <span class="n">apt</span> <span class="n">install</span> <span class="n">apache2</span> <span class="o">-</span><span class="n">y</span> <span class="o">&amp;&amp;</span> \
+    <span class="n">echo</span> <span class="s1">&#39;ServerName localhost&#39;</span>  <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">apache2</span><span class="o">.</span><span class="n">conf</span> <span class="o">&amp;&amp;</span> \
+    <span class="n">apt</span> <span class="n">install</span> <span class="n">openssl</span> <span class="o">-</span><span class="n">y</span> <span class="o">&amp;&amp;</span> \
+    <span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">x509</span> <span class="o">-</span><span class="n">nodes</span> <span class="o">-</span><span class="n">days</span> <span class="mi">365</span> <span class="o">-</span><span class="n">newkey</span> <span class="n">rsa</span><span class="p">:</span><span class="mi">2048</span> <span class="o">-</span><span class="n">keyout</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssl</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">esport</span><span class="o">.</span><span class="n">key</span> <span class="o">-</span><span class="n">out</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssl</span><span class="o">/</span><span class="n">certs</span><span class="o">/</span><span class="n">esport</span><span class="o">.</span><span class="n">crt</span> <span class="o">-</span><span class="n">subj</span> <span class="s2">&quot;/C=FR/ST=AISNE/L=LAON/O=BTS SIO/OU=IT Department/CN=necromancers.esport&quot;</span> <span class="o">&amp;&amp;</span> \
+    <span class="n">mkdir</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">esport</span>
+</pre></div>
+</div>
+<p>Si vous vous rappelez, lorsque nous avons créé nos certificats SSL, il y a eu une série de questions qui nous a été posée. Lors de la création de notre image, nous ne pourrons pas y répondre avec notre clavier, mais seulement grâce au paramètre saisie directement dans la commande :  <code class="docutils literal notranslate"><span class="pre">-subj</span> <span class="pre">&quot;/C=FR/ST=AISNE/L=LAON/O=BTS</span> <span class="pre">SIO/OU=IT</span> <span class="pre">Department/CN=necromancers.esport&quot;</span></code>.</p>
+<p>De même, Apache demande aussi durant son installation de lui donner des informations comme le continent et le pays dans lequel nous sommes. Pour éviter cette question, et nous bloquer durant la création de l’image, nous utiliserons la variable d’environnement <code class="docutils literal notranslate"><span class="pre">ENV</span> <span class="pre">DEBIAN_FRONTEND=nonintercative</span></code>. Grâce à elle, notre système d’exploitation Ubuntu cessera de nous poser des questions, et nous aurons la configuration par défaut des applications que nous installerons.</p>
+<p>L’instruction <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">'ServerName</span> <span class="pre">localhost'</span>&#160; <span class="pre">&gt;&gt;</span> <span class="pre">/etc/apache2/apache2.conf</span></code> ajoute au fichier de configuration d’Apache la ligne <code class="docutils literal notranslate"><span class="pre">ServerName</span> <span class="pre">localhost</span></code> afin de nommer le serveur par défaut.</p>
+<p>L’instruction <code class="docutils literal notranslate"><span class="pre">COPY</span></code> va se charger de copier : les fichiers de configuration Apache et HTML dans les bons emplacements du futur container.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>COPY esport/ ${path}/esport
+COPY esport.conf esport-ssl.conf /etc/apache2/sites-available/
+</pre></div>
+</div>
+<p>Il faut maintenant activer les modes <code class="docutils literal notranslate"><span class="pre">Rewrite</span></code> et <code class="docutils literal notranslate"><span class="pre">SSL</span></code> d’Apache, et lui injecter nos fichiers <code class="docutils literal notranslate"><span class="pre">VirtualHost</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RUN</span> <span class="n">a2enmod</span> <span class="n">ssl</span> <span class="o">&amp;&amp;</span> \
+    <span class="n">a2enmod</span> <span class="n">rewrite</span> <span class="o">&amp;&amp;</span> \
+    <span class="n">a2ensite</span> <span class="n">esport</span> <span class="o">&amp;&amp;</span>\
+    <span class="n">a2ensite</span> <span class="n">esport</span><span class="o">-</span><span class="n">ssl</span>
+</pre></div>
+</div>
+<p>L’instruction <code class="docutils literal notranslate"><span class="pre">EXPOSE</span></code> nous permettra de définir les ports utilisés par défaut par le container.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">EXPOSE</span> <span class="mi">80</span> <span class="mi">443</span>
+</pre></div>
+</div>
+<p>Ainsi, notre fichier <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> complet sera ainsi :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>FROM ubuntu:latest
+ENV DEBIAN_FRONTEND=nonintercative
+ENV path /var/www/html/
+RUN apt update &amp;&amp; \
+    apt install apache2 -y &amp;&amp; \
+    echo &#39;ServerName localhost&#39;  &gt;&gt; /etc/apache2/apache2.conf &amp;&amp; \
+    apt install openssl -y &amp;&amp; \
+    openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/esport.key -out /etc/ssl/certs/esport.crt -subj &quot;/C=FR/ST=AISNE/L=LAON/O=BTS SIO/OU=IT Department/CN=necromancers.esport&quot; &amp;&amp; \
+    mkdir ${path}/esport
+
+COPY esport/ ${path}/esport
+COPY esport.conf esport-ssl.conf /etc/apache2/sites-available/
+
+RUN a2enmod ssl &amp;&amp; \
+    a2enmod rewrite &amp;&amp; \
+    a2ensite esport &amp;&amp;\
+    a2ensite esport-ssl
+
+EXPOSE 80
+CMD [&quot;service&quot;, &quot;apache2&quot;, &quot;start&quot;]
+</pre></div>
+</div>
+<p>Nous avons rajouté une variable <code class="docutils literal notranslate"><span class="pre">ENV</span></code> nommée  <code class="docutils literal notranslate"><span class="pre">path</span></code> qui nous permet de définir un chemin qui est utilisé plusieurs fois. Cette variable est utilisée grâce à cette notation <code class="docutils literal notranslate"><span class="pre">${path}</span></code>.</p>
+<p>Il est temps maintenant, de créer notre image à partir de notre fichier <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>.</p>
+<p>Placez vous dans le dossier contenant ce fichier :</p>
+<p>Pour ma part mon fichier <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>, se trouve dans le dossier : <code class="docutils literal notranslate"><span class="pre">C:\Users\p02\Documents\Cours\docker</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">p02</span>\<span class="n">Documents</span>\<span class="n">Cours</span>\<span class="n">docker</span>
+</pre></div>
+</div>
+<p>Créons maintenant notre image nommée esport dans sa version 1.0. La création peut prendre un certain temps.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>N’oubliez pas le “.” !</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">image</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">esport</span><span class="p">:</span><span class="mf">1.0</span> <span class="o">.</span>
+</pre></div>
+</div>
+<img alt="../../../_images/image99.png" class="align-center" src="../../../_images/image99.png" />
+<p>Notre image apparait bien dans Docker Desktop.</p>
+<img alt="../../../_images/image100.png" class="align-center" src="../../../_images/image100.png" />
+<p>Maintenant, montons un container basée sur cette image.</p>
+<p>Stopez tout les containers en cours d’exécution afin d’éviter que le port 80 soit déjà utilisé.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker container stop $(docker container ls -q)
+</pre></div>
+</div>
+<p>Puis :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">tid</span> <span class="o">--</span><span class="n">name</span> <span class="n">site_necroteam</span> <span class="o">-</span><span class="n">p</span> <span class="mi">80</span><span class="p">:</span><span class="mi">80</span> <span class="n">esport</span><span class="p">:</span><span class="mf">1.0</span> <span class="n">sh</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="12.0%20Gestion%20des%20logs.html" class="btn btn-neutral float-left" title="12.0 Gestion des logs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bauer Baptiste.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

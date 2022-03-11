@@ -1,5 +1,5 @@
 ﻿La plateforme Docker
-++++++++++++++++++++++++
++++++++++++++++++++++++++
 
 .. toctree::
   :maxdepth: 2

@@ -486,12 +486,15 @@ Utilisez pour cela la commande ``commit`` (``docker commit --help`` pour voir le
 
 #. Créer un nouveau répertoire et développez un serveur **HTTP** qui expose le endpoint ``/ping`` sur le **port 80** et répond par **PONG**. Inspirez vous de l’exemple du cours ci-dessus.
 #. Dans le même répertoire, créez le fichier **Dockerfile** qui servira à construire l'image de l'application. Ce fichier devra décrire les actions suivantes :
+  
   * spécification d'une image de base.
   * installation du runtime correspondant au langage choisi.
   * installation des dépendances de l’application.
   * copie du code applicatif.
   * exposition du port d’écoute de l’application.
   * spécification de la commande à exécuter pour lancer le serveur.
+
+
 #. Construire l’image en la taguant ``pong:v1.0``.
 #. Lancez un container basé sur cette image en publiant le ``port 80`` sur le ``port 8080`` de la machine hôte.
 #. Tester l'application.
@@ -528,6 +531,7 @@ Nous pouvons définir une commande de base et lui donner des paramètres suplém
 Dans ce premier exemple, vous allez créer un fichier **Dockerfile-v1** contenant les instructions suivantes:
 
 .. code-block::
+
   FROM alpine
   ENTRYPOINT ["ping"]
 
@@ -593,6 +597,7 @@ De la même manière, il est possible de n’utiliser que l’instruction **CMD*
 Créez un fichier **Dockerfile-v2** contenant les instructions suivantes:
 
 .. code-block::
+
   FROM alpine
   CMD ["ping"]
 
@@ -823,7 +828,7 @@ Le système de fichier construit dans cette layer est alors accessible dans le r
 
   /var/lib/docker/overlay2/49908d07e177f9b61dc273ec7089efed9223d3798ad1d86c78d4fe953e227668/diff/
 
-**- LastUpdated **: ce fichier contient la date de dernière mise à jour de l'image
+**LastUpdated** : ce fichier contient la date de dernière mise à jour de l'image
 
 .. code-block:: 
 
@@ -856,7 +861,7 @@ Depuis la version ``17.05`` de Docker, nous pouvons découper le Build d’une i
 
 Un cas d’usage courant :
 
-**Etape 1 **: Avoir une image de base contenant l’ensemble des librairies et binaires nécessaires pour la création d’artéfacts.
+**Etape 1** : Avoir une image de base contenant l’ensemble des librairies et binaires nécessaires pour la création d’artéfacts.
 
 **Etape 2** : Utiliser une image de base plus light et d’y copier les artéfacts générés à l’étape précédente.
 
@@ -1195,7 +1200,7 @@ et Load permet de charger une image à partir d’une sauvegarde.
 
 .. image:: img/docker/image44.png
 
-**La commande : rm **
+**La commande : rm**
 
 Supprime une image avec l’ensemble de ses layers.
 Plusieurs images peuvent être supprimées en même temps.
@@ -1213,7 +1218,10 @@ Comparez ces étapes avec le contenu du Dockerfile utilsé pour builder cette im
 #. Inspectez l’image
 #. En utilisant la notation Go template, listez les ports exposés
 #. Exportez l’image mongo:3.6 dans un tar
+
   * Extrayez le contenu de cette archive avec la commande tar -xvf, qu’observez-vous ?
   * Extrayez le contenu d'une des layers, qu’observez-vous ?
+
+
 #. Supprimez l’image mongo:3.6
 

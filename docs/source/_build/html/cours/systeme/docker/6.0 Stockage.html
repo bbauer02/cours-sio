@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6.0 Stockage &mdash; Cours BTS SIO 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Cours BTS SIO
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">6.0 Stockage</a><ul>
+<li><a class="reference internal" href="#volume">6.1 Volume</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cours BTS SIO</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>6.0 Stockage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/cours/systeme/docker/6.0 Stockage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="stockage">
+<h1>6.0 Stockage<a class="headerlink" href="#stockage" title="Permalink to this headline"></a></h1>
+<p>Dans ce chapitre nous verrons comment une application peut persister ses données au sein d’un container.</p>
+<section id="volume">
+<h2>6.1 Volume<a class="headerlink" href="#volume" title="Permalink to this headline"></a></h2>
+<p>Si un processus modifie ou créé un fichier , cette modification sera enregistrée dans le layer du container.
+Pour rappel, cette layer est créé au lancement du container et est en lecture/écriture.
+Elle est superposée aux layers qui sont en lecture de l’image.</p>
+<p>Quand le container est supprimé, cette layer et tout les fichiers qu’elle contient sont également supprimés.</p>
+<p>Donc pour persister des données, il faut les stocker à l’extérieur de la layer du container de manière à ne pas
+dépendre de son cycle de vie.</p>
+<p>Pour cela il va falloir monter des <strong>volumes</strong> pour persister des données grâce à :</p>
+<ul class="simple">
+<li><p>L’instruction <strong>VOLUME</strong>  dans le <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>.</p></li>
+<li><p>L’option <code class="docutils literal notranslate"><span class="pre">-v</span></code> ou <code class="docutils literal notranslate"><span class="pre">--mount</span></code> à la création d’un container.</p></li>
+<li><p>La commande <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">create</span> <span class="pre">volume</span></code> de la CLI.</p></li>
+</ul>
+<p>On utilise la persistance des données dans le cas de l’utilisation d’une base de données par exemple ou des fichiers de log.</p>
+<p>Par exemple, si nous montons une image basée sur MongoDB :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">--</span><span class="n">name</span> <span class="n">mongo</span> <span class="n">mongo</span><span class="p">:</span><span class="mf">4.0</span>
+</pre></div>
+</div>
+<p>Et que nous inspectons le container :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">inspect</span> <span class="o">-</span><span class="n">f</span> <span class="s1">&#39;{{json .Mounts}}&#39;</span> <span class="n">mongo</span> <span class="o">|</span> <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">json</span><span class="o">.</span><span class="n">tool</span>
+</pre></div>
+</div>
+<img alt="../../../_images/image101.png" class="align-center" src="../../../_images/image101.png" />
+<p>Nous voyons que pour chacun des volumes montés, il y a un répertoire qui a été créé sur la machine hôte.</p>
+<p>Si l’on supprime le container, tout les fichiers créés dans ce volume persisteront dans la machine hôte.</p>
+<p>Nous avons vu comment utiliser l’option <code class="docutils literal notranslate"><span class="pre">-v</span> <span class="pre">CONTAINER_PATH</span></code> dans les chapitre précédent. Elle permet de créer un lien
+symbolique entre un dossier de la machine hôte vers un container.</p>
+<p>Le Docker Daemon fournit une API pour manipuler les volumes. Voici les commandes de base :</p>
+<img alt="../../../_images/image102.png" class="align-center" src="../../../_images/image102.png" />
+<p>Il est possible de créer, inspecter, lister, supprimer des volumes.
+Grâce à la commande <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">volume</span> <span class="pre">prune</span></code>,  il est possible de supprimer les volumes qui ne sont plus utilisés afin ne libérer de la place sur la machine hôte.</p>
+<p><strong>Créons un volume nommé : db-data</strong> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">volume</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">db</span><span class="o">-</span><span class="n">data</span>
+</pre></div>
+</div>
+<p>En listant nos volumes, nous retrouvons <code class="docutils literal notranslate"><span class="pre">db-data</span></code>, et nous voyons que c’est le driver local de Docker par défaut qui a été utilisé pour la création de ce volume.</p>
+<img alt="../../../_images/image103.png" class="align-center" src="../../../_images/image103.png" />
+<p>Lorsque nous consultons la liste des volumes disponibles sur notre machine hôte, nous comprenons facilement pourquoi il est interessant de leur donner un nom.
+Sinon le nom sera généré automatiquement et sera difficilement exploitable.</p>
+<p>Et si nous inspectons ce volume :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">volume</span> <span class="n">inspect</span> <span class="n">db</span><span class="o">-</span><span class="n">data</span>
+</pre></div>
+</div>
+<img alt="../../../_images/image104.png" class="align-center" src="../../../_images/image104.png" />
+<p>Nous constatons que le volume est bien monté, et que son emplacement est autogéré par le driver <code class="docutils literal notranslate"><span class="pre">local</span></code>.</p>
+<p>Maintenant que notre volume est créé. Nous allons pouvoir facilement le monter dans un container grâce à son nom.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">--</span><span class="n">name</span> <span class="n">db</span> <span class="o">-</span><span class="n">v</span> <span class="n">db</span><span class="o">-</span><span class="n">data</span><span class="p">:</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">db</span> <span class="n">mongo</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bauer Baptiste.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

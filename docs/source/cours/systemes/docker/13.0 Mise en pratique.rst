@@ -458,8 +458,7 @@ Stoppons maintenant notre container ``serveur_https`` :
 
 Maintenant, voici venu le grand moment tant attendu ! Celui de monter notre image, dans un nouveau container avec le dossier web esport ! 
 
-Positionnons nous dans le répertoire contenant notre dossier ``www``*, pour ma part : 
-*Le dossier www, doit contenir le dossier esport
+Positionnons nous dans le répertoire contenant notre dossier ``www``, pour ma part:
 
 .. code-block::
 
