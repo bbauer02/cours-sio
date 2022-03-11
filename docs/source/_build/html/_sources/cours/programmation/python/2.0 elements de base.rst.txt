@@ -1,0 +1,13 @@
+﻿2.0 Eléments de base
++++++++++++++++++++++++++
+
+.. note::
+
+  Pour afficher du texte dans la console en **Python**, on utilise la fonction : ``print()``.
+
+  Pour demander à l’utilisateur de saisir des données, on utilise la fonction : ``input()``. La fonction ``input`` renvoie toujours une chaine de caractères.
+
+2.1.1	Variables et affectation
+###################################
+
+>>> 1 + 1

@@ -1,3 +1,43 @@
 ﻿1.0 Introduction
-+++++++++++++++++++++
+++++++++++++++++++++++
+
+Un Programme est la description d’un algorithme dans un langage compréhensible par un humain mais aussi et surtout par une machine.
+C’est la machine qui va exécuter le programme afin de traiter les données et les instructions données. 
+
+Il existe une multitude de langage de programmation avec chacun leur particularité. Certain ont une syntaxe plus permissive que d’autres. D’autre sont plus proche du langage naturel humain ou à l’inverse plus proche du langage de la machine.
+
+Le langage **Python** est de plus en plus répandu dans l’enseignement supérieur et au lycée dans le cadre de l’enseignement des mathématiques. 
+Ce langage a été créé par *Guido Van Rossum*, un ingénieur informaticien néerlandais en 1991.
+Il a travaillé pour Google puis Dropbox. Nous allons utiliser la version 3 de Python.
+
+Le langage Python est dit « multiplateforme » car il fonctionne aussi bien sur des ordinateurs sous Windows, Linux, MacOs, Android ou IOS. C’est un langage gratuit et placé sous licence libre.
+
+Les constructions élémentaires en langage Python sont communes à de nombreux autres langages de programmation. 
+
+Un programme est composé : 
+
+* De séquences (instructions exécutées l’une après l’autre dans l’ordre où elles sont écrites).
+* Des définitions de variables et de fonctions. 
+* D’affectations de valeurs. 
+* D’instructions conditionnelle. 
+* De boucles.
+* Des appels de fonctions. 
+
+Voici ce que l’on peut faire avec du Python : 
+
+* Des petits programmes très simples, appelés **scripts**, chargés d'une mission très précise sur votre ordinateur ;
+* Des programmes complets, comme des jeux, des suites bureautiques, des logiciels multimédias, des clients de messagerie…
+* Des projets très complexes, comme des progiciels (ensemble de plusieurs logiciels pouvant fonctionner ensemble, principalement utilisés dans le monde professionnel).
+
+Python est un langage de programmation **interprété**, 
+c'est-à-dire que les instructions que vous lui envoyez sont « **transcrites** » en langage machine au fur et à mesure de leur lecture. 
+D'autres langages (comme le C / C++) sont appelés « langages **compilés** » car, avant de pouvoir les exécuter, un logiciel spécialisé se charge de 
+transformer le code du programme en langage machine. On appelle cette étape la « **compilation** ». 
+À chaque modification du code, il faut rappeler une étape de compilation.
+
+Les avantages d'un langage interprété sont la simplicité (on ne passe pas par une étape de compilation avant d'exécuter son programme) et la portabilité (un langage tel que Python est censé fonctionner aussi bien sous Windows que sous Linux ou Mac OS, et on ne devrait avoir à effectuer aucun changement dans le code pour le passer d'un système à l'autre). Cela ne veut pas dire que les langages compilés ne sont pas portables, loin de là ! Mais on doit utiliser des compilateurs différents et, d'un système à l'autre, certaines instructions ne sont pas compatibles, voire se comportent différemment.
+
+En contrepartie, un langage compilé se révélera bien plus rapide qu'un langage interprété (la traduction à la volée de votre programme ralentit l'exécution), bien que cette différence tende à se faire de moins en moins sentir au fil des améliorations. De plus, il faudra installer Python sur le système d'exploitation que vous utilisez pour que l'ordinateur puisse comprendre votre code.
+
+
 

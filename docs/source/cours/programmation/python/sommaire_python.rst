@@ -22,4 +22,5 @@ Nous allons revoir les bases de la programmation en **Python**.
   :caption: Python
 
   1.0 introduction
+  2.0 elements de base
 
