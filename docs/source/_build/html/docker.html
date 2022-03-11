@@ -1,39 +1,185 @@
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-    <title>1.0 Introduction &#8212; Cours BTS SIO 0.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.0 Introduction &mdash; Cours BTS SIO 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Cours de BTS SIO." href="index.html" />
-   
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    <link rel="prev" title="Cours de BTS SIO." href="index.html" /> 
+</head>
 
-  </head><body>
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Cours BTS SIO
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1.0 Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quick-wins">1.1 Quick Wins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#des-stacks-completes">1.2 Des Stacks complètes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quelques-concepts-utiles-pour-les-developpeurs">1.3 Quelques concepts utiles pour les Développeurs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#un-container-linux-cest-quoi">1.3.1 Un container Linux, c’est quoi ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#containers-linux-les-namespaces">1.3.2 Containers Linux : Les Namespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#containers-linux-control-groups-cgroups">1.3.3 Containers Linux : Control Groups (cgroups)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#containers-linux-vm-container">1.3.4 Containers Linux : VM/Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#architecture-micro-services">1.3.5 Architecture micro-services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#questionnaire-de-synthese">1.3.5 Questionnaire de synthèse</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#la-plateforme-docker">2.0 La plateforme Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#le-modele-client-serveur">2.1 Le modèle client/serveur</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#le-serveur-dockerd">2.1.1 Le serveur : Dockerd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#le-client-docker">2.1.2 Le client : docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#concepts-essentiels">2.1.3 Concepts essentiels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker-hub">2.1.4 Docker Hub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cluster-swarm">2.1.4 Cluster Swarm</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-de-docker">2.2 Installation de Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-pour-windows-10-ou-macos">Installation pour Windows 10 ou MacOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-pour-linux">Installation pour Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verification-de-l-installation">Vérification de l’installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#les-containers-avec-docker">3.0 Les containers avec Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#hello-world">3.1 Hello World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ubuntu-sous-docker">3.2 Ubuntu sous docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#un-container-dans-un-mode-interactif">3.2 Un container dans un mode Interactif</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#container-nginx-en-foreground">Container NGINX en <strong>foreground</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#container-nginx-en-background">Container NGINX en <strong>background</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#publication-de-port">3.3 Publication de port.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bind-mount">3.4 Bind-mount</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exemple-1-monter-un-dossier-www">3.4.1 Exemple 1 : monter un dossier ‘www’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exemple-2-interagir-avec-le-docker-daemom">3.4.2 Exemple 2 : Intéragir avec le Docker Daemom</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pour-linux-uniquement">Pour LINUX UNIQUEMENT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pour-windows-uniquement">Pour WINDOWS UNIQUEMENT</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#exemple-3-ecouter-les-actions-demandees-au-docker-daemon">3.4.3 Exemple 3 : Ecouter les actions demandées au Docker Daemon</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#limitation-des-ressources">3.5 Limitation des ressources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#les-droits-dans-un-container">3.6 Les droits dans un container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#des-options-utiles">3.6 Des options utiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#les-commandes-de-base-avec-docker">3.7 Les commandes de base avec Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#en-pratique">3.8 En pratique :</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exercices">3.9 Exercices :</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exercice-1-hello-from-alpine">3.9.1 Exercice 1 : Hello From Alpine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercice-2-shell-interactif">3.9.2 Exercice 2 : Shell intéractif</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercice-3-foreground-background">3.9.3 Exercice 3 : foreground / background</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercice-4-publication-de-port">3.9.4 Exercice 4 : Publication de port</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercice-5-liste-des-containers">3.9.5 Exercice 5 : Liste des containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercice-6-inspection-d-un-container">3.9.6 Exercice 6 : Inspection d’un container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercice-7-exec-dans-un-container">3.9.7 Exercice 7 : exec dans un container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercice-8-cleanup">3.9.8 Exercice 8 : cleanup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#en-resume">3.10 En résumé</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#les-images-docker">4.0 Les images Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#union-filesystem">4.1 Union Filesystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">4.2 Exercices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exercice-1-container-s-layer">4.2.1 Exercice 1 : Container’s layer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dockerfile">4.3 DockerFile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creation-dimages">4.3 Création d’images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mise-en-pratique">4.4 Mise en pratique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exercices-creation-dimages">4.5 Exercices : Création d’images</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exercice-1-creation-dune-image-a-partir-dun-container">4.5.1 Exercice 1 : Création d’une image à partir d’un container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercice-2-dockerizez-un-serveur-web-simple">4.5.2 Exercice 2 : Dockerizez un serveur web simple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercice-3-entrypoint-et-cmd">4.5.3 Exercice 3 : ENTRYPOINT et CMD</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#format">Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#re-ecriture-a-lexecution-dun-container">Ré-écriture à l’exécution d’un container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#instruction-entrypoint-utilisee-seule">Instruction ENTRYPOINT utilisée seule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#instructions-cmd-utilisee-seule">Instructions CMD utilisée seule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#instructions-entrypoint-et-cmd">Instructions ENTRYPOINT et CMD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pour-aller-plus-loin-ou-est-stockee-mon-image">Pour aller plus loin : ou est stockée mon image ?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stockage-d-une-image">Stockage d’une image</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#multi-stages-build">4.6 Multi-Stages Build</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id13">4.6.1 Mise en pratique</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rappel">Rappel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#un-serveur-http-ecrit-en-go">Un serveur http écrit en Go</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dockerfile-traditionel">Dockerfile traditionel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dockerfile-utilisant-un-build-multi-stage">Dockerfile utilisant un build multi-stage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#prise-en-compte-du-cache">4.7 Prise en compte du cache</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exercice-prise-en-compte-du-cache">4.7.1 Exercice : Prise en compte du cache</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#le-contexte-de-build">4.8 Le contexte de Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#les-commandes-de-base-avec-docker-image">4.9 Les commandes de base avec docker image.</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exercice-analyse-du-contenu-d-une-image">4.9.1 Exercice : Analyse du contenu d’une image</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          
+        </div>
+      </div>
+    </nav>
 
-          <div class="body" role="main">
-            
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cours BTS SIO</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>1.0 Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/docker.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="introduction">
-<h1>1.0 Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<h1>1.0 Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h1>
 <p>Ce cours est découpé en différents chapitres et permet un apprentissage progressif des différents concepts Docker et de leur mise en pratique.
 On commencera par donner quelques exemples de ce qu’il est possible de faire avec Docker dans la section <strong>Quick Wins</strong>.
 Nous ferons références à des concepts utiles comme les <strong>containers</strong> Linux, les Micro services, le Dev Ops.etc.</p>
@@ -54,7 +200,7 @@ Dans le chapitre sur le stockage, nous apprendrons à utiliser <strong>Docker</s
 <p><strong>Prérequis :</strong> Installation de <strong>WSL 2</strong> sur <strong>windows 10</strong>.
 Afin de pouvoir utiliser des commandes linux dans une console <strong>POWERSHELL</strong>.</p>
 <blockquote>
-<div><div class="highlight-language notranslate"><div class="highlight"><pre><span></span>wsl –install -d ubuntu
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>wsl –install -d ubuntu
 wsl --set-version ubuntu 2
 </pre></div>
 </div>
@@ -62,7 +208,7 @@ wsl --set-version ubuntu 2
 <p>Dans la console, tapez : <code class="docutils literal notranslate"><span class="pre">ubuntu</span></code> pour basculer dans un environnement <strong>Ubuntu</strong>.</p>
 </div>
 <section id="quick-wins">
-<h2>1.1 Quick Wins<a class="headerlink" href="#quick-wins" title="Permalink to this headline">¶</a></h2>
+<h2>1.1 Quick Wins<a class="headerlink" href="#quick-wins" title="Permalink to this headline"></a></h2>
 <p>Très souvent le premier contact que l’on a avec <strong>Docker</strong> s’effectue via le <strong>Docker Hub</strong> accessible sur <a class="reference external" href="https://hub.docker.com">https://hub.docker.com</a>.</p>
 <img alt="Docker Hub" src="_images/image64.png" />
 <p>Il s’agit d’un <strong>registre</strong> (ou <strong>registry</strong>) dans lequel nous retrouvons beaucoup d’applications packagées dans des images <strong>Docker</strong>.
@@ -80,7 +226,7 @@ Voici un exemple de services qui peuvent être contenu dans une image <strong>Do
 Cela peut être utile pour tester une différence de comportement entre deux versions par exemple.</p>
 </section>
 <section id="des-stacks-completes">
-<h2>1.2 Des Stacks complètes<a class="headerlink" href="#des-stacks-completes" title="Permalink to this headline">¶</a></h2>
+<h2>1.2 Des Stacks complètes<a class="headerlink" href="#des-stacks-completes" title="Permalink to this headline"></a></h2>
 <p>Une application fonctionne rarement seule et est souvent constituée d’un ensemble de services.
 Cet ensemble constitue une <strong>Stack applicative</strong>.
 Par exemple, prenons le cas de la Stack <strong>Elastic</strong>, qui est souvent utilisée pour la gestion des log.
@@ -91,9 +237,9 @@ le stockage des logs et <strong>KIBANA</strong> qui permet de visualiser tout ce
 Nous verrons rapidement comment Docker permet de créer notre propre package d’application pour faciliter : l’installation, l’utilisation et le déploiement.</p>
 </section>
 <section id="quelques-concepts-utiles-pour-les-developpeurs">
-<h2>1.3 Quelques concepts utiles pour les Développeurs<a class="headerlink" href="#quelques-concepts-utiles-pour-les-developpeurs" title="Permalink to this headline">¶</a></h2>
+<h2>1.3 Quelques concepts utiles pour les Développeurs<a class="headerlink" href="#quelques-concepts-utiles-pour-les-developpeurs" title="Permalink to this headline"></a></h2>
 <section id="un-container-linux-cest-quoi">
-<h3>1.3.1 Un container Linux, c’est quoi ?<a class="headerlink" href="#un-container-linux-cest-quoi" title="Permalink to this headline">¶</a></h3>
+<h3>1.3.1 Un container Linux, c’est quoi ?<a class="headerlink" href="#un-container-linux-cest-quoi" title="Permalink to this headline"></a></h3>
 <p>Un <strong>container</strong> est simplement un <strong>processus</strong> particulier qui tourne sur le système.
 Il est isolé des autres <strong>processus</strong>. Il possède sa <strong>propre vision</strong> du système sur lequel il tourne, on appelle cela les <strong>Namespaces</strong>.
 On peut limiter les ressources utilisées par ce processus en utilisant les <strong>Controls Groups</strong> (ou <strong>Cgroups</strong>).
@@ -101,7 +247,7 @@ Le même système peut exécuter plusieurs containers en même temps, c’est d�
 Le noyau Linux de la machine hôte est <strong>partagé</strong> entre tous ses containeurs.</p>
 </section>
 <section id="containers-linux-les-namespaces">
-<h3>1.3.2 Containers Linux : Les Namespaces<a class="headerlink" href="#containers-linux-les-namespaces" title="Permalink to this headline">¶</a></h3>
+<h3>1.3.2 Containers Linux : Les Namespaces<a class="headerlink" href="#containers-linux-les-namespaces" title="Permalink to this headline"></a></h3>
 <p>Les <strong>Namespaces</strong> sont des technologies Linux qui servent à isoler un processus.
 Cela permet de limiter ce qu’un processus peut voir. Il existe <strong>6</strong> NameSpaces différents :</p>
 <ol class="arabic simple">
@@ -114,7 +260,7 @@ Cela permet de limiter ce qu’un processus peut voir. Il existe <strong>6</stro
 </ol>
 </section>
 <section id="containers-linux-control-groups-cgroups">
-<h3>1.3.3 Containers Linux : Control Groups (cgroups)<a class="headerlink" href="#containers-linux-control-groups-cgroups" title="Permalink to this headline">¶</a></h3>
+<h3>1.3.3 Containers Linux : Control Groups (cgroups)<a class="headerlink" href="#containers-linux-control-groups-cgroups" title="Permalink to this headline"></a></h3>
 <p>Les <strong>cgroups</strong> sont une autre technologie Linux qui va permettre de limiter les ressources qu’un processus va utiliser.
 Par exemple, pour limiter l’utilisation :</p>
 <ul class="simple">
@@ -125,7 +271,7 @@ Par exemple, pour limiter l’utilisation :</p>
 </ul>
 </section>
 <section id="containers-linux-vm-container">
-<h3>1.3.4 Containers Linux : VM/Container<a class="headerlink" href="#containers-linux-vm-container" title="Permalink to this headline">¶</a></h3>
+<h3>1.3.4 Containers Linux : VM/Container<a class="headerlink" href="#containers-linux-vm-container" title="Permalink to this headline"></a></h3>
 <img alt="_images/image70.png" src="_images/image70.png" />
 <p>On compare souvent les containers à des machines virtuelles, car elles permettent d’exécuter des applications de manière isolée.</p>
 <p>Mais la virtualisation nécessite un <strong>hyperviseur</strong> qui s’exécute <strong>sur le système d’exploitation de l’hôte</strong> et nécessite également que <strong>haque machine virtuelle</strong> ait son propre système d’exploitation.
@@ -133,7 +279,7 @@ Alors que l’approche du container est <strong>beaucoup plus légère</strong> 
 <p>La machine virtuelle consomme plus de disque mémoire et de ram que les containers. <strong>Cela implique que beaucoup plus de containers peuvent fonctionner sur une même machine hôte.</strong></p>
 </section>
 <section id="architecture-micro-services">
-<h3>1.3.5 Architecture micro-services<a class="headerlink" href="#architecture-micro-services" title="Permalink to this headline">¶</a></h3>
+<h3>1.3.5 Architecture micro-services<a class="headerlink" href="#architecture-micro-services" title="Permalink to this headline"></a></h3>
 <p>Depuis quelques années, les applications sont développées autour d’une architecture appelée <strong>micro-services</strong>.
 Alors qu’avant une application était souvent un gros bloc unique <strong>monolithique</strong>.</p>
 <img alt="_images/image69.png" src="_images/image69.png" />
@@ -183,7 +329,7 @@ Et c’est l’<strong>interconnexion</strong> de l’ensemble de ces services q
 </ul>
 </section>
 <section id="questionnaire-de-synthese">
-<h3>1.3.5 Questionnaire de synthèse<a class="headerlink" href="#questionnaire-de-synthese" title="Permalink to this headline">¶</a></h3>
+<h3>1.3.5 Questionnaire de synthèse<a class="headerlink" href="#questionnaire-de-synthese" title="Permalink to this headline"></a></h3>
 <blockquote>
 <div><ol class="arabic simple">
 <li><p><strong>Quels sont les éléments permettant la création d’un container sous Linux ?</strong></p>
@@ -215,7 +361,7 @@ Et c’est l’<strong>interconnexion</strong> de l’ensemble de ces services q
 </section>
 </section>
 <section id="la-plateforme-docker">
-<h1>2.0 La plateforme Docker<a class="headerlink" href="#la-plateforme-docker" title="Permalink to this headline">¶</a></h1>
+<h1>2.0 La plateforme Docker<a class="headerlink" href="#la-plateforme-docker" title="Permalink to this headline"></a></h1>
 <p><strong>Docker</strong> apporte une facilité de développement, de packaging et de déploiement d’applications <strong>quelque soit le langage de programmation</strong>.
 Un développeur peut <strong>tester une application</strong> sur sa machine en <strong>imitant</strong> les conditions de l’environnement de <strong>production</strong> tout en nécessitant une <strong>configuration minimale</strong>.
 Si l’application est soumise à un <strong>fort stresse</strong>, <strong>Docker</strong> peut orchestrer l’allocation d’autres containers.
@@ -226,13 +372,13 @@ La <strong>scalabilité</strong> s’effectue très rapidement car un container 
 </div>
 <p><strong>Docker</strong> permet également d’ <strong>augmenter</strong> le rythme de <strong>mise à jour</strong> des logiciels.</p>
 <section id="le-modele-client-serveur">
-<h2>2.1 Le modèle client/serveur<a class="headerlink" href="#le-modele-client-serveur" title="Permalink to this headline">¶</a></h2>
+<h2>2.1 Le modèle client/serveur<a class="headerlink" href="#le-modele-client-serveur" title="Permalink to this headline"></a></h2>
 <img alt="_images/image55.png" src="_images/image55.png" />
 <p><strong>Docker</strong> utilise un modèle <strong>client/serveur</strong>.
 D’une part nous avons le client <strong>Docker</strong>, un fichier binaire écrit en <strong>GO</strong>. Et d’autre part nous avons le <strong>Docker Daemon</strong> (appelé <strong>dockerd</strong>), écrit aussi en GO, et qui expose une <strong>API REST</strong> consommée par le client.
 Le client envoie des commandes au <strong>Docker Daemon</strong> pour gérer les containers, les images entre autres.</p>
 <section id="le-serveur-dockerd">
-<h3>2.1.1 Le serveur : Dockerd<a class="headerlink" href="#le-serveur-dockerd" title="Permalink to this headline">¶</a></h3>
+<h3>2.1.1 Le serveur : Dockerd<a class="headerlink" href="#le-serveur-dockerd" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><dl class="simple">
 <dt><strong>Processus</strong><span class="classifier">dockerd</span></dt><dd><ul>
@@ -248,7 +394,7 @@ Le client envoie des commandes au <strong>Docker Daemon</strong> pour gérer les
 </ul>
 </section>
 <section id="le-client-docker">
-<h3>2.1.2 Le client : docker<a class="headerlink" href="#le-client-docker" title="Permalink to this headline">¶</a></h3>
+<h3>2.1.2 Le client : docker<a class="headerlink" href="#le-client-docker" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Installé en même temps que <strong>dockerd</strong>.</p></li>
 <li><p>Communique avec le <strong>daemon local</strong> par défaut via <code class="docutils literal notranslate"><span class="pre">/var/run/docker.sock</span></code>.</p></li>
@@ -256,7 +402,7 @@ Le client envoie des commandes au <strong>Docker Daemon</strong> pour gérer les
 </ul>
 </section>
 <section id="concepts-essentiels">
-<h3>2.1.3 Concepts essentiels<a class="headerlink" href="#concepts-essentiels" title="Permalink to this headline">¶</a></h3>
+<h3>2.1.3 Concepts essentiels<a class="headerlink" href="#concepts-essentiels" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p><strong>Docker</strong> facilite la manipulation des <strong>containers Linux</strong>. Et cache la complexité sous-jacente.</p></li>
 <li><p>Introduction de la <strong>notion d’image</strong> : Format d’un package qui contient une application.</p></li>
@@ -271,7 +417,7 @@ Le client envoie des commandes au <strong>Docker Daemon</strong> pour gérer les
 un client et un serveur (ou daemon) qui tourne constamment et qui est responsable de la gestion des containers et des images.</p>
 </section>
 <section id="docker-hub">
-<h3>2.1.4 Docker Hub<a class="headerlink" href="#docker-hub" title="Permalink to this headline">¶</a></h3>
+<h3>2.1.4 Docker Hub<a class="headerlink" href="#docker-hub" title="Permalink to this headline"></a></h3>
 <p>Par défaut le <strong>daemon Dockerd</strong> communique avec le <strong>Docker Hub</strong>, qui est le <strong>Registry</strong> officiel de Docker disponible à l’adresse : <a class="reference external" href="https://hub.docker.com">https://hub.docker.com</a></p>
 <p>Il existe bien entendu beaucoup d’autres Registry que l’on peut utiliser si on le souhaite.</p>
 <img alt="_images/image57.png" src="_images/image57.png" />
@@ -283,14 +429,14 @@ un client et un serveur (ou daemon) qui tourne constamment et qui est responsabl
 </ul>
 </section>
 <section id="cluster-swarm">
-<h3>2.1.4 Cluster Swarm<a class="headerlink" href="#cluster-swarm" title="Permalink to this headline">¶</a></h3>
+<h3>2.1.4 Cluster Swarm<a class="headerlink" href="#cluster-swarm" title="Permalink to this headline"></a></h3>
 <p>Un Cluster Swarm est un ensemble de <strong>Docker Host</strong>, c’est-à-dire un ensemble de machines sur lesquel le <strong>Docker Démon</strong> est installé.</p>
 <img alt="_images/image58.png" src="_images/image58.png" />
 <p>Ses machines vont communiquer entres elles afin d’orchestrer des applications et d’assurer qu’elles fonctionnent de la manière voulue.</p>
 </section>
 </section>
 <section id="installation-de-docker">
-<h2>2.2 Installation de Docker<a class="headerlink" href="#installation-de-docker" title="Permalink to this headline">¶</a></h2>
+<h2>2.2 Installation de Docker<a class="headerlink" href="#installation-de-docker" title="Permalink to this headline"></a></h2>
 <p>Nous allons voir ici comment installer <strong>Docker</strong> sur votre environnement.</p>
 <p>Rendez-vous tout d’abord dans le <a class="reference external" href="https://hub.docker.com">Docker hub</a> puis sélectionner l’onglet <strong>Explore</strong>:</p>
 <img alt="_images/image59.png" src="_images/image59.png" />
@@ -305,7 +451,7 @@ un client et un serveur (ou daemon) qui tourne constamment et qui est responsabl
 <p>Comme nous pouvons le constater, Docker peut être installé sur des systèmes divers: machine de développement, l’infrastructure d’un cloud provider, et même des devices de type Raspberry PI.</p>
 </section>
 <section id="installation-pour-windows-10-ou-macos">
-<h2>Installation pour Windows 10 ou MacOS<a class="headerlink" href="#installation-pour-windows-10-ou-macos" title="Permalink to this headline">¶</a></h2>
+<h2>Installation pour Windows 10 ou MacOS<a class="headerlink" href="#installation-pour-windows-10-ou-macos" title="Permalink to this headline"></a></h2>
 <dl class="simple">
 <dt>Si vous êtes sur <strong>MacOS</strong> ou <strong>Windows 10 (Entreprise ou Pro)</strong> vous pouvez installer <strong>Docker Desktop</strong>, un environnement compatible pour chacune de ces plateformes:</dt><dd><ul class="simple">
 <li><p><a class="reference external" href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docker Desktop for Windows</a></p></li>
@@ -315,15 +461,15 @@ un client et un serveur (ou daemon) qui tourne constamment et qui est responsabl
 </dl>
 </section>
 <section id="installation-pour-linux">
-<h2>Installation pour Linux<a class="headerlink" href="#installation-pour-linux" title="Permalink to this headline">¶</a></h2>
+<h2>Installation pour Linux<a class="headerlink" href="#installation-pour-linux" title="Permalink to this headline"></a></h2>
 <p>Si vous êtes sur <strong>Linux</strong>, vous pouvez sélectionner la distribution que vous utilisez (<strong>Fedora</strong>, <strong>CentOS</strong>, <strong>Ubuntu</strong>, <strong>Debian</strong>) et vous obtiendrez alors un lien vers la documentation à suivre pour installer <strong>Docker</strong> sur la distribution en question.</p>
 <p>Pour aller un peu plus vite, vous pouvez également lancer la commande suivante (compatible avec les principales distribution <strong>Linux</strong>) :</p>
-<div class="highlight-language notranslate"><div class="highlight"><pre><span></span>curl -sSL https://get.docker.com | sh
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">sSL</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">get</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">com</span> <span class="o">|</span> <span class="n">sh</span>
 </pre></div>
 </div>
 <p>En quelques dizaines de secondes, cela installera <strong>la plateforme Docker</strong> sur votre distribution.
 Il sera ensuite nécessaire d’<strong>ajouter votre utilisateur</strong> dans le <strong>groupe docker</strong> afin de pouvoir intéragir avec le <strong>daemon</strong> sans avoir à utiliser <strong>sudo</strong> (il faudra cependant lancer un nouveau <strong>shell</strong> afin que ce changement de groupe soit pris en compte.)</p>
-<div class="highlight-language notranslate"><div class="highlight"><pre><span></span>sudo usermod -aG docker &lt;UTILISATEUR&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">usermod</span> <span class="o">-</span><span class="n">aG</span> <span class="n">docker</span> <span class="o">&lt;</span><span class="n">UTILISATEUR</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -332,16 +478,16 @@ Il sera ensuite nécessaire d’<strong>ajouter votre utilisateur</strong> dans 
 </div>
 </section>
 <section id="verification-de-l-installation">
-<h2>Vérification de l’installation<a class="headerlink" href="#verification-de-l-installation" title="Permalink to this headline">¶</a></h2>
+<h2>Vérification de l’installation<a class="headerlink" href="#verification-de-l-installation" title="Permalink to this headline"></a></h2>
 <p>Une fois installé, lancez la commande suivante afin de vérifier que tout est fonctionnel :</p>
-<div class="highlight-language notranslate"><div class="highlight"><pre><span></span>docker info
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">info</span>
 </pre></div>
 </div>
 <img alt="_images/image61.png" src="_images/image61.png" />
 </section>
 </section>
 <section id="les-containers-avec-docker">
-<h1>3.0 Les containers avec Docker<a class="headerlink" href="#les-containers-avec-docker" title="Permalink to this headline">¶</a></h1>
+<h1>3.0 Les containers avec Docker<a class="headerlink" href="#les-containers-avec-docker" title="Permalink to this headline"></a></h1>
 <p>Après avoir présenté la plateforme Docker, nous allons voir comment créer des <strong>containers</strong> en ligne de commande pour lancer des services en tâche de fond et/ou pour rendre disponible dans un container des repertoires de la <strong>machine hôte</strong>.</p>
 <p>Nous verrons comment lancer un container dans un mode d’<strong>accès privilégié</strong>, ainsi que les commandes de bases pour la gestion du cycle de vie des containers.</p>
 <p>Avant la 1.13, lancer un <strong>container</strong> s’effectuait avec la commande : <code class="docutils literal notranslate"><span class="pre">Docker</span> <span class="pre">Run</span></code> sans le mot clé <code class="docutils literal notranslate"><span class="pre">container</span></code>.
@@ -350,11 +496,11 @@ Mais maintenant les commandes ont été regroupé aux composant auquel elles se 
 <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">run</span> <span class="pre">[OPTIONS]</span> <span class="pre">IMAGE</span> <span class="pre">[COMMAND]</span> <span class="pre">[ARG]</span></code>
 D’autres groupes de commande existent et nous les étudierons plus tard.</p>
 <section id="hello-world">
-<h2>3.1 Hello World<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h2>
+<h2>3.1 Hello World<a class="headerlink" href="#hello-world" title="Permalink to this headline"></a></h2>
 <p>Lançons notre premier container <strong>Hello-World</strong>.</p>
 <img alt="_images/image62.png" src="_images/image62.png" />
 <p>Ouvrez un <strong>terminal</strong> et tapez :</p>
-<div class="highlight-language notranslate"><div class="highlight"><pre><span></span>docker container run hello-world
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="n">hello</span><span class="o">-</span><span class="n">world</span>
 </pre></div>
 </div>
 <img alt="_images/image63.png" src="_images/image63.png" />
@@ -366,9 +512,9 @@ A la fin du texte on nous demande d’essayer un exemple plus ambitieux, c’est
 <p>Expérimentez la commande : <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">run</span> <span class="pre">hello-world</span></code> sur votre machine</p>
 </section>
 <section id="ubuntu-sous-docker">
-<h2>3.2 Ubuntu sous docker<a class="headerlink" href="#ubuntu-sous-docker" title="Permalink to this headline">¶</a></h2>
+<h2>3.2 Ubuntu sous docker<a class="headerlink" href="#ubuntu-sous-docker" title="Permalink to this headline"></a></h2>
 <p>Nous pouvons lancer un autre container basé sur l’image de <strong>Ubuntu</strong> et lui demander d’afficher <code class="docutils literal notranslate"><span class="pre">Hello</span></code> dans  le contexte de cette image.</p>
-<div class="highlight-language notranslate"><div class="highlight"><pre><span></span>docker container run ubuntu echo hello
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="n">ubuntu</span> <span class="n">echo</span> <span class="n">hello</span>
 </pre></div>
 </div>
 <img alt="_images/image11.png" src="_images/image11.png" />
@@ -376,7 +522,7 @@ A la fin du texte on nous demande d’essayer un exemple plus ambitieux, c’est
 A quelles actions correspondent-ils ?</p>
 </section>
 <section id="un-container-dans-un-mode-interactif">
-<h2>3.2 Un container dans un mode Interactif<a class="headerlink" href="#un-container-dans-un-mode-interactif" title="Permalink to this headline">¶</a></h2>
+<h2>3.2 Un container dans un mode Interactif<a class="headerlink" href="#un-container-dans-un-mode-interactif" title="Permalink to this headline"></a></h2>
 <p>Le mode <strong>interactif</strong> permet d’avoir accès à un <code class="docutils literal notranslate"><span class="pre">shell</span></code> depuis le client local  qui tourne dans le <strong>contexte du container</strong>.</p>
 <p>Pour cela il faut rajouter deux options à notre commande :</p>
 <p><code class="docutils literal notranslate"><span class="pre">-t</span></code> qui permet d’allouer un pseudo terminal à notre container.</p>
@@ -414,7 +560,7 @@ C’est une distribution légère et sécurisée.</p>
 par défaut le container est exécuté en <strong>foreground</strong>, mais si l’on veut l’exécuter en <strong>background</strong>, c’est-à-dire en tâche de fond, il faudra utiliser l’option <code class="docutils literal notranslate"><span class="pre">-d</span></code> et la commande retournera alors l’ <strong>identifiant</strong> du conteneur que l’on pourra utiliser par la suite pour effectuer différentes actions.</p>
 <p>Par exemple nous pouvons lancer un container basé sur l’image <code class="docutils literal notranslate"><span class="pre">nginx</span></code>, un <strong>serveur http</strong>.</p>
 <section id="container-nginx-en-foreground">
-<h3>Container NGINX en <strong>foreground</strong><a class="headerlink" href="#container-nginx-en-foreground" title="Permalink to this headline">¶</a></h3>
+<h3>Container NGINX en <strong>foreground</strong><a class="headerlink" href="#container-nginx-en-foreground" title="Permalink to this headline"></a></h3>
 <p>Création du <strong>conteneur</strong> en <strong>foreground</strong>, cela signifie que l’on ne récupère pas la main</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="n">nginx</span>
 </pre></div>
@@ -423,7 +569,7 @@ par défaut le container est exécuté en <strong>foreground</strong>, mais si l
 <p>Le conteneur est lancé et occupe notre console. Nous n’avons pas la main.</p>
 </section>
 <section id="container-nginx-en-background">
-<h3>Container NGINX en <strong>background</strong><a class="headerlink" href="#container-nginx-en-background" title="Permalink to this headline">¶</a></h3>
+<h3>Container NGINX en <strong>background</strong><a class="headerlink" href="#container-nginx-en-background" title="Permalink to this headline"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="n">nginx</span>
 </pre></div>
 </div>
@@ -434,7 +580,7 @@ Cela n’est actuellement pas possible car nous n’avons pas publié de <strong
 </section>
 </section>
 <section id="publication-de-port">
-<h2>3.3 Publication de port.<a class="headerlink" href="#publication-de-port" title="Permalink to this headline">¶</a></h2>
+<h2>3.3 Publication de port.<a class="headerlink" href="#publication-de-port" title="Permalink to this headline"></a></h2>
 <p>La publication d’un port est utilisée pour qu’un <strong>container</strong> puisse être accessible depuis l’extérieur.
 Afin de publier un port nous utilisons l’option <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">HOST_PORT:CONTAINER_PORT</span></code>.</p>
 <p>Cela permet de publier un <strong>port du conteneur</strong> sur un <strong>port de la machine hôte</strong>.</p>
@@ -451,14 +597,14 @@ nous lançerons le container <strong>nginx</strong> avec la commande suivante :<
 <img alt="_images/image17.png" src="_images/image17.png" />
 </section>
 <section id="bind-mount">
-<h2>3.4 Bind-mount<a class="headerlink" href="#bind-mount" title="Permalink to this headline">¶</a></h2>
+<h2>3.4 Bind-mount<a class="headerlink" href="#bind-mount" title="Permalink to this headline"></a></h2>
 <p>Nous allons maintenant voir comment <strong>monter un répertoire de la machine hôte</strong> dans un container.</p>
 <p>Cela s’effectue grâce à l’option <code class="docutils literal notranslate"><span class="pre">-v</span> <span class="pre">&lt;HOST_PATH&gt;:&lt;CONTAINER_PATH&gt;</span></code></p>
 <p>Il existe une autre notation avec l’option <code class="docutils literal notranslate"><span class="pre">--mount</span> <span class="pre">type=bind,</span> <span class="pre">src=&lt;HOST_PATH&gt;,dst=&lt;CONTAINER_PATH&gt;</span></code></p>
 <p>Cela permet de partager,par exemple,le code source d’un programme présent sur une <strong>machine hôte</strong> avec des <strong>containers</strong>
 ou de monter la <strong>socket Unix</strong> du <strong>daemon Docker</strong> (<code class="docutils literal notranslate"><span class="pre">/var/run/docker.sock</span></code>) pour permettre à un container de dialoguer avec le <strong>daemon</strong>.</p>
 <section id="exemple-1-monter-un-dossier-www">
-<h3>3.4.1 Exemple 1 : monter un dossier ‘www’<a class="headerlink" href="#exemple-1-monter-un-dossier-www" title="Permalink to this headline">¶</a></h3>
+<h3>3.4.1 Exemple 1 : monter un dossier ‘www’<a class="headerlink" href="#exemple-1-monter-un-dossier-www" title="Permalink to this headline"></a></h3>
 <p>Quand vous développez une application et que vous modifiez le code source, il peut être intéressant que cela soit pris en compte dans le conteneur.
 C’est le cas lors du développement d’une <strong>application web</strong>.
 Nos <strong>fichiers sources</strong> sont sur une <strong>machine locale</strong>, et dans <strong>un conteneur</strong> nous avons un serveur <strong>WEB</strong> avec <strong>NGINX</strong> par exemple.
@@ -474,12 +620,12 @@ Nous allons alors monter le dossier <code class="docutils literal notranslate"><
 <img alt="_images/image18.png" src="_images/image18.png" />
 </section>
 <section id="exemple-2-interagir-avec-le-docker-daemom">
-<h3>3.4.2 Exemple 2 : Intéragir avec le Docker Daemom<a class="headerlink" href="#exemple-2-interagir-avec-le-docker-daemom" title="Permalink to this headline">¶</a></h3>
+<h3>3.4.2 Exemple 2 : Intéragir avec le Docker Daemom<a class="headerlink" href="#exemple-2-interagir-avec-le-docker-daemom" title="Permalink to this headline"></a></h3>
 <p>Dans cet exemple nous allons voir comment lier(bind) <code class="docutils literal notranslate"><span class="pre">/var/run/docker.sock</span></code>.
 Ce qui nous permettra d’interagir avec le <code class="docutils literal notranslate"><span class="pre">Docker</span> <span class="pre">Daemon</span></code> directement depuis le container et cela nous donnera accès à l’ <strong>API du Daemon</strong>.</p>
 <img alt="_images/image19.png" src="_images/image19.png" />
 <section id="pour-linux-uniquement">
-<h4>Pour LINUX UNIQUEMENT<a class="headerlink" href="#pour-linux-uniquement" title="Permalink to this headline">¶</a></h4>
+<h4>Pour LINUX UNIQUEMENT<a class="headerlink" href="#pour-linux-uniquement" title="Permalink to this headline"></a></h4>
 <p>Créons donc un simple container : avec l’image d’ <strong>Alpine</strong>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">it</span> <span class="o">--</span><span class="n">name</span> <span class="n">admin</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">sock</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">sock</span> <span class="n">alpine</span>
 </pre></div>
@@ -502,12 +648,12 @@ Sous quel format sont envoyés les instructions de configuration de l’image <s
 <p>Dans cette commande, à votre avis à quoi corresponde la chaine de caractère : <code class="docutils literal notranslate"><span class="pre">6b24...283b</span></code> ?</p>
 </section>
 <section id="pour-windows-uniquement">
-<h4>Pour WINDOWS UNIQUEMENT<a class="headerlink" href="#pour-windows-uniquement" title="Permalink to this headline">¶</a></h4>
+<h4>Pour WINDOWS UNIQUEMENT<a class="headerlink" href="#pour-windows-uniquement" title="Permalink to this headline"></a></h4>
 <p>Bientôt disponible ….</p>
 </section>
 </section>
 <section id="exemple-3-ecouter-les-actions-demandees-au-docker-daemon">
-<h3>3.4.3 Exemple 3 : Ecouter les actions demandées au Docker Daemon<a class="headerlink" href="#exemple-3-ecouter-les-actions-demandees-au-docker-daemon" title="Permalink to this headline">¶</a></h3>
+<h3>3.4.3 Exemple 3 : Ecouter les actions demandées au Docker Daemon<a class="headerlink" href="#exemple-3-ecouter-les-actions-demandees-au-docker-daemon" title="Permalink to this headline"></a></h3>
 <p>Nous allons lancer un autre dans laquel le <strong>socket</strong> est monté.
 Et nous allons écouter les actions demandées sur le <strong>Docker Daemon</strong>. <strong>Même ceux provenant d’autres containers</strong>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker container run –name admin -ti -v /var/run/docker.sock:/var/run/docker.sock alpine
@@ -519,7 +665,7 @@ Et nous allons écouter les actions demandées sur le <strong>Docker Daemon</str
 </section>
 </section>
 <section id="limitation-des-ressources">
-<h2>3.5 Limitation des ressources<a class="headerlink" href="#limitation-des-ressources" title="Permalink to this headline">¶</a></h2>
+<h2>3.5 Limitation des ressources<a class="headerlink" href="#limitation-des-ressources" title="Permalink to this headline"></a></h2>
 <p>Nous avons dit que le lancement d’un <strong>containeur</strong> revient en fait à exécuter un <strong>processeur</strong> , et par défaut, il n’y a pas de limite de consommation des ressources matériels.
 Par exemple, Un container pourra utiliser toute la RAM  et impacter tout les autres containeurs qui tournent sur la même machine hôte.</p>
 <p>Nous pouvons toutefois imposer des limites à un containeur.</p>
@@ -541,7 +687,7 @@ Lançons un containeur avec l’image <code class="docutils literal notranslate"
 <p>En utilisant la valeur du flag : <code class="docutils literal notranslate"><span class="pre">--cpus</span> <span class="pre">2</span></code> , nous limitons l’utilisation à 2 cœurs seulement. (<strong>50%</strong> d’utilisation)</p>
 </section>
 <section id="les-droits-dans-un-container">
-<h2>3.6 Les droits dans un container<a class="headerlink" href="#les-droits-dans-un-container" title="Permalink to this headline">¶</a></h2>
+<h2>3.6 Les droits dans un container<a class="headerlink" href="#les-droits-dans-un-container" title="Permalink to this headline"></a></h2>
 <p>Dans un containeur, s’il n’est pas précisé explicitement, l’utilisateur <code class="docutils literal notranslate"><span class="pre">root</span></code> sera utilisé comme propriétaire.
 L’utilisateur <code class="docutils literal notranslate"><span class="pre">root</span></code> du containeur correspond à l’utilisateur <code class="docutils literal notranslate"><span class="pre">root</span></code> de la machine hôte.</p>
 <p>Une bonne pratique est d’utiliser un autre utilisateur pour lancer le containeur.</p>
@@ -573,7 +719,7 @@ via la commande <code class="docutils literal notranslate"><span class="pre">top
 Nous verrons par la suite comme il est possible de configurer le <code class="docutils literal notranslate"><span class="pre">owner</span></code> d’un processus lors du montage de <strong>container</strong>.</p>
 </section>
 <section id="des-options-utiles">
-<h2>3.6 Des options utiles<a class="headerlink" href="#des-options-utiles" title="Permalink to this headline">¶</a></h2>
+<h2>3.6 Des options utiles<a class="headerlink" href="#des-options-utiles" title="Permalink to this headline"></a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul class="simple">
@@ -584,12 +730,12 @@ Nous verrons par la suite comme il est possible de configurer le <code class="do
 </div>
 </section>
 <section id="les-commandes-de-base-avec-docker">
-<h2>3.7 Les commandes de base avec Docker<a class="headerlink" href="#les-commandes-de-base-avec-docker" title="Permalink to this headline">¶</a></h2>
+<h2>3.7 Les commandes de base avec Docker<a class="headerlink" href="#les-commandes-de-base-avec-docker" title="Permalink to this headline"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="o">&lt;</span><span class="n">command</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<table class="colwidths-given docutils align-default" id="id16">
-<caption><span class="caption-text">Les commandes de base de docker container</span><a class="headerlink" href="#id16" title="Permalink to this table">¶</a></caption>
+<table class="colwidths-given docutils align-default" id="id14">
+<caption><span class="caption-text">Les commandes de base de docker container</span><a class="headerlink" href="#id14" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 50%" />
 <col style="width: 50%" />
@@ -714,7 +860,7 @@ Et le processus de PID 15 correspond à notre <code class="docutils literal notr
 <p>Avec l’option <code class="docutils literal notranslate"><span class="pre">-f</span></code> nous pouvons forcer l’arrêt d’un container et le supprimer dans la foulée.</p>
 </section>
 <section id="en-pratique">
-<h2>3.8 En pratique :<a class="headerlink" href="#en-pratique" title="Permalink to this headline">¶</a></h2>
+<h2>3.8 En pratique :<a class="headerlink" href="#en-pratique" title="Permalink to this headline"></a></h2>
 <p>Lançons quelques containers pour pratiquer, vous devez être en mesure de comprendre maintenant la finalité de ces 3 commandes :</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">80</span><span class="p">:</span><span class="mi">80</span> <span class="o">--</span><span class="n">name</span> <span class="n">www</span> <span class="n">nginx</span>
 </pre></div>
@@ -758,9 +904,9 @@ Par contre avec un :
 <p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">rm</span> <span class="pre">$(docker</span> <span class="pre">container</span> <span class="pre">ls</span> <span class="pre">-a</span> <span class="pre">-q)</span></code></p>
 </section>
 <section id="exercices">
-<h2>3.9 Exercices :<a class="headerlink" href="#exercices" title="Permalink to this headline">¶</a></h2>
+<h2>3.9 Exercices :<a class="headerlink" href="#exercices" title="Permalink to this headline"></a></h2>
 <section id="exercice-1-hello-from-alpine">
-<h3>3.9.1 Exercice 1 : Hello From Alpine<a class="headerlink" href="#exercice-1-hello-from-alpine" title="Permalink to this headline">¶</a></h3>
+<h3>3.9.1 Exercice 1 : Hello From Alpine<a class="headerlink" href="#exercice-1-hello-from-alpine" title="Permalink to this headline"></a></h3>
 <p>Le but de ce premier exercice est de lancer des containers basés sur l’image <strong>alpine</strong>.</p>
 <ol class="arabic simple">
 <li><p>Lancez un container basé sur alpine en lui fournissant la command echo hello</p></li>
@@ -769,7 +915,7 @@ Par contre avec un :
 </ol>
 </section>
 <section id="exercice-2-shell-interactif">
-<h3>3.9.2 Exercice 2 : Shell intéractif<a class="headerlink" href="#exercice-2-shell-interactif" title="Permalink to this headline">¶</a></h3>
+<h3>3.9.2 Exercice 2 : Shell intéractif<a class="headerlink" href="#exercice-2-shell-interactif" title="Permalink to this headline"></a></h3>
 <p>Le but de cet exercice est lancer des containers en mode <strong>intéractif</strong>.</p>
 <ol class="arabic simple">
 <li><p>Lancez un container basé sur alpine en mode <strong>interactif</strong> sans lui spécifier de commande</p></li>
@@ -780,7 +926,7 @@ Par contre avec un :
 </ol>
 </section>
 <section id="exercice-3-foreground-background">
-<h3>3.9.3 Exercice 3 : foreground / background<a class="headerlink" href="#exercice-3-foreground-background" title="Permalink to this headline">¶</a></h3>
+<h3>3.9.3 Exercice 3 : foreground / background<a class="headerlink" href="#exercice-3-foreground-background" title="Permalink to this headline"></a></h3>
 <p>Le but de cet exercice est de créer des containers en <strong>foreground</strong> et en <strong>background</strong>.</p>
 <ol class="arabic simple">
 <li><p>Lancez un container basé sur alpine en lui spécifiant la commande <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">8.8.8.8</span></code>.</p></li>
@@ -802,7 +948,7 @@ Par contre avec un :
 <p>Le container est t-il toujours en cours d’exécution ?</p>
 </section>
 <section id="exercice-4-publication-de-port">
-<h3>3.9.4 Exercice 4 : Publication de port<a class="headerlink" href="#exercice-4-publication-de-port" title="Permalink to this headline">¶</a></h3>
+<h3>3.9.4 Exercice 4 : Publication de port<a class="headerlink" href="#exercice-4-publication-de-port" title="Permalink to this headline"></a></h3>
 <p>Le but de cet exercice est de créer un container <strong>en exposant un port</strong> sur la machine <strong>hôte</strong>.</p>
 <ol class="arabic simple">
 <li><p>Lancez un container basé sur <code class="docutils literal notranslate"><span class="pre">nginx</span></code> et publiez le <code class="docutils literal notranslate"><span class="pre">port</span> <span class="pre">80</span></code> du container sur le <code class="docutils literal notranslate"><span class="pre">port</span> <span class="pre">8080</span></code> de l’hôte.</p></li>
@@ -812,7 +958,7 @@ Par contre avec un :
 <p>Qu’observez-vous ?</p>
 </section>
 <section id="exercice-5-liste-des-containers">
-<h3>3.9.5 Exercice 5 : Liste des containers<a class="headerlink" href="#exercice-5-liste-des-containers" title="Permalink to this headline">¶</a></h3>
+<h3>3.9.5 Exercice 5 : Liste des containers<a class="headerlink" href="#exercice-5-liste-des-containers" title="Permalink to this headline"></a></h3>
 <p>Le but de cet exercice est de montrer les différentes options pour lister les containers du système.</p>
 <ol class="arabic simple">
 <li><p>Listez les containers en cours d’exécution.</p></li>
@@ -824,7 +970,7 @@ Par contre avec un :
 </ol>
 </section>
 <section id="exercice-6-inspection-d-un-container">
-<h3>3.9.6 Exercice 6 : Inspection d’un container<a class="headerlink" href="#exercice-6-inspection-d-un-container" title="Permalink to this headline">¶</a></h3>
+<h3>3.9.6 Exercice 6 : Inspection d’un container<a class="headerlink" href="#exercice-6-inspection-d-un-container" title="Permalink to this headline"></a></h3>
 <p>Le but de cet exercice est l’inspection d’un container.</p>
 <ol class="arabic simple">
 <li><p>Lancez, en <strong>background</strong>, un nouveau container basé sur <strong>nginx</strong> en publiant le <strong>port 80</strong> du container sur le <strong>port 3000</strong> de la machine host.</p></li>
@@ -837,7 +983,7 @@ Par contre avec un :
 </ol>
 </section>
 <section id="exercice-7-exec-dans-un-container">
-<h3>3.9.7 Exercice 7 : exec dans un container<a class="headerlink" href="#exercice-7-exec-dans-un-container" title="Permalink to this headline">¶</a></h3>
+<h3>3.9.7 Exercice 7 : exec dans un container<a class="headerlink" href="#exercice-7-exec-dans-un-container" title="Permalink to this headline"></a></h3>
 <p>Le but de cet exercice est de montrer comment lancer un processus dans un container existant.</p>
 <ol class="arabic simple">
 <li><p>Lancez un container en background, basé sur l’image alpine. Spécifiez la commande <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">8.8.8.8</span></code> et le nom ping avec l’option <code class="docutils literal notranslate"><span class="pre">--name</span></code>.</p></li>
@@ -851,7 +997,7 @@ Par contre avec un :
 <p>Qu’observez vous par rapport aux identifiants des processus ?</p>
 </section>
 <section id="exercice-8-cleanup">
-<h3>3.9.8 Exercice 8 : cleanup<a class="headerlink" href="#exercice-8-cleanup" title="Permalink to this headline">¶</a></h3>
+<h3>3.9.8 Exercice 8 : cleanup<a class="headerlink" href="#exercice-8-cleanup" title="Permalink to this headline"></a></h3>
 <p>Le but de cet exercice est de stopper et de supprimer les containers existants.</p>
 <ol class="arabic simple">
 <li><p>Listez tous les containers (<strong>actifs</strong> et <strong>inactifs</strong>)</p></li>
@@ -864,7 +1010,7 @@ Par contre avec un :
 </section>
 </section>
 <section id="en-resume">
-<h2>3.10 En résumé<a class="headerlink" href="#en-resume" title="Permalink to this headline">¶</a></h2>
+<h2>3.10 En résumé<a class="headerlink" href="#en-resume" title="Permalink to this headline"></a></h2>
 <p>Nous avons commencé à jouer avec les containers et vu les commandes les plus utilisées pour la gestion du cycle de vie des containers
 (<code class="docutils literal notranslate"><span class="pre">run</span></code>, <code class="docutils literal notranslate"><span class="pre">exec</span></code>, <code class="docutils literal notranslate"><span class="pre">ls</span></code>, <code class="docutils literal notranslate"><span class="pre">rm</span></code>, <code class="docutils literal notranslate"><span class="pre">inspect</span></code>). Nous les utiliserons souvent dans la suite du cours.</p>
 <p>C’est parfois utile d’avoir un <code class="docutils literal notranslate"><span class="pre">Shell</span></code> directement sur la machine hôte.
@@ -874,7 +1020,7 @@ Par contre le <code class="docutils literal notranslate"><span class="pre">docke
 </section>
 </section>
 <section id="les-images-docker">
-<h1>4.0 Les images Docker<a class="headerlink" href="#les-images-docker" title="Permalink to this headline">¶</a></h1>
+<h1>4.0 Les images Docker<a class="headerlink" href="#les-images-docker" title="Permalink to this headline"></a></h1>
 <p>Nous allons parler des images <strong>Docker</strong>.
 Une image est un système de fichier qui contient une application et l’ensemble des éléments nécessaires pour la faire tourner.
 On peut voir une image comme étant un <strong>template</strong> permettant la création d’un container.
@@ -888,7 +1034,7 @@ A cet OS on va ajouter une ou plusieurs couches liées à l’environnement de n
 <p>Et l’ensemble de ses couches forment l’image.</p>
 <img alt="_images/image34.png" src="_images/image34.png" />
 <section id="union-filesystem">
-<h2>4.1 Union Filesystem<a class="headerlink" href="#union-filesystem" title="Permalink to this headline">¶</a></h2>
+<h2>4.1 Union Filesystem<a class="headerlink" href="#union-filesystem" title="Permalink to this headline"></a></h2>
 <p>Une image est donc constituée d’un ensemble de <strong>layers</strong> ou <strong>couches</strong> et chacune d’elles est en <strong>lectures seules</strong>. Et c’est le rôle du <strong>storage/graph driver</strong> de constituer le système de fichier global de l’instance du container.</p>
 <p>Le <strong>Graph driver</strong> ajoute en plus une couche qui est en <strong>lecture/écriture</strong> pour permettre au processus de modifier le filesystem sans que les modifications ne soient persistées dans les layers de l’image.
 Il existe plusieurs <strong>filesystem</strong> et le choix du système dépend principalement du <strong>filesystem hôte</strong>.
@@ -915,9 +1061,9 @@ Le fichier original est alors copier dans la layer qui est en <strong>lecture / 
 <img alt="_images/image35.png" src="_images/image35.png" />
 </section>
 <section id="id2">
-<h2>4.2 Exercices<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>4.2 Exercices<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <section id="exercice-1-container-s-layer">
-<h3>4.2.1 Exercice 1 : Container’s layer<a class="headerlink" href="#exercice-1-container-s-layer" title="Permalink to this headline">¶</a></h3>
+<h3>4.2.1 Exercice 1 : Container’s layer<a class="headerlink" href="#exercice-1-container-s-layer" title="Permalink to this headline"></a></h3>
 <p>La layer d’un container, est la layer <strong>read-write</strong> créé lorsqu’un container est lancé.
 C’est la layer dans laquelle tous les changements effectués dans le container sont sauvegardés.
 Cette layer est supprimée avec le container et ne doit donc pas être utilisée comme un stockage persistant.</p>
@@ -1023,7 +1169,7 @@ Chacun correspond à une instance de l’image ubuntu et a sa propre <strong>lay
 </section>
 </section>
 <section id="dockerfile">
-<h2>4.3 DockerFile<a class="headerlink" href="#dockerfile" title="Permalink to this headline">¶</a></h2>
+<h2>4.3 DockerFile<a class="headerlink" href="#dockerfile" title="Permalink to this headline"></a></h2>
 <p>Le <strong>DockerFile</strong> est un fichier texte qui est utilisé pour la construction d’<strong>une image DOCKER</strong>.
 Il contient des instructions pour la construction du système de fichier d’une image.
 Nous allons partir d’un fichier de base qui sera enrichie par notre application et l’ensemble de ses dépendances.</p>
@@ -1088,7 +1234,7 @@ Les instruction <strong>CMD</strong> et <strong>ENTRYPOINT</strong> sont les der
 <img alt="_images/image43.png" src="_images/image43.png" />
 </section>
 <section id="creation-dimages">
-<h2>4.3 Création d’images<a class="headerlink" href="#creation-dimages" title="Permalink to this headline">¶</a></h2>
+<h2>4.3 Création d’images<a class="headerlink" href="#creation-dimages" title="Permalink to this headline"></a></h2>
 <p>Il est temps maintenant de créer notre image.
 Dans un premier temps il faut : créer un fichier <strong>DockerFile</strong> qui contiendra les instructions nécessaires.
 Ensuite il faut utiliser la commande :</p>
@@ -1103,7 +1249,7 @@ Ensuite il faut utiliser la commande :</p>
 </ul>
 </section>
 <section id="mise-en-pratique">
-<h2>4.4 Mise en pratique<a class="headerlink" href="#mise-en-pratique" title="Permalink to this headline">¶</a></h2>
+<h2>4.4 Mise en pratique<a class="headerlink" href="#mise-en-pratique" title="Permalink to this headline"></a></h2>
 <p>Nous allons créer une simple application <strong>NODEJS</strong> qui renverra la date et l’heure.
 Tout l’environnement nécessaire à l’exécution de ce script sera intégré dans une image que nous allons créer.</p>
 <p>Dans un dossier, créez le fichier <code class="docutils literal notranslate"><span class="pre">index.js</span></code>:</p>
@@ -1194,9 +1340,9 @@ en précisant que nous utiliserons le <code class="docutils literal notranslate"
 <p>Et je peux maintenant utiliser mon navigateur à l’adresse : <a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
 </section>
 <section id="exercices-creation-dimages">
-<h2>4.5 Exercices : Création d’images<a class="headerlink" href="#exercices-creation-dimages" title="Permalink to this headline">¶</a></h2>
+<h2>4.5 Exercices : Création d’images<a class="headerlink" href="#exercices-creation-dimages" title="Permalink to this headline"></a></h2>
 <section id="exercice-1-creation-dune-image-a-partir-dun-container">
-<h3>4.5.1 Exercice 1 : Création d’une image à partir d’un container<a class="headerlink" href="#exercice-1-creation-dune-image-a-partir-dun-container" title="Permalink to this headline">¶</a></h3>
+<h3>4.5.1 Exercice 1 : Création d’une image à partir d’un container<a class="headerlink" href="#exercice-1-creation-dune-image-a-partir-dun-container" title="Permalink to this headline"></a></h3>
 <ol class="arabic simple">
 <li><p>Lancez une container basé sur une image <strong>alpine</strong>, en mode <strong>interactif</strong>, et en lui donnant le nom <code class="docutils literal notranslate"><span class="pre">c1</span></code>.</p></li>
 <li><p>Lancez la commande <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">google.com</span></code>.</p></li>
@@ -1213,7 +1359,7 @@ en précisant que nous utiliserons le <code class="docutils literal notranslate"
 </ol>
 </section>
 <section id="exercice-2-dockerizez-un-serveur-web-simple">
-<h3>4.5.2 Exercice 2 : Dockerizez un serveur web simple<a class="headerlink" href="#exercice-2-dockerizez-un-serveur-web-simple" title="Permalink to this headline">¶</a></h3>
+<h3>4.5.2 Exercice 2 : Dockerizez un serveur web simple<a class="headerlink" href="#exercice-2-dockerizez-un-serveur-web-simple" title="Permalink to this headline"></a></h3>
 <ol class="arabic simple">
 <li><p>Créer un nouveau répertoire et développez un serveur <strong>HTTP</strong> qui expose le endpoint <code class="docutils literal notranslate"><span class="pre">/ping</span></code> sur le <strong>port 80</strong> et répond par <strong>PONG</strong>. Inspirez vous de l’exemple du cours ci-dessus.</p></li>
 <li><p>Dans le même répertoire, créez le fichier <strong>Dockerfile</strong> qui servira à construire l’image de l’application. Ce fichier devra décrire les actions suivantes :</p></li>
@@ -1236,11 +1382,11 @@ en précisant que nous utiliserons le <code class="docutils literal notranslate"
 </ol>
 </section>
 <section id="exercice-3-entrypoint-et-cmd">
-<h3>4.5.3 Exercice 3 : ENTRYPOINT et CMD<a class="headerlink" href="#exercice-3-entrypoint-et-cmd" title="Permalink to this headline">¶</a></h3>
+<h3>4.5.3 Exercice 3 : ENTRYPOINT et CMD<a class="headerlink" href="#exercice-3-entrypoint-et-cmd" title="Permalink to this headline"></a></h3>
 <p>Nous allons illustrer sur plusieurs exemples l’utilisation des instructions <strong>ENTRYPOINT</strong> et <strong>CMD</strong>.
 Ces instructions sont utilisées dans un <strong>Dockerfile</strong> pour définir la commande qui sera lancée dans un container.</p>
 <section id="format">
-<h4>Format<a class="headerlink" href="#format" title="Permalink to this headline">¶</a></h4>
+<h4>Format<a class="headerlink" href="#format" title="Permalink to this headline"></a></h4>
 <p>Dans un <strong>Dockerfile</strong>, les instructions <strong>ENTRYPOINT</strong> et <strong>CMD</strong> peuvent être spécifiées selon 2 formats:</p>
 <ul class="simple">
 <li><p>le format <code class="docutils literal notranslate"><span class="pre">shell</span></code>, ex: <code class="docutils literal notranslate"><span class="pre">ENTRYPOINT</span> <span class="pre">/usr/bin/node</span> <span class="pre">index.js</span></code>. Une commande spécifée dans ce format sera exécutée via un shell présent dans l’image. Cela peut notamment poser des problématiques car les signaux ne sont pas forwardés aux processus forkés.</p></li>
@@ -1248,7 +1394,7 @@ Ces instructions sont utilisées dans un <strong>Dockerfile</strong> pour défin
 </ul>
 </section>
 <section id="re-ecriture-a-lexecution-dun-container">
-<h4>Ré-écriture à l’exécution d’un container<a class="headerlink" href="#re-ecriture-a-lexecution-dun-container" title="Permalink to this headline">¶</a></h4>
+<h4>Ré-écriture à l’exécution d’un container<a class="headerlink" href="#re-ecriture-a-lexecution-dun-container" title="Permalink to this headline"></a></h4>
 <p><strong>ENTRYPOINT</strong> et <strong>CMD</strong> sont 2 instructions du Dockerfile, mais elle peuvent cependant être écrasées au lancement d’un container:</p>
 <ul class="simple">
 <li><p>pour spécifier une autre valeur pour l’<strong>ENTRYPOINT</strong>, on utilisera l’option <code class="docutils literal notranslate"><span class="pre">--entrypoint</span></code>, par exemple: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">run</span> <span class="pre">--entrypoint</span> <span class="pre">echo</span> <span class="pre">alpine</span> <span class="pre">hello</span></code>.</p></li>
@@ -1256,10 +1402,14 @@ Ces instructions sont utilisées dans un <strong>Dockerfile</strong> pour défin
 </ul>
 </section>
 <section id="instruction-entrypoint-utilisee-seule">
-<h4>Instruction ENTRYPOINT utilisée seule<a class="headerlink" href="#instruction-entrypoint-utilisee-seule" title="Permalink to this headline">¶</a></h4>
+<h4>Instruction ENTRYPOINT utilisée seule<a class="headerlink" href="#instruction-entrypoint-utilisee-seule" title="Permalink to this headline"></a></h4>
 <p>L’utilisation de l’instruction <strong>ENTRYPOINT</strong> seule permet de créer un wrapper autour de l’application.
 Nous pouvons définir une commande de base et lui donner des paramètres suplémentaires, si nécessaire, au lancement d’un container.</p>
 <p>Dans ce premier exemple, vous allez créer un fichier <strong>Dockerfile-v1</strong> contenant les instructions suivantes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">alpine</span>
+<span class="n">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&quot;ping&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
 <p>Créez ensuite une image, nommée <code class="docutils literal notranslate"><span class="pre">ping:1.0</span></code>, à partir de ce fichier.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">image</span> <span class="n">build</span> <span class="o">-</span><span class="n">f</span> <span class="n">Dockerfile</span><span class="o">-</span><span class="n">v1</span> <span class="o">-</span><span class="n">t</span> <span class="n">ping</span><span class="p">:</span><span class="mf">1.0</span> <span class="o">.</span>
 </pre></div>
@@ -1306,9 +1456,13 @@ nous ajoutons également l’option <code class="docutils literal notranslate"><
 Comme nous pouvons le voir dans cet exemple, l’image que nous avons créée est un wrapper autour de l’utilitaire <code class="docutils literal notranslate"><span class="pre">ping</span></code> et nécessite de spécifier des paramêtres supplémentaires au lancement d’un container.</p>
 </section>
 <section id="instructions-cmd-utilisee-seule">
-<h4>Instructions CMD utilisée seule<a class="headerlink" href="#instructions-cmd-utilisee-seule" title="Permalink to this headline">¶</a></h4>
+<h4>Instructions CMD utilisée seule<a class="headerlink" href="#instructions-cmd-utilisee-seule" title="Permalink to this headline"></a></h4>
 <p>De la même manière, il est possible de n’utiliser que l’instruction <strong>CMD</strong> dans un <strong>Dockerfile</strong>, c’est d’ailleurs très souvent l’approche qui est utilisée car il est plus simple de manipuler les instructions <strong>CMD</strong> que les <strong>ENTRYPOINT</strong>.
 Créez un fichier <strong>Dockerfile-v2</strong> contenant les instructions suivantes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">alpine</span>
+<span class="n">CMD</span> <span class="p">[</span><span class="s2">&quot;ping&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
 <p>Créez une image, nommée <strong>ping:2.0</strong> , à partir de ce fichier.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">image</span> <span class="n">build</span> <span class="o">-</span><span class="n">f</span> <span class="n">Dockerfile</span><span class="o">-</span><span class="n">v2</span> <span class="o">-</span><span class="n">t</span> <span class="n">ping</span><span class="p">:</span><span class="mf">2.0</span> <span class="o">.</span>
 </pre></div>
@@ -1358,7 +1512,7 @@ round-trip min/avg/max = 8.512/9.086/10.223 ms
 </div>
 </section>
 <section id="instructions-entrypoint-et-cmd">
-<h4>Instructions ENTRYPOINT et CMD<a class="headerlink" href="#instructions-entrypoint-et-cmd" title="Permalink to this headline">¶</a></h4>
+<h4>Instructions ENTRYPOINT et CMD<a class="headerlink" href="#instructions-entrypoint-et-cmd" title="Permalink to this headline"></a></h4>
 <p>Il est également possible d’utiliser ENTRYPOINT et CMD en même temps dans un Dockerfile, ce qui permet à la fois de créer un wrapper autour d’une application et de spécifier un comportement par défaut.</p>
 <p>Nous allons illustrer cela sur un nouvel exemple et créer un fichier Dockerfile-v3 contenant les instructions suivantes:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">alpine</span>
@@ -1397,10 +1551,10 @@ $ docker container run ping:3.0
 Cela nous permet à la fois d’avoir un comportement par défaut et de pouvoir facilement le modifier en spécifiant une autre commande.</p>
 </section>
 <section id="pour-aller-plus-loin-ou-est-stockee-mon-image">
-<h4>Pour aller plus loin : ou est stockée mon image ?<a class="headerlink" href="#pour-aller-plus-loin-ou-est-stockee-mon-image" title="Permalink to this headline">¶</a></h4>
+<h4>Pour aller plus loin : ou est stockée mon image ?<a class="headerlink" href="#pour-aller-plus-loin-ou-est-stockee-mon-image" title="Permalink to this headline"></a></h4>
 </section>
 <section id="stockage-d-une-image">
-<h4>Stockage d’une image<a class="headerlink" href="#stockage-d-une-image" title="Permalink to this headline">¶</a></h4>
+<h4>Stockage d’une image<a class="headerlink" href="#stockage-d-une-image" title="Permalink to this headline"></a></h4>
 <p>Dans un exercice précédent, nous avons créé une image nommée ping:1.0, nous allons voir ici ou cette image est stockée.</p>
 <p>Reprenons le Dockerfile de l’exercice :</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">ubuntu</span><span class="p">:</span><span class="mf">16.04</span>
@@ -1509,7 +1663,7 @@ L’ID de l’image (dans sa version courte) est 00a905f2bd5a, nous allons voir 
 </section>
 </section>
 <section id="multi-stages-build">
-<h2>4.6 Multi-Stages Build<a class="headerlink" href="#multi-stages-build" title="Permalink to this headline">¶</a></h2>
+<h2>4.6 Multi-Stages Build<a class="headerlink" href="#multi-stages-build" title="Permalink to this headline"></a></h2>
 <p>Depuis la version <code class="docutils literal notranslate"><span class="pre">17.05</span></code> de Docker, nous pouvons découper le Build d’une image en plusieurs étapes.</p>
 <p>Un cas d’usage courant :</p>
 <p><a href="#id9"><span class="problematic" id="id10">**</span></a>Etape 1 <a href="#id11"><span class="problematic" id="id12">**</span></a>: Avoir une image de base contenant l’ensemble des librairies et binaires nécessaires pour la création d’artéfacts.</p>
@@ -1532,14 +1686,14 @@ La premiere instruction <strong>FROM</strong> utilise une image NODE dans laquel
 <p>Cela peut être vérifié en faisant le Build de l’image :</p>
 <img alt="_images/image30.png" src="_images/image30.png" />
 <section id="id13">
-<h3>4.6.1 Mise en pratique<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<h3>4.6.1 Mise en pratique<a class="headerlink" href="#id13" title="Permalink to this headline"></a></h3>
 <p>Dans cette mise en pratique, nous allons illustrer le multi stage build.</p>
 <section id="rappel">
-<h4>Rappel<a class="headerlink" href="#rappel" title="Permalink to this headline">¶</a></h4>
+<h4>Rappel<a class="headerlink" href="#rappel" title="Permalink to this headline"></a></h4>
 <p>Comme nous l’avons vu, le Dockerfile contient une liste d’instructions qui permet de créer une image. La première instruction est FROM, elle définit l’image de base utilisée. Cette image de base contient souvent beaucoup d’éléments (binaires et librairies) dont l’application finale n’a pas besoin (compilateur, …). Ceci qui peut impacter de façon considérable la taille de l’image et également sa sécurité puisque cela peut considérablement augmenter sa surface d’attaque. C’est la qu’intervint le multistage build…</p>
 </section>
 <section id="un-serveur-http-ecrit-en-go">
-<h4>Un serveur http écrit en Go<a class="headerlink" href="#un-serveur-http-ecrit-en-go" title="Permalink to this headline">¶</a></h4>
+<h4>Un serveur http écrit en Go<a class="headerlink" href="#un-serveur-http-ecrit-en-go" title="Permalink to this headline"></a></h4>
 <p>Prenons l’exemple du programme suivant écrit en Go.</p>
 <p>Dans un nouveau répertoire, créez le fichier http.go contenant le code suivant. Celui-ci définit un simple serveur http qui écoute sur le port 8080 et qui expose le endpoint /whoami en GET. A chaque requête, il renvoie le nom de la machine hôte sur laquelle il tourne.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package</span> <span class="n">main</span>
@@ -1564,7 +1718,7 @@ La premiere instruction <strong>FROM</strong> utilise une image NODE dans laquel
 </div>
 </section>
 <section id="dockerfile-traditionel">
-<h4>Dockerfile traditionel<a class="headerlink" href="#dockerfile-traditionel" title="Permalink to this headline">¶</a></h4>
+<h4>Dockerfile traditionel<a class="headerlink" href="#dockerfile-traditionel" title="Permalink to this headline"></a></h4>
 <p>Afin de créer une image pour cette application, créez tout dabord le fichier Dockerfile avec le contenu suivant (placez ce fichier dans le même répertoire que http.go):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">golang</span><span class="p">:</span><span class="mf">1.17</span>
 <span class="n">WORKDIR</span> <span class="o">/</span><span class="n">go</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">app</span>
@@ -1588,7 +1742,7 @@ La premiere instruction <strong>FROM</strong> utilise une image NODE dans laquel
 <p>L’image obtenue a une taille très conséquente car elle contient l’ensemble de la toolchain du langage Go. Or, une fois que le binaire a été compilé, nous n’avons plus besoin du compilateur dans l’image finale.</p>
 </section>
 <section id="dockerfile-utilisant-un-build-multi-stage">
-<h4>Dockerfile utilisant un build multi-stage<a class="headerlink" href="#dockerfile-utilisant-un-build-multi-stage" title="Permalink to this headline">¶</a></h4>
+<h4>Dockerfile utilisant un build multi-stage<a class="headerlink" href="#dockerfile-utilisant-un-build-multi-stage" title="Permalink to this headline"></a></h4>
 <p>Le multi-stage build, introduit dans la version 17.05 de Docker permet, au sein d’un seul Dockerfile, d’effectuer le process de build en plusieurs étapes. Chacune des étapes peut réutiliser des artefacts (fichiers résultant de compilation, assets web, …) créés lors des étapes précédentes. Ce Dockerfile aura plusieurs instructions FROM mais seule la dernière sera utilisée pour la construction de l’image finale.</p>
 <p>Si nous reprenons l’exemple du serveur http ci dessus, nous pouvons dans un premier temps compiler le code source en utilisant l’image golang contenant le compilateur. Une fois le binaire créé, nous pouvons utiliser une image de base vide, nommée scratch, et copier le binaire généré précédemment.</p>
 <p>Remplacer le contenu du fichier Dockerfile avec les instructions suivantes:</p>
@@ -1629,7 +1783,7 @@ La premiere instruction <strong>FROM</strong> utilise une image NODE dans laquel
 </section>
 </section>
 <section id="prise-en-compte-du-cache">
-<h2>4.7 Prise en compte du cache<a class="headerlink" href="#prise-en-compte-du-cache" title="Permalink to this headline">¶</a></h2>
+<h2>4.7 Prise en compte du cache<a class="headerlink" href="#prise-en-compte-du-cache" title="Permalink to this headline"></a></h2>
 <p>Quand on écrit un Dockerfile, on doit prendre en compte le mécanisme de cache.</p>
 <p>Pour optimiser le temps nécessaire pour construire l’image.</p>
 <p>Quand une image est créée chaque instruction créée une layer et en fonction de la complexité du Dockerfile, le premier build peut prendre un peu de temps mais les suivant seront très rapide parce que les layers existantes seront réutilisés.</p>
@@ -1684,7 +1838,7 @@ Le cache n’est pas utilisé car le DOCKERFILE a été modifié alors tout est 
 <img alt="_images/image46.png" src="_images/image46.png" />
 <p>Le code source est rechargé sans avoir à reconstruire les dépendances.</p>
 <section id="exercice-prise-en-compte-du-cache">
-<h3>4.7.1 Exercice : Prise en compte du cache<a class="headerlink" href="#exercice-prise-en-compte-du-cache" title="Permalink to this headline">¶</a></h3>
+<h3>4.7.1 Exercice : Prise en compte du cache<a class="headerlink" href="#exercice-prise-en-compte-du-cache" title="Permalink to this headline"></a></h3>
 <ol class="arabic simple">
 <li><p>Modifiez le code du serveur pong de l’exercice précédent. Vous pouvez par exemple ajouter une instruction qui loggue une chaine de caractère.</p></li>
 <li><p>Construisez une nouvelle image en la taguant pong:1.1</p></li>
@@ -1695,7 +1849,7 @@ Le cache n’est pas utilisé car le DOCKERFILE a été modifié alors tout est 
 </section>
 </section>
 <section id="le-contexte-de-build">
-<h2>4.8 Le contexte de Build<a class="headerlink" href="#le-contexte-de-build" title="Permalink to this headline">¶</a></h2>
+<h2>4.8 Le contexte de Build<a class="headerlink" href="#le-contexte-de-build" title="Permalink to this headline"></a></h2>
 <p>Quand on construit une image Docker avec la commande Docker image build.
 La première chose que le client Docker fait, c’est d’envoyer au Daemon, sous forme d’une archive Tar, l’ensemble des fichiers nécessaire pour construire le système de fichier de l’image.
 Cet ensemble constitue le Build Context.
@@ -1723,7 +1877,7 @@ D’où l’intérêt d’utiliser un fichier .DOCKERIGNORE pour filtrer les fic
 <p>Dans une application NODEJS, nous pourrions aussi ajouter le répertoire node_module qui contient les dépendances de l’application dans le .dockerignore.</p>
 </section>
 <section id="les-commandes-de-base-avec-docker-image">
-<h2>4.9 Les commandes de base avec docker image.<a class="headerlink" href="#les-commandes-de-base-avec-docker-image" title="Permalink to this headline">¶</a></h2>
+<h2>4.9 Les commandes de base avec docker image.<a class="headerlink" href="#les-commandes-de-base-avec-docker-image" title="Permalink to this headline"></a></h2>
 <p><strong>La commande PULL.</strong></p>
 <p>Permet de télécharger une image à partir d’un registry, par défault : Docker Hub.</p>
 <img alt="_images/image51.png" src="_images/image51.png" />
@@ -1745,12 +1899,12 @@ Mais avant il faut avoir précisé ses identifiants de connexion au registry ave
 <p>Save permet de sauvegarder une image
 et Load permet de charger une image à partir d’une sauvegarde.</p>
 <img alt="_images/image44.png" src="_images/image44.png" />
-<p><a href="#id14"><span class="problematic" id="id15">**</span></a>La commande : rm **</p>
+<p><strong>La commande : rm</strong></p>
 <p>Supprime une image avec l’ensemble de ses layers.
 Plusieurs images peuvent être supprimées en même temps.</p>
 <img alt="_images/image45.png" src="_images/image45.png" />
 <section id="exercice-analyse-du-contenu-d-une-image">
-<h3>4.9.1 Exercice : Analyse du contenu d’une image<a class="headerlink" href="#exercice-analyse-du-contenu-d-une-image" title="Permalink to this headline">¶</a></h3>
+<h3>4.9.1 Exercice : Analyse du contenu d’une image<a class="headerlink" href="#exercice-analyse-du-contenu-d-une-image" title="Permalink to this headline"></a></h3>
 <ol class="arabic simple">
 <li><p>Télécharger l’image mongo:3.6 en local</p></li>
 <li><p>Quelles sont les différentes étapes de constructions de l’image</p></li>
@@ -1763,7 +1917,7 @@ Plusieurs images peuvent être supprimées en même temps.</p>
 </ol>
 <blockquote>
 <div><ul class="simple">
-<li><p>Extrayez le contenu de cette archive avec la commande tar -xvf, qu’observez-vous ?</p></li>
+<li><p>Extrayez le contenu de cette archive avec la commande tar -xvf, qu’observez-vous?</p></li>
 <li><p>Extrayez le contenu d’une des layers, qu’observez-vous ?</p></li>
 </ul>
 </div></blockquote>
@@ -1775,181 +1929,33 @@ Plusieurs images peuvent être supprimées en même temps.</p>
 </section>
 
 
+           </div>
           </div>
-          
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Cours de BTS SIO." accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bauer Baptiste.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">Cours BTS SIO</a></h1>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">1.0 Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#quick-wins">1.1 Quick Wins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#des-stacks-completes">1.2 Des Stacks complètes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#quelques-concepts-utiles-pour-les-developpeurs">1.3 Quelques concepts utiles pour les Développeurs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#un-container-linux-cest-quoi">1.3.1 Un container Linux, c’est quoi ?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#containers-linux-les-namespaces">1.3.2 Containers Linux : Les Namespaces</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#containers-linux-control-groups-cgroups">1.3.3 Containers Linux : Control Groups (cgroups)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#containers-linux-vm-container">1.3.4 Containers Linux : VM/Container</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#architecture-micro-services">1.3.5 Architecture micro-services</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#questionnaire-de-synthese">1.3.5 Questionnaire de synthèse</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#la-plateforme-docker">2.0 La plateforme Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#le-modele-client-serveur">2.1 Le modèle client/serveur</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#le-serveur-dockerd">2.1.1 Le serveur : Dockerd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#le-client-docker">2.1.2 Le client : docker</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#concepts-essentiels">2.1.3 Concepts essentiels</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#docker-hub">2.1.4 Docker Hub</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cluster-swarm">2.1.4 Cluster Swarm</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#installation-de-docker">2.2 Installation de Docker</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installation-pour-windows-10-ou-macos">Installation pour Windows 10 ou MacOS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installation-pour-linux">Installation pour Linux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#verification-de-l-installation">Vérification de l’installation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#les-containers-avec-docker">3.0 Les containers avec Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#hello-world">3.1 Hello World</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ubuntu-sous-docker">3.2 Ubuntu sous docker</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#un-container-dans-un-mode-interactif">3.2 Un container dans un mode Interactif</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#container-nginx-en-foreground">Container NGINX en <strong>foreground</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#container-nginx-en-background">Container NGINX en <strong>background</strong></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#publication-de-port">3.3 Publication de port.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#bind-mount">3.4 Bind-mount</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#exemple-1-monter-un-dossier-www">3.4.1 Exemple 1 : monter un dossier ‘www’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exemple-2-interagir-avec-le-docker-daemom">3.4.2 Exemple 2 : Intéragir avec le Docker Daemom</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#pour-linux-uniquement">Pour LINUX UNIQUEMENT</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pour-windows-uniquement">Pour WINDOWS UNIQUEMENT</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#exemple-3-ecouter-les-actions-demandees-au-docker-daemon">3.4.3 Exemple 3 : Ecouter les actions demandées au Docker Daemon</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#limitation-des-ressources">3.5 Limitation des ressources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#les-droits-dans-un-container">3.6 Les droits dans un container</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#des-options-utiles">3.6 Des options utiles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#les-commandes-de-base-avec-docker">3.7 Les commandes de base avec Docker</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#en-pratique">3.8 En pratique :</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#exercices">3.9 Exercices :</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-1-hello-from-alpine">3.9.1 Exercice 1 : Hello From Alpine</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-2-shell-interactif">3.9.2 Exercice 2 : Shell intéractif</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-3-foreground-background">3.9.3 Exercice 3 : foreground / background</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-4-publication-de-port">3.9.4 Exercice 4 : Publication de port</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-5-liste-des-containers">3.9.5 Exercice 5 : Liste des containers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-6-inspection-d-un-container">3.9.6 Exercice 6 : Inspection d’un container</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-7-exec-dans-un-container">3.9.7 Exercice 7 : exec dans un container</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-8-cleanup">3.9.8 Exercice 8 : cleanup</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#en-resume">3.10 En résumé</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#les-images-docker">4.0 Les images Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#union-filesystem">4.1 Union Filesystem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">4.2 Exercices</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-1-container-s-layer">4.2.1 Exercice 1 : Container’s layer</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#dockerfile">4.3 DockerFile</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#creation-dimages">4.3 Création d’images</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#mise-en-pratique">4.4 Mise en pratique</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#exercices-creation-dimages">4.5 Exercices : Création d’images</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-1-creation-dune-image-a-partir-dun-container">4.5.1 Exercice 1 : Création d’une image à partir d’un container</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-2-dockerizez-un-serveur-web-simple">4.5.2 Exercice 2 : Dockerizez un serveur web simple</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-3-entrypoint-et-cmd">4.5.3 Exercice 3 : ENTRYPOINT et CMD</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#format">Format</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#re-ecriture-a-lexecution-dun-container">Ré-écriture à l’exécution d’un container</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#instruction-entrypoint-utilisee-seule">Instruction ENTRYPOINT utilisée seule</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#instructions-cmd-utilisee-seule">Instructions CMD utilisée seule</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#instructions-entrypoint-et-cmd">Instructions ENTRYPOINT et CMD</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pour-aller-plus-loin-ou-est-stockee-mon-image">Pour aller plus loin : ou est stockée mon image ?</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#stockage-d-une-image">Stockage d’une image</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#multi-stages-build">4.6 Multi-Stages Build</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id13">4.6.1 Mise en pratique</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#rappel">Rappel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#un-serveur-http-ecrit-en-go">Un serveur http écrit en Go</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#dockerfile-traditionel">Dockerfile traditionel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#dockerfile-utilisant-un-build-multi-stage">Dockerfile utilisant un build multi-stage</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#prise-en-compte-du-cache">4.7 Prise en compte du cache</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-prise-en-compte-du-cache">4.7.1 Exercice : Prise en compte du cache</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#le-contexte-de-build">4.8 Le contexte de Build</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#les-commandes-de-base-avec-docker-image">4.9 Les commandes de base avec docker image.</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#exercice-analyse-du-contenu-d-une-image">4.9.1 Exercice : Analyse du contenu d’une image</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">Cours de BTS SIO.</a></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2021, Bauer Baptiste.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/docker.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
-  </body>
+</body>
 </html>

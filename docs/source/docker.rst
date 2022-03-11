@@ -22,7 +22,7 @@ Dans le chapitre sur le stockage, nous apprendrons à utiliser **Docker** pour q
   **Prérequis :** Installation de **WSL 2** sur **windows 10**.
   Afin de pouvoir utiliser des commandes linux dans une console **POWERSHELL**.
    
-    .. code-block:: language
+    .. code-block::
 
       wsl –install -d ubuntu
       wsl --set-version ubuntu 2
@@ -322,14 +322,14 @@ Si vous êtes sur **Linux**, vous pouvez sélectionner la distribution que vous 
 
 Pour aller un peu plus vite, vous pouvez également lancer la commande suivante (compatible avec les principales distribution **Linux**) :
 
-.. code-block:: language
+.. code-block::
 
    curl -sSL https://get.docker.com | sh
 
 En quelques dizaines de secondes, cela installera **la plateforme Docker** sur votre distribution.
 Il sera ensuite nécessaire d'**ajouter votre utilisateur** dans le **groupe docker** afin de pouvoir intéragir avec le **daemon** sans avoir à utiliser **sudo** (il faudra cependant lancer un nouveau **shell** afin que ce changement de groupe soit pris en compte.)
 
-.. code-block:: language
+.. code-block::
 
    sudo usermod -aG docker <UTILISATEUR>
 
@@ -342,7 +342,7 @@ Vérification de l'installation
 
 Une fois installé, lancez la commande suivante afin de vérifier que tout est fonctionnel :
 
-.. code-block:: language
+.. code-block::
 
    docker info
 
@@ -369,7 +369,7 @@ Lançons notre premier container **Hello-World**.
 
 Ouvrez un **terminal** et tapez :
 
-.. code-block:: language
+.. code-block::
 
   docker container run hello-world
 
@@ -390,7 +390,7 @@ Expérimentez la commande : ``docker container run hello-world`` sur votre machi
 
 Nous pouvons lancer un autre container basé sur l’image de **Ubuntu** et lui demander d’afficher ``Hello`` dans  le contexte de cette image.
 
-.. code-block:: language
+.. code-block::
 
   docker container run ubuntu echo hello
 
@@ -1566,6 +1566,7 @@ Nous pouvons définir une commande de base et lui donner des paramètres suplém
 Dans ce premier exemple, vous allez créer un fichier **Dockerfile-v1** contenant les instructions suivantes:
 
 .. code-block::
+
   FROM alpine
   ENTRYPOINT ["ping"]
 
@@ -1631,6 +1632,7 @@ De la même manière, il est possible de n’utiliser que l’instruction **CMD*
 Créez un fichier **Dockerfile-v2** contenant les instructions suivantes:
 
 .. code-block::
+
   FROM alpine
   CMD ["ping"]
 
@@ -2233,7 +2235,7 @@ et Load permet de charger une image à partir d’une sauvegarde.
 
 .. image:: img/docker/image44.png
 
-**La commande : rm **
+**La commande : rm**
 
 Supprime une image avec l’ensemble de ses layers.
 Plusieurs images peuvent être supprimées en même temps.
@@ -2251,11 +2253,9 @@ Comparez ces étapes avec le contenu du Dockerfile utilsé pour builder cette im
 #. Inspectez l’image
 #. En utilisant la notation Go template, listez les ports exposés
 #. Exportez l’image mongo:3.6 dans un tar
-  * Extrayez le contenu de cette archive avec la commande tar -xvf, qu’observez-vous ?
+  * Extrayez le contenu de cette archive avec la commande tar -xvf, qu’observez-vous?
   * Extrayez le contenu d'une des layers, qu’observez-vous ?
 #. Supprimez l’image mongo:3.6
-
-
 
 
 
