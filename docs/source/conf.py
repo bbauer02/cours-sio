@@ -7,7 +7,7 @@ copyright = '2021, Bauer Baptiste'
 author = 'Bauer Baptiste'
 
 release = '0.1'
-version = '0.1.0'
+version = '1.0.0'
 
 # -- General configuration
 

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La plateforme Docker &mdash; Cours BTS SIO 0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1.0 Introduction" href="1.0%20Introduction.html" />
+    <link rel="prev" title="Cours de BTS SIO." href="../../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Cours BTS SIO
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Système</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">La plateforme Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="1.0%20Introduction.html">1.0 Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.0%20La%20plateforme%20Docker.html">2.0 La plateforme Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20Les%20containers%20avec%20Docker.html">3.0 Les containers avec Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.0%20Les%20images%20Docker.html">4.0 Les images Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.0%20Registry.html">5.0 Registry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.0%20Stockage.html">6.0 Stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.0%20Docker%20Machine.html">7.0 Docker Machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8.0%20Docker%20Compose.html">8.0 Docker Compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="9.0%20Swarm.html">9.0 Swarm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10.0%20Network.html">10.0 Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11.0%20S%C3%A9curit%C3%A9.html">11.0 Sécurité</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12.0%20Gestion%20des%20logs.html">12.0 Gestion des logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13.0%20Mise%20en%20pratique.html">13.0 Mise en pratique</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Cours BTS SIO</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>La plateforme Docker</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/cours/docker/sommaire_docker.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="la-plateforme-docker">
+<h1>La plateforme Docker<a class="headerlink" href="#la-plateforme-docker" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Docker</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.0%20Introduction.html">1.0 Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="1.0%20Introduction.html#pour-qui-pourquoi">1.1 Pour qui ? pourquoi ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.0%20Introduction.html#des-stacks-completes">1.2 Des Stacks complètes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.0%20Introduction.html#quelques-concepts-utiles-pour-les-developpeurs">1.3 Quelques concepts utiles pour les Développeurs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2.0%20La%20plateforme%20Docker.html">2.0 La plateforme Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="2.0%20La%20plateforme%20Docker.html#le-modele-client-serveur">2.1 Le modèle client/serveur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.0%20La%20plateforme%20Docker.html#installation-de-docker">2.2 Installation de Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.0%20La%20plateforme%20Docker.html#installation-sur-un-poste-eleve-du-lycee-paul-claudel-laon-02">Installation sur un poste élève du Lycée Paul Claudel -LAON (02)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.0%20La%20plateforme%20Docker.html#installation-pour-windows-10-ou-macos">Installation pour Windows 10 ou MacOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.0%20La%20plateforme%20Docker.html#installation-pour-linux">Installation pour Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.0%20La%20plateforme%20Docker.html#verification-de-l-installation">Vérification de l’installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3.0%20Les%20containers%20avec%20Docker.html">3.0 Les containers avec Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20Les%20containers%20avec%20Docker.html#hello-world">3.1 Hello World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20Les%20containers%20avec%20Docker.html#ubuntu-sous-docker">3.2 Ubuntu sous docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20Les%20containers%20avec%20Docker.html#un-container-dans-un-mode-interactif">3.2 Un container dans un mode Interactif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20Les%20containers%20avec%20Docker.html#publication-de-port">3.3 Publication de port.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20Les%20containers%20avec%20Docker.html#bind-mount">3.4 Bind-mount</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20Les%20containers%20avec%20Docker.html#limitation-des-ressources">3.5 Limitation des ressources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20Les%20containers%20avec%20Docker.html#les-droits-dans-un-container">3.6 Les droits dans un container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20Les%20containers%20avec%20Docker.html#des-options-utiles">3.6 Des options utiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20Les%20containers%20avec%20Docker.html#les-commandes-de-base-avec-docker">3.7 Les commandes de base avec Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20Les%20containers%20avec%20Docker.html#en-pratique">3.8 En pratique :</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20Les%20containers%20avec%20Docker.html#exercices">3.9 Exercices :</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20Les%20containers%20avec%20Docker.html#en-resume">3.10 En résumé</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="4.0%20Les%20images%20Docker.html">4.0 Les images Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="4.0%20Les%20images%20Docker.html#union-filesystem">4.1 Union Filesystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.0%20Les%20images%20Docker.html#exercices">4.2 Exercices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.0%20Les%20images%20Docker.html#dockerfile">4.3 DockerFile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.0%20Les%20images%20Docker.html#creation-dimages">4.3 Création d’images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.0%20Les%20images%20Docker.html#mise-en-pratique">4.4 Mise en pratique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.0%20Les%20images%20Docker.html#exercices-creation-dimages">4.5 Exercices : Création d’images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.0%20Les%20images%20Docker.html#multi-stages-build">4.6 Multi-Stages Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.0%20Les%20images%20Docker.html#prise-en-compte-du-cache">4.7 Prise en compte du cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.0%20Les%20images%20Docker.html#le-contexte-de-build">4.8 Le contexte de Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.0%20Les%20images%20Docker.html#les-commandes-de-base-avec-docker-image">4.9 Les commandes de base avec docker image.</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="5.0%20Registry.html">5.0 Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6.0%20Stockage.html">6.0 Stockage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="6.0%20Stockage.html#volume">6.1 Volume</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="7.0%20Docker%20Machine.html">7.0 Docker Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8.0%20Docker%20Compose.html">8.0 Docker Compose</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9.0%20Swarm.html">9.0 Swarm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10.0%20Network.html">10.0 Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11.0%20S%C3%A9curit%C3%A9.html">11.0 Sécurité</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12.0%20Gestion%20des%20logs.html">12.0 Gestion des logs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13.0%20Mise%20en%20pratique.html">13.0 Mise en pratique</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="13.0%20Mise%20en%20pratique.html#serveur-http-avec-docker">13.1 Serveur HTTP avec Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13.0%20Mise%20en%20pratique.html#serveur-https-avec-docker">13.2 Serveur HTTPS avec Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13.0%20Mise%20en%20pratique.html#creation-d-un-dockerfile">13.3 Création d’un Dockerfile</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../index.html" class="btn btn-neutral float-left" title="Cours de BTS SIO." accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="1.0%20Introduction.html" class="btn btn-neutral float-right" title="1.0 Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bauer Baptiste.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
