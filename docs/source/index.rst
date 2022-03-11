@@ -20,9 +20,9 @@ Vous trouverez sur cette page des cours en ligne pour le BTS SIO.
 
    cours/docker/1.0 Introduction
    cours/docker/2.0 La plateforme Docker
-   
+
 .. toctree::
    :caption: Programmation
    :hidden:
 
-   cours/docker/1.0 Introduction
+   cours/programmation/python/introduction
