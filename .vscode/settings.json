@@ -1,5 +1,6 @@
 {
   "restructuredtext.confPath": "${workspaceFolder}\\docs\\source",
   "esbonio.server.enabled": true,
-  "esbonio.sphinx.confDir": "c:\\Users\\baptiste\\Documents\\coursbts_git\\cours-sio\\docs\\source"
+  "esbonio.sphinx.confDir": "c:\\Users\\p02\\Documents\\Cours\\cours-sio\\docs\\source",
+  "esbonio.server.pythonPath": "C:\\Users\\p02\\AppData\\Local\\Programs\\Python\\Python310"
 }
