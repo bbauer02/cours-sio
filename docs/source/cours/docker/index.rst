@@ -1,7 +1,7 @@
 Docker
-########
+===================================
 
-Vous trouverez sur cette page le cours sur Docker
+Cours sur Docker
 
 .. note:: 
 
@@ -9,6 +9,14 @@ Vous trouverez sur cette page le cours sur Docker
 
    **Version** : 1.04
 
-   En cours de rédaction....
+   Ce dépôt est en cours de rédaction. 
 
    Auteur : **Bauer Baptiste**, Enseignant en BTS SIO au lycée Paul Claudel(02)
+
+
+.. toctree::
+   :caption: Docker
+   :hidden:
+   :glob:
+
+   *
