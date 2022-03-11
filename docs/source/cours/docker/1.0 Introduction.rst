@@ -106,7 +106,7 @@ Par exemple, pour limiter l’utilisation :
 
 On compare souvent les containers à des machines virtuelles, car elles permettent d’exécuter des applications de manière isolée.
 
-Mais la virtualisation nécessite un **hyperviseur** qui s’exécute **sur le système d’exploitation de l’hôte** et nécessite également que **haque machine virtuelle** ait son propre système d’exploitation.
+Mais la virtualisation nécessite un **hyperviseur** qui s’exécute **sur le système d’exploitation de l’hôte** et nécessite également que **chaque machine virtuelle** ait son propre système d’exploitation.
 Alors que l’approche du container est **beaucoup plus légère** car chacun partage le **Kernel Linux de la machine hôte**.
 
 La machine virtuelle consomme plus de disque mémoire et de ram que les containers. **Cela implique que beaucoup plus de containers peuvent fonctionner sur une même machine hôte.**

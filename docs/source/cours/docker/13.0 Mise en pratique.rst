@@ -1,9 +1,9 @@
-5.0 Travaux pratiques
+13.0 Mise en pratique
 #################################
 
 Cette série de travaux reprend les concepts de base de Docker et vous guides dans leur mise en pratique. 
 
-5.1 Serveur HTTP avec Docker
+13.1 Serveur HTTP avec Docker
 ***************************************************
 
 .. image:: img/docker/image76.png
@@ -120,10 +120,10 @@ Ajoutez le code suivant entre les lignes 250 et 251 et actualisé le navigateur 
 Nous avons rempli notre première mission !**
 
 
-5.2 Serveur HTTPS avec Docker
+13.2 Serveur HTTPS avec Docker
 ***************************************************
 
-Dans la partie 5.1, nous avons mis en place un container Apache permettant d’accéder à notre site web par l'intermédiaire de l'adresse : `http://localhost:2000 <http://localhost:2000>`_
+Dans la partie 13.1, nous avons mis en place un container Apache permettant d’accéder à notre site web par l'intermédiaire de l'adresse : `http://localhost:2000 <http://localhost:2000>`_
 Mais la connexion ``http`` n'est pas sécurisée. Pour cela, il faut que le protocole soit ``https``.
 
 **Rappel : Création des certificats SSL**
@@ -490,7 +490,7 @@ Ouvrez le navigateur et contemplez votre oeuvre :
     :align: center
 
 
-5.3 Création d'un Dockerfile
+13.3 Création d'un Dockerfile
 ***************************************************
 
 Nous sommes satisfait du résultat mais il reste un goût d'inachevé, n'est ce pas ? 
@@ -500,7 +500,7 @@ Créer un container à partir de notre image, et devoir lancer la commande ``ser
 Cela va être possible en créant un fichier ``Dockerfile``.
 Ce fichier contient une liste de commande à exécuter pour concevoir notre propre image. 
 
-Listons les actions effectuées dans la partie **5.2**
+Listons les actions effectuées dans la partie **13.2**
 
 * Création d'un container avec une image ``Ubuntu``.
 * Nous avons mis à jour les dépôts ``Ubuntu``.
