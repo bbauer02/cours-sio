@@ -12,14 +12,3 @@ Vous trouverez sur cette page le cours sur Docker
    En cours de rédaction....
 
    Auteur : **Bauer Baptiste**, Enseignant en BTS SIO au lycée Paul Claudel(02)
-
-
-.. toctree::
-   :caption: Docker
-   :hidden:
-
-   cours/docker/1.0 Introduction
-   cours/docker/2.0 La plateforme Docker
-   cours/docker/3.0 Les containers avec Docker
-   cours/docker/4.0 Les images Docker
-   cours/docker/5.0 Travaux pratiques
