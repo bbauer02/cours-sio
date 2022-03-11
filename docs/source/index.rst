@@ -18,4 +18,10 @@ Vous trouverez sur cette page des cours en ligne pour le BTS SIO.
    :caption: Systèmes
    :hidden:
 
-   cours/docker/index
+   cours/docker/1.0 Introduction
+
+.. toctree::
+   :caption: Programmation
+   :hidden:
+
+   cours/docker/1.0 Introduction
