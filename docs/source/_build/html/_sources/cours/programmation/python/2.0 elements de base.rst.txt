@@ -7,7 +7,558 @@
 
   Pour demander à l’utilisateur de saisir des données, on utilise la fonction : ``input()``. La fonction ``input`` renvoie toujours une chaine de caractères.
 
-2.1.1	Variables et affectation
+2.1	Variables et affectation
 ###################################
 
->>> 1 + 1
+Dans un programme, les données utilisées sont stockées dans des variables. Une affection est le fait d’associer une donnée (valeur ou expression) avec un nom.
+Une variable est comme une boîte sur laquelle il y a une étiquette avec un nom et dans laquelle on y range des informations diverses. 
+Le nom de la variable peut être n’importe quelle chaine alphanumérique (sauf certains mots clés réservés) et ne doit pas commencer par un chiffre. 
+L’opérateur d’affectation est noté ``=``.
+
+**Exemple 1** : Cette instruction associe la valeur ``3`` au nom ``x``.
+
+.. code-block:: python
+
+  X=3
+
+**Exemple 2** : Cette instruction associe la valeur de l’expression à droite du signe ``=``.
+
+.. code-block:: python
+
+  Y = 3 + 5  #Y vaut 8
+
+**Exemple 3 :**
+
+.. code-block:: python
+  :linenos:
+
+  X=3
+  Y=3+5
+  Z = X + Y 
+
+``Z`` vaut 11. Car il est la somme des valeurs de ``X`` et de ``Y`` au nom ``Z``.
+
+En **Python**, nous pouvons faire des affectations multiples pour gagner du temps dans la rédaction et d’économiser des lignes de code. 
+Ainsi, ces 3 lignes d’instructions : 
+
+.. code-block:: python
+  :linenos:
+
+  X=1
+  Y=3
+  Z=5
+
+Peuvent tout simplement s’écrire : 
+
+.. code-block:: python
+
+  x,y,z = 1,2,5
+
+On pourrait aussi écrire : 
+
+.. code-block:: python
+
+  x=1; y=2; z=5
+
+.. admonition:: Vocabulaire à connaitre : 
+
+  Une **variable** est composée d’un nom (ou identificateur) ; d’une adresse en mémoire où est enregistrée une valeur (ou un ensemble de valeurs), d’un type qui définit ses propriétés.
+  
+  Une **expression** a une valeur qui est le résultat d’une combinaison de variables ou d’objets, de constantes et d’opérateurs. 
+
+  Une **instruction** est une commande qui doit être exécutée par la machine. 
+
+  Une **affectation** est une instruction qui commande à la machine de créer une variable en lui précisant son nom et sa valeur.
+
+**Attention** à ne pas confondre **expression** et **instruction**. Une **expression** se calcul, elle possède une **valeur**. **L’instruction** s’exécute et n’a pas de valeur. 
+L’écriture ``x=0.5*x**2+1`` est une **instruction** : affecter la valeur de **l’expression** ``0.5*x**2+1``.
+
+2.2 Les types simples.
+###################################
+
+Les types de base qui permettent de définir l’ensemble des valeurs qui peuvent prendre les variables sont : 
+
+* Les types numériques ``int``.
+
+Ce type représente les nombres entiers. 
+La taille d’une variable ``int`` n’est limité que par la capacité de la machine et le temps nécessaire à leur utilisation. 
+
+* Les types booléens ``bool``.
+
+Ce type permet de représenter les valeurs booléennes ``True`` (vrai) ou ``1`` en binaire et ``False`` (faux) ou ``0`` en binaire.
+
+* Les types flottants ``float``.
+
+Ce type est utilisé pour les nombres réels. La virgule est remplacée par le point. 
+
+* Les types chaines de caractères ``str``. 
+
+Les chaines de caractères.
+
+2.3 Opérations sur les types numériques
+###########################################
+
+.. list-table:: Liste des opérations disponible sur les types numériques.
+   :widths: 50 50
+
+   * - Addition
+     - ``+`` Exemple : ``a + b``
+   * - Soustraction
+     - ``-`` Exemple : ``a - b``
+   * - Multiplication
+     - ``*`` Exemple : ``a * b``
+   * - Exponentiation
+     - ``**`` Exemple : ``a ** b``
+   * - Division
+     - ``/`` Exemple : ``a / b``
+   * - Division entière
+     - ``//`` Exemple : ``a // b``
+   * - Opération modulo
+     - ``%`` Exemple : ``a % b``
+
+Pour chacune des écritures, il existe des syntaxes permettant d’aller plus vite dans la rédaction comme : 
+
+``a = a + b``  peut s’écrire ``a += b`` par exemple.
+
+2.4	Comparaison et opération booléens
+###########################################
+
+Les opérateurs mathématiques de comparaisons s’écrivent ainsi : 
+
+.. list-table:: Liste des opérateurs mathématiques de comparaisons.
+   :widths: 50 50
+
+   * - Egale 
+     - ``==``
+   * - Différent
+     - ``!=``
+   * - Inférieur
+     - ``<``
+   * - Inférieur ou égale
+     - ``<=``
+   * - Supérieur
+     - ``>``
+   * - Supérieur ou égale
+     - ``>=``
+
+**Valeur de retour sur les opérations**
+
+* ``x==y`` prend la valeur ``True`` si ``x`` et ``y`` sont égaux, sinon prend la valeur ``False``. 
+* ``x!=y`` prend la valeur ``True`` si ``x`` et ``y`` sont différent, sinon prend la valeur ``False``.
+
+**Valeur de retour sur les opérations logiques**
+
+*	``a and b`` prend la valeur ``True`` si ``a`` et ``b`` sont ``True`` et sinon prend la valeur ``False``.
+*	``a`` or ``b`` prend la valeur ``False`` si ``a`` et ``b`` sont ``False`` et sinon prend la valeur ``True``.
+*	``not a`` prend la valeur ``True`` si ``a`` est ``False`` et prend la valeur ``False`` si ``a`` est ``True``.
+
+2.5	Le type chaine de caractères
+###########################################
+
+``str`` est une abréviation de **string** en anglais qui veut dire **chaine de caractères**.
+Une chaine de caractère est par exemple tout ce que l’on saisie avec les touches du clavier. 
+On utilise des guillemets ou des apostrophes pour les déclarer.
+
+.. code-block:: python
+
+  MyString = "hello world!"
+  MyString2 = 'hello world!'
+
+Si vous écrivez ``Mystring = Hello``, ``Hello`` sera considéré comme étant une variable. Si elle n’existe pas, il y aura une erreur. 
+Si elle existe, ``MyString`` aura alors la valeur de la valeur de ``Hello``.
+
+Nous pouvons connaitre la longueur d’une chaine, qui est le nombre de caractère qui la compose, grâce à la fonction ``len``.
+
+.. code-block:: python
+
+  len("hello") #a pour valeur un entier : 5
+  MyString = "Hello world"
+  len(MyString) #a pour valeur un entier : 11
+
+Chaque caractère de la chaine possède un indice qui commence de 0 à (longueur de la chaine -1).
+
+.. list-table:: 
+   :widths: 25 25 25 25 25 25 25 25 25 25
+
+   * - Indice 0
+     - Indice 1
+     - Indice 2
+     - Indice 3
+     - Indice 4
+     - Indice 5
+     - Indice 6
+     - Indice 7
+     - Indice 8
+     - Indice 9
+   * - H
+     - E
+     - L 
+     - L 
+     - O 
+     - 
+     - Y 
+     - O 
+     - U 
+     - !
+
+Nous avons ici la chaine "HELLO YOU !".
+Si nous faisons un : ``len("HELLO YOU !")`` nous obtenons la longueur 10.
+Toutefois nous voyons dans le tableau que le dernier caractère se situe à l’indice 9( 10 – 1). 
+
+Il est possible d’accéder à l’indice i d’une chaine grâce à cette syntaxe : 
+
+.. code-block:: python
+
+  MyString = "Hello world"
+  MyString[2] #Nous accédons à l’indice 2 de la chaine. Soit au caractère l 
+
+Nous pouvons avoir accès également à une suite de caractères d’une chaine avec la notation : 
+``MyString [i : j]``. L’indice ``i`` est inclus et ``j`` est exclu. 
+
+.. code-block:: python
+
+  MyString = "Hello world"
+  MyString [2 :4] #résultat:  ll
+
+
+2.6	Les types composés
+###########################################
+
+Il s’agit des types ``tuple``, ``list``, ``dict``.
+Nous étudierons ici les ``list``.
+Un objet de type ``list`` (« une liste »), représente un ensemble ordonné d’objets éventuellement de types différents. 
+De la même manière qu’avec les chaines de caractères, les éléments de la liste sont ordonnés en commençant à l’indice 0.
+Comment déclarer une liste : 
+
+.. code-block:: python
+
+  MyList1= [] #une liste vide.
+  MyList2=[4] #une liste avec un seul élément, ici l’entier 4.
+  MyList3=[5, 'hello', 3.14, ['a', 'b']] #une liste avec des éléments de différents types.
+
+La fonction ``len`` est aussi utilisable avec les listes et renvoie sa longueur. 
+``len(MyList3)`` a pour valeur l’entier 4.
+
+L’accès à un élément ou une suite d’éléments se fait comme pour les chaînes : 
+
+.. code-block:: python
+
+  MyList3[1] #est l’élément 'hello'
+  MyList3[0:3] #est la liste des éléments d’indices 0,1,2 soit [5,'hello',3.14]
+
+Il est possible de modifier le contenu d’une liste de la sorte : 
+
+.. code-block:: python
+
+  MyList3[1] = "AU REVOIR"
+  MyList3 #vaut alors [5, 'AU REVOIR', 3.14, ['a', 'b']]
+
+
+La méthode ``append`` permet d’ajouter des éléments en fin de liste.
+
+.. code-block:: python
+
+  MyList.append("ELEMENT1")
+  MyList.append("ELEMENT2")
+  #MyList vaut: ["ELEMENT1", "ELEMENT2"]
+
+2.7	Opération sur les types ``str`` et ``list``
+######################################################
+
+* Il est possible d’indexer à partir du dernier élément :
+   
+**Exemple :** Nous avons une liste de : 7 éléments, rangés de l’index 0 à 6.
+
+.. code-block:: python
+
+  MyList["item1","item2","item3","item4","item5","item6","item7"]
+  #Je peux directement aller au dernier élément :
+  MyList[-1]
+  #Et on en déduit comment accès à l’avant dernier : 
+  MyList[-2]
+
+* La concaténation.
+
+.. code-block:: python
+
+  Str1 = "BON"
+  Str2="JOUR"
+
+Je peux créer une nouvelle chaine qui sera l’assemblage de ``Str1`` et ``Str2``, on appelle cela faire une concaténation.
+
+.. code-block:: python
+
+  Str3 = Str1 + Str2
+
+``Str3`` vaut alors « BONJOUR »
+
+* Nous pouvons aussi effectuer la concaténation de n copies :  
+
+.. code-block:: python
+
+  strConcat = 3*Str3
+
+``strConcat`` vaut :``bonjourbonjourbonjour``
+
+* Nous pouvons changer le type des variables grâce aux fonctions : ``int``, ``float``, ``str``.
+
+.. code-block:: python
+
+  StrPI = "3.1415"
+
+``StrPI`` est de type ``string``.Pour la convertir en ``float`` il suffira d’écrire ceci :
+
+.. code-block:: python
+
+  float(StrPI)
+
+De ce fait : 
+
+.. code-block:: python
+
+  NombrePI = float(StrPI)
+
+``NombrePI`` sera de type ``float``.
+
+* La fonction ``list`` permet de convertir une chaine de caractère en une liste dont les éléments sont les différents caractères de la chaine.
+
+.. code-block:: python
+
+  String = "3.1415"
+  MyList = list(String)
+
+``MyList`` vaut donc ``['3', '.', '1', '4', '1', '5']``
+
+3.0 Instructions conditionnelles et boucles
+++++++++++++++++++++++++++++++++++++++++++++++
+
+**L’indentation** est le décalage vers la droite du début de ligne. 
+C’est un élément très important de la syntaxe en Python mais aussi dans tous les autres langages. 
+
+Cela permet de délimiter visuellement des blocs de code et aide à la lisibilité. 
+En **Python**, quand vous créez un bloc, la ligne précédente l’indentation se termine par le signe ``:``.
+
+
+
+
+3.1 Instructions conditionnelles
+####################################
+
+.. code-block:: python
+
+  if condition: 
+    Instructions
+
+Condition désigne une expression et instructions désigne une instruction ou un bloc d’instructions écrites sur plusieurs lignes.
+
+Exemple :
+
+.. code-block:: python 
+  :linenos:
+
+  if n == 4:
+    n = 4 * 2
+
+Nous pouvons aussi ajouter des instructions si la condition n’est pas respectée avec le mot clé ``else``.
+
+.. code-block:: python 
+  :linenos:
+
+  if n == 4:
+    n = 4 * 2
+  else:
+      n = 4 + 1
+
+Nous pouvons aussi ajouter une série de conditions dans le cas où les précédentes ne seraient pas respectées avec le mot clé ``elif``.
+
+.. code-block:: python 
+  :linenos:
+
+  if degree <= 0:
+    message = "Il géle !!"
+  elif degree > 0 and degree < 20:
+      message = "Il fait froid !!"
+  else:
+      message ="Il faut chaud!!"
+
+
+**N’oubliez pas que c’est l’indentation qui permet de délimiter les blocs d’instructions à exécuter si la condition est vérifiée.**
+
+3.2 Boucles conditionnelles
+####################################
+
+Structure :
+
+.. code-block:: python 
+
+  while condition:
+    instructions
+
+Tant que la condition est respectée, alors les instructions seront exécutées. 
+
+.. code-block:: python 
+  :linenos:
+
+  a = 10
+  while a > 0:
+      print("a est supérieur à zéro")
+      a = a - 1
+    
+Si j’exécute le script, j’obtiens à l’écran : 
+
+.. code-block:: python 
+  :linenos:
+
+  a est supérieur à zéro
+  a est supérieur à zéro
+  a est supérieur à zéro
+  a est supérieur à zéro
+  a est supérieur à zéro
+  a est supérieur à zéro
+  a est supérieur à zéro
+  a est supérieur à zéro
+  a est supérieur à zéro
+  a est supérieur à zéro
+
+
+Tant que ``a > 10`` est ``True``, alors on affiche « a est supérieur à zéro » puis on soustrait 1 à la variable ``a``. 
+Au bout de 10 « tours » dans la boucle, ``a`` se retrouve égale à zéro, la condition ``a > 0`` n’est plus vrai. Les instructions cessent alors d’être exécutées. 
+
+
+3.3 Boucles non conditionnelles
+####################################
+
+Structure : 
+
+.. code-block:: python 
+  
+  for i in range(n):
+    instructions
+
+Cette boucle permet de répéter ``n`` fois une instruction ou un bloc d’instructions. 
+
+.. code-block:: python 
+  :linenos:
+
+  for car in "bonjour":
+    print(10*car)
+
+**Execution:**
+
+.. code-block:: python 
+  :linenos:
+
+  bbbbbbbbbb
+  oooooooooo
+  nnnnnnnnnn
+  jjjjjjjjjj
+  oooooooooo
+  uuuuuuuuuu
+  rrrrrrrrrr
+
+**Explication :** 
+
+Pour chaque caractère un à un de la chaine « bonjour », on affiche 10 fois le caractère.
+
+.. code-block:: python 
+  :linenos:
+
+  for i in range(10):
+    print("hello")
+
+**Exécution :**  Pour chaque valeur de ``i`` en partant de 1, puis en augmentant de 1 jusqu’à 10, **afficher** : hello.
+
+.. code-block:: python 
+  :linenos:
+
+  hello
+  hello
+  hello
+  hello
+  hello
+  hello
+  hello
+  hello
+  hello
+  hello
+
+.. code-block:: python 
+  :linenos:
+
+  for i in range(6,10):
+    print("hello")
+
+**Exécution :**  Pour chaque valeur de ``i`` en partant de 6, puis en augmentant de 1 jusqu’à 10, **afficher** : hello.
+
+.. code-block:: python 
+  :linenos:
+
+  hello
+  hello
+  hello
+  hello
+
+.. code-block:: python 
+  :linenos:
+
+  for i in range(6,10,2):
+    print("hello")
+
+**Exécution :**  Pour chaque valeur de ``i`` en partant de 6, puis en augmentant de 2 jusqu’à 10, **afficher** : hello.
+
+.. code-block:: python 
+  :linenos: 
+
+  hello
+  hello
+
+Ajouter l’instruction ``break`` dans la boucle permet de sortir de celle-ci. 
+L’instruction ``continue`` permet d’éviter un passage dans la boucle. 
+
+
+3.4 Mise en pratique: Modifier une liste
+##############################################
+
+.. code-block:: python
+  :linenos:
+
+  MyList = ['bijou','caillou','chou','genou','hibou','joujou','pou']
+  for i in range(len(MyList)):  
+      print(MyList[i])
+
+**Exécution**
+
+.. code-block:: python 
+  :linenos:
+
+  bijou
+  caillou
+  chou
+  genou
+  hibou
+  joujou
+  pou
+
+Nous souhaitons ajouter un “x” à la fin de chaque mot, et les afficher de nouveau.
+
+.. code-block:: python 
+  :linenos:
+  :emphasize-lines: 3
+
+  MyList = ['bijou','caillou','chou','genou','hibou','joujou','pou']
+  for i in range(len(MyList)):
+      MyList[i] = MyList[i] + "x"
+      print(MyList[i])
+
+**Exécution**
+
+.. code-block:: python 
+  :linenos:
+
+  bijoux
+  cailloux
+  choux
+  genoux
+  hiboux
+  joujoux
+  poux
