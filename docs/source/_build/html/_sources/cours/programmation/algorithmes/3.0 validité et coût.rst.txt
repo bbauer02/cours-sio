@@ -1,10 +1,10 @@
-﻿Validité et coût
+﻿3.0 Validité et coût
 ############################
 
 Lorsqu'on écrit un algorithme, il est impératif de vérifier que cet algorithme va produire un résultat en un temps fini et que ce résultat sera correct dans le sens où il sera conforme à une spécification précise. Nous dirons alors que l'algorithme est valide.
 
-Validité d'un algorithme itératif
-*************************************
+3.1 Validité d'un algorithme itératif
+*****************************************
 
 **Correction**
 
@@ -59,7 +59,7 @@ Si la valeur de :math:`a` est négative ou nulle, il n'y a aucun passage dans la
 
 Revenons sur l'exemple du produit de deux nombres étudié plus haut. Nous avons prouvé qu'en sortie de boucle, la valeur de :math:`p` était le produit :math:`a * x`. Mais nous n'avons pas prouvé la terminaison, c'est-à-dire que la sortie de boucle était effective après un nombre fini de passages. Pour cela, dans cet exemple, nous choisissons comme variant la variable :math:`m`. Cette variable prend pour valeurs successives 0, 1, ..., :math:`m` et il y a donc exactement :math:`a` passages dans la boucle, ce qui prouve la terminaison.
 
-Coût
+3.2 Coût
 *************************************
 
 Un programme doit traiter une liste de :math:`10^7` éléments puis une liste de :math:`10^8` éléments. Est-ce que le temps d'exécution du programme sera multiplié par 10 ? Quel est le rapport entre le temps d'exécution est la taille de la liste?
@@ -103,13 +103,13 @@ Considérons une boucle "pour" où le nombre de passages dans la boucle est bien
 
 Cet algorithme, ou ce programme, permet de calculer la somme des entiers de 1 à :math:`n`. Il y a clairement :math:`n` passages dans la boucle. A chaque passage nous avons une addition et une affectation, donc un total de :math:`n` additions et :math:`n` affectations. Nous pouvons affirmer que le coût est linéaire.
 
-Complexité linéaire
+3.3 Complexité linéaire
 *************************************
 
 Soit :math:`n` la taille d'une donnée. Si le nombre d'opérations à effectuer peut s'écrire :math:`αn + β` , avec :math:`α` et :math:`β` réels et :math:`α > 0`,nous disons que l'algorithme a un coût linéaire ou une complexité linéaire.
 Dans le cas de deux boucles ``for`` imbriquées, nous avons trois cas typiques. Dans un cas, le coût est **linéaire**. Dans les deux autres cas, nous disons que le coût est **quadratique**.
 
-Complexité quadratique
+3.4 Complexité quadratique
 *************************************
 
 Soit n la taille d'une donnée. Si le nombre d'opérations à effectuer peut s'écrire :math:`αn2 + βn + γ`,
