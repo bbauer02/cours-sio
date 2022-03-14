@@ -23,4 +23,8 @@ Nous allons revoir les bases de la programmation en **Python**.
 
   1.0 introduction
   2.0 elements de base
+  3.0 fonctions
+  4.0 specification et tests
+  5.0 modules et bibliothèques
+  6.0 poo
 

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.0 Les Fonctions &mdash; Cours BTS SIO 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Spécification et tests" href="4.0%20specification%20et%20tests.html" />
+    <link rel="prev" title="2.0 Eléments de base" href="2.0%20elements%20de%20base.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Cours BTS SIO
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Systèmes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../systemes/docker/sommaire_docker.html">La plateforme Docker</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Programmation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="sommaire_python.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1.0%20introduction.html">1.0 Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.0%20elements%20de%20base.html">2.0 Eléments de base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.0%20elements%20de%20base.html#instructions-conditionnelles-et-boucles">3.0 Instructions conditionnelles et boucles</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.0 Les Fonctions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fonctions">3.1 Fonctions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#espace-et-portee-des-variables">3.2 Espace et portée des variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="4.0%20specification%20et%20tests.html">Spécification et tests</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cours BTS SIO</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="sommaire_python.html">Python</a> &raquo;</li>
+      <li>3.0 Les Fonctions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/cours/programmation/python/3.0 fonctions.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="les-fonctions">
+<h1>3.0 Les Fonctions<a class="headerlink" href="#les-fonctions" title="Permalink to this headline"></a></h1>
+<section id="fonctions">
+<h2>3.1 Fonctions<a class="headerlink" href="#fonctions" title="Permalink to this headline"></a></h2>
+<p>Voici la syntaxe pour définir une fonction en Python :</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Définition d’une fonction</span><a class="headerlink" href="#id1" title="Permalink to this code"></a></div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span> <span class="k">def</span> <span class="nf">nom_de_la_fonction</span><span class="p">(</span><span class="n">arguments</span><span class="p">):</span>
+<span class="linenos">2</span>      <span class="sd">&quot;&quot;&quot; aide sur la fonction, facultatif&quot;&quot;&quot;</span>
+<span class="linenos">3</span>      <span class="n">corps</span> <span class="n">de</span> <span class="n">la</span> <span class="n">fonction</span>
+</pre></div>
+</div>
+</div>
+<p>Le mot clé <code class="docutils literal notranslate"><span class="pre">def</span></code> permet de déclarer une fonction. La déclaration se termine par <code class="docutils literal notranslate"><span class="pre">:</span></code> et le corps de la fonction est indenté.
+Il peut ne pas y avoir d’arguments. Par contre lorsqu’il y a plusieurs arguments, ils sont séparés par des virgules.
+La fonction peut renvoyer un résultat grâce au mot clé <code class="docutils literal notranslate"><span class="pre">return</span></code> suivi du résultat.
+Il peut y avoir plusieurs <code class="docutils literal notranslate"><span class="pre">return</span></code>.</p>
+<p>Chaque <code class="docutils literal notranslate"><span class="pre">return</span></code> interrompt l’exécution de la fonction.
+Sans valeur de retour, une fonction renvoie <code class="docutils literal notranslate"><span class="pre">None</span></code>. On les appelle des <strong>procédures</strong>.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span> <span class="nf">premier</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="linenos">2</span>      <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+<span class="linenos">3</span>              <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">d</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">4</span>                      <span class="k">return</span> <span class="kc">False</span>
+<span class="linenos">5</span>      <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p><strong>Explications</strong></p>
+<p>Durant l’appel de <code class="docutils literal notranslate"><span class="pre">premier(7)</span></code>, la boucle <code class="docutils literal notranslate"><span class="pre">for</span></code> est exécutée. Mais puisque les tests <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">%</span> <span class="pre">d</span> <span class="pre">==</span> <span class="pre">0</span></code> ont tous la valeur <code class="docutils literal notranslate"><span class="pre">False</span></code>, l’instruction <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">False</span></code> n’est jamais exécutée mais <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">True</span></code>.</p>
+<section id="espace-et-portee-des-variables">
+<h3>3.2 Espace et portée des variables<a class="headerlink" href="#espace-et-portee-des-variables" title="Permalink to this headline"></a></h3>
+<p>Il existe différents espaces dans un programme :</p>
+<ul class="simple">
+<li><p><strong>L’espace global</strong> : l’espace dans lequel les fonctions et les variables sont définis. Et pour chaque fonction, un espace local distinct est créé.</p></li>
+<li><p><strong>L’espace local</strong> : l’espace réservé au corps d’une fonction.</p></li>
+</ul>
+<p>Les variables déclarées dans l’espace local n’existent que dans l’espace local.</p>
+<section id="portee-d-une-variable">
+<h4>3.2.1 Portée d’une variable<a class="headerlink" href="#portee-d-une-variable" title="Permalink to this headline"></a></h4>
+<p>Une fonction ne peut pas modifier par affectation la valeur d’une variable extérieur à son espace local puisqu’une affectation crée une nouvelle variable locale qui est détruite après l’utilisation de la fonction.
+Dans l’exemple suivant : la variable locale <code class="docutils literal notranslate"><span class="pre">x</span></code> utilisée dans la fonction est distincte de la variable globale <code class="docutils literal notranslate"><span class="pre">x</span></code> définie au début du programme par l’instruction <code class="docutils literal notranslate"><span class="pre">x=1</span></code> et n’existe plus après l’appel de la fonction.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span>
+<span class="linenos">2</span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="linenos">3</span>        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="linenos">4</span>        <span class="k">return</span> <span class="n">x</span>
+<span class="linenos">5</span><span class="c1">#Affiche 2</span>
+<span class="linenos">6</span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="linenos">7</span><span class="c1">#Affiche 1</span>
+<span class="linenos">8</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Toutefois une fonction peut modifier une variable extérieure à celle-ci en la déclarant comme variable globale avec le mot-clé <code class="docutils literal notranslate"><span class="pre">global</span></code>. A éviter malgré tout.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span>
+<span class="linenos">2</span><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+<span class="hll"><span class="linenos">3</span>        <span class="k">global</span> <span class="n">x</span>
+</span><span class="linenos">4</span>        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="linenos">5</span>        <span class="k">return</span> <span class="n">x</span>
+<span class="linenos">6</span><span class="c1">#Affiche 2</span>
+<span class="linenos">7</span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="linenos">8</span><span class="c1">#Affiche 2, x a été modifié</span>
+<span class="linenos">9</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2.0%20elements%20de%20base.html" class="btn btn-neutral float-left" title="2.0 Eléments de base" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="4.0%20specification%20et%20tests.html" class="btn btn-neutral float-right" title="Spécification et tests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bauer Baptiste.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

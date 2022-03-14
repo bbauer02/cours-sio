@@ -18,6 +18,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="3.0 Les Fonctions" href="3.0%20fonctions.html" />
     <link rel="prev" title="1.0 Introduction" href="1.0%20introduction.html" /> 
 </head>
 
@@ -64,6 +65,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#mise-en-pratique-modifier-une-liste">3.4 Mise en pratique: Modifier une liste</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20fonctions.html">3.0 Les Fonctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.0%20specification%20et%20tests.html">Spécification et tests</a></li>
 </ul>
 </li>
 </ul>
@@ -107,33 +110,36 @@ Une variable est comme une boîte sur laquelle il y a une étiquette avec un nom
 Le nom de la variable peut être n’importe quelle chaine alphanumérique (sauf certains mots clés réservés) et ne doit pas commencer par un chiffre.
 L’opérateur d’affectation est noté <code class="docutils literal notranslate"><span class="pre">=</span></code>.</p>
 <p><strong>Exemple 1</strong> : Cette instruction associe la valeur <code class="docutils literal notranslate"><span class="pre">3</span></code> au nom <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">=</span><span class="mi">3</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">=</span><span class="mi">3</span>
 </pre></div>
 </div>
 <p><strong>Exemple 2</strong> : Cette instruction associe la valeur de l’expression à droite du signe <code class="docutils literal notranslate"><span class="pre">=</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">5</span>  <span class="c1">#Y vaut 8</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">5</span>  <span class="c1">#Y vaut 8</span>
 </pre></div>
 </div>
 <p><strong>Exemple 3 :</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">X</span><span class="o">=</span><span class="mi">3</span>
+<div class="literal-block-wrapper docutils container" id="this-py">
+<div class="code-block-caption"><span class="caption-text">this.py</span><a class="headerlink" href="#this-py" title="Permalink to this code"></a></div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">X</span><span class="o">=</span><span class="mi">3</span>
 <span class="linenos">2</span><span class="n">Y</span><span class="o">=</span><span class="mi">3</span><span class="o">+</span><span class="mi">5</span>
 <span class="linenos">3</span><span class="n">Z</span> <span class="o">=</span> <span class="n">X</span> <span class="o">+</span> <span class="n">Y</span>
 </pre></div>
 </div>
+</div>
 <p><code class="docutils literal notranslate"><span class="pre">Z</span></code> vaut 11. Car il est la somme des valeurs de <code class="docutils literal notranslate"><span class="pre">X</span></code> et de <code class="docutils literal notranslate"><span class="pre">Y</span></code> au nom <code class="docutils literal notranslate"><span class="pre">Z</span></code>.</p>
 <p>En <strong>Python</strong>, nous pouvons faire des affectations multiples pour gagner du temps dans la rédaction et d’économiser des lignes de code.
 Ainsi, ces 3 lignes d’instructions :</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">X</span><span class="o">=</span><span class="mi">1</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">X</span><span class="o">=</span><span class="mi">1</span>
 <span class="linenos">2</span><span class="n">Y</span><span class="o">=</span><span class="mi">3</span>
 <span class="linenos">3</span><span class="n">Z</span><span class="o">=</span><span class="mi">5</span>
 </pre></div>
 </div>
 <p>Peuvent tout simplement s’écrire :</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span>
 </pre></div>
 </div>
 <p>On pourrait aussi écrire :</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span> <span class="n">z</span><span class="o">=</span><span class="mi">5</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span> <span class="n">z</span><span class="o">=</span><span class="mi">5</span>
 </pre></div>
 </div>
 <div class="admonition-vocabulaire-a-connaitre admonition">
@@ -249,14 +255,14 @@ La taille d’une variable <code class="docutils literal notranslate"><span clas
 <p><code class="docutils literal notranslate"><span class="pre">str</span></code> est une abréviation de <strong>string</strong> en anglais qui veut dire <strong>chaine de caractères</strong>.
 Une chaine de caractère est par exemple tout ce que l’on saisie avec les touches du clavier.
 On utilise des guillemets ou des apostrophes pour les déclarer.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MyString</span> <span class="o">=</span> <span class="s2">&quot;hello world!&quot;</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">MyString</span> <span class="o">=</span> <span class="s2">&quot;hello world!&quot;</span>
 <span class="n">MyString2</span> <span class="o">=</span> <span class="s1">&#39;hello world!&#39;</span>
 </pre></div>
 </div>
 <p>Si vous écrivez <code class="docutils literal notranslate"><span class="pre">Mystring</span> <span class="pre">=</span> <span class="pre">Hello</span></code>, <code class="docutils literal notranslate"><span class="pre">Hello</span></code> sera considéré comme étant une variable. Si elle n’existe pas, il y aura une erreur.
 Si elle existe, <code class="docutils literal notranslate"><span class="pre">MyString</span></code> aura alors la valeur de la valeur de <code class="docutils literal notranslate"><span class="pre">Hello</span></code>.</p>
 <p>Nous pouvons connaitre la longueur d’une chaine, qui est le nombre de caractère qui la compose, grâce à la fonction <code class="docutils literal notranslate"><span class="pre">len</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span> <span class="c1">#a pour valeur un entier : 5</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span> <span class="c1">#a pour valeur un entier : 5</span>
 <span class="n">MyString</span> <span class="o">=</span> <span class="s2">&quot;Hello world&quot;</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">MyString</span><span class="p">)</span> <span class="c1">#a pour valeur un entier : 11</span>
 </pre></div>
@@ -304,13 +310,13 @@ Si elle existe, <code class="docutils literal notranslate"><span class="pre">MyS
 Si nous faisons un : <code class="docutils literal notranslate"><span class="pre">len(&quot;HELLO</span> <span class="pre">YOU</span> <span class="pre">!&quot;)</span></code> nous obtenons la longueur 10.
 Toutefois nous voyons dans le tableau que le dernier caractère se situe à l’indice 9( 10 – 1).</p>
 <p>Il est possible d’accéder à l’indice i d’une chaine grâce à cette syntaxe :</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MyString</span> <span class="o">=</span> <span class="s2">&quot;Hello world&quot;</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">MyString</span> <span class="o">=</span> <span class="s2">&quot;Hello world&quot;</span>
 <span class="n">MyString</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c1">#Nous accédons à l’indice 2 de la chaine. Soit au caractère l</span>
 </pre></div>
 </div>
 <p>Nous pouvons avoir accès également à une suite de caractères d’une chaine avec la notation :
 <code class="docutils literal notranslate"><span class="pre">MyString</span> <span class="pre">[i</span> <span class="pre">:</span> <span class="pre">j]</span></code>. L’indice <code class="docutils literal notranslate"><span class="pre">i</span></code> est inclus et <code class="docutils literal notranslate"><span class="pre">j</span></code> est exclu.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MyString</span> <span class="o">=</span> <span class="s2">&quot;Hello world&quot;</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">MyString</span> <span class="o">=</span> <span class="s2">&quot;Hello world&quot;</span>
 <span class="n">MyString</span> <span class="p">[</span><span class="mi">2</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="c1">#résultat:  ll</span>
 </pre></div>
 </div>
@@ -322,7 +328,7 @@ Nous étudierons ici les <code class="docutils literal notranslate"><span class=
 Un objet de type <code class="docutils literal notranslate"><span class="pre">list</span></code> (« une liste »), représente un ensemble ordonné d’objets éventuellement de types différents.
 De la même manière qu’avec les chaines de caractères, les éléments de la liste sont ordonnés en commençant à l’indice 0.
 Comment déclarer une liste :</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MyList1</span><span class="o">=</span> <span class="p">[]</span> <span class="c1">#une liste vide.</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">MyList1</span><span class="o">=</span> <span class="p">[]</span> <span class="c1">#une liste vide.</span>
 <span class="n">MyList2</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="c1">#une liste avec un seul élément, ici l’entier 4.</span>
 <span class="n">MyList3</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]]</span> <span class="c1">#une liste avec des éléments de différents types.</span>
 </pre></div>
@@ -330,17 +336,17 @@ Comment déclarer une liste :</p>
 <p>La fonction <code class="docutils literal notranslate"><span class="pre">len</span></code> est aussi utilisable avec les listes et renvoie sa longueur.
 <code class="docutils literal notranslate"><span class="pre">len(MyList3)</span></code> a pour valeur l’entier 4.</p>
 <p>L’accès à un élément ou une suite d’éléments se fait comme pour les chaînes :</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MyList3</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#est l’élément &#39;hello&#39;</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">MyList3</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#est l’élément &#39;hello&#39;</span>
 <span class="n">MyList3</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="c1">#est la liste des éléments d’indices 0,1,2 soit [5,&#39;hello&#39;,3.14]</span>
 </pre></div>
 </div>
 <p>Il est possible de modifier le contenu d’une liste de la sorte :</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MyList3</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;AU REVOIR&quot;</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">MyList3</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;AU REVOIR&quot;</span>
 <span class="n">MyList3</span> <span class="c1">#vaut alors [5, &#39;AU REVOIR&#39;, 3.14, [&#39;a&#39;, &#39;b&#39;]]</span>
 </pre></div>
 </div>
 <p>La méthode <code class="docutils literal notranslate"><span class="pre">append</span></code> permet d’ajouter des éléments en fin de liste.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MyList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;ELEMENT1&quot;</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">MyList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;ELEMENT1&quot;</span><span class="p">)</span>
 <span class="n">MyList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;ELEMENT2&quot;</span><span class="p">)</span>
 <span class="c1">#MyList vaut: [&quot;ELEMENT1&quot;, &quot;ELEMENT2&quot;]</span>
 </pre></div>
@@ -352,7 +358,7 @@ Comment déclarer une liste :</p>
 <li><p>Il est possible d’indexer à partir du dernier élément :</p></li>
 </ul>
 <p><strong>Exemple :</strong> Nous avons une liste de : 7 éléments, rangés de l’index 0 à 6.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MyList</span><span class="p">[</span><span class="s2">&quot;item1&quot;</span><span class="p">,</span><span class="s2">&quot;item2&quot;</span><span class="p">,</span><span class="s2">&quot;item3&quot;</span><span class="p">,</span><span class="s2">&quot;item4&quot;</span><span class="p">,</span><span class="s2">&quot;item5&quot;</span><span class="p">,</span><span class="s2">&quot;item6&quot;</span><span class="p">,</span><span class="s2">&quot;item7&quot;</span><span class="p">]</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">MyList</span><span class="p">[</span><span class="s2">&quot;item1&quot;</span><span class="p">,</span><span class="s2">&quot;item2&quot;</span><span class="p">,</span><span class="s2">&quot;item3&quot;</span><span class="p">,</span><span class="s2">&quot;item4&quot;</span><span class="p">,</span><span class="s2">&quot;item5&quot;</span><span class="p">,</span><span class="s2">&quot;item6&quot;</span><span class="p">,</span><span class="s2">&quot;item7&quot;</span><span class="p">]</span>
 <span class="c1">#Je peux directement aller au dernier élément :</span>
 <span class="n">MyList</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="c1">#Et on en déduit comment accès à l’avant dernier :</span>
@@ -362,41 +368,41 @@ Comment déclarer une liste :</p>
 <ul class="simple">
 <li><p>La concaténation.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Str1</span> <span class="o">=</span> <span class="s2">&quot;BON&quot;</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">Str1</span> <span class="o">=</span> <span class="s2">&quot;BON&quot;</span>
 <span class="n">Str2</span><span class="o">=</span><span class="s2">&quot;JOUR&quot;</span>
 </pre></div>
 </div>
 <p>Je peux créer une nouvelle chaine qui sera l’assemblage de <code class="docutils literal notranslate"><span class="pre">Str1</span></code> et <code class="docutils literal notranslate"><span class="pre">Str2</span></code>, on appelle cela faire une concaténation.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Str3</span> <span class="o">=</span> <span class="n">Str1</span> <span class="o">+</span> <span class="n">Str2</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">Str3</span> <span class="o">=</span> <span class="n">Str1</span> <span class="o">+</span> <span class="n">Str2</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">Str3</span></code> vaut alors « BONJOUR »</p>
 <ul class="simple">
 <li><p>Nous pouvons aussi effectuer la concaténation de n copies :</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">strConcat</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">Str3</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">strConcat</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">Str3</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">strConcat</span></code> vaut :<code class="docutils literal notranslate"><span class="pre">bonjourbonjourbonjour</span></code></p>
 <ul class="simple">
 <li><p>Nous pouvons changer le type des variables grâce aux fonctions : <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">StrPI</span> <span class="o">=</span> <span class="s2">&quot;3.1415&quot;</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">StrPI</span> <span class="o">=</span> <span class="s2">&quot;3.1415&quot;</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">StrPI</span></code> est de type <code class="docutils literal notranslate"><span class="pre">string</span></code>.Pour la convertir en <code class="docutils literal notranslate"><span class="pre">float</span></code> il suffira d’écrire ceci :</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">float</span><span class="p">(</span><span class="n">StrPI</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">float</span><span class="p">(</span><span class="n">StrPI</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>De ce fait :</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">NombrePI</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">StrPI</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">NombrePI</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">StrPI</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">NombrePI</span></code> sera de type <code class="docutils literal notranslate"><span class="pre">float</span></code>.</p>
 <ul class="simple">
 <li><p>La fonction <code class="docutils literal notranslate"><span class="pre">list</span></code> permet de convertir une chaine de caractère en une liste dont les éléments sont les différents caractères de la chaine.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">String</span> <span class="o">=</span> <span class="s2">&quot;3.1415&quot;</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">String</span> <span class="o">=</span> <span class="s2">&quot;3.1415&quot;</span>
 <span class="n">MyList</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -411,25 +417,25 @@ C’est un élément très important de la syntaxe en Python mais aussi dans tou
 En <strong>Python</strong>, quand vous créez un bloc, la ligne précédente l’indentation se termine par le signe <code class="docutils literal notranslate"><span class="pre">:</span></code>.</p>
 <section id="instructions-conditionnelles">
 <h2>3.1 Instructions conditionnelles<a class="headerlink" href="#instructions-conditionnelles" title="Permalink to this headline"></a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
   <span class="n">Instructions</span>
 </pre></div>
 </div>
 <p>Condition désigne une expression et instructions désigne une instruction ou un bloc d’instructions écrites sur plusieurs lignes.</p>
 <p>Exemple :</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
 <span class="linenos">2</span>  <span class="n">n</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">2</span>
 </pre></div>
 </div>
 <p>Nous pouvons aussi ajouter des instructions si la condition n’est pas respectée avec le mot clé <code class="docutils literal notranslate"><span class="pre">else</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
 <span class="linenos">2</span>  <span class="n">n</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">2</span>
 <span class="linenos">3</span><span class="k">else</span><span class="p">:</span>
 <span class="linenos">4</span>    <span class="n">n</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">1</span>
 </pre></div>
 </div>
 <p>Nous pouvons aussi ajouter une série de conditions dans le cas où les précédentes ne seraient pas respectées avec le mot clé <code class="docutils literal notranslate"><span class="pre">elif</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">if</span> <span class="n">degree</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">if</span> <span class="n">degree</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
 <span class="linenos">2</span>  <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Il géle !!&quot;</span>
 <span class="linenos">3</span><span class="k">elif</span> <span class="n">degree</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">degree</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">:</span>
 <span class="linenos">4</span>    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Il fait froid !!&quot;</span>
@@ -442,19 +448,19 @@ En <strong>Python</strong>, quand vous créez un bloc, la ligne précédente l�
 <section id="boucles-conditionnelles">
 <h2>3.2 Boucles conditionnelles<a class="headerlink" href="#boucles-conditionnelles" title="Permalink to this headline"></a></h2>
 <p>Structure :</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">condition</span><span class="p">:</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">condition</span><span class="p">:</span>
   <span class="n">instructions</span>
 </pre></div>
 </div>
 <p>Tant que la condition est respectée, alors les instructions seront exécutées.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="linenos">2</span><span class="k">while</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
 <span class="linenos">3</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a est supérieur à zéro&quot;</span><span class="p">)</span>
 <span class="linenos">4</span>    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="mi">1</span>
 </pre></div>
 </div>
 <p>Si j’exécute le script, j’obtiens à l’écran :</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">a</span> <span class="n">est</span> <span class="n">supérieur</span> <span class="n">à</span> <span class="n">zéro</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">a</span> <span class="n">est</span> <span class="n">supérieur</span> <span class="n">à</span> <span class="n">zéro</span>
 <span class="linenos"> 2</span><span class="n">a</span> <span class="n">est</span> <span class="n">supérieur</span> <span class="n">à</span> <span class="n">zéro</span>
 <span class="linenos"> 3</span><span class="n">a</span> <span class="n">est</span> <span class="n">supérieur</span> <span class="n">à</span> <span class="n">zéro</span>
 <span class="linenos"> 4</span><span class="n">a</span> <span class="n">est</span> <span class="n">supérieur</span> <span class="n">à</span> <span class="n">zéro</span>
@@ -472,17 +478,17 @@ Au bout de 10 « tours » dans la boucle, <code class="docutils literal notransl
 <section id="boucles-non-conditionnelles">
 <h2>3.3 Boucles non conditionnelles<a class="headerlink" href="#boucles-non-conditionnelles" title="Permalink to this headline"></a></h2>
 <p>Structure :</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
   <span class="n">instructions</span>
 </pre></div>
 </div>
 <p>Cette boucle permet de répéter <code class="docutils literal notranslate"><span class="pre">n</span></code> fois une instruction ou un bloc d’instructions.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">for</span> <span class="n">car</span> <span class="ow">in</span> <span class="s2">&quot;bonjour&quot;</span><span class="p">:</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">for</span> <span class="n">car</span> <span class="ow">in</span> <span class="s2">&quot;bonjour&quot;</span><span class="p">:</span>
 <span class="linenos">2</span>  <span class="nb">print</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">car</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Execution:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">bbbbbbbbbb</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">bbbbbbbbbb</span>
 <span class="linenos">2</span><span class="n">oooooooooo</span>
 <span class="linenos">3</span><span class="n">nnnnnnnnnn</span>
 <span class="linenos">4</span><span class="n">jjjjjjjjjj</span>
@@ -493,12 +499,12 @@ Au bout de 10 « tours » dans la boucle, <code class="docutils literal notransl
 </div>
 <p><strong>Explication :</strong></p>
 <p>Pour chaque caractère un à un de la chaine « bonjour », on affiche 10 fois le caractère.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
 <span class="linenos">2</span>  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Exécution :</strong>  Pour chaque valeur de <code class="docutils literal notranslate"><span class="pre">i</span></code> en partant de 1, puis en augmentant de 1 jusqu’à 10, <strong>afficher</strong> : hello.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">hello</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">hello</span>
 <span class="linenos"> 2</span><span class="n">hello</span>
 <span class="linenos"> 3</span><span class="n">hello</span>
 <span class="linenos"> 4</span><span class="n">hello</span>
@@ -510,23 +516,23 @@ Au bout de 10 « tours » dans la boucle, <code class="docutils literal notransl
 <span class="linenos">10</span><span class="n">hello</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
 <span class="linenos">2</span>  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Exécution :</strong>  Pour chaque valeur de <code class="docutils literal notranslate"><span class="pre">i</span></code> en partant de 6, puis en augmentant de 1 jusqu’à 10, <strong>afficher</strong> : hello.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">hello</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">hello</span>
 <span class="linenos">2</span><span class="n">hello</span>
 <span class="linenos">3</span><span class="n">hello</span>
 <span class="linenos">4</span><span class="n">hello</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
 <span class="linenos">2</span>  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Exécution :</strong>  Pour chaque valeur de <code class="docutils literal notranslate"><span class="pre">i</span></code> en partant de 6, puis en augmentant de 2 jusqu’à 10, <strong>afficher</strong> : hello.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">hello</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">hello</span>
 <span class="linenos">2</span><span class="n">hello</span>
 </pre></div>
 </div>
@@ -535,13 +541,13 @@ L’instruction <code class="docutils literal notranslate"><span class="pre">con
 </section>
 <section id="mise-en-pratique-modifier-une-liste">
 <h2>3.4 Mise en pratique: Modifier une liste<a class="headerlink" href="#mise-en-pratique-modifier-une-liste" title="Permalink to this headline"></a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">MyList</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bijou&#39;</span><span class="p">,</span><span class="s1">&#39;caillou&#39;</span><span class="p">,</span><span class="s1">&#39;chou&#39;</span><span class="p">,</span><span class="s1">&#39;genou&#39;</span><span class="p">,</span><span class="s1">&#39;hibou&#39;</span><span class="p">,</span><span class="s1">&#39;joujou&#39;</span><span class="p">,</span><span class="s1">&#39;pou&#39;</span><span class="p">]</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">MyList</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bijou&#39;</span><span class="p">,</span><span class="s1">&#39;caillou&#39;</span><span class="p">,</span><span class="s1">&#39;chou&#39;</span><span class="p">,</span><span class="s1">&#39;genou&#39;</span><span class="p">,</span><span class="s1">&#39;hibou&#39;</span><span class="p">,</span><span class="s1">&#39;joujou&#39;</span><span class="p">,</span><span class="s1">&#39;pou&#39;</span><span class="p">]</span>
 <span class="linenos">2</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">MyList</span><span class="p">)):</span>
 <span class="linenos">3</span>    <span class="nb">print</span><span class="p">(</span><span class="n">MyList</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 </pre></div>
 </div>
 <p><strong>Exécution</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">bijou</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">bijou</span>
 <span class="linenos">2</span><span class="n">caillou</span>
 <span class="linenos">3</span><span class="n">chou</span>
 <span class="linenos">4</span><span class="n">genou</span>
@@ -551,14 +557,14 @@ L’instruction <code class="docutils literal notranslate"><span class="pre">con
 </pre></div>
 </div>
 <p>Nous souhaitons ajouter un “x” à la fin de chaque mot, et les afficher de nouveau.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">MyList</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bijou&#39;</span><span class="p">,</span><span class="s1">&#39;caillou&#39;</span><span class="p">,</span><span class="s1">&#39;chou&#39;</span><span class="p">,</span><span class="s1">&#39;genou&#39;</span><span class="p">,</span><span class="s1">&#39;hibou&#39;</span><span class="p">,</span><span class="s1">&#39;joujou&#39;</span><span class="p">,</span><span class="s1">&#39;pou&#39;</span><span class="p">]</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">MyList</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bijou&#39;</span><span class="p">,</span><span class="s1">&#39;caillou&#39;</span><span class="p">,</span><span class="s1">&#39;chou&#39;</span><span class="p">,</span><span class="s1">&#39;genou&#39;</span><span class="p">,</span><span class="s1">&#39;hibou&#39;</span><span class="p">,</span><span class="s1">&#39;joujou&#39;</span><span class="p">,</span><span class="s1">&#39;pou&#39;</span><span class="p">]</span>
 <span class="linenos">2</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">MyList</span><span class="p">)):</span>
 <span class="hll"><span class="linenos">3</span>    <span class="n">MyList</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">MyList</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;x&quot;</span>
 </span><span class="linenos">4</span>    <span class="nb">print</span><span class="p">(</span><span class="n">MyList</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 </pre></div>
 </div>
 <p><strong>Exécution</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">bijoux</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">bijoux</span>
 <span class="linenos">2</span><span class="n">cailloux</span>
 <span class="linenos">3</span><span class="n">choux</span>
 <span class="linenos">4</span><span class="n">genoux</span>
@@ -575,6 +581,7 @@ L’instruction <code class="docutils literal notranslate"><span class="pre">con
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="1.0%20introduction.html" class="btn btn-neutral float-left" title="1.0 Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="3.0%20fonctions.html" class="btn btn-neutral float-right" title="3.0 Les Fonctions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

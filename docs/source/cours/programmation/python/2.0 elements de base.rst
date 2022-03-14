@@ -17,20 +17,22 @@ L’opérateur d’affectation est noté ``=``.
 
 **Exemple 1** : Cette instruction associe la valeur ``3`` au nom ``x``.
 
-.. code-block:: python
+.. code-block:: Python
 
   X=3
 
 **Exemple 2** : Cette instruction associe la valeur de l’expression à droite du signe ``=``.
 
-.. code-block:: python
+.. code-block:: Python
 
   Y = 3 + 5  #Y vaut 8
 
 **Exemple 3 :**
 
-.. code-block:: python
+.. code-block:: Python
   :linenos:
+  :caption: this.py
+  :name: this-py
 
   X=3
   Y=3+5
@@ -41,7 +43,7 @@ L’opérateur d’affectation est noté ``=``.
 En **Python**, nous pouvons faire des affectations multiples pour gagner du temps dans la rédaction et d’économiser des lignes de code. 
 Ainsi, ces 3 lignes d’instructions : 
 
-.. code-block:: python
+.. code-block:: Python
   :linenos:
 
   X=1
@@ -50,13 +52,13 @@ Ainsi, ces 3 lignes d’instructions :
 
 Peuvent tout simplement s’écrire : 
 
-.. code-block:: python
+.. code-block:: Python
 
   x,y,z = 1,2,5
 
 On pourrait aussi écrire : 
 
-.. code-block:: python
+.. code-block:: Python
 
   x=1; y=2; z=5
 
@@ -159,7 +161,7 @@ Les opérateurs mathématiques de comparaisons s’écrivent ainsi :
 Une chaine de caractère est par exemple tout ce que l’on saisie avec les touches du clavier. 
 On utilise des guillemets ou des apostrophes pour les déclarer.
 
-.. code-block:: python
+.. code-block:: Python
 
   MyString = "hello world!"
   MyString2 = 'hello world!'
@@ -169,7 +171,7 @@ Si elle existe, ``MyString`` aura alors la valeur de la valeur de ``Hello``.
 
 Nous pouvons connaitre la longueur d’une chaine, qui est le nombre de caractère qui la compose, grâce à la fonction ``len``.
 
-.. code-block:: python
+.. code-block:: Python
 
   len("hello") #a pour valeur un entier : 5
   MyString = "Hello world"
@@ -207,7 +209,7 @@ Toutefois nous voyons dans le tableau que le dernier caractère se situe à l’
 
 Il est possible d’accéder à l’indice i d’une chaine grâce à cette syntaxe : 
 
-.. code-block:: python
+.. code-block:: Python
 
   MyString = "Hello world"
   MyString[2] #Nous accédons à l’indice 2 de la chaine. Soit au caractère l 
@@ -215,7 +217,7 @@ Il est possible d’accéder à l’indice i d’une chaine grâce à cette synt
 Nous pouvons avoir accès également à une suite de caractères d’une chaine avec la notation : 
 ``MyString [i : j]``. L’indice ``i`` est inclus et ``j`` est exclu. 
 
-.. code-block:: python
+.. code-block:: Python
 
   MyString = "Hello world"
   MyString [2 :4] #résultat:  ll
@@ -230,7 +232,7 @@ Un objet de type ``list`` (« une liste »), représente un ensemble ordonné d�
 De la même manière qu’avec les chaines de caractères, les éléments de la liste sont ordonnés en commençant à l’indice 0.
 Comment déclarer une liste : 
 
-.. code-block:: python
+.. code-block:: Python
 
   MyList1= [] #une liste vide.
   MyList2=[4] #une liste avec un seul élément, ici l’entier 4.
@@ -241,14 +243,14 @@ La fonction ``len`` est aussi utilisable avec les listes et renvoie sa longueur.
 
 L’accès à un élément ou une suite d’éléments se fait comme pour les chaînes : 
 
-.. code-block:: python
+.. code-block:: Python
 
   MyList3[1] #est l’élément 'hello'
   MyList3[0:3] #est la liste des éléments d’indices 0,1,2 soit [5,'hello',3.14]
 
 Il est possible de modifier le contenu d’une liste de la sorte : 
 
-.. code-block:: python
+.. code-block:: Python
 
   MyList3[1] = "AU REVOIR"
   MyList3 #vaut alors [5, 'AU REVOIR', 3.14, ['a', 'b']]
@@ -256,7 +258,7 @@ Il est possible de modifier le contenu d’une liste de la sorte :
 
 La méthode ``append`` permet d’ajouter des éléments en fin de liste.
 
-.. code-block:: python
+.. code-block:: Python
 
   MyList.append("ELEMENT1")
   MyList.append("ELEMENT2")
@@ -269,7 +271,7 @@ La méthode ``append`` permet d’ajouter des éléments en fin de liste.
    
 **Exemple :** Nous avons une liste de : 7 éléments, rangés de l’index 0 à 6.
 
-.. code-block:: python
+.. code-block:: Python
 
   MyList["item1","item2","item3","item4","item5","item6","item7"]
   #Je peux directement aller au dernier élément :
@@ -279,14 +281,14 @@ La méthode ``append`` permet d’ajouter des éléments en fin de liste.
 
 * La concaténation.
 
-.. code-block:: python
+.. code-block:: Python
 
   Str1 = "BON"
   Str2="JOUR"
 
 Je peux créer une nouvelle chaine qui sera l’assemblage de ``Str1`` et ``Str2``, on appelle cela faire une concaténation.
 
-.. code-block:: python
+.. code-block:: Python
 
   Str3 = Str1 + Str2
 
@@ -294,7 +296,7 @@ Je peux créer une nouvelle chaine qui sera l’assemblage de ``Str1`` et ``Str2
 
 * Nous pouvons aussi effectuer la concaténation de n copies :  
 
-.. code-block:: python
+.. code-block:: Python
 
   strConcat = 3*Str3
 
@@ -302,19 +304,19 @@ Je peux créer une nouvelle chaine qui sera l’assemblage de ``Str1`` et ``Str2
 
 * Nous pouvons changer le type des variables grâce aux fonctions : ``int``, ``float``, ``str``.
 
-.. code-block:: python
+.. code-block:: Python
 
   StrPI = "3.1415"
 
 ``StrPI`` est de type ``string``.Pour la convertir en ``float`` il suffira d’écrire ceci :
 
-.. code-block:: python
+.. code-block:: Python
 
   float(StrPI)
 
 De ce fait : 
 
-.. code-block:: python
+.. code-block:: Python
 
   NombrePI = float(StrPI)
 
@@ -322,7 +324,7 @@ De ce fait :
 
 * La fonction ``list`` permet de convertir une chaine de caractère en une liste dont les éléments sont les différents caractères de la chaine.
 
-.. code-block:: python
+.. code-block:: Python
 
   String = "3.1415"
   MyList = list(String)
@@ -344,7 +346,7 @@ En **Python**, quand vous créez un bloc, la ligne précédente l’indentation 
 3.1 Instructions conditionnelles
 ####################################
 
-.. code-block:: python
+.. code-block:: Python
 
   if condition: 
     Instructions
@@ -353,7 +355,7 @@ Condition désigne une expression et instructions désigne une instruction ou un
 
 Exemple :
 
-.. code-block:: python 
+.. code-block:: Python 
   :linenos:
 
   if n == 4:
@@ -361,7 +363,7 @@ Exemple :
 
 Nous pouvons aussi ajouter des instructions si la condition n’est pas respectée avec le mot clé ``else``.
 
-.. code-block:: python 
+.. code-block:: Python 
   :linenos:
 
   if n == 4:
@@ -371,7 +373,7 @@ Nous pouvons aussi ajouter des instructions si la condition n’est pas respect�
 
 Nous pouvons aussi ajouter une série de conditions dans le cas où les précédentes ne seraient pas respectées avec le mot clé ``elif``.
 
-.. code-block:: python 
+.. code-block:: Python 
   :linenos:
 
   if degree <= 0:
@@ -389,14 +391,14 @@ Nous pouvons aussi ajouter une série de conditions dans le cas où les précéd
 
 Structure :
 
-.. code-block:: python 
+.. code-block:: Python 
 
   while condition:
     instructions
 
 Tant que la condition est respectée, alors les instructions seront exécutées. 
 
-.. code-block:: python 
+.. code-block:: Python 
   :linenos:
 
   a = 10
@@ -406,7 +408,7 @@ Tant que la condition est respectée, alors les instructions seront exécutées.
     
 Si j’exécute le script, j’obtiens à l’écran : 
 
-.. code-block:: python 
+.. code-block:: Python 
   :linenos:
 
   a est supérieur à zéro
@@ -430,14 +432,14 @@ Au bout de 10 « tours » dans la boucle, ``a`` se retrouve égale à zéro, la 
 
 Structure : 
 
-.. code-block:: python 
+.. code-block:: Python 
   
   for i in range(n):
     instructions
 
 Cette boucle permet de répéter ``n`` fois une instruction ou un bloc d’instructions. 
 
-.. code-block:: python 
+.. code-block:: Python 
   :linenos:
 
   for car in "bonjour":
@@ -445,7 +447,7 @@ Cette boucle permet de répéter ``n`` fois une instruction ou un bloc d’instr
 
 **Execution:**
 
-.. code-block:: python 
+.. code-block:: Python 
   :linenos:
 
   bbbbbbbbbb
@@ -460,7 +462,7 @@ Cette boucle permet de répéter ``n`` fois une instruction ou un bloc d’instr
 
 Pour chaque caractère un à un de la chaine « bonjour », on affiche 10 fois le caractère.
 
-.. code-block:: python 
+.. code-block:: Python 
   :linenos:
 
   for i in range(10):
@@ -468,7 +470,7 @@ Pour chaque caractère un à un de la chaine « bonjour », on affiche 10 fois l
 
 **Exécution :**  Pour chaque valeur de ``i`` en partant de 1, puis en augmentant de 1 jusqu’à 10, **afficher** : hello.
 
-.. code-block:: python 
+.. code-block:: Python 
   :linenos:
 
   hello
@@ -482,7 +484,7 @@ Pour chaque caractère un à un de la chaine « bonjour », on affiche 10 fois l
   hello
   hello
 
-.. code-block:: python 
+.. code-block:: Python 
   :linenos:
 
   for i in range(6,10):
@@ -490,7 +492,7 @@ Pour chaque caractère un à un de la chaine « bonjour », on affiche 10 fois l
 
 **Exécution :**  Pour chaque valeur de ``i`` en partant de 6, puis en augmentant de 1 jusqu’à 10, **afficher** : hello.
 
-.. code-block:: python 
+.. code-block:: Python 
   :linenos:
 
   hello
@@ -498,7 +500,7 @@ Pour chaque caractère un à un de la chaine « bonjour », on affiche 10 fois l
   hello
   hello
 
-.. code-block:: python 
+.. code-block:: Python 
   :linenos:
 
   for i in range(6,10,2):
@@ -506,7 +508,7 @@ Pour chaque caractère un à un de la chaine « bonjour », on affiche 10 fois l
 
 **Exécution :**  Pour chaque valeur de ``i`` en partant de 6, puis en augmentant de 2 jusqu’à 10, **afficher** : hello.
 
-.. code-block:: python 
+.. code-block:: Python 
   :linenos: 
 
   hello
@@ -519,7 +521,7 @@ L’instruction ``continue`` permet d’éviter un passage dans la boucle.
 3.4 Mise en pratique: Modifier une liste
 ##############################################
 
-.. code-block:: python
+.. code-block:: Python
   :linenos:
 
   MyList = ['bijou','caillou','chou','genou','hibou','joujou','pou']
@@ -528,7 +530,7 @@ L’instruction ``continue`` permet d’éviter un passage dans la boucle.
 
 **Exécution**
 
-.. code-block:: python 
+.. code-block:: Python 
   :linenos:
 
   bijou
@@ -541,7 +543,7 @@ L’instruction ``continue`` permet d’éviter un passage dans la boucle.
 
 Nous souhaitons ajouter un “x” à la fin de chaque mot, et les afficher de nouveau.
 
-.. code-block:: python 
+.. code-block:: Python 
   :linenos:
   :emphasize-lines: 3
 
@@ -552,7 +554,7 @@ Nous souhaitons ajouter un “x” à la fin de chaque mot, et les afficher de n
 
 **Exécution**
 
-.. code-block:: python 
+.. code-block:: Python 
   :linenos:
 
   bijoux
@@ -562,3 +564,5 @@ Nous souhaitons ajouter un “x” à la fin de chaque mot, et les afficher de n
   hiboux
   joujoux
   poux
+
+

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.0 Spécification et tests &mdash; Cours BTS SIO 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="prev" title="3.0 Les Fonctions" href="3.0%20fonctions.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Cours BTS SIO
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Systèmes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../systemes/docker/sommaire_docker.html">La plateforme Docker</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Programmation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="sommaire_python.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1.0%20introduction.html">1.0 Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.0%20elements%20de%20base.html">2.0 Eléments de base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.0%20elements%20de%20base.html#instructions-conditionnelles-et-boucles">3.0 Instructions conditionnelles et boucles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20fonctions.html">3.0 Les Fonctions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.0 Spécification et tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#specification-d-une-fonction">4.1 Spécification d’une fonction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tests">4.2 Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#assertion">Assertion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cours BTS SIO</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="sommaire_python.html">Python</a> &raquo;</li>
+      <li>4.0 Spécification et tests</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/cours/programmation/python/4.0 specification et tests.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="specification-et-tests">
+<h1>4.0 Spécification et tests<a class="headerlink" href="#specification-et-tests" title="Permalink to this headline"></a></h1>
+<section id="specification-d-une-fonction">
+<h2>4.1 Spécification d’une fonction<a class="headerlink" href="#specification-d-une-fonction" title="Permalink to this headline"></a></h2>
+<p>Une spécification permet d’informer les utilisations de la tâche effectuée par la fonction, de préciser les contraintes imposées pour les paramètres et ce qui peut être attendu des résultats.
+Elle peut aussi préciser les messages d’erreurs en cas de mauvaise utilisation.
+Elle est résumée dans la <code class="docutils literal notranslate"><span class="pre">docstring</span></code>, inscrite au début du corps de la fonction entre des triples guillemets.
+Exemple, pour la fonction <code class="docutils literal notranslate"><span class="pre">print</span></code>, si nous souhaitons avoir des informations alors nous utiliserons la fonction <code class="docutils literal notranslate"><span class="pre">help</span></code> dans l’interpréteur.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&gt;&gt;&gt;</span><span class="n">help</span><span class="p">(</span><span class="nb">print</span><span class="p">)</span>
+<span class="linenos"> 2</span><span class="n">Help</span> <span class="n">on</span> <span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">function</span> <span class="nb">print</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">builtins</span><span class="p">:</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="nb">print</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos"> 5</span>    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="n">Prints</span> <span class="n">the</span> <span class="n">values</span> <span class="n">to</span> <span class="n">a</span> <span class="n">stream</span><span class="p">,</span> <span class="ow">or</span> <span class="n">to</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="n">by</span> <span class="n">default</span><span class="o">.</span>
+<span class="linenos"> 8</span>    <span class="n">Optional</span> <span class="n">keyword</span> <span class="n">arguments</span><span class="p">:</span>
+<span class="linenos"> 9</span>    <span class="n">file</span><span class="p">:</span>  <span class="n">a</span> <span class="n">file</span><span class="o">-</span><span class="n">like</span> <span class="nb">object</span> <span class="p">(</span><span class="n">stream</span><span class="p">);</span> <span class="n">defaults</span> <span class="n">to</span> <span class="n">the</span> <span class="n">current</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span>
+<span class="linenos">10</span>    <span class="n">sep</span><span class="p">:</span>   <span class="n">string</span> <span class="n">inserted</span> <span class="n">between</span> <span class="n">values</span><span class="p">,</span> <span class="n">default</span> <span class="n">a</span> <span class="n">space</span><span class="o">.</span>
+<span class="linenos">11</span>    <span class="n">end</span><span class="p">:</span>   <span class="n">string</span> <span class="n">appended</span> <span class="n">after</span> <span class="n">the</span> <span class="n">last</span> <span class="n">value</span><span class="p">,</span> <span class="n">default</span> <span class="n">a</span> <span class="n">newline</span><span class="o">.</span>
+<span class="linenos">12</span>    <span class="n">flush</span><span class="p">:</span> <span class="n">whether</span> <span class="n">to</span> <span class="n">forcibly</span> <span class="n">flush</span> <span class="n">the</span> <span class="n">stream</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>La fonction <code class="docutils literal notranslate"><span class="pre">help</span></code> affiche la docstring inscrite dans le code de la fonction <code class="docutils literal notranslate"><span class="pre">print</span></code>.
+On apprend par exemple que la fonction <code class="docutils literal notranslate"><span class="pre">print</span></code> peut recevoir 4 arguments optionnels.
+La spécification d’une fonction est écrite, comme l’est un commentaire dans un programme, pour les utilisateurs.
+L’objectif est donc d’être clair, et d’aider à saisir rapidement le rôle d’une ou plusieurs instruction.
+Il faut donc être vigilent aux choix des noms de variables et de fonctions.</p>
+<p>Voici comment spécifier la documentation d’une fonction :</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span> <span class="nf">ExempleDeFonction</span><span class="p">(</span><span class="n">un_argument</span><span class="p">):</span>
+<span class="linenos">2</span>   <span class="sd">&quot;&quot;&quot; Ceci est un test de documentation qui apparaitra dans le Help ! &quot;&quot;&quot;</span>
+<span class="linenos">3</span>   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bonjour !&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Le texte entre les triples guillemets fournit ici une description de l’entrée, du traitement et du résultat. La fonction est enregistrée dans un fichier et le texte s’affiche lorsqu’on écrit <code class="docutils literal notranslate"><span class="pre">help``(``ExempleDeFonction</span></code>).
+Les commentaires précédés par le signe <code class="docutils literal notranslate"><span class="pre">#</span></code> n’ont aucune importance sur l’exécution de la fonction. Ils ne sont pas lus par l’interpréteur <strong>Python</strong>.
+Testons :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>help(ExempleDeFonction)
+Help on function ExempleDeFonction in module __main__:
+ExempleDeFonction(un_argument)
+Ceci est un test de documentation qui apparaitra dans le Help !
+</pre></div>
+</div>
+<p>La spécification est une sorte de contrat entre l’auteur et l’utilisateur. L’auteur garantit un résultat sous réserve d’une utilisation correcte qui est précisée.</p>
+</section>
+<section id="tests">
+<h2>4.2 Tests<a class="headerlink" href="#tests" title="Permalink to this headline"></a></h2>
+<p>Les fonctions doivent être testées avant de pouvoir être utilisées dans différents programmes.
+Il faut envisager tout les cas de figures.
+Exemple avec une fonction <code class="docutils literal notranslate"><span class="pre">permute</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Fonction “permute”</span><a class="headerlink" href="#id1" title="Permalink to this code"></a></div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span> <span class="k">def</span> <span class="nf">permute</span><span class="p">(</span><span class="n">liste</span><span class="p">):</span>
+<span class="linenos">2</span>      <span class="n">copie</span> <span class="o">=</span> <span class="n">liste</span><span class="p">[:]</span>
+<span class="linenos">3</span>      <span class="n">copie</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">copie</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">copie</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">copie</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos">4</span>      <span class="k">return</span> <span class="n">copie</span>
+</pre></div>
+</div>
+</div>
+<p>Testons :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">permute</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]))</span>
+<span class="o">&gt;&gt;</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">permute</span><span class="p">([</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span> <span class="p">])</span>
+<span class="o">&gt;&gt;</span> <span class="p">[[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+
+
+<span class="n">Print</span><span class="p">(</span><span class="n">permute</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
+<span class="o">&gt;&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">Print</span><span class="p">(</span><span class="n">permute</span><span class="p">([])</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;pyshell#11&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">permute</span><span class="p">([])</span>
+  <span class="n">File</span> <span class="s2">&quot;C:/Users/Baptiste/Desktoptest.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">3</span><span class="p">,</span> <span class="ow">in</span> <span class="n">permute</span>
+    <span class="n">copie</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">copie</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">copie</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">copie</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="ne">IndexError</span><span class="p">:</span> <span class="nb">list</span> <span class="n">index</span> <span class="n">out</span> <span class="n">of</span> <span class="nb">range</span>
+</pre></div>
+</div>
+<p>Nous remarquons que la fonction effectue bien ce qui est prévu, même pour une liste ne contenant qu’un seul élément. Par contre, le cas d’une liste vide n’a pas été traité et une erreur interrompt le programme.
+Il faut donc modifier la définition de la fonction pour éviter qu’une erreur soit générée si l’utilisateur l’utilise  avec une liste vide.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Fonction “permute”</span><a class="headerlink" href="#id2" title="Permalink to this code"></a></div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span> <span class="nf">permute</span><span class="p">(</span><span class="n">liste</span><span class="p">):</span>
+<span class="linenos">2</span>      <span class="k">if</span> <span class="n">liste</span> <span class="o">==</span> <span class="p">[]:</span>
+<span class="linenos">3</span>              <span class="k">return</span> <span class="p">[]</span>
+<span class="linenos">4</span>      <span class="n">copie</span> <span class="o">=</span> <span class="n">liste</span><span class="p">[:]</span>
+<span class="linenos">5</span>      <span class="n">copie</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">copie</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">copie</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">copie</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos">6</span>      <span class="k">return</span> <span class="n">copie</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="assertion">
+<h2>Assertion<a class="headerlink" href="#assertion" title="Permalink to this headline"></a></h2>
+<p>Une autre manière d’anticiper une mauvaise utilisation est d’incorporer des assertions.
+Une assertion permet de gérer une possible erreur d’utilisation prévue à l’avance.  Dans notre fonction, il suffit d’ajouter au début l’instruction : <code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">liste</span> <span class="pre">!=[]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Fonction “permute” avec assertion.</span><a class="headerlink" href="#id3" title="Permalink to this code"></a></div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>  <span class="k">def</span> <span class="nf">permute</span><span class="p">(</span><span class="n">liste</span><span class="p">):</span>
+<span class="linenos">2</span>      <span class="k">assert</span> <span class="n">liste</span> <span class="o">!=</span><span class="p">[]</span>
+<span class="linenos">3</span>      <span class="n">copie</span> <span class="o">=</span> <span class="n">liste</span><span class="p">[:]</span>
+<span class="linenos">4</span>      <span class="n">copie</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">copie</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">copie</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">copie</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos">5</span>      <span class="k">return</span> <span class="n">copie</span>
+</pre></div>
+</div>
+</div>
+<p>Lors de l’appel de <code class="docutils literal notranslate"><span class="pre">permute([])</span></code>, l’exécution est interrompue et un message d’erreur s’affiche en précisant que l’assertion n’a pas été vérifiée.</p>
+<p>On utilise les assertions en phase de test.
+Lorsque les tests sont finis on peut les supprimer et les remplacer par des blocs
+<code class="docutils literal notranslate"><span class="pre">Try</span> <span class="pre">…except</span></code> qui permettent au programme de réagir de manière précise.
+Pour tester un programme, on peut également écrire une fonction test contenant une batterie de tests.</p>
+<p><strong>Exemple avec une fonction de division.</strong></p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">Fonction division</span><a class="headerlink" href="#id4" title="Permalink to this code"></a></div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>  <span class="k">def</span> <span class="nf">division</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+<span class="linenos">2</span>      <span class="sd">&quot;&quot;&quot;a est un entier naturel</span>
+<span class="linenos">3</span><span class="sd">         b est un entier naturel non nul &quot;&quot;&quot;</span>
+<span class="linenos">4</span>         <span class="n">r</span> <span class="o">=</span> <span class="n">a</span>
+<span class="linenos">5</span>         <span class="n">q</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">6</span>         <span class="k">while</span> <span class="n">r</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="p">:</span>
+<span class="linenos">7</span>                 <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">b</span>
+<span class="linenos">8</span>                 <span class="n">q</span> <span class="o">=</span> <span class="n">q</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="linenos">9</span>      <span class="k">return</span> <span class="n">q</span><span class="p">,</span><span class="n">r</span>
+</pre></div>
+</div>
+</div>
+<p>Nous allons maintenant écrire une fonction <code class="docutils literal notranslate"><span class="pre">test_division</span></code>.
+Cette fonction permet de vérifier que le résultat renvoyé par la fonction division est correct dans une série de cas.
+Cela évite d’effectuer les tests à la main, un par un .</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">Test de la fonction division</span><a class="headerlink" href="#id5" title="Permalink to this code"></a></div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>  <span class="k">def</span> <span class="nf">test_division</span><span class="p">():</span>
+<span class="linenos">2</span>        <span class="sd">&quot;&quot;&quot; la fonction division doit renvoyer le quotient q et le reste r dans la division de a par b</span>
+<span class="linenos">3</span><span class="sd">        un invariant est a == b * q + r &quot;&quot;&quot;</span>
+<span class="linenos">4</span>        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">13</span><span class="p">):</span>
+<span class="linenos">5</span>                <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">13</span><span class="p">):</span>
+<span class="linenos">6</span>                        <span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">division</span><span class="p">(</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="p">)</span>
+<span class="linenos">7</span>                        <span class="k">if</span> <span class="n">a</span> <span class="o">!=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">q</span> <span class="o">+</span> <span class="n">r</span> <span class="ow">or</span> <span class="n">r</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="p">:</span>
+<span class="linenos">8</span>                                <span class="k">return</span> <span class="kc">False</span>
+<span class="linenos">9</span>                <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Testez la fonction.</strong></p>
+<p>Vous constaterez qu’il n’y a aucun problème de signalé.
+Mais modifions la fonction division.
+Remplacer la ligne <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">r=&gt;b</span> <span class="pre">par</span> <span class="pre">while</span> <span class="pre">r&gt;b</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">Testons la fonction division modifiée</span><a class="headerlink" href="#id6" title="Permalink to this code"></a></div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span> <span class="k">def</span> <span class="nf">division</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+<span class="linenos">2</span>      <span class="sd">&quot;&quot;&quot;a est un entier naturel</span>
+<span class="linenos">3</span><span class="sd">         b est un entier naturel non nul &quot;&quot;&quot;</span>
+<span class="linenos">4</span>         <span class="n">r</span> <span class="o">=</span> <span class="n">a</span>
+<span class="linenos">5</span>         <span class="n">q</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">6</span>         <span class="k">while</span> <span class="n">r</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">:</span>
+<span class="linenos">7</span>                 <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">b</span>
+<span class="linenos">8</span>                 <span class="n">q</span> <span class="o">=</span> <span class="n">q</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="linenos">9</span>      <span class="k">return</span> <span class="n">q</span><span class="p">,</span><span class="n">r</span>
+</pre></div>
+</div>
+</div>
+<p>Appelons maintenant la fonction <code class="docutils literal notranslate"><span class="pre">test_division()</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">test_division</span><span class="p">()</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>La fonction <code class="docutils literal notranslate"><span class="pre">test_division</span></code> retourne <code class="docutils literal notranslate"><span class="pre">False</span></code>. Nous pouvons modifier la fonction <code class="docutils literal notranslate"><span class="pre">test_division</span></code> pour connaitre les raisons de l’échec du test.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">test_division</span><span class="p">():</span>
+<span class="linenos"> 2</span>      <span class="sd">&quot;&quot;&quot; la fonction division doit renvoyer le quotient q et le reste r dans la division de a par b</span>
+<span class="linenos"> 3</span><span class="sd">      un invariant est a == b * q + r &quot;&quot;&quot;</span>
+<span class="linenos"> 4</span>      <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">13</span><span class="p">):</span>
+<span class="linenos"> 5</span>              <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">13</span><span class="p">):</span>
+<span class="linenos"> 6</span>                      <span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">division</span><span class="p">(</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="p">)</span>
+<span class="linenos"> 7</span>                      <span class="k">if</span> <span class="n">a</span> <span class="o">!=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">q</span> <span class="o">+</span> <span class="n">r</span> <span class="ow">or</span> <span class="n">r</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="p">:</span>
+<span class="linenos"> 8</span>                              <span class="n">message1</span> <span class="o">=</span> <span class="s2">&quot;Echec pour a = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; et b = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="linenos"> 9</span>                              <span class="n">message2</span> <span class="o">=</span> <span class="s2">&quot;q = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; et r = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="linenos">10</span>                              <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="n">message1</span><span class="p">,</span> <span class="n">message2</span>
+<span class="linenos">11</span>              <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>Exécutons la fonction de test.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">test_division</span><span class="p">()</span>
+<span class="go">(False, ‘Echec pour a = 1 et b = 1’, ‘q=0 et r=1’ )</span>
+</pre></div>
+</div>
+<p>Nous pouvons maintenant comprendre l’origine du problème à ce test.
+L’objectif des tests ne doit pas être de prouver qu’il n’y a pas d’erreurs mais de les débusquer !</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="3.0%20fonctions.html" class="btn btn-neutral float-left" title="3.0 Les Fonctions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bauer Baptiste.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

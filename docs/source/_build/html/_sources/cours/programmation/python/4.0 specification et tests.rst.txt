@@ -1,0 +1,230 @@
+﻿4.0 Spécification et tests
+##################################
+
+4.1 Spécification d'une fonction
+**********************************
+
+Une spécification permet d’informer les utilisations de la tâche effectuée par la fonction, de préciser les contraintes imposées pour les paramètres et ce qui peut être attendu des résultats. 
+Elle peut aussi préciser les messages d’erreurs en cas de mauvaise utilisation. 
+Elle est résumée dans la ``docstring``, inscrite au début du corps de la fonction entre des triples guillemets. 
+Exemple, pour la fonction ``print``, si nous souhaitons avoir des informations alors nous utiliserons la fonction ``help`` dans l’interpréteur. 
+
+.. code-block:: Python
+  :linenos:
+  :emphasize-lines: 0
+
+  >>>help(print)
+  Help on built-in function print in module builtins:
+
+  print(...)
+      print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False)
+      
+      Prints the values to a stream, or to sys.stdout by default.
+      Optional keyword arguments:
+      file:  a file-like object (stream); defaults to the current sys.stdout.
+      sep:   string inserted between values, default a space.
+      end:   string appended after the last value, default a newline.
+      flush: whether to forcibly flush the stream.
+
+La fonction ``help`` affiche la docstring inscrite dans le code de la fonction ``print``.
+On apprend par exemple que la fonction ``print`` peut recevoir 4 arguments optionnels. 
+La spécification d’une fonction est écrite, comme l’est un commentaire dans un programme, pour les utilisateurs. 
+L’objectif est donc d’être clair, et d’aider à saisir rapidement le rôle d’une ou plusieurs instruction. 
+Il faut donc être vigilent aux choix des noms de variables et de fonctions. 
+
+Voici comment spécifier la documentation d’une fonction : 
+
+.. code-block:: Python
+  :linenos:
+  :emphasize-lines: 0
+   
+  def ExempleDeFonction(un_argument):
+     """ Ceci est un test de documentation qui apparaitra dans le Help ! """
+     print("bonjour !")
+
+Le texte entre les triples guillemets fournit ici une description de l’entrée, du traitement et du résultat. La fonction est enregistrée dans un fichier et le texte s’affiche lorsqu’on écrit ``help``(``ExempleDeFonction``).
+Les commentaires précédés par le signe ``#`` n’ont aucune importance sur l’exécution de la fonction. Ils ne sont pas lus par l’interpréteur **Python**.
+Testons : 
+
+
+.. code-block::
+   
+   help(ExempleDeFonction)
+   Help on function ExempleDeFonction in module __main__:
+   ExempleDeFonction(un_argument)
+   Ceci est un test de documentation qui apparaitra dans le Help !
+
+  
+La spécification est une sorte de contrat entre l’auteur et l’utilisateur. L’auteur garantit un résultat sous réserve d’une utilisation correcte qui est précisée. 
+
+4.2 Tests
+***************************
+
+Les fonctions doivent être testées avant de pouvoir être utilisées dans différents programmes. 
+Il faut envisager tout les cas de figures. 
+Exemple avec une fonction ``permute``.
+
+.. code-block:: Python
+  :caption: Fonction "permute"
+  :linenos:
+  :emphasize-lines: 0
+   
+   def permute(liste):
+        copie = liste[:]
+        copie[0], copie[-1] = copie[-1], copie[0]
+        return copie
+
+  
+Testons : 
+
+.. code-block::
+
+  print(permute([1,2,3,4]))
+  >> [4, 2, 3, 1]
+
+  print(permute([ [1,2] , [3,4], [5,6] ])
+  >> [[5,6], [3,4], 1,2]]
+
+
+  Print(permute([1])
+  >> [1]
+
+  Print(permute([])
+  Traceback (most recent call last):
+    File "<pyshell#11>", line 1, in <module>
+      print(permute([])
+    File "C:/Users/Baptiste/Desktoptest.py", line 3, in permute
+      copie[0], copie[-1] = copie[-1], copie[0]
+  IndexError: list index out of range
+
+Nous remarquons que la fonction effectue bien ce qui est prévu, même pour une liste ne contenant qu’un seul élément. Par contre, le cas d’une liste vide n’a pas été traité et une erreur interrompt le programme. 
+Il faut donc modifier la définition de la fonction pour éviter qu’une erreur soit générée si l’utilisateur l’utilise  avec une liste vide. 
+
+.. code-block:: Python
+  :caption: Fonction "permute"
+  :linenos:
+  :emphasize-lines: 0
+   
+  def permute(liste):
+        if liste == []:
+                return []
+        copie = liste[:]
+        copie[0], copie[-1] = copie[-1], copie[0]
+        return copie
+
+Assertion
+***************************
+
+Une autre manière d’anticiper une mauvaise utilisation est d’incorporer des assertions. 
+Une assertion permet de gérer une possible erreur d’utilisation prévue à l’avance.  Dans notre fonction, il suffit d’ajouter au début l’instruction : ``assert liste !=[]``
+
+.. code-block:: Python
+  :caption: Fonction "permute" avec assertion.
+  :linenos:
+  :emphasize-lines: 0
+   
+    def permute(liste):
+        assert liste !=[]
+        copie = liste[:]
+        copie[0], copie[-1] = copie[-1], copie[0]
+        return copie
+
+Lors de l’appel de ``permute([])``, l’exécution est interrompue et un message d’erreur s’affiche en précisant que l’assertion n’a pas été vérifiée. 
+
+On utilise les assertions en phase de test. 
+Lorsque les tests sont finis on peut les supprimer et les remplacer par des blocs 
+``Try …except`` qui permettent au programme de réagir de manière précise. 
+Pour tester un programme, on peut également écrire une fonction test contenant une batterie de tests. 
+
+**Exemple avec une fonction de division.**
+
+.. code-block:: Python
+  :caption: Fonction division
+  :linenos:
+  :emphasize-lines: 0
+   
+    def division(a,b):
+        """a est un entier naturel
+           b est un entier naturel non nul """
+           r = a
+           q = 0 
+           while r >= b:
+                   r = r - b
+                   q = q + 1
+        return q,r
+
+Nous allons maintenant écrire une fonction ``test_division``.
+Cette fonction permet de vérifier que le résultat renvoyé par la fonction division est correct dans une série de cas. 
+Cela évite d’effectuer les tests à la main, un par un . 
+
+.. code-block:: Python
+  :caption: Test de la fonction division
+  :linenos:
+  :emphasize-lines: 0
+   
+    def test_division():
+          """ la fonction division doit renvoyer le quotient q et le reste r dans la division de a par b
+          un invariant est a == b * q + r """
+          for a in range(13):
+                  for b in range (1,13):
+                          q, r = division( a, b )
+                          if a != b * q + r or r >= b: 
+                                  return False
+                  return True
+
+**Testez la fonction.**
+  
+Vous constaterez qu’il n’y a aucun problème de signalé. 
+Mais modifions la fonction division. 
+Remplacer la ligne ``while r=>b par while r>b``.
+
+.. code-block:: Python
+  :caption: Testons la fonction division modifiée
+  :linenos:
+  :emphasize-lines: 0
+   
+   def division(a,b):
+        """a est un entier naturel
+           b est un entier naturel non nul """
+           r = a
+           q = 0 
+           while r > b:
+                   r = r - b
+                   q = q + 1
+        return q,r
+
+  
+Appelons maintenant la fonction ``test_division()``.
+
+.. code-block:: 
+
+  >>> test_division()
+  False
+
+La fonction ``test_division`` retourne ``False``. Nous pouvons modifier la fonction ``test_division`` pour connaitre les raisons de l’échec du test. 
+
+.. code-block:: Python
+  :linenos:
+  :emphasize-lines: 0
+
+  def test_division():
+        """ la fonction division doit renvoyer le quotient q et le reste r dans la division de a par b
+        un invariant est a == b * q + r """
+        for a in range(13):
+                for b in range (1,13):
+                        q, r = division( a, b )
+                        if a != b * q + r or r >= b: 
+                                message1 = "Echec pour a = " + str(a) + " et b = " + str(b)
+                                message2 = "q = " + str(q) + " et r = " + str(r)
+                                return False, message1, message2
+                return True
+
+Exécutons la fonction de test. 
+
+.. code-block:: 
+
+  >>> test_division()
+  (False, ‘Echec pour a = 1 et b = 1’, ‘q=0 et r=1’ )
+
+Nous pouvons maintenant comprendre l’origine du problème à ce test. 
+L’objectif des tests ne doit pas être de prouver qu’il n’y a pas d’erreurs mais de les débusquer !

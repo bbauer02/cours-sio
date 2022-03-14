@@ -1,0 +1,83 @@
+﻿3.0 Les Fonctions
++++++++++++++++++++++++
+
+3.1 Fonctions
+####################
+
+Voici la syntaxe pour définir une fonction en Python : 
+
+.. code-block:: Python
+  :caption: Définition d'une fonction
+  :linenos:
+  :emphasize-lines: 0
+   
+   def nom_de_la_fonction(arguments):
+        """ aide sur la fonction, facultatif"""
+        corps de la fonction
+
+Le mot clé ``def`` permet de déclarer une fonction. La déclaration se termine par ``:`` et le corps de la fonction est indenté. 
+Il peut ne pas y avoir d’arguments. Par contre lorsqu’il y a plusieurs arguments, ils sont séparés par des virgules. 
+La fonction peut renvoyer un résultat grâce au mot clé ``return`` suivi du résultat.
+Il peut y avoir plusieurs ``return``. 
+
+Chaque ``return`` interrompt l’exécution de la fonction.
+Sans valeur de retour, une fonction renvoie ``None``. On les appelle des **procédures**. 
+
+.. code-block:: Python
+  :linenos:
+  :emphasize-lines: 0
+   
+  def premier(n):
+        for d in range(2,n):
+                if n % d == 0:
+                        return False
+        return True
+
+**Explications**
+
+Durant l’appel de ``premier(7)``, la boucle ``for`` est exécutée. Mais puisque les tests ``n % d == 0`` ont tous la valeur ``False``, l’instruction ``return False`` n’est jamais exécutée mais ``return True``. 
+
+3.2 Espace et portée des variables
+*****************************************
+
+Il existe différents espaces dans un programme : 
+
+* **L’espace global** : l’espace dans lequel les fonctions et les variables sont définis. Et pour chaque fonction, un espace local distinct est créé. 
+* **L’espace local** : l’espace réservé au corps d’une fonction.
+  
+Les variables déclarées dans l’espace local n’existent que dans l’espace local. 
+
+3.2.1 Portée d'une variable
+===============================
+
+Une fonction ne peut pas modifier par affectation la valeur d’une variable extérieur à son espace local puisqu’une affectation crée une nouvelle variable locale qui est détruite après l’utilisation de la fonction. 
+Dans l’exemple suivant : la variable locale ``x`` utilisée dans la fonction est distincte de la variable globale ``x`` définie au début du programme par l’instruction ``x=1`` et n’existe plus après l’appel de la fonction. 
+
+.. code-block:: Python
+  :linenos:
+  :emphasize-lines: 0
+
+  x=1
+  def f(x):
+          x = x + 1
+          return x
+  #Affiche 2
+  print(f(x))
+  #Affiche 1
+  print(x)
+
+Toutefois une fonction peut modifier une variable extérieure à celle-ci en la déclarant comme variable globale avec le mot-clé ``global``. A éviter malgré tout.
+  
+.. code-block:: Python
+  :linenos:
+  :emphasize-lines: 3
+
+  x=1
+  def f():
+          global x
+          x = x + 1
+          return x
+  #Affiche 2
+  print(f(x))
+  #Affiche 2, x a été modifié
+  print(x)

@@ -1,0 +1,91 @@
+﻿5.0 Modules et bibliothèques
+############################
+
+Jusqu'ici, nous avons travaillé avec les fonctions de Python chargées au lancement de l'interpréteur. 
+Toutefois il existe une fonctionnalité nommée : **les modules**.
+Un module est grossièrement un bout de code que l'on a enfermé dans un fichier. On emprisonne ainsi des fonctions et des variables ayant toutes un rapport entre elles. Ainsi, si l'on veut travailler avec les fonctionnalités prévues par le module il n'y a qu'à importer le module et utiliser ensuite toutes les fonctions et variables prévues.
+Il existe un grand nombre de modules disponibles avec **Python** sans qu'il soit nécessaire d'installer des bibliothèques supplémentaires. Pour cette partie, nous prendrons l'exemple du module ``math`` qui contient, comme son nom l'indique, des fonctions mathématiques. 
+
+5.1 La méthode ``import``
+***************************
+
+Lorsque vous ouvrez l'interpréteur Python, les fonctionnalités du module ``math`` ne sont pas incluses. Il s'agit en effet d'un module, il vous appartient de l'importer au besoin. 
+
+>>> import math
+
+La syntaxe est facile à retenir : le mot-clé ``import``, qui signifie « importer » en anglais, suivi du nom du module, ici ``math``.
+Toutes les fonctions mathématiques contenues dans ce module sont maintenant accessibles. Pour appeler une fonction du module, il faut taper le nom du module suivi d'un point « . » puis du nom de la fonction. C'est la même syntaxe pour appeler des variables du module. Voyons un exemple :
+
+.. code-block:: 
+
+  >>> math.sqrt(16)
+  4.0
+
+La fonction ``help()`` pourra vous aider à trouver toutes les fonctions disponibles dans ce module. 
+
+>>>help(math)
+
+5.2 Les espaces de nom
+***************************
+
+Avec un espace de nom,il s'agit de regrouper certaines fonctions et variables sous un préfixe spécifique. 
+En vérité, quand vous tapez ``import math``, cela crée un espace de noms dénommé « math », contenant les variables et fonctions du module ``math``. Quand vous tapez ``math.sqrt(25)``, vous précisez à **Python** que vous souhaitez exécuter la fonction ``sqrt`` contenue dans l'espace de noms ``math``. Cela signifie que vous pouvez avoir, dans l'espace de noms principal, une autre fonction sqrt que vous avez définie vous-mêmes. Il n'y aura pas de conflit entre, d'une part, la fonction que vous avez créée et que vous appellerez grâce à l'instruction ``sqrt`` et, d'autre part, la fonction ``sqrt`` du module ``math`` que vous appellerez grâce à l'instruction ``math.sqrt``.
+
+Exemple : 
+
+.. code-block:: 
+
+  import math
+  a = 5
+  b = 33.2
+
+Dans l'espace de noms principal, celui qui ne nécessite pas de préfixe et que vous utilisez depuis le début du cours , on trouve: 
+
+* La variable ``a``.
+* La variable ``b``.
+* Le module ``math``, qui se trouve dans un espace de noms s'appelant ``math`` également. Dans cet espace de noms, on trouve :
+  
+  * la fonction ``sqrt``;
+  * la variable ``pi``;
+  * et bien d'autres fonctions et variables…
+
+C'est l'intérêt des modules : des variables et fonctions stockées à part dans un espace de noms, sans risque de conflit avec nos propres variables et fonctions. Mais dans certains cas, on pourra vouloir changer le nom de l'espace de noms dans lequel sera stocké le module importé.
+
+.. code-block:: 
+
+  import math as mathematiques
+  mathematiques.sqrt(25)
+
+5.3 Une autre méthode d'importation : ``from .. import``
+*********************************************************************************
+
+Nous avons précédemment qu’il était possible d’importer tout un module, comme celui de ``Math``. Cela veut dire que nous importons dans le programme l’ensemble des fonctions présentes dans ce module. 
+Maintenant admettons que nous ayons besoin dans notre programme que d’une seule fonction de ce module, par exemple la fonction renvoyant la valeur absolue d’une variable. Dans ce cas, nous n'allons importer que la fonction, au lieu d'importer tout le module.
+Cela se fait grâce à la syntaxe suivante : 
+
+.. code-block:: 
+
+  from math import fabs
+
+Et pour appeler la fonction, nous l’appelons uniquement par son nom sans utiliser le préfixe ``math``.
+Une autre méthode pour importer toutes les variables et fonctions du module ``Math`` :
+
+.. code-block:: 
+
+  from math import *
+
+En faisant ainsi vous n’aurez pas besoin de saisir le préfix ``math``. devant le nom des fonctions pour les utiliser. 
+Mais il est préférable de ne charger que les fonctions qui nous seront utiles, c’est une question de performance et de rapidité du code. 
+
+.. admonition:: Pour résumer
+  
+  *	Une fonction est une portion de code contenant des instructions, que l'on va pouvoir réutiliser facilement.
+  *	Découper son programme en fonctions permet une meilleure organisation.
+  *	Les fonctions peuvent recevoir des informations en entrée et renvoyer une information grâce au mot-clé ``return``.
+  *	Les fonctions se définissent de la façon suivante :  ``def nom_fonction(parametre1, parametre2, parametreN):``
+
+
+   
+  
+
+
