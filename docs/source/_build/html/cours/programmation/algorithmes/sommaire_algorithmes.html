@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algorithmes &mdash; Cours BTS SIO 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="1.0 Origines" href="1.0%20origines.html" />
+    <link rel="prev" title="6.0 Initiation à la programmation Orientée Objet" href="../python/6.0%20poo.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Cours BTS SIO
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Systèmes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../systemes/docker/sommaire_docker.html">La plateforme Docker</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Programmation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../python/sommaire_python.html">Python</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Algorithmes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="1.0%20origines.html">1.0 Origines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.0%20outils.html">2.0 Les outils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20validit%C3%A9%20et%20co%C3%BBt.html">Validité et coût</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cours BTS SIO</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Algorithmes</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/cours/programmation/algorithmes/sommaire_algorithmes.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="algorithmes">
+<h1>Algorithmes<a class="headerlink" href="#algorithmes" title="Permalink to this headline"></a></h1>
+<p><strong>Objectifs :</strong></p>
+<ul class="simple">
+<li><p>Étudier le coût d’un algorithme et prouver sa validité sur des cas simples :</p>
+<ul>
+<li><p>évaluer le nombre d’opérations effectuées ;</p></li>
+<li><p>prouver la correction d’un algorithme;</p></li>
+<li><p>prouver la terminaison d’un algorithme.</p></li>
+</ul>
+</li>
+<li><p>Connaître quelques algorithmes classiques de calcul et de recherche utilisant parcours séquentiel dans un ensemble de valeurs :</p>
+<ul>
+<li><p>calculer une moyenne ;</p></li>
+<li><p>rechercher un extremum ;</p></li>
+<li><p>rechercher une valeur particulière ;</p></li>
+</ul>
+</li>
+<li><p>Comprendre l’intérêt de la recherche par dichotomie :</p>
+<ul>
+<li><p>prouver la validité ;</p></li>
+<li><p>évaluer le coût.</p></li>
+</ul>
+</li>
+</ul>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Algorithmes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.0%20origines.html">1.0 Origines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="1.0%20origines.html#algorithme-d-euclide">Algorithme d’Euclide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2.0%20outils.html">2.0 Les outils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="2.0%20outils.html#compteurs-et-accumulateurs">2.1 Compteurs et accumulateurs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.0%20outils.html#compteur-et-boucle-inconditionnelle">2.2 Compteur et boucle inconditionnelle</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3.0%20validit%C3%A9%20et%20co%C3%BBt.html">Validité et coût</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20validit%C3%A9%20et%20co%C3%BBt.html#validite-d-un-algorithme-iteratif">Validité d’un algorithme itératif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20validit%C3%A9%20et%20co%C3%BBt.html#cout">Coût</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20validit%C3%A9%20et%20co%C3%BBt.html#complexite-lineaire">Complexité linéaire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0%20validit%C3%A9%20et%20co%C3%BBt.html#complexite-quadratique">Complexité quadratique</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../python/6.0%20poo.html" class="btn btn-neutral float-left" title="6.0 Initiation à la programmation Orientée Objet" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="1.0%20origines.html" class="btn btn-neutral float-right" title="1.0 Origines" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bauer Baptiste.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

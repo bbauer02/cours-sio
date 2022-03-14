@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Validité et coût &mdash; Cours BTS SIO 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="prev" title="2.0 Les outils" href="2.0%20outils.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Cours BTS SIO
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Systèmes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../systemes/docker/sommaire_docker.html">La plateforme Docker</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Programmation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../python/sommaire_python.html">Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="sommaire_algorithmes.html">Algorithmes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1.0%20origines.html">1.0 Origines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.0%20outils.html">2.0 Les outils</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Validité et coût</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#validite-d-un-algorithme-iteratif">Validité d’un algorithme itératif</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cout">Coût</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#complexite-lineaire">Complexité linéaire</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#complexite-quadratique">Complexité quadratique</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cours BTS SIO</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="sommaire_algorithmes.html">Algorithmes</a> &raquo;</li>
+      <li>Validité et coût</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/cours/programmation/algorithmes/3.0 validité et coût.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="validite-et-cout">
+<h1>Validité et coût<a class="headerlink" href="#validite-et-cout" title="Permalink to this headline"></a></h1>
+<p>Lorsqu’on écrit un algorithme, il est impératif de vérifier que cet algorithme va produire un résultat en un temps fini et que ce résultat sera correct dans le sens où il sera conforme à une spécification précise. Nous dirons alors que l’algorithme est valide.</p>
+<section id="validite-d-un-algorithme-iteratif">
+<h2>Validité d’un algorithme itératif<a class="headerlink" href="#validite-d-un-algorithme-iteratif" title="Permalink to this headline"></a></h2>
+<p><strong>Correction</strong></p>
+<p>Un algorithme itératif est construit avec des boucles. Pour prouver qu’il est correct, nous disposons de la notion d’invariant de boucle.</p>
+<p><strong>Définition</strong></p>
+<p>Un invariant d’une boucle est une propriété qui est vérifiée avant l’entrée dans une boucle, à chaque passage dans cette boucle et à la sortie de cette boucle. On peut faire le lien avec les suites définies par récurrence du programme de mathématiques. Pour démontrer qu’une propriété est un invariant d’une boucle, on utilise un raisonnement semblable au raisonnement par récurrence.
+On commence par vérifier que la propriété est vraie avant l’entrée dans la boucle. Cette étape s’appelle l’initialisation. On prouve ensuite que si la propriété est vraie avant un passage dans la boucle, alors elle est vraie après ce passage. Cette étape s’appelle l’hérédité. On peut alors conclure que la propriété est vraie à la sortie de la boucle.</p>
+<p><strong>Exemple</strong>
+Voici un algorithme de calcul avec une boucle conditionnelle et deux variables <span class="math notranslate nohighlight">\(a\)</span> et <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(a\)</span> ayant pour valeur un entier naturel :</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">2</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">3</span> <span class="n">tant</span> <span class="n">que</span> <span class="n">m</span> <span class="o">&lt;</span> <span class="n">a</span>
+<span class="linenos">4</span>    <span class="n">m</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="linenos">5</span>    <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="n">b</span>
+<span class="linenos">6</span> <span class="n">fin</span> <span class="n">du</span> <span class="n">tant</span> <span class="n">que</span>
+</pre></div>
+</div>
+<p>Notons <span class="math notranslate nohighlight">\(m\)</span> et <span class="math notranslate nohighlight">\(p\)</span> les valeurs des variables <span class="math notranslate nohighlight">\(m\)</span> et <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p>Nous allons montrer que la propriété <span class="math notranslate nohighlight">\(p = m * b\)</span> est un invariant de la boucle “<strong>tant que</strong>”.</p>
+<p>Avant le premier passage dans la boucle, <span class="math notranslate nohighlight">\(m = 0\)</span> et <span class="math notranslate nohighlight">\(p = 0\)</span>, donc l’égalité <span class="math notranslate nohighlight">\(p = m * b\)</span> est vraie. Supposons que <span class="math notranslate nohighlight">\(p = m * b\)</span> avant un passage dans la boucle.
+Les nouvelles valeurs de <span class="math notranslate nohighlight">\(m\)</span> et <span class="math notranslate nohighlight">\(p\)</span> après le passage, notées <span class="math notranslate nohighlight">\(m'\)</span> et <span class="math notranslate nohighlight">\(p'\)</span> vérifient : <span class="math notranslate nohighlight">\(m' = m + 1\)</span> et <span class="math notranslate nohighlight">\(p’= p + b\)</span>. Alors <span class="math notranslate nohighlight">\(p’ = m * b + b = (m+1) * b = m'* b\)</span>.
+Donc la propriété est vraie après ce passage dans la boucle.
+Nous pouvons conclure qu’à la sortie de la boucle, <span class="math notranslate nohighlight">\(p = m x b\)</span>. Et puisqu’à la sortie de la boucle, la variable <span class="math notranslate nohighlight">\(m\)</span> a pour valeur celle de <span class="math notranslate nohighlight">\(a\)</span>, nous avons finalement obtenu le produit <span class="math notranslate nohighlight">\(p = a * b\)</span>.</p>
+<p><strong>Terminaison</strong></p>
+<p>Un algorithme ne doit toujours comporter qu’un nombre fini d’étapes. Afin de prouver la terminaison d’un algorithme itératif, (qui contient une boucle), nous utilisons la notion de variant. Nous parlons ici de boucles conditionnelles. Dans le cas de boucles non conditionnelles, le nombre d’étapes est déterminé.</p>
+<p><strong>Méthode</strong></p>
+<p>On choisit un variant, c’est-à-dire une expression, la plus simple étant une variable, telle que la suite formée par les valeurs de cette expression au cours des itérations converge en un nombre fini d’étapes vers une valeur satisfaisant la condition d’arrêt.
+Considérons par exemple le code suivant où la valeur de la variable a est un nombre quelconque :</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">2</span><span class="k">while</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">&lt;</span> <span class="n">a</span> <span class="p">:</span>
+<span class="linenos">3</span>  <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Si la valeur de <span class="math notranslate nohighlight">\(a\)</span> est négative ou nulle, il n’y a aucun passage dans la boucle. Sinon, la suite des valeurs de la variable <span class="math notranslate nohighlight">\(x\)</span>, le variant choisi, est 0, 1, 2, <span class="math notranslate nohighlight">\(n\)</span> et n’est certainement la première valeur supérieure ou égale à la racine carrée de la valeur de <span class="math notranslate nohighlight">\(a\)</span>. Le nombre de passages dans la boucle est donc fini.</p>
+<p>Revenons sur l’exemple du produit de deux nombres étudié plus haut. Nous avons prouvé qu’en sortie de boucle, la valeur de <span class="math notranslate nohighlight">\(p\)</span> était le produit <span class="math notranslate nohighlight">\(a * x\)</span>. Mais nous n’avons pas prouvé la terminaison, c’est-à-dire que la sortie de boucle était effective après un nombre fini de passages. Pour cela, dans cet exemple, nous choisissons comme variant la variable <span class="math notranslate nohighlight">\(m\)</span>. Cette variable prend pour valeurs successives 0, 1, …, <span class="math notranslate nohighlight">\(m\)</span> et il y a donc exactement <span class="math notranslate nohighlight">\(a\)</span> passages dans la boucle, ce qui prouve la terminaison.</p>
+</section>
+<section id="cout">
+<h2>Coût<a class="headerlink" href="#cout" title="Permalink to this headline"></a></h2>
+<p>Un programme doit traiter une liste de <span class="math notranslate nohighlight">\(10^7\)</span> éléments puis une liste de <span class="math notranslate nohighlight">\(10^8\)</span> éléments. Est-ce que le temps d’exécution du programme sera multiplié par 10 ? Quel est le rapport entre le temps d’exécution est la taille de la liste?</p>
+<p><em>Ce sont des questions auxquelles il faut réfléchir quand on écrit un algorithme.</em></p>
+<p>Les réponses sont variées et dépendent de l’algorithme et de la liste. Pour une liste donnée, un programme peut être plus rapide qu’un autre, mais avec une autre liste, ce peut être le contraire.</p>
+<p>Le même programme peut être plus rapide avec la liste la plus longue.</p>
+<p>De plus, pour traiter un même problème, non seulement nous pouvons disposer de plusieurs algorithmes mais un même algorithme peut avoir un temps d’exécution différent selon le langage de programmation utilisé et suivant la machine sur laquelle le programme est exécuté. L’étude n’est pas simple à réaliser et pour comparer deux algorithmes nous allons ici nous concentrer sur le nombre d’opérations à effectuer en essayant d’évaluer un ordre de grandeur de ce nombre en fonction de la taille des données.</p>
+<p>Nous parlerons du coût d’un algorithme ou de sa complexité. Ce coût pouvant être très différent pour une même taille de données, nous nous placerons dans le pire des cas, celui où le coût est le plus important.</p>
+<p>Etudions quelques exemples simples qui sont à la base de ce type d’étude. Nous commençons par un algorithme rencontré précédemment.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">2</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">3</span> <span class="n">tant</span> <span class="n">que</span> <span class="n">m</span> <span class="o">&lt;</span> <span class="n">a</span>
+<span class="linenos">4</span>    <span class="n">m</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="linenos">5</span>    <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="n">b</span>
+<span class="linenos">6</span> <span class="n">fin</span> <span class="n">du</span> <span class="n">tant</span> <span class="n">que</span>
+</pre></div>
+</div>
+<p>Les passages dans la boucle ont lieu pour les valeurs de <span class="math notranslate nohighlight">\(m\)</span> égales à 0, 1, 2, …, <span class="math notranslate nohighlight">\(a - 1\)</span> si la valeur de la variable <span class="math notranslate nohighlight">\(a\)</span> est un entier naturel <span class="math notranslate nohighlight">\(a\)</span>. Nous avons donc exactement <span class="math notranslate nohighlight">\(a\)</span> passages dans la boucle.</p>
+<p>A chaque passage, nous comptons deux additions ainsi que deux affectations. Nous pouvons donc dire que le nombre d’additions est <span class="math notranslate nohighlight">\(2a\)</span> ou que le nombre d’opérations, au sens large en comptant les affectations, est <span class="math notranslate nohighlight">\(4a\)</span>. Nous dirons alors que le coût est proportionnel à <span class="math notranslate nohighlight">\(a\)</span> ou qu’il est linéaire. Avec une boucle “tant que”, le calcul peut être plus compliqué puisque le nombre de passages dans la boucle varie avec les cas pour une même taille de données. Nous devons alors identifier le pire des cas, c’est-à-dire celui où le nombre de passages est maximal.</p>
+<p>Considérons une boucle “pour” où le nombre de passages dans la boucle est bien déterminé.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span> <span class="n">somme</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+<span class="linenos">3</span>    <span class="n">somme</span> <span class="o">=</span> <span class="n">somme</span> <span class="o">+</span> <span class="n">i</span>
+</pre></div>
+</div>
+<p>Cet algorithme, ou ce programme, permet de calculer la somme des entiers de 1 à <span class="math notranslate nohighlight">\(n\)</span>. Il y a clairement <span class="math notranslate nohighlight">\(n\)</span> passages dans la boucle. A chaque passage nous avons une addition et une affectation, donc un total de <span class="math notranslate nohighlight">\(n\)</span> additions et <span class="math notranslate nohighlight">\(n\)</span> affectations. Nous pouvons affirmer que le coût est linéaire.</p>
+</section>
+<section id="complexite-lineaire">
+<h2>Complexité linéaire<a class="headerlink" href="#complexite-lineaire" title="Permalink to this headline"></a></h2>
+<p>Soit <span class="math notranslate nohighlight">\(n\)</span> la taille d’une donnée. Si le nombre d’opérations à effectuer peut s’écrire <span class="math notranslate nohighlight">\(αn + β\)</span> , avec <span class="math notranslate nohighlight">\(α\)</span> et <span class="math notranslate nohighlight">\(β\)</span> réels et <span class="math notranslate nohighlight">\(α &gt; 0\)</span>,nous disons que l’algorithme a un coût linéaire ou une complexité linéaire.
+Dans le cas de deux boucles <code class="docutils literal notranslate"><span class="pre">for</span></code> imbriquées, nous avons trois cas typiques. Dans un cas, le coût est <strong>linéaire</strong>. Dans les deux autres cas, nous disons que le coût est <strong>quadratique</strong>.</p>
+</section>
+<section id="complexite-quadratique">
+<h2>Complexité quadratique<a class="headerlink" href="#complexite-quadratique" title="Permalink to this headline"></a></h2>
+<p>Soit n la taille d’une donnée. Si le nombre d’opérations à effectuer peut s’écrire <span class="math notranslate nohighlight">\(αn2 + βn + γ\)</span>,
+avec <span class="math notranslate nohighlight">\(α\)</span>, <span class="math notranslate nohighlight">\(β\)</span> et <span class="math notranslate nohighlight">\(γ\)</span> réels, <span class="math notranslate nohighlight">\(α &gt; 0\)</span>, nous disons que l’algorithme a un coût quadratique ou une complexité quadratique.
+Dans les codes qui suivent, les pointillés sous-entendent un nombre fixe d’opérations.</p>
+<p><strong>Premier cas</strong> : <span class="math notranslate nohighlight">\(n\)</span> est la taille de la donnée, <span class="math notranslate nohighlight">\(k\)</span> est un nombre fixé.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">:</span>
+<span class="linenos">2</span>    <span class="o">....</span>
+<span class="linenos">3</span>    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="p">:</span>
+<span class="linenos">4</span>      <span class="o">....</span>
+</pre></div>
+</div>
+<p><strong>Deuxième cas</strong> :  est la taille de la donnée.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">:</span>
+<span class="linenos">2</span>    <span class="o">....</span>
+<span class="linenos">3</span>    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">:</span>
+<span class="linenos">4</span>      <span class="o">....</span>
+</pre></div>
+</div>
+<p>Nous avons <span class="math notranslate nohighlight">\(n\)</span> passages dans la boucle externe. À chaque passage, nous avons un nombre fixe d’opérations <span class="math notranslate nohighlight">\(q\)</span> puis <span class="math notranslate nohighlight">\(n\)</span> passages dans la boucle interne. Dans la boucle interne, nous avons un nombre fixe d’opérations <span class="math notranslate nohighlight">\(r\)</span>. Donc pour chaque valeur de <span class="math notranslate nohighlight">\(i\)</span>, nous avons <span class="math notranslate nohighlight">\(q + n * r\)</span>  opérations. Le nombre total d’opérations est donc <span class="math notranslate nohighlight">\(n(q + n x r) = rn_2 + qn\)</span>  et le coût est quadratique.</p>
+<p><strong>Troisième cas</strong>: <span class="math notranslate nohighlight">\(n\)</span> est la taille de la donnée.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">:</span>
+<span class="linenos">2</span>    <span class="o">....</span>
+<span class="linenos">3</span>    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">:</span>
+<span class="linenos">4</span>      <span class="o">....</span>
+</pre></div>
+</div>
+<p>Nous avons <span class="math notranslate nohighlight">\(n\)</span> passages dans la boucle externe. À chaque passage, pour chaque valeur de <span class="math notranslate nohighlight">\(i\)</span>, nous avons un nombre fixe d’opérations <span class="math notranslate nohighlight">\(q\)</span> puis <span class="math notranslate nohighlight">\(i\)</span> passages dans la boucle interne. Dans la boucle interne, nous avons un nombre fixe d’opérations <span class="math notranslate nohighlight">\(r\)</span>. Donc pour chaque valeur de <span class="math notranslate nohighlight">\(i\)</span>, nous avons <span class="math notranslate nohighlight">\(q + i * r\)</span> opérations. Les valeurs de <span class="math notranslate nohighlight">\(i\)</span> sont successivement <span class="math notranslate nohighlight">\(0, 1, 2,..., n-1\)</span>.</p>
+<p>Le nombre total d’opérations est donc <span class="math notranslate nohighlight">\(q + (q + 1 * r) + (q + 2 * r) + ... + (q + (n - 1) * r)\)</span>, soit <span class="math notranslate nohighlight">\(nq + r(1 + 2 + ... + (n - 1))\)</span>.</p>
+<p>Le calcul de la somme des entiers est connu. Le résultat est <span class="math notranslate nohighlight">\(nq + r  (n (n-1)) / 2\)</span>.</p>
+<p>Finalement le nombre d’opérations est <span class="math notranslate nohighlight">\(r/2 * n2 + (q – r/2)n\)</span> de la forme <span class="math notranslate nohighlight">\(αn2 + βn\)</span> et le coût quadratique.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2.0%20outils.html" class="btn btn-neutral float-left" title="2.0 Les outils" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bauer Baptiste.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

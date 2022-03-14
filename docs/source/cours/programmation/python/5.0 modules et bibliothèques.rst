@@ -1,5 +1,5 @@
 ﻿5.0 Modules et bibliothèques
-############################
+######################################
 
 Jusqu'ici, nous avons travaillé avec les fonctions de Python chargées au lancement de l'interpréteur. 
 Toutefois il existe une fonctionnalité nommée : **les modules**.

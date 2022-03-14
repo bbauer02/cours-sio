@@ -22,6 +22,7 @@ Vous trouverez sur cette page des cours en ligne pour le BTS SIO.
    :caption: Programmation
 
    cours/programmation/python/sommaire_python
+   cours/programmation/algorithmes/sommaire_algorithmes
    
 
 

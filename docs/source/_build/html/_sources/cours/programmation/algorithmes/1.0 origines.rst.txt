@@ -1,0 +1,47 @@
+﻿1.0 Origines
+############################
+
+L'algorithmique joue un rôle de plus en plus important dans notre société. Derrière tous les sites Web que nous utilisons se cachent des programmes sophistiqués conçus par des ingénieurs de haut niveau. Comprendre et découvrir la structure des langages joue un double rôle : d'une part connaître les qualités, mais aussi les limites de l'outil informatique et d’autre part développer l'esprit logique.
+
+Abu Abdallah Muhammad Ibn Musa Al-Khwârizmi(780-880), le "père de l'algèbre" était un savant de Bagdad, originaire du Khwârizm, une région d'Asie Centrale, actuel Ouzbékistan. Ses écrits en langue arabe ont permis la diffusion jusqu'en Europe des chiffres arabes et de l'algèbre, mot qui a pour origine le titre d'un de ses ouvrages. 
+
+Ses écrits seront traduits en latin vers le XIIe siècle. Il a classifié les algorithmes existant à son époque et son nom est à l'origine du mot algorithme. Dans l'un de ses ouvrages, il présente les équations canoniques de degré inférieur ou égal à 2, avec des exemples. Puis il propose des algorithmes de résolution pour ces équations.
+
+L'algorithme d'Euclide est peut-être le plus ancien algorithme non trivial. On le trouve dans le livre VII des Eléments, premier traité écrit de mathématiques, datant d'environ 2300 ans. 
+
+Mais des algorithmes étaient déjà utilisés dans le calcul à Babylone, au sud de Bagdad dans l'actuel Irak. 
+
+Donald Knuth a eu l'occasion d'étudier des tablettes datant d'environ 2000 ans avant notre ère, avec des calculs effectués en base 60 et des nombres écrits en virgule flottante !
+
+Algorithme d'Euclide
+***************************
+
+Il est utilisé pour le calcul du **PGCD** de deux entiers ``m`` et ``n``.
+**Étape 1** : on divise ``m`` par ``n`` et on note ``r`` le reste (``0 ≤ r < n``).
+**Étape 2** : si ``r = 0``, c'est terminé, le **pgcd** est ``n``.
+**Étape 3** : sinon, on remplace ``m`` et ``n`` par ``n`` et ``r`` et on recommence à l'étape 1.
+
+En **python cela donne** : 
+
+.. code-block:: Python
+  :caption: Fonction pgcd
+  :linenos:
+  :emphasize-lines: 0
+   
+  def pdcd(m, n):
+    r = m % n 
+    while r != 0:
+      m, n = n, r 
+      r = m % n 
+    return n
+
+**Donald Knuth** énonce quelques règles dans un ouvrage monumental, *The Art of Computer Programming*, dont l'écriture a commencé en 1962 et la publication du premier volume date de 1968.
+
+L'ouvrage commence par un algorithme décrivant la manière de lire le premier volume de cet ensemble de livres puis de lire les différents volumes ! Après quelques pages, il présente cinq caractéristiques importantes d'un algorithme :
+
+* Un algorithme doit toujours se terminer après un nombre fini d'étapes.
+* Chaque étape d'un algorithme doit être définie précisément, les actions à mener doivent être spécifiées rigoureusement et sans ambiguïté pour chaque cas.
+* Un algorithme a des entrées, zéro ou plus, quantités qui lui sont données avant ou pendant son exécution.
+* Un algorithme a une ou plusieurs sorties, quantités qui oui une relation spécifiée avec les entrées.
+* Les instructions doivent être suffisamment basiques pour pouvoir être en principe exécutées de manière exacte et en un temps fini par une personne utilisant un papier et un crayon.
+

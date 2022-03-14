@@ -1,0 +1,161 @@
+﻿Validité et coût
+############################
+
+Lorsqu'on écrit un algorithme, il est impératif de vérifier que cet algorithme va produire un résultat en un temps fini et que ce résultat sera correct dans le sens où il sera conforme à une spécification précise. Nous dirons alors que l'algorithme est valide.
+
+Validité d'un algorithme itératif
+*************************************
+
+**Correction**
+
+Un algorithme itératif est construit avec des boucles. Pour prouver qu'il est correct, nous disposons de la notion d'invariant de boucle.
+
+**Définition**
+
+Un invariant d'une boucle est une propriété qui est vérifiée avant l'entrée dans une boucle, à chaque passage dans cette boucle et à la sortie de cette boucle. On peut faire le lien avec les suites définies par récurrence du programme de mathématiques. Pour démontrer qu'une propriété est un invariant d'une boucle, on utilise un raisonnement semblable au raisonnement par récurrence.
+On commence par vérifier que la propriété est vraie avant l'entrée dans la boucle. Cette étape s'appelle l'initialisation. On prouve ensuite que si la propriété est vraie avant un passage dans la boucle, alors elle est vraie après ce passage. Cette étape s'appelle l'hérédité. On peut alors conclure que la propriété est vraie à la sortie de la boucle.
+
+**Exemple**
+Voici un algorithme de calcul avec une boucle conditionnelle et deux variables :math:`a` et :math:`b`, :math:`a` ayant pour valeur un entier naturel :
+
+.. code-block:: Python
+  :linenos:
+  :emphasize-lines: 0
+   
+   m = 0 
+   p = 0 
+   tant que m < a 
+      m = m + 1 
+      p = p + b 
+   fin du tant que
+  
+Notons :math:`m` et :math:`p` les valeurs des variables :math:`m` et :math:`p`.
+
+Nous allons montrer que la propriété :math:`p = m * b` est un invariant de la boucle "**tant que**".
+
+Avant le premier passage dans la boucle, :math:`m = 0` et :math:`p = 0`, donc l'égalité :math:`p = m * b` est vraie. Supposons que :math:`p = m * b` avant un passage dans la boucle.
+Les nouvelles valeurs de :math:`m` et :math:`p` après le passage, notées :math:`m'` et :math:`p'` vérifient : :math:`m' = m + 1` et :math:`p’= p + b`. Alors :math:`p’ = m * b + b = (m+1) * b = m'* b`.
+Donc la propriété est vraie après ce passage dans la boucle.
+Nous pouvons conclure qu'à la sortie de la boucle, :math:`p = m x b`. Et puisqu'à la sortie de la boucle, la variable :math:`m` a pour valeur celle de :math:`a`, nous avons finalement obtenu le produit :math:`p = a * b`.
+
+**Terminaison**
+
+Un algorithme ne doit toujours comporter qu'un nombre fini d'étapes. Afin de prouver la terminaison d'un algorithme itératif, (qui contient une boucle), nous utilisons la notion de variant. Nous parlons ici de boucles conditionnelles. Dans le cas de boucles non conditionnelles, le nombre d'étapes est déterminé.
+
+**Méthode**
+
+On choisit un variant, c'est-à-dire une expression, la plus simple étant une variable, telle que la suite formée par les valeurs de cette expression au cours des itérations converge en un nombre fini d'étapes vers une valeur satisfaisant la condition d'arrêt.
+Considérons par exemple le code suivant où la valeur de la variable a est un nombre quelconque :
+
+.. code-block:: Python
+  :linenos:
+  :emphasize-lines: 0
+
+  x = 0 
+  while x ** 2 < a : 
+    x = x + 1 
+
+Si la valeur de :math:`a` est négative ou nulle, il n'y a aucun passage dans la boucle. Sinon, la suite des valeurs de la variable :math:`x`, le variant choisi, est 0, 1, 2, :math:`n` et n’est certainement la première valeur supérieure ou égale à la racine carrée de la valeur de :math:`a`. Le nombre de passages dans la boucle est donc fini.
+
+Revenons sur l'exemple du produit de deux nombres étudié plus haut. Nous avons prouvé qu'en sortie de boucle, la valeur de :math:`p` était le produit :math:`a * x`. Mais nous n'avons pas prouvé la terminaison, c'est-à-dire que la sortie de boucle était effective après un nombre fini de passages. Pour cela, dans cet exemple, nous choisissons comme variant la variable :math:`m`. Cette variable prend pour valeurs successives 0, 1, ..., :math:`m` et il y a donc exactement :math:`a` passages dans la boucle, ce qui prouve la terminaison.
+
+Coût
+*************************************
+
+Un programme doit traiter une liste de :math:`10^7` éléments puis une liste de :math:`10^8` éléments. Est-ce que le temps d'exécution du programme sera multiplié par 10 ? Quel est le rapport entre le temps d'exécution est la taille de la liste?
+
+*Ce sont des questions auxquelles il faut réfléchir quand on écrit un algorithme.*
+
+Les réponses sont variées et dépendent de l'algorithme et de la liste. Pour une liste donnée, un programme peut être plus rapide qu'un autre, mais avec une autre liste, ce peut être le contraire.
+
+Le même programme peut être plus rapide avec la liste la plus longue.
+
+De plus, pour traiter un même problème, non seulement nous pouvons disposer de plusieurs algorithmes mais un même algorithme peut avoir un temps d'exécution différent selon le langage de programmation utilisé et suivant la machine sur laquelle le programme est exécuté. L'étude n'est pas simple à réaliser et pour comparer deux algorithmes nous allons ici nous concentrer sur le nombre d'opérations à effectuer en essayant d'évaluer un ordre de grandeur de ce nombre en fonction de la taille des données.
+
+Nous parlerons du coût d'un algorithme ou de sa complexité. Ce coût pouvant être très différent pour une même taille de données, nous nous placerons dans le pire des cas, celui où le coût est le plus important.
+
+Etudions quelques exemples simples qui sont à la base de ce type d'étude. Nous commençons par un algorithme rencontré précédemment.
+
+.. code-block:: Python
+  :linenos:
+  :emphasize-lines: 0
+   
+   m = 0 
+   p = 0 
+   tant que m < a 
+      m = m + 1 
+      p = p + b 
+   fin du tant que 
+
+Les passages dans la boucle ont lieu pour les valeurs de :math:`m` égales à 0, 1, 2, ..., :math:`a - 1` si la valeur de la variable :math:`a` est un entier naturel :math:`a`. Nous avons donc exactement :math:`a` passages dans la boucle.
+
+A chaque passage, nous comptons deux additions ainsi que deux affectations. Nous pouvons donc dire que le nombre d'additions est :math:`2a` ou que le nombre d'opérations, au sens large en comptant les affectations, est :math:`4a`. Nous dirons alors que le coût est proportionnel à :math:`a` ou qu'il est linéaire. Avec une boucle "tant que", le calcul peut être plus compliqué puisque le nombre de passages dans la boucle varie avec les cas pour une même taille de données. Nous devons alors identifier le pire des cas, c'est-à-dire celui où le nombre de passages est maximal.
+
+Considérons une boucle "pour" où le nombre de passages dans la boucle est bien déterminé.
+
+.. code-block:: Python
+  :linenos:
+  :emphasize-lines: 0
+   
+   somme = 0 
+   for i in range(1, n+1) : 
+      somme = somme + i 
+
+Cet algorithme, ou ce programme, permet de calculer la somme des entiers de 1 à :math:`n`. Il y a clairement :math:`n` passages dans la boucle. A chaque passage nous avons une addition et une affectation, donc un total de :math:`n` additions et :math:`n` affectations. Nous pouvons affirmer que le coût est linéaire.
+
+Complexité linéaire
+*************************************
+
+Soit :math:`n` la taille d'une donnée. Si le nombre d'opérations à effectuer peut s'écrire :math:`αn + β` , avec :math:`α` et :math:`β` réels et :math:`α > 0`,nous disons que l'algorithme a un coût linéaire ou une complexité linéaire.
+Dans le cas de deux boucles ``for`` imbriquées, nous avons trois cas typiques. Dans un cas, le coût est **linéaire**. Dans les deux autres cas, nous disons que le coût est **quadratique**.
+
+Complexité quadratique
+*************************************
+
+Soit n la taille d'une donnée. Si le nombre d'opérations à effectuer peut s'écrire :math:`αn2 + βn + γ`,
+avec :math:`α`, :math:`β` et :math:`γ` réels, :math:`α > 0`, nous disons que l'algorithme a un coût quadratique ou une complexité quadratique.
+Dans les codes qui suivent, les pointillés sous-entendent un nombre fixe d'opérations.
+
+**Premier cas** : :math:`n` est la taille de la donnée, :math:`k` est un nombre fixé.
+
+.. code-block:: Python
+  :linenos:
+  :emphasize-lines: 0
+
+  for i in range(n) :
+      .... 
+      for j in range(k) : 
+        ....
+
+**Deuxième cas** :  est la taille de la donnée.
+
+.. code-block:: Python
+  :linenos:
+  :emphasize-lines: 0
+
+  for i in range(n) :
+      .... 
+      for j in range(n) : 
+        ....
+  
+Nous avons :math:`n` passages dans la boucle externe. À chaque passage, nous avons un nombre fixe d'opérations :math:`q` puis :math:`n` passages dans la boucle interne. Dans la boucle interne, nous avons un nombre fixe d'opérations :math:`r`. Donc pour chaque valeur de :math:`i`, nous avons :math:`q + n * r`  opérations. Le nombre total d'opérations est donc :math:`n(q + n x r) = rn_2 + qn`  et le coût est quadratique.
+
+**Troisième cas**: :math:`n` est la taille de la donnée.
+
+.. code-block:: Python
+  :linenos:
+  :emphasize-lines: 0
+
+  for i in range(n) :
+      .... 
+      for j in range(i) : 
+        ....
+
+Nous avons :math:`n` passages dans la boucle externe. À chaque passage, pour chaque valeur de :math:`i`, nous avons un nombre fixe d'opérations :math:`q` puis :math:`i` passages dans la boucle interne. Dans la boucle interne, nous avons un nombre fixe d'opérations :math:`r`. Donc pour chaque valeur de :math:`i`, nous avons :math:`q + i * r` opérations. Les valeurs de :math:`i` sont successivement :math:`0, 1, 2,..., n-1`. 
+
+Le nombre total d'opérations est donc :math:`q + (q + 1 * r) + (q + 2 * r) + ... + (q + (n - 1) * r)`, soit :math:`nq + r(1 + 2 + ... + (n - 1))`.
+
+Le calcul de la somme des entiers est connu. Le résultat est :math:`nq + r  (n (n-1)) / 2`.
+
+Finalement le nombre d'opérations est :math:`r/2 * n2 + (q – r/2)n` de la forme :math:`αn2 + βn` et le coût quadratique.
+
