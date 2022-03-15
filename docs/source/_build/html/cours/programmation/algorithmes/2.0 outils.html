@@ -1,108 +1,50 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2.0 Les outils &mdash; Cours BTS SIO 0.1 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="../../../_static/js/theme.js"></script>
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>2.0 Les outils &#8212; Cours BTS SIO 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="prev" title="1.0 Origines" href="1.0%20origines.html" /> 
-</head>
+    <link rel="next" title="3.0 Validité et coût" href="3.0%20validit%C3%A9%20et%20co%C3%BBt.html" />
+    <link rel="prev" title="1.0 Origines" href="1.0%20origines.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> Cours BTS SIO
-          </a>
-              <div class="version">
-                1.0.0
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Systèmes</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../systemes/docker/sommaire_docker.html">La plateforme Docker</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Programmation</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../python/sommaire_python.html">Python</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="sommaire_algorithmes.html">Algorithmes</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="1.0%20origines.html">1.0 Origines</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">2.0 Les outils</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#compteurs-et-accumulateurs">2.1 Compteurs et accumulateurs</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#compteur-et-boucle-conditionnelle">2.1.1 Compteur et boucle conditionnelle</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#compteur-et-boucle-inconditionnelle">2.2 Compteur et boucle inconditionnelle</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#permutation-de-valeurs">2.2.1 Permutation de valeurs</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#tests-et-boucles">2.2.2 Tests et boucles</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#examinons-le-code-qui-suit">2.2.3 Examinons le code qui suit :</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#boucles">2.2.4 Boucles</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+  </head><body>
+  
 
-        </div>
-      </div>
-    </nav>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">Cours BTS SIO</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="sommaire_algorithmes.html">Algorithmes</a> &raquo;</li>
-      <li>2.0 Les outils</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/cours/programmation/algorithmes/2.0 outils.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
+          <div class="body" role="main">
+            
   <section id="les-outils">
-<h1>2.0 Les outils<a class="headerlink" href="#les-outils" title="Permalink to this headline"></a></h1>
+<h1>2.0 Les outils<a class="headerlink" href="#les-outils" title="Permalink to this headline">¶</a></h1>
 <section id="compteurs-et-accumulateurs">
-<h2>2.1 Compteurs et accumulateurs<a class="headerlink" href="#compteurs-et-accumulateurs" title="Permalink to this headline"></a></h2>
+<h2>2.1 Compteurs et accumulateurs<a class="headerlink" href="#compteurs-et-accumulateurs" title="Permalink to this headline">¶</a></h2>
 <p>Un <strong>compteur</strong>, comme son nom l’indique, sert à <strong>compter</strong>.
 Par exemple, on peut <strong>compter</strong> le nombre d’essais dans un jeu. De manière générale, c’est une variable initialisée à <strong>0</strong> qui est incrémentée d’une unité à chaque passage dans une boucle, éventuellement suite à un test.</p>
 <p>Nous allons voir quelques exemples.</p>
 <section id="compteur-et-boucle-conditionnelle">
-<h3>2.1.1 Compteur et boucle conditionnelle<a class="headerlink" href="#compteur-et-boucle-conditionnelle" title="Permalink to this headline"></a></h3>
+<h3>2.1.1 Compteur et boucle conditionnelle<a class="headerlink" href="#compteur-et-boucle-conditionnelle" title="Permalink to this headline">¶</a></h3>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">Sans test</span><a class="headerlink" href="#id1" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Sans test</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span> <span class="k">def</span> <span class="nf">taille</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">:</span>
 <span class="linenos">2</span>  <span class="n">cpt</span><span class="o">=</span><span class="mi">0</span>
 <span class="linenos">3</span>  <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -114,7 +56,7 @@ Par exemple, on peut <strong>compter</strong> le nombre d’essais dans un jeu. 
 </div>
 <p>On compte le nombre de divisions euclidiennes successives de <code class="docutils literal notranslate"><span class="pre">n</span></code> par <code class="docutils literal notranslate"><span class="pre">2</span></code>, jusqu’à arriver à un quotient nul. On obtient donc le nombre de chiffres dans l’écriture binaire de <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">Avec test</span><a class="headerlink" href="#id2" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Avec test</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span> <span class="nf">nombre_de_1</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">:</span>
 <span class="linenos">2</span><span class="n">cpt</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="linenos">3</span><span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">:</span>
@@ -129,10 +71,10 @@ Par exemple, on peut <strong>compter</strong> le nombre d’essais dans un jeu. 
 </section>
 </section>
 <section id="compteur-et-boucle-inconditionnelle">
-<h2>2.2 Compteur et boucle inconditionnelle<a class="headerlink" href="#compteur-et-boucle-inconditionnelle" title="Permalink to this headline"></a></h2>
+<h2>2.2 Compteur et boucle inconditionnelle<a class="headerlink" href="#compteur-et-boucle-inconditionnelle" title="Permalink to this headline">¶</a></h2>
 <p>Dans une boucle inconditionnelle sans test, un compteur compterait le nombre de passages dans la boucle. Or, ce nombre est connu à l’avance et donc un compteur n’apporterait rien.</p>
 <section id="permutation-de-valeurs">
-<h3>2.2.1 Permutation de valeurs<a class="headerlink" href="#permutation-de-valeurs" title="Permalink to this headline"></a></h3>
+<h3>2.2.1 Permutation de valeurs<a class="headerlink" href="#permutation-de-valeurs" title="Permalink to this headline">¶</a></h3>
 <p>On est souvent amené à devoir permuter des valeurs entre des variables, en particulier échanger les valeurs de deux variables. Cet échange est présent dans les algorithmes de tri exposés au chapitre suivant qui reposent sur la comparaison de deux valeurs et en fonction du résultat leur éventuelle permutation. Dans la construction d’une suite de nombres définie par une relation du type <span class="math notranslate nohighlight">\(u_n+2 = f(u_n+1, u_n)\)</span> , on calcule un terme en fonction des deux précédents. Ceci est possible en utilisant seulement deux variables puisque cela revient à passer du couple <span class="math notranslate nohighlight">\((u_n+1, u_n)\)</span> au couple <span class="math notranslate nohighlight">\((u_n+2, u_n+1)\)</span>.
 Le principe général est simple. Avant tout, que penser du code suivant ?</p>
 <p>À la troisième affectation, <span class="math notranslate nohighlight">\(var1\)</span> prend la valeur courante de <span class="math notranslate nohighlight">\(var2\)</span> donc 23. La quatrième affectation utilise la valeur courante de <span class="math notranslate nohighlight">\(var1\)</span>, qui est 23 à ce moment, donc <span class="math notranslate nohighlight">\(var2\)</span> prend la valeur 23.
@@ -144,7 +86,7 @@ Certains langages possèdent une fonction <code class="docutils literal notransl
 En Python, c’est l’existence du type <code class="docutils literal notranslate"><span class="pre">tuple</span></code> qui nous permet d’avoir une instruction simplifiée : <code class="docutils literal notranslate"><span class="pre">var1,</span> <span class="pre">var2</span> <span class="pre">=</span> <span class="pre">var2,</span> <span class="pre">var1</span></code>. Cette instruction signifie que le couple <code class="docutils literal notranslate"><span class="pre">(var1,</span> <span class="pre">var2)</span></code> prend la valeur du couple <code class="docutils literal notranslate"><span class="pre">(var2,</span> <span class="pre">var1)</span></code> c’est-à-dire la valeur <code class="docutils literal notranslate"><span class="pre">(23,</span> <span class="pre">17)</span></code>. Donc <code class="docutils literal notranslate"><span class="pre">var1</span></code> prend la valeur 23 et var2 prend la valeur 17 L’échange des valeurs est réalisé.</p>
 </section>
 <section id="tests-et-boucles">
-<h3>2.2.2 Tests et boucles<a class="headerlink" href="#tests-et-boucles" title="Permalink to this headline"></a></h3>
+<h3>2.2.2 Tests et boucles<a class="headerlink" href="#tests-et-boucles" title="Permalink to this headline">¶</a></h3>
 <p>Dans la plupart de nos programmes, nous trouvons des tests qui utilisent les structures <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">..</span> <span class="pre">-</span></code> , ou <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">...</span> <span class="pre">else</span> <span class="pre">...</span></code>, ou <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">...</span> <span class="pre">elif</span> <span class="pre">.</span></code>,``. else ….``
 Première remarque : <code class="docutils literal notranslate"><span class="pre">else</span></code> n’est jamais suivi d’une expression. Une expression après <code class="docutils literal notranslate"><span class="pre">else</span></code> signifierait “<em>sinon, si l’expression a la valeur True</em>” et nous sommes alors dans le cadre d’une structure <code class="docutils literal notranslate"><span class="pre">elif</span> <span class="pre">----&quot;Sinon&quot;</span></code> signifie : si ce qui est avant est faux”.</p>
 <p><em>Par exemple :</em>
@@ -154,9 +96,9 @@ Si la valeur initiale de <span class="math notranslate nohighlight">\(x\)</span>
 <p>Une deuxième remarque : la structure <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">...</span></code> <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">...</span> <span class="pre">else</span> <span class="pre">...</span></code> n’est pas équivalente à la structure <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">...</span> <span class="pre">elif</span> <span class="pre">..</span> <span class="pre">.</span> <span class="pre">else</span> <span class="pre">....</span></code> En parlant, nous pouvons énoncer : si <span class="math notranslate nohighlight">\(x\)</span> est strictement positif, puis si <span class="math notranslate nohighlight">\(x\)</span> est strictement négatif, sinon, … Et certains comprendront peut être que sinon correspond à <span class="math notranslate nohighlight">\(x\)</span> nul. Ce n’est évidemment pas le cas.</p>
 </section>
 <section id="examinons-le-code-qui-suit">
-<h3>2.2.3 Examinons le code qui suit :<a class="headerlink" href="#examinons-le-code-qui-suit" title="Permalink to this headline"></a></h3>
+<h3>2.2.3 Examinons le code qui suit :<a class="headerlink" href="#examinons-le-code-qui-suit" title="Permalink to this headline">¶</a></h3>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">Quelle est la valeur finale de x si la valeur initiale est 5 ?</span><a class="headerlink" href="#id3" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Quelle est la valeur finale de x si la valeur initiale est 5 ?</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">:</span>
 <span class="linenos">2</span>  <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span><span class="mi">3</span>
 <span class="linenos">3</span><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">:</span>
@@ -172,7 +114,7 @@ Si la valeur initiale de <code class="docutils literal notranslate"><span class=
 <p>Prenons par exemple <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">x</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>. Dans cet exemple, nous n’écrirons pas <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(x</span> <span class="pre">&gt;</span> <span class="pre">0)</span> <span class="pre">==</span> <span class="pre">True</span></code>. Donc il en est de même si l’expression est composée d’une seule variable booléenne ou d’un appel de fonction renvoyant un booléen. Nous écrirons <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">b</span></code> et <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">f</span> <span class="pre">(x)</span></code> et non pas <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">b</span> <span class="pre">=</span> <span class="pre">True</span></code> ou <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">f</span> <span class="pre">(x)</span> <span class="pre">True</span></code>. Ces deux dernières écritures reviendraient à tester <code class="docutils literal notranslate"><span class="pre">True</span> <span class="pre">==</span> <span class="pre">True</span></code> ou <code class="docutils literal notranslate"><span class="pre">False</span> <span class="pre">==</span> <span class="pre">True</span></code>.</p>
 </section>
 <section id="boucles">
-<h3>2.2.4 Boucles<a class="headerlink" href="#boucles" title="Permalink to this headline"></a></h3>
+<h3>2.2.4 Boucles<a class="headerlink" href="#boucles" title="Permalink to this headline">¶</a></h3>
 <p>Nos programmes sont constitués de boucles et même de boucles imbriquées. Nous pouvons avoir une ou plusieurs boucles <code class="docutils literal notranslate"><span class="pre">while</span></code> ou <code class="docutils literal notranslate"><span class="pre">for</span></code> a l’intérieur d’une boucle <code class="docutils literal notranslate"><span class="pre">while</span></code> ou <code class="docutils literal notranslate"><span class="pre">for</span></code>.
 Par exemple :</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="p">:</span>
@@ -205,33 +147,79 @@ puis    <code class="docutils literal notranslate"><span class="pre">j</span> <s
 </section>
 
 
-           </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="1.0%20origines.html" class="btn btn-neutral float-left" title="1.0 Origines" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2021, Bauer Baptiste.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
+          
         </div>
       </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Cours BTS SIO</a></h1>
 
-</body>
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Systèmes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../systemes/docker/sommaire_docker.html">La plateforme Docker</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Programmation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../python/sommaire_python.html">Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="sommaire_algorithmes.html">Algorithmes</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="sommaire_algorithmes.html">Algorithmes</a><ul>
+      <li>Previous: <a href="1.0%20origines.html" title="previous chapter">1.0 Origines</a></li>
+      <li>Next: <a href="3.0%20validit%C3%A9%20et%20co%C3%BBt.html" title="next chapter">3.0 Validité et coût</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Bauer Baptiste.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../_sources/cours/programmation/algorithmes/2.0 outils.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
 </html>

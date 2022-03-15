@@ -1,96 +1,44 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3.0 Validité et coût &mdash; Cours BTS SIO 0.1 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="../../../_static/js/theme.js"></script>
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>3.0 Validité et coût &#8212; Cours BTS SIO 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="prev" title="2.0 Les outils" href="2.0%20outils.html" /> 
-</head>
+    <link rel="next" title="4.0 Algorithmes de tri" href="4.0%20algorithme%20de%20tri.html" />
+    <link rel="prev" title="2.0 Les outils" href="2.0%20outils.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> Cours BTS SIO
-          </a>
-              <div class="version">
-                1.0.0
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Systèmes</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../systemes/docker/sommaire_docker.html">La plateforme Docker</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Programmation</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../python/sommaire_python.html">Python</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="sommaire_algorithmes.html">Algorithmes</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="1.0%20origines.html">1.0 Origines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2.0%20outils.html">2.0 Les outils</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">3.0 Validité et coût</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#validite-d-un-algorithme-iteratif">3.1 Validité d’un algorithme itératif</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cout">3.2 Coût</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#complexite-lineaire">3.3 Complexité linéaire</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#complexite-quadratique">3.4 Complexité quadratique</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+  </head><body>
+  
 
-        </div>
-      </div>
-    </nav>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">Cours BTS SIO</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="sommaire_algorithmes.html">Algorithmes</a> &raquo;</li>
-      <li>3.0 Validité et coût</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/cours/programmation/algorithmes/3.0 validité et coût.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
+          <div class="body" role="main">
+            
   <section id="validite-et-cout">
-<h1>3.0 Validité et coût<a class="headerlink" href="#validite-et-cout" title="Permalink to this headline"></a></h1>
+<h1>3.0 Validité et coût<a class="headerlink" href="#validite-et-cout" title="Permalink to this headline">¶</a></h1>
 <p>Lorsqu’on écrit un algorithme, il est impératif de vérifier que cet algorithme va produire un résultat en un temps fini et que ce résultat sera correct dans le sens où il sera conforme à une spécification précise. Nous dirons alors que l’algorithme est valide.</p>
 <section id="validite-d-un-algorithme-iteratif">
-<h2>3.1 Validité d’un algorithme itératif<a class="headerlink" href="#validite-d-un-algorithme-iteratif" title="Permalink to this headline"></a></h2>
+<h2>3.1 Validité d’un algorithme itératif<a class="headerlink" href="#validite-d-un-algorithme-iteratif" title="Permalink to this headline">¶</a></h2>
 <p><strong>Correction</strong></p>
 <p>Un algorithme itératif est construit avec des boucles. Pour prouver qu’il est correct, nous disposons de la notion d’invariant de boucle.</p>
 <p><strong>Définition</strong></p>
@@ -126,7 +74,7 @@ Considérons par exemple le code suivant où la valeur de la variable a est un n
 <p>Revenons sur l’exemple du produit de deux nombres étudié plus haut. Nous avons prouvé qu’en sortie de boucle, la valeur de <span class="math notranslate nohighlight">\(p\)</span> était le produit <span class="math notranslate nohighlight">\(a * x\)</span>. Mais nous n’avons pas prouvé la terminaison, c’est-à-dire que la sortie de boucle était effective après un nombre fini de passages. Pour cela, dans cet exemple, nous choisissons comme variant la variable <span class="math notranslate nohighlight">\(m\)</span>. Cette variable prend pour valeurs successives 0, 1, …, <span class="math notranslate nohighlight">\(m\)</span> et il y a donc exactement <span class="math notranslate nohighlight">\(a\)</span> passages dans la boucle, ce qui prouve la terminaison.</p>
 </section>
 <section id="cout">
-<h2>3.2 Coût<a class="headerlink" href="#cout" title="Permalink to this headline"></a></h2>
+<h2>3.2 Coût<a class="headerlink" href="#cout" title="Permalink to this headline">¶</a></h2>
 <p>Un programme doit traiter une liste de <span class="math notranslate nohighlight">\(10^7\)</span> éléments puis une liste de <span class="math notranslate nohighlight">\(10^8\)</span> éléments. Est-ce que le temps d’exécution du programme sera multiplié par 10 ? Quel est le rapport entre le temps d’exécution est la taille de la liste?</p>
 <p><em>Ce sont des questions auxquelles il faut réfléchir quand on écrit un algorithme.</em></p>
 <p>Les réponses sont variées et dépendent de l’algorithme et de la liste. Pour une liste donnée, un programme peut être plus rapide qu’un autre, mais avec une autre liste, ce peut être le contraire.</p>
@@ -153,12 +101,12 @@ Considérons par exemple le code suivant où la valeur de la variable a est un n
 <p>Cet algorithme, ou ce programme, permet de calculer la somme des entiers de 1 à <span class="math notranslate nohighlight">\(n\)</span>. Il y a clairement <span class="math notranslate nohighlight">\(n\)</span> passages dans la boucle. A chaque passage nous avons une addition et une affectation, donc un total de <span class="math notranslate nohighlight">\(n\)</span> additions et <span class="math notranslate nohighlight">\(n\)</span> affectations. Nous pouvons affirmer que le coût est linéaire.</p>
 </section>
 <section id="complexite-lineaire">
-<h2>3.3 Complexité linéaire<a class="headerlink" href="#complexite-lineaire" title="Permalink to this headline"></a></h2>
+<h2>3.3 Complexité linéaire<a class="headerlink" href="#complexite-lineaire" title="Permalink to this headline">¶</a></h2>
 <p>Soit <span class="math notranslate nohighlight">\(n\)</span> la taille d’une donnée. Si le nombre d’opérations à effectuer peut s’écrire <span class="math notranslate nohighlight">\(αn + β\)</span> , avec <span class="math notranslate nohighlight">\(α\)</span> et <span class="math notranslate nohighlight">\(β\)</span> réels et <span class="math notranslate nohighlight">\(α &gt; 0\)</span>,nous disons que l’algorithme a un coût linéaire ou une complexité linéaire.
 Dans le cas de deux boucles <code class="docutils literal notranslate"><span class="pre">for</span></code> imbriquées, nous avons trois cas typiques. Dans un cas, le coût est <strong>linéaire</strong>. Dans les deux autres cas, nous disons que le coût est <strong>quadratique</strong>.</p>
 </section>
 <section id="complexite-quadratique">
-<h2>3.4 Complexité quadratique<a class="headerlink" href="#complexite-quadratique" title="Permalink to this headline"></a></h2>
+<h2>3.4 Complexité quadratique<a class="headerlink" href="#complexite-quadratique" title="Permalink to this headline">¶</a></h2>
 <p>Soit n la taille d’une donnée. Si le nombre d’opérations à effectuer peut s’écrire <span class="math notranslate nohighlight">\(αn2 + βn + γ\)</span>,
 avec <span class="math notranslate nohighlight">\(α\)</span>, <span class="math notranslate nohighlight">\(β\)</span> et <span class="math notranslate nohighlight">\(γ\)</span> réels, <span class="math notranslate nohighlight">\(α &gt; 0\)</span>, nous disons que l’algorithme a un coût quadratique ou une complexité quadratique.
 Dans les codes qui suivent, les pointillés sous-entendent un nombre fixe d’opérations.</p>
@@ -192,33 +140,79 @@ Dans les codes qui suivent, les pointillés sous-entendent un nombre fixe d’op
 </section>
 
 
-           </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="2.0%20outils.html" class="btn btn-neutral float-left" title="2.0 Les outils" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2021, Bauer Baptiste.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
+          
         </div>
       </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Cours BTS SIO</a></h1>
 
-</body>
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Systèmes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../systemes/docker/sommaire_docker.html">La plateforme Docker</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Programmation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../python/sommaire_python.html">Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="sommaire_algorithmes.html">Algorithmes</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="sommaire_algorithmes.html">Algorithmes</a><ul>
+      <li>Previous: <a href="2.0%20outils.html" title="previous chapter">2.0 Les outils</a></li>
+      <li>Next: <a href="4.0%20algorithme%20de%20tri.html" title="next chapter">4.0 Algorithmes de tri</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Bauer Baptiste.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../_sources/cours/programmation/algorithmes/3.0 validité et coût.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
 </html>

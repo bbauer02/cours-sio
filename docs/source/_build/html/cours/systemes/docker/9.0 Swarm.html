@@ -1,128 +1,117 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>9.0 Swarm &mdash; Cours BTS SIO 0.1 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/js/theme.js"></script>
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>9.0 Swarm &#8212; Cours BTS SIO 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="10.0 Network" href="10.0%20Network.html" />
-    <link rel="prev" title="8.0 Docker Compose" href="8.0%20Docker%20Compose.html" /> 
-</head>
+    <link rel="prev" title="8.0 Docker Compose" href="8.0%20Docker%20Compose.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> Cours BTS SIO
-          </a>
-              <div class="version">
-                1.0.0
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Systèmes</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="sommaire_docker.html">La plateforme Docker</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="1.0%20Introduction.html">1.0 Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2.0%20La%20plateforme%20Docker.html">2.0 La plateforme Docker</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3.0%20Les%20containers%20avec%20Docker.html">3.0 Les containers avec Docker</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4.0%20Les%20images%20Docker.html">4.0 Les images Docker</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5.0%20Registry.html">5.0 Registry</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6.0%20Stockage.html">6.0 Stockage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7.0%20Docker%20Machine.html">7.0 Docker Machine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="8.0%20Docker%20Compose.html">8.0 Docker Compose</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">9.0 Swarm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="10.0%20Network.html">10.0 Network</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11.0%20S%C3%A9curit%C3%A9.html">11.0 Sécurité</a></li>
-<li class="toctree-l2"><a class="reference internal" href="12.0%20Gestion%20des%20logs.html">12.0 Gestion des logs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="13.0%20Mise%20en%20pratique.html">13.0 Mise en pratique</a></li>
-</ul>
-</li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Programmation</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../programmation/python/sommaire_python.html">Python</a></li>
-</ul>
+  </head><body>
+  
 
-        </div>
-      </div>
-    </nav>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">Cours BTS SIO</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="sommaire_docker.html">La plateforme Docker</a> &raquo;</li>
-      <li>9.0 Swarm</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/cours/systemes/docker/9.0 Swarm.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
+          <div class="body" role="main">
+            
   <section id="swarm">
-<h1>9.0 Swarm<a class="headerlink" href="#swarm" title="Permalink to this headline"></a></h1>
+<h1>9.0 Swarm<a class="headerlink" href="#swarm" title="Permalink to this headline">¶</a></h1>
 <p>En cours de rédaction …</p>
 </section>
 
 
-           </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="8.0%20Docker%20Compose.html" class="btn btn-neutral float-left" title="8.0 Docker Compose" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="10.0%20Network.html" class="btn btn-neutral float-right" title="10.0 Network" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2021, Bauer Baptiste.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
+          
         </div>
       </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Cours BTS SIO</a></h1>
 
-</body>
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Systèmes</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="sommaire_docker.html">La plateforme Docker</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Programmation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../programmation/python/sommaire_python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../programmation/algorithmes/sommaire_algorithmes.html">Algorithmes</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="sommaire_docker.html">La plateforme Docker</a><ul>
+      <li>Previous: <a href="8.0%20Docker%20Compose.html" title="previous chapter">8.0 Docker Compose</a></li>
+      <li>Next: <a href="10.0%20Network.html" title="next chapter">10.0 Network</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Bauer Baptiste.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../_sources/cours/systemes/docker/9.0 Swarm.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
 </html>
