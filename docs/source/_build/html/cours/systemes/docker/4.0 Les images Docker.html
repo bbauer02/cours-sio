@@ -91,6 +91,7 @@
 <p class="caption" role="heading"><span class="caption-text">Programmation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../programmation/python/sommaire_python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../programmation/algorithmes/sommaire_algorithmes.html">Algorithmes</a></li>
 </ul>
 
         </div>
@@ -892,7 +893,7 @@ La premiere instruction <strong>FROM</strong> utilise une image NODE dans laquel
 Notamment par la modification de la valeur d’une variable d’environnement ou si on modifie le code source qui est pris en compte dans les instructions ADD ou COPY.</p>
 <p>Si une instruction invalide le cache, alors toutes les instructions après ne l’utiliseront pas.</p>
 <p>A partir de l’exemple de l’application NODEJS vue précédemment :</p>
-<img alt="../../../_images/image31.png" src="../../../_images/image31.png" />
+<img alt="../../../_images/image311.png" src="../../../_images/image311.png" />
 <p>Si on lance une nouvelle fois le build de l’image on voit que pour chaque instruction le cache est utilisé.
 Cela signifie que pour chaque instruction la layer qui a déjà été créé, la première version, est réutilisé.
 Lorsque que l’image est créée pour la première fois, cela prend un peu de temps car il faut récupérer les dépendances et l’image.
@@ -900,7 +901,7 @@ Mais à l’aide du cache cela prend quelque seconde.</p>
 <p>Faites l’expérience :
 Dans le dossier contenant l’application NODEJS, tapez la commande :</p>
 <p>Docker image build -t app :0.1 .</p>
-<img alt="../../../_images/image21.png" src="../../../_images/image21.png" />
+<img alt="../../../_images/image211.png" src="../../../_images/image211.png" />
 <p>Nous allons maintenant modifier le code de l’application.
 Ouvrons : index.js et modifions le label</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
