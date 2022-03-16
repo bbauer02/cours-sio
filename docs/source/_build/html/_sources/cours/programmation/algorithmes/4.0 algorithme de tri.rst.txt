@@ -1,0 +1,129 @@
+4.0 Algorithmes de tri
+############################
+
+Les algorithmes de tri sont fondamentaux dans la gestion des données et permettent l'accès à des informations dans des délais très brefs. Aussi l'ingéniosité des informaticiens a été mise en œuvre pour élaborer ceux qui nécessitent le moins d'opérations.
+
+Trier des données, c'est les ranger suivant un ordre défini au préalable. 
+Par exemple avec des données numériques, nous pouvons trier ces données en utilisant l'ordre défini en mathématiques : :math:`a` est avant :math:`b` si :math:`b - a` est positif (:math:`a < b`  si :math:`b - a > 0` ). 
+
+Si nous trions l'ensemble de nombres :math:`{3,8,5,2}`, nous obtenons l'ensemble :math:`{2,3,5,8}` et nous disons que les nombres sont rangés suivant l'ordre croissant. Si nous les rangeons dans l'ordre inverse, nous parlons d'ordre décroissant. 
+
+Les lettres de notre alphabet sont rangées suivant l'ordre alphabétique. Nous pouvons alors trier un ensemble de mots, par exemple l'ensemble de quatre mots :math:`{bonjour, bon, table, assiette}`, en suivant l'ordre lexicographique qui utilise lui-même l'ordre alphabétique. Nous obtenons l'ensemble  :math:`{assiette, bon, bonjour, table}`.
+
+Des suites d'instructions permettant d'effectuer un tri ont été étudiées dès les années 1940 sur les premiers ordinateurs. Durant cette période, l'américaine **Betty Holberton** était l’une des six programmatrices de l'ENIAC, le premier ordinateur entièrement électronique.
+
+Elle travaillait sur différents codes et applications et c'est à ce moment qu'elle développa sans doute **le premier programme de tri**. Elle travaillera plus tard avec **Grâce Hopper** sur les langages de programmation **COBOL** et **Fortran**.
+
+Dans les algorithmes présentés plus loin, nous procédons par des comparaisons successives entre deux éléments et effectuons éventuellement une permutation des deux éléments comparés.
+
+Le nombre de **permutations** est donc toujours **inférieur au nombre de comparaisons**. Le **coût** ou la **complexité** d'un algorithme est dans ce cas un *ordre de grandeur du nombre de comparaisons* effectuées par cet algorithme. 
+
+Pour un algorithme donné, le coût peut être différent suivant les cas à traiter, il y a des cas favorables, et d'autres non. Ce coût doit absolument être évalué avant d'écrire un programme et l'exécuter car suivant la taille de l'ensemble de données, **le temps de calcul avec une machine peut devenir rédhibitoire**.
+
+
+Prenons trois nombres tout distincts :math:`a`, :math:`b` et :math:`c`. 
+
+Il y a six manières de ranger ces trois nombres : 
+
+* :math:`(a,b,c)`
+* :math:`(a,c,b)`
+* :math:`(b,a,c)`
+* :math:`(b,c,a)`
+* :math:`(c,a,b)`
+* :math:`(c,b,a)`
+  
+Si en comparant :math:`a` et :math:`b`, nous obtenons :math:`a < b`, alors le nombre de rangements possibles est **divisé par deux**, il n'en reste plus que trois :
+
+* :math:`(a, b, c)`
+* :math:`(a, c, b)`
+* :math:`(c, a, b)` 
+
+La comparaison de :math:`a` et :math:`c` permet de conclure si :math:`c < a`, sinon il faut une troisième comparaison entre :math:`b` et :math:`c`.
+
+
+Pour quatre nombres :math:`(a, b, c, d)`, il y a **quatre** fois plus de rangements possibles. 
+
+En effet, pour chacun des six rangements de :math:`a`, :math:`b` et :math:`c`, il y a quatre places possibles pour :math:`d` : 
+* en premier, 
+* soit entre le premier et le deuxième, 
+* soit entre le deuxième et le troisième, 
+* soit en dernier. 
+
+Après une première comparaison, il reste **douze** rangements possibles, et après une seconde comparaison il en reste **six**. Au total, nous avons donc cinq comparaisons au maximum.
+
+Le nombre total :math:`r` de rangements possibles de :math:`n` données vaut :math:`n * (n - 1) * 2 * 1` noté :math:`n!`, :math:`n` factoriel.
+
+Après chaque comparaison, ce nombre de rangements possibles est divisé par 2. 
+Donc après :math:`k` comparaison, il est divisé par :math:`2k`. 
+Le tri est terminé lorsqu'il ne  reste plus qu'un seul rangement possible, c'est-à-dire dès que :math:`2k > r`.
+
+**Remarque** : en binaire, 2 s'écrit avec :math:`k +1` bits. Donc le nombre de comparaisons est de l'ordre du nombre de chiffres dans l'écriture binaire de :math:`r`.
+
+Il est intéressant de faire un test avec un jeu de 32 cartes, un ordre étant défini sur l'ensemble des cartes. 
+On utilise un ordre sur les valeurs, 7, 8, 9, 10, valet, dame, roi, as, et pour ordonner deux cartes de même valeur, un ordre sur les couleurs. Comme pour l'ordre lexicographique avec des mots de deux lettres, il s'agit d'un ordre sur les couples :math:`(valeur, couleur)`. 
+
+On distribue une dizaine de cartes à une personne et on lui demande d'ordonner les cartes. On recommence avec d'autres personnes. 
+Avec chaque personne, on essaie de dégager une stratégie, **un algorithme de tri**. On peut alors remarquer que des algorithmes comme le **tri sélection**, le **tri insertion**, ainsi que d'autres plus élaborés sont utilisés et souvent à tour de rôle pour un tri donné. 
+
+L'idée "**diviser pour régner**" est présente.
+
+
+4.1 Tri par sélection
+*****************************************
+
+En anglais, cet algorithme est nommé "*selection sort*".
+
+Le principe
+=============
+
+On dispose de :math:`n` données. 
+On cherche la plus petite donnée et on la place en première position, puis on cherche la plus petite donnée parmi les données restantes et on la place en deuxième position, et ainsi de suite.
+
+Si les données sont les éléments d'une liste :math:`liste`, l'algorithme consiste donc à faire varier un indice :math:`i` de :math:`0` à :math:`n - 2`. Pour chaque valeur de :math:`i`, on cherche dans la tranche liste :math:`[i : n]` le plus petit élément et on l'échange avec :math:`liste[i]`.
+
+L'algorithme de **tri par sélection** est souvent utilisé pour **trier à la main des objets**, comme des cartes à jouer, des livres, etc.
+
+
+.. code-block::
+    :caption: **Algorithme du minimum**
+
+    i_mini ← i (indice du plus petit élèment)
+    mini ← liste[i]
+    pour j variant de i+1 à n-1
+        si liste[j] < mini 
+            i_mini ← j 
+            mini ← liste[j]
+
+
+Pour obtenir un algorithme du tri sélection, il ne reste qu'à insérer l'algorithme du minimum dans une boucle où :math:`i` varie de :math:`0` à :math:`n-2` et pour chaque valeur de :math:`i` à faire échange de :math:`liste[i]` avec :math:`liste[i_mini]`.
+
+La donnée en entrée est une liste de :math:`n` éléments. Il n'y a pas de résultat renvoyé en sortie, la liste est modifiée en place.
+
+.. code-block::
+    :caption: **Algorithme du tri**
+
+    POUR i VARIANT de i à n-2
+        i_mini ← i 
+        mini ← liste[i]
+        POUR j VARIANT de i+1 à n-1 
+            SI liste[j] < mini 
+                i_mini ← j 
+                mini ← liste[j]
+        ECHANGER liste[i] et liste[i_mini]
+
+
+.. code-block:: Python
+  :linenos:
+  :emphasize-lines: 0
+
+  def tri_selection(liste) :
+    for i in range(len(liste) -1 ):
+        i_mini = i 
+        mini = liste[i]
+        for j in range (i+1, len(liste)) : 
+            if(liste[j] < mini ) :
+                i_mini = j 
+                mini = liste[j]
+        liste[i], liste[i_mini] = liste[i_mini], liste[i]
+
+     

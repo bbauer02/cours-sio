@@ -1,24 +1,22 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>5.0 Modules et bibliothèques &mdash; Cours BTS SIO 0.1 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/js/theme.js"></script>
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>5.0 Modules et bibliothèques &#8212; Cours BTS SIO 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="6.0 Initiation à la programmation Orientée Objet" href="6.0%20poo.html" />
+<<<<<<< HEAD
     <link rel="prev" title="4.0 Spécification et tests" href="4.0%20specification%20et%20tests.html" /> 
 </head>
 
@@ -63,40 +61,33 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../algorithmes/sommaire_algorithmes.html">Algorithmes</a></li>
 </ul>
+=======
+    <link rel="prev" title="4.0 Spécification et tests" href="4.0%20specification%20et%20tests.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+>>>>>>> f136c91255bb592f0165a14463de55d05b33a7f4
 
-        </div>
-      </div>
-    </nav>
+  </head><body>
+  
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">Cours BTS SIO</a>
-      </nav>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
 
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="sommaire_python.html">Python</a> &raquo;</li>
-      <li>5.0 Modules et bibliothèques</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/cours/programmation/python/5.0 modules et bibliothèques.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
+          <div class="body" role="main">
+            
   <section id="modules-et-bibliotheques">
-<h1>5.0 Modules et bibliothèques<a class="headerlink" href="#modules-et-bibliotheques" title="Permalink to this headline"></a></h1>
+<h1>5.0 Modules et bibliothèques<a class="headerlink" href="#modules-et-bibliotheques" title="Permalink to this headline">¶</a></h1>
 <p>Jusqu’ici, nous avons travaillé avec les fonctions de Python chargées au lancement de l’interpréteur.
 Toutefois il existe une fonctionnalité nommée : <strong>les modules</strong>.
 Un module est grossièrement un bout de code que l’on a enfermé dans un fichier. On emprisonne ainsi des fonctions et des variables ayant toutes un rapport entre elles. Ainsi, si l’on veut travailler avec les fonctionnalités prévues par le module il n’y a qu’à importer le module et utiliser ensuite toutes les fonctions et variables prévues.
 Il existe un grand nombre de modules disponibles avec <strong>Python</strong> sans qu’il soit nécessaire d’installer des bibliothèques supplémentaires. Pour cette partie, nous prendrons l’exemple du module <code class="docutils literal notranslate"><span class="pre">math</span></code> qui contient, comme son nom l’indique, des fonctions mathématiques.</p>
 <section id="la-methode-import">
-<h2>5.1 La méthode <code class="docutils literal notranslate"><span class="pre">import</span></code><a class="headerlink" href="#la-methode-import" title="Permalink to this headline"></a></h2>
+<h2>5.1 La méthode <code class="docutils literal notranslate"><span class="pre">import</span></code><a class="headerlink" href="#la-methode-import" title="Permalink to this headline">¶</a></h2>
 <p>Lorsque vous ouvrez l’interpréteur Python, les fonctionnalités du module <code class="docutils literal notranslate"><span class="pre">math</span></code> ne sont pas incluses. Il s’agit en effet d’un module, il vous appartient de l’importer au besoin.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span>
 </pre></div>
@@ -111,7 +102,7 @@ Toutes les fonctions mathématiques contenues dans ce module sont maintenant acc
 <p>&gt;&gt;&gt;help(math)</p>
 </section>
 <section id="les-espaces-de-nom">
-<h2>5.2 Les espaces de nom<a class="headerlink" href="#les-espaces-de-nom" title="Permalink to this headline"></a></h2>
+<h2>5.2 Les espaces de nom<a class="headerlink" href="#les-espaces-de-nom" title="Permalink to this headline">¶</a></h2>
 <p>Avec un espace de nom,il s’agit de regrouper certaines fonctions et variables sous un préfixe spécifique.
 En vérité, quand vous tapez <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">math</span></code>, cela crée un espace de noms dénommé « math », contenant les variables et fonctions du module <code class="docutils literal notranslate"><span class="pre">math</span></code>. Quand vous tapez <code class="docutils literal notranslate"><span class="pre">math.sqrt(25)</span></code>, vous précisez à <strong>Python</strong> que vous souhaitez exécuter la fonction <code class="docutils literal notranslate"><span class="pre">sqrt</span></code> contenue dans l’espace de noms <code class="docutils literal notranslate"><span class="pre">math</span></code>. Cela signifie que vous pouvez avoir, dans l’espace de noms principal, une autre fonction sqrt que vous avez définie vous-mêmes. Il n’y aura pas de conflit entre, d’une part, la fonction que vous avez créée et que vous appellerez grâce à l’instruction <code class="docutils literal notranslate"><span class="pre">sqrt</span></code> et, d’autre part, la fonction <code class="docutils literal notranslate"><span class="pre">sqrt</span></code> du module <code class="docutils literal notranslate"><span class="pre">math</span></code> que vous appellerez grâce à l’instruction <code class="docutils literal notranslate"><span class="pre">math.sqrt</span></code>.</p>
 <p>Exemple :</p>
@@ -139,7 +130,7 @@ En vérité, quand vous tapez <code class="docutils literal notranslate"><span c
 </div>
 </section>
 <section id="une-autre-methode-d-importation-from-import">
-<h2>5.3 Une autre méthode d’importation : <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">..</span> <span class="pre">import</span></code><a class="headerlink" href="#une-autre-methode-d-importation-from-import" title="Permalink to this headline"></a></h2>
+<h2>5.3 Une autre méthode d’importation : <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">..</span> <span class="pre">import</span></code><a class="headerlink" href="#une-autre-methode-d-importation-from-import" title="Permalink to this headline">¶</a></h2>
 <p>Nous avons précédemment qu’il était possible d’importer tout un module, comme celui de <code class="docutils literal notranslate"><span class="pre">Math</span></code>. Cela veut dire que nous importons dans le programme l’ensemble des fonctions présentes dans ce module.
 Maintenant admettons que nous ayons besoin dans notre programme que d’une seule fonction de ce module, par exemple la fonction renvoyant la valeur absolue d’une variable. Dans ce cas, nous n’allons importer que la fonction, au lieu d’importer tout le module.
 Cela se fait grâce à la syntaxe suivante :</p>
@@ -166,34 +157,79 @@ Mais il est préférable de ne charger que les fonctions qui nous seront utiles,
 </section>
 
 
-           </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="4.0%20specification%20et%20tests.html" class="btn btn-neutral float-left" title="4.0 Spécification et tests" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="6.0%20poo.html" class="btn btn-neutral float-right" title="6.0 Initiation à la programmation Orientée Objet" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2021, Bauer Baptiste.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
+          
         </div>
       </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Cours BTS SIO</a></h1>
 
-</body>
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Systèmes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../systemes/docker/sommaire_docker.html">La plateforme Docker</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Programmation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="sommaire_python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithmes/sommaire_algorithmes.html">Algorithmes</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="sommaire_python.html">Python</a><ul>
+      <li>Previous: <a href="4.0%20specification%20et%20tests.html" title="previous chapter">4.0 Spécification et tests</a></li>
+      <li>Next: <a href="6.0%20poo.html" title="next chapter">6.0 Initiation à la programmation Orientée Objet</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Bauer Baptiste.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../_sources/cours/programmation/python/5.0 modules et bibliothèques.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
 </html>

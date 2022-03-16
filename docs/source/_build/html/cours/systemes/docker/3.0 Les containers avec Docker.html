@@ -1,24 +1,22 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3.0 Les containers avec Docker &mdash; Cours BTS SIO 0.1 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/js/theme.js"></script>
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>3.0 Les containers avec Docker &#8212; Cours BTS SIO 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="4.0 Les images Docker" href="4.0%20Les%20images%20Docker.html" />
+<<<<<<< HEAD
     <link rel="prev" title="2.0 La plateforme Docker" href="2.0%20La%20plateforme%20Docker.html" /> 
 </head>
 
@@ -97,34 +95,27 @@
 <li class="toctree-l1"><a class="reference internal" href="../../programmation/python/sommaire_python.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../programmation/algorithmes/sommaire_algorithmes.html">Algorithmes</a></li>
 </ul>
+=======
+    <link rel="prev" title="2.0 La plateforme Docker" href="2.0%20La%20plateforme%20Docker.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+>>>>>>> f136c91255bb592f0165a14463de55d05b33a7f4
 
-        </div>
-      </div>
-    </nav>
+  </head><body>
+  
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">Cours BTS SIO</a>
-      </nav>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
 
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="sommaire_docker.html">La plateforme Docker</a> &raquo;</li>
-      <li>3.0 Les containers avec Docker</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/cours/systemes/docker/3.0 Les containers avec Docker.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
+          <div class="body" role="main">
+            
   <section id="les-containers-avec-docker">
-<h1>3.0 Les containers avec Docker<a class="headerlink" href="#les-containers-avec-docker" title="Permalink to this headline"></a></h1>
+<h1>3.0 Les containers avec Docker<a class="headerlink" href="#les-containers-avec-docker" title="Permalink to this headline">¶</a></h1>
 <p>Après avoir présenté la plateforme Docker, nous allons voir comment créer des <strong>containers</strong> en ligne de commande pour lancer des services en tâche de fond et/ou pour rendre disponible dans un container des repertoires de la <strong>machine hôte</strong>.</p>
 <p>Nous verrons comment lancer un container dans un mode d’<strong>accès privilégié</strong>, ainsi que les commandes de bases pour la gestion du cycle de vie des containers.</p>
 <p>Avant la 1.13, lancer un <strong>container</strong> s’effectuait avec la commande : <code class="docutils literal notranslate"><span class="pre">Docker</span> <span class="pre">Run</span></code> sans le mot clé <code class="docutils literal notranslate"><span class="pre">container</span></code>.
@@ -133,7 +124,7 @@ Mais maintenant les commandes ont été regroupé aux composant auquel elles se 
 <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">run</span> <span class="pre">[OPTIONS]</span> <span class="pre">IMAGE</span> <span class="pre">[COMMAND]</span> <span class="pre">[ARG]</span></code>
 D’autres groupes de commande existent et nous les étudierons plus tard.</p>
 <section id="hello-world">
-<h2>3.1 Hello World<a class="headerlink" href="#hello-world" title="Permalink to this headline"></a></h2>
+<h2>3.1 Hello World<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h2>
 <p>Lançons notre premier container <strong>Hello-World</strong>.</p>
 <img alt="../../../_images/image62.png" src="../../../_images/image62.png" />
 <p>Ouvrez un <strong>terminal</strong> et tapez :</p>
@@ -149,7 +140,7 @@ A la fin du texte on nous demande d’essayer un exemple plus ambitieux, c’est
 <p>Expérimentez la commande : <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">run</span> <span class="pre">hello-world</span></code> sur votre machine</p>
 </section>
 <section id="ubuntu-sous-docker">
-<h2>3.2 Ubuntu sous docker<a class="headerlink" href="#ubuntu-sous-docker" title="Permalink to this headline"></a></h2>
+<h2>3.2 Ubuntu sous docker<a class="headerlink" href="#ubuntu-sous-docker" title="Permalink to this headline">¶</a></h2>
 <p>Nous pouvons lancer un autre container basé sur l’image de <strong>Ubuntu</strong> et lui demander d’afficher <code class="docutils literal notranslate"><span class="pre">Hello</span></code> dans  le contexte de cette image.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="n">ubuntu</span> <span class="n">echo</span> <span class="n">hello</span>
 </pre></div>
@@ -159,7 +150,7 @@ A la fin du texte on nous demande d’essayer un exemple plus ambitieux, c’est
 A quelles actions correspondent-ils ?</p>
 </section>
 <section id="un-container-dans-un-mode-interactif">
-<h2>3.2 Un container dans un mode Interactif<a class="headerlink" href="#un-container-dans-un-mode-interactif" title="Permalink to this headline"></a></h2>
+<h2>3.2 Un container dans un mode Interactif<a class="headerlink" href="#un-container-dans-un-mode-interactif" title="Permalink to this headline">¶</a></h2>
 <p>Le mode <strong>interactif</strong> permet d’avoir accès à un <code class="docutils literal notranslate"><span class="pre">shell</span></code> depuis le client local  qui tourne dans le <strong>contexte du container</strong>.</p>
 <p>Pour cela il faut rajouter deux options à notre commande :</p>
 <p><code class="docutils literal notranslate"><span class="pre">-t</span></code> qui permet d’allouer un pseudo terminal à notre container.</p>
@@ -197,7 +188,7 @@ C’est une distribution légère et sécurisée.</p>
 par défaut le container est exécuté en <strong>foreground</strong>, mais si l’on veut l’exécuter en <strong>background</strong>, c’est-à-dire en tâche de fond, il faudra utiliser l’option <code class="docutils literal notranslate"><span class="pre">-d</span></code> et la commande retournera alors l’ <strong>identifiant</strong> du conteneur que l’on pourra utiliser par la suite pour effectuer différentes actions.</p>
 <p>Par exemple nous pouvons lancer un container basé sur l’image <code class="docutils literal notranslate"><span class="pre">nginx</span></code>, un <strong>serveur http</strong>.</p>
 <section id="container-nginx-en-foreground">
-<h3>Container NGINX en <strong>foreground</strong><a class="headerlink" href="#container-nginx-en-foreground" title="Permalink to this headline"></a></h3>
+<h3>Container NGINX en <strong>foreground</strong><a class="headerlink" href="#container-nginx-en-foreground" title="Permalink to this headline">¶</a></h3>
 <p>Création du <strong>conteneur</strong> en <strong>foreground</strong>, cela signifie que l’on ne récupère pas la main</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="n">nginx</span>
 </pre></div>
@@ -206,7 +197,7 @@ par défaut le container est exécuté en <strong>foreground</strong>, mais si l
 <p>Le conteneur est lancé et occupe notre console. Nous n’avons pas la main.</p>
 </section>
 <section id="container-nginx-en-background">
-<h3>Container NGINX en <strong>background</strong><a class="headerlink" href="#container-nginx-en-background" title="Permalink to this headline"></a></h3>
+<h3>Container NGINX en <strong>background</strong><a class="headerlink" href="#container-nginx-en-background" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="n">nginx</span>
 </pre></div>
 </div>
@@ -217,7 +208,7 @@ Cela n’est actuellement pas possible car nous n’avons pas publié de <strong
 </section>
 </section>
 <section id="publication-de-port">
-<h2>3.3 Publication de port.<a class="headerlink" href="#publication-de-port" title="Permalink to this headline"></a></h2>
+<h2>3.3 Publication de port.<a class="headerlink" href="#publication-de-port" title="Permalink to this headline">¶</a></h2>
 <p>La publication d’un port est utilisée pour qu’un <strong>container</strong> puisse être accessible depuis l’extérieur.
 Afin de publier un port nous utilisons l’option <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">HOST_PORT:CONTAINER_PORT</span></code>.</p>
 <p>Cela permet de publier un <strong>port du conteneur</strong> sur un <strong>port de la machine hôte</strong>.</p>
@@ -234,14 +225,14 @@ nous lançerons le container <strong>nginx</strong> avec la commande suivante :<
 <img alt="../../../_images/image17.png" src="../../../_images/image17.png" />
 </section>
 <section id="bind-mount">
-<h2>3.4 Bind-mount<a class="headerlink" href="#bind-mount" title="Permalink to this headline"></a></h2>
+<h2>3.4 Bind-mount<a class="headerlink" href="#bind-mount" title="Permalink to this headline">¶</a></h2>
 <p>Nous allons maintenant voir comment <strong>monter un répertoire de la machine hôte</strong> dans un container.</p>
 <p>Cela s’effectue grâce à l’option <code class="docutils literal notranslate"><span class="pre">-v</span> <span class="pre">&lt;HOST_PATH&gt;:&lt;CONTAINER_PATH&gt;</span></code></p>
 <p>Il existe une autre notation avec l’option <code class="docutils literal notranslate"><span class="pre">--mount</span> <span class="pre">type=bind,</span> <span class="pre">src=&lt;HOST_PATH&gt;,dst=&lt;CONTAINER_PATH&gt;</span></code></p>
 <p>Cela permet de partager,par exemple,le code source d’un programme présent sur une <strong>machine hôte</strong> avec des <strong>containers</strong>
 ou de monter la <strong>socket Unix</strong> du <strong>daemon Docker</strong> (<code class="docutils literal notranslate"><span class="pre">/var/run/docker.sock</span></code>) pour permettre à un container de dialoguer avec le <strong>daemon</strong>.</p>
 <section id="exemple-1-monter-un-dossier-www">
-<h3>3.4.1 Exemple 1 : monter un dossier ‘www’<a class="headerlink" href="#exemple-1-monter-un-dossier-www" title="Permalink to this headline"></a></h3>
+<h3>3.4.1 Exemple 1 : monter un dossier ‘www’<a class="headerlink" href="#exemple-1-monter-un-dossier-www" title="Permalink to this headline">¶</a></h3>
 <p>Quand vous développez une application et que vous modifiez le code source, il peut être intéressant que cela soit pris en compte dans le conteneur.
 C’est le cas lors du développement d’une <strong>application web</strong>.
 Nos <strong>fichiers sources</strong> sont sur une <strong>machine locale</strong>, et dans <strong>un conteneur</strong> nous avons un serveur <strong>WEB</strong> avec <strong>NGINX</strong> par exemple.
@@ -257,12 +248,12 @@ Nous allons alors monter le dossier <code class="docutils literal notranslate"><
 <img alt="../../../_images/image18.png" src="../../../_images/image18.png" />
 </section>
 <section id="exemple-2-interagir-avec-le-docker-daemom">
-<h3>3.4.2 Exemple 2 : Intéragir avec le Docker Daemom<a class="headerlink" href="#exemple-2-interagir-avec-le-docker-daemom" title="Permalink to this headline"></a></h3>
+<h3>3.4.2 Exemple 2 : Intéragir avec le Docker Daemom<a class="headerlink" href="#exemple-2-interagir-avec-le-docker-daemom" title="Permalink to this headline">¶</a></h3>
 <p>Dans cet exemple nous allons voir comment lier(bind) <code class="docutils literal notranslate"><span class="pre">/var/run/docker.sock</span></code>.
 Ce qui nous permettra d’interagir avec le <code class="docutils literal notranslate"><span class="pre">Docker</span> <span class="pre">Daemon</span></code> directement depuis le container et cela nous donnera accès à l’ <strong>API du Daemon</strong>.</p>
 <img alt="../../../_images/image19.png" src="../../../_images/image19.png" />
 <section id="pour-linux-uniquement">
-<h4>Pour LINUX UNIQUEMENT<a class="headerlink" href="#pour-linux-uniquement" title="Permalink to this headline"></a></h4>
+<h4>Pour LINUX UNIQUEMENT<a class="headerlink" href="#pour-linux-uniquement" title="Permalink to this headline">¶</a></h4>
 <p>Créons donc un simple container : avec l’image d’ <strong>Alpine</strong>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">it</span> <span class="o">--</span><span class="n">name</span> <span class="n">admin</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">sock</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">sock</span> <span class="n">alpine</span>
 </pre></div>
@@ -285,12 +276,12 @@ Sous quel format sont envoyés les instructions de configuration de l’image <s
 <p>Dans cette commande, à votre avis à quoi corresponde la chaine de caractère : <code class="docutils literal notranslate"><span class="pre">6b24...283b</span></code> ?</p>
 </section>
 <section id="pour-windows-uniquement">
-<h4>Pour WINDOWS UNIQUEMENT<a class="headerlink" href="#pour-windows-uniquement" title="Permalink to this headline"></a></h4>
+<h4>Pour WINDOWS UNIQUEMENT<a class="headerlink" href="#pour-windows-uniquement" title="Permalink to this headline">¶</a></h4>
 <p>Bientôt disponible ….</p>
 </section>
 </section>
 <section id="exemple-3-ecouter-les-actions-demandees-au-docker-daemon">
-<h3>3.4.3 Exemple 3 : Ecouter les actions demandées au Docker Daemon<a class="headerlink" href="#exemple-3-ecouter-les-actions-demandees-au-docker-daemon" title="Permalink to this headline"></a></h3>
+<h3>3.4.3 Exemple 3 : Ecouter les actions demandées au Docker Daemon<a class="headerlink" href="#exemple-3-ecouter-les-actions-demandees-au-docker-daemon" title="Permalink to this headline">¶</a></h3>
 <p>Nous allons lancer un autre dans laquel le <strong>socket</strong> est monté.
 Et nous allons écouter les actions demandées sur le <strong>Docker Daemon</strong>. <strong>Même ceux provenant d’autres containers</strong>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker container run –name admin -ti -v /var/run/docker.sock:/var/run/docker.sock alpine
@@ -302,7 +293,7 @@ Et nous allons écouter les actions demandées sur le <strong>Docker Daemon</str
 </section>
 </section>
 <section id="limitation-des-ressources">
-<h2>3.5 Limitation des ressources<a class="headerlink" href="#limitation-des-ressources" title="Permalink to this headline"></a></h2>
+<h2>3.5 Limitation des ressources<a class="headerlink" href="#limitation-des-ressources" title="Permalink to this headline">¶</a></h2>
 <p>Nous avons dit que le lancement d’un <strong>containeur</strong> revient en fait à exécuter un <strong>processeur</strong> , et par défaut, il n’y a pas de limite de consommation des ressources matériels.
 Par exemple, Un container pourra utiliser toute la RAM  et impacter tout les autres containeurs qui tournent sur la même machine hôte.</p>
 <p>Nous pouvons toutefois imposer des limites à un containeur.</p>
@@ -324,7 +315,7 @@ Lançons un containeur avec l’image <code class="docutils literal notranslate"
 <p>En utilisant la valeur du flag : <code class="docutils literal notranslate"><span class="pre">--cpus</span> <span class="pre">2</span></code> , nous limitons l’utilisation à 2 cœurs seulement. (<strong>50%</strong> d’utilisation)</p>
 </section>
 <section id="les-droits-dans-un-container">
-<h2>3.6 Les droits dans un container<a class="headerlink" href="#les-droits-dans-un-container" title="Permalink to this headline"></a></h2>
+<h2>3.6 Les droits dans un container<a class="headerlink" href="#les-droits-dans-un-container" title="Permalink to this headline">¶</a></h2>
 <p>Dans un containeur, s’il n’est pas précisé explicitement, l’utilisateur <code class="docutils literal notranslate"><span class="pre">root</span></code> sera utilisé comme propriétaire.
 L’utilisateur <code class="docutils literal notranslate"><span class="pre">root</span></code> du containeur correspond à l’utilisateur <code class="docutils literal notranslate"><span class="pre">root</span></code> de la machine hôte.</p>
 <p>Une bonne pratique est d’utiliser un autre utilisateur pour lancer le containeur.</p>
@@ -356,7 +347,7 @@ via la commande <code class="docutils literal notranslate"><span class="pre">top
 Nous verrons par la suite comme il est possible de configurer le <code class="docutils literal notranslate"><span class="pre">owner</span></code> d’un processus lors du montage de <strong>container</strong>.</p>
 </section>
 <section id="des-options-utiles">
-<h2>3.6 Des options utiles<a class="headerlink" href="#des-options-utiles" title="Permalink to this headline"></a></h2>
+<h2>3.6 Des options utiles<a class="headerlink" href="#des-options-utiles" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul class="simple">
@@ -367,12 +358,12 @@ Nous verrons par la suite comme il est possible de configurer le <code class="do
 </div>
 </section>
 <section id="les-commandes-de-base-avec-docker">
-<h2>3.7 Les commandes de base avec Docker<a class="headerlink" href="#les-commandes-de-base-avec-docker" title="Permalink to this headline"></a></h2>
+<h2>3.7 Les commandes de base avec Docker<a class="headerlink" href="#les-commandes-de-base-avec-docker" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="o">&lt;</span><span class="n">command</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <table class="colwidths-given docutils align-default" id="id1">
-<caption><span class="caption-text">Les commandes de base de docker container</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<caption><span class="caption-text">Les commandes de base de docker container</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 50%" />
 <col style="width: 50%" />
@@ -497,7 +488,7 @@ Et le processus de PID 15 correspond à notre <code class="docutils literal notr
 <p>Avec l’option <code class="docutils literal notranslate"><span class="pre">-f</span></code> nous pouvons forcer l’arrêt d’un container et le supprimer dans la foulée.</p>
 </section>
 <section id="en-pratique">
-<h2>3.8 En pratique :<a class="headerlink" href="#en-pratique" title="Permalink to this headline"></a></h2>
+<h2>3.8 En pratique :<a class="headerlink" href="#en-pratique" title="Permalink to this headline">¶</a></h2>
 <p>Lançons quelques containers pour pratiquer, vous devez être en mesure de comprendre maintenant la finalité de ces 3 commandes :</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">80</span><span class="p">:</span><span class="mi">80</span> <span class="o">--</span><span class="n">name</span> <span class="n">www</span> <span class="n">nginx</span>
 </pre></div>
@@ -541,9 +532,9 @@ Par contre avec un :
 <p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">rm</span> <span class="pre">$(docker</span> <span class="pre">container</span> <span class="pre">ls</span> <span class="pre">-a</span> <span class="pre">-q)</span></code></p>
 </section>
 <section id="exercices">
-<h2>3.9 Exercices :<a class="headerlink" href="#exercices" title="Permalink to this headline"></a></h2>
+<h2>3.9 Exercices :<a class="headerlink" href="#exercices" title="Permalink to this headline">¶</a></h2>
 <section id="exercice-1-hello-from-alpine">
-<h3>3.9.1 Exercice 1 : Hello From Alpine<a class="headerlink" href="#exercice-1-hello-from-alpine" title="Permalink to this headline"></a></h3>
+<h3>3.9.1 Exercice 1 : Hello From Alpine<a class="headerlink" href="#exercice-1-hello-from-alpine" title="Permalink to this headline">¶</a></h3>
 <p>Le but de ce premier exercice est de lancer des containers basés sur l’image <strong>alpine</strong>.</p>
 <ol class="arabic simple">
 <li><p>Lancez un container basé sur alpine en lui fournissant la command echo hello</p></li>
@@ -552,7 +543,7 @@ Par contre avec un :
 </ol>
 </section>
 <section id="exercice-2-shell-interactif">
-<h3>3.9.2 Exercice 2 : Shell intéractif<a class="headerlink" href="#exercice-2-shell-interactif" title="Permalink to this headline"></a></h3>
+<h3>3.9.2 Exercice 2 : Shell intéractif<a class="headerlink" href="#exercice-2-shell-interactif" title="Permalink to this headline">¶</a></h3>
 <p>Le but de cet exercice est lancer des containers en mode <strong>intéractif</strong>.</p>
 <ol class="arabic simple">
 <li><p>Lancez un container basé sur alpine en mode <strong>interactif</strong> sans lui spécifier de commande</p></li>
@@ -563,7 +554,7 @@ Par contre avec un :
 </ol>
 </section>
 <section id="exercice-3-foreground-background">
-<h3>3.9.3 Exercice 3 : foreground / background<a class="headerlink" href="#exercice-3-foreground-background" title="Permalink to this headline"></a></h3>
+<h3>3.9.3 Exercice 3 : foreground / background<a class="headerlink" href="#exercice-3-foreground-background" title="Permalink to this headline">¶</a></h3>
 <p>Le but de cet exercice est de créer des containers en <strong>foreground</strong> et en <strong>background</strong>.</p>
 <ol class="arabic simple">
 <li><p>Lancez un container basé sur alpine en lui spécifiant la commande <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">8.8.8.8</span></code>.</p></li>
@@ -585,7 +576,7 @@ Par contre avec un :
 <p>Le container est t-il toujours en cours d’exécution ?</p>
 </section>
 <section id="exercice-4-publication-de-port">
-<h3>3.9.4 Exercice 4 : Publication de port<a class="headerlink" href="#exercice-4-publication-de-port" title="Permalink to this headline"></a></h3>
+<h3>3.9.4 Exercice 4 : Publication de port<a class="headerlink" href="#exercice-4-publication-de-port" title="Permalink to this headline">¶</a></h3>
 <p>Le but de cet exercice est de créer un container <strong>en exposant un port</strong> sur la machine <strong>hôte</strong>.</p>
 <ol class="arabic simple">
 <li><p>Lancez un container basé sur <code class="docutils literal notranslate"><span class="pre">nginx</span></code> et publiez le <code class="docutils literal notranslate"><span class="pre">port</span> <span class="pre">80</span></code> du container sur le <code class="docutils literal notranslate"><span class="pre">port</span> <span class="pre">8080</span></code> de l’hôte.</p></li>
@@ -595,7 +586,7 @@ Par contre avec un :
 <p>Qu’observez-vous ?</p>
 </section>
 <section id="exercice-5-liste-des-containers">
-<h3>3.9.5 Exercice 5 : Liste des containers<a class="headerlink" href="#exercice-5-liste-des-containers" title="Permalink to this headline"></a></h3>
+<h3>3.9.5 Exercice 5 : Liste des containers<a class="headerlink" href="#exercice-5-liste-des-containers" title="Permalink to this headline">¶</a></h3>
 <p>Le but de cet exercice est de montrer les différentes options pour lister les containers du système.</p>
 <ol class="arabic simple">
 <li><p>Listez les containers en cours d’exécution.</p></li>
@@ -607,7 +598,7 @@ Par contre avec un :
 </ol>
 </section>
 <section id="exercice-6-inspection-d-un-container">
-<h3>3.9.6 Exercice 6 : Inspection d’un container<a class="headerlink" href="#exercice-6-inspection-d-un-container" title="Permalink to this headline"></a></h3>
+<h3>3.9.6 Exercice 6 : Inspection d’un container<a class="headerlink" href="#exercice-6-inspection-d-un-container" title="Permalink to this headline">¶</a></h3>
 <p>Le but de cet exercice est l’inspection d’un container.</p>
 <ol class="arabic simple">
 <li><p>Lancez, en <strong>background</strong>, un nouveau container basé sur <strong>nginx</strong> en publiant le <strong>port 80</strong> du container sur le <strong>port 3000</strong> de la machine host.</p></li>
@@ -620,7 +611,7 @@ Par contre avec un :
 </ol>
 </section>
 <section id="exercice-7-exec-dans-un-container">
-<h3>3.9.7 Exercice 7 : exec dans un container<a class="headerlink" href="#exercice-7-exec-dans-un-container" title="Permalink to this headline"></a></h3>
+<h3>3.9.7 Exercice 7 : exec dans un container<a class="headerlink" href="#exercice-7-exec-dans-un-container" title="Permalink to this headline">¶</a></h3>
 <p>Le but de cet exercice est de montrer comment lancer un processus dans un container existant.</p>
 <ol class="arabic simple">
 <li><p>Lancez un container en background, basé sur l’image alpine. Spécifiez la commande <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">8.8.8.8</span></code> et le nom ping avec l’option <code class="docutils literal notranslate"><span class="pre">--name</span></code>.</p></li>
@@ -634,7 +625,7 @@ Par contre avec un :
 <p>Qu’observez vous par rapport aux identifiants des processus ?</p>
 </section>
 <section id="exercice-8-cleanup">
-<h3>3.9.8 Exercice 8 : cleanup<a class="headerlink" href="#exercice-8-cleanup" title="Permalink to this headline"></a></h3>
+<h3>3.9.8 Exercice 8 : cleanup<a class="headerlink" href="#exercice-8-cleanup" title="Permalink to this headline">¶</a></h3>
 <p>Le but de cet exercice est de stopper et de supprimer les containers existants.</p>
 <ol class="arabic simple">
 <li><p>Listez tous les containers (<strong>actifs</strong> et <strong>inactifs</strong>)</p></li>
@@ -647,7 +638,7 @@ Par contre avec un :
 </section>
 </section>
 <section id="en-resume">
-<h2>3.10 En résumé<a class="headerlink" href="#en-resume" title="Permalink to this headline"></a></h2>
+<h2>3.10 En résumé<a class="headerlink" href="#en-resume" title="Permalink to this headline">¶</a></h2>
 <p>Nous avons commencé à jouer avec les containers et vu les commandes les plus utilisées pour la gestion du cycle de vie des containers
 (<code class="docutils literal notranslate"><span class="pre">run</span></code>, <code class="docutils literal notranslate"><span class="pre">exec</span></code>, <code class="docutils literal notranslate"><span class="pre">ls</span></code>, <code class="docutils literal notranslate"><span class="pre">rm</span></code>, <code class="docutils literal notranslate"><span class="pre">inspect</span></code>). Nous les utiliserons souvent dans la suite du cours.</p>
 <p>C’est parfois utile d’avoir un <code class="docutils literal notranslate"><span class="pre">Shell</span></code> directement sur la machine hôte.
@@ -658,34 +649,79 @@ Par contre le <code class="docutils literal notranslate"><span class="pre">docke
 </section>
 
 
-           </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="2.0%20La%20plateforme%20Docker.html" class="btn btn-neutral float-left" title="2.0 La plateforme Docker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="4.0%20Les%20images%20Docker.html" class="btn btn-neutral float-right" title="4.0 Les images Docker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2021, Bauer Baptiste.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
+          
         </div>
       </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Cours BTS SIO</a></h1>
 
-</body>
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Systèmes</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="sommaire_docker.html">La plateforme Docker</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Programmation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../programmation/python/sommaire_python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../programmation/algorithmes/sommaire_algorithmes.html">Algorithmes</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="sommaire_docker.html">La plateforme Docker</a><ul>
+      <li>Previous: <a href="2.0%20La%20plateforme%20Docker.html" title="previous chapter">2.0 La plateforme Docker</a></li>
+      <li>Next: <a href="4.0%20Les%20images%20Docker.html" title="next chapter">4.0 Les images Docker</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Bauer Baptiste.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../_sources/cours/systemes/docker/3.0 Les containers avec Docker.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
 </html>
