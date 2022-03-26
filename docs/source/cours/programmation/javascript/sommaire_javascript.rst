@@ -9,4 +9,5 @@ Javascript peut être déroutant à cause de certains concepts comme ``Prototype
   :caption: Javascript
 
   scope
+  hoisting
 

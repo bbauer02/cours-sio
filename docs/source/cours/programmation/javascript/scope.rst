@@ -53,7 +53,7 @@ Les variables sont déclarées dans le corps de la fonction ``zoo``.
 
 La variable ``population`` est déclarée dans le block déclaratif de la boucle ``for``.
 
-Etude de la portée des variables ``var``
+Etude de la portée des variables
 *******************************************
 
 
@@ -274,9 +274,6 @@ Voici un tableau comparatif :
 
 .. image:: img/img1.png
    :align: center
-
-
-
 
 
 Exercice
