@@ -64,7 +64,7 @@ Pour comprendre ce que fait le **hoisting** nous allons proposer ce script simpl
   } 
   
 .. code-block:: javascript
-  :caption: Le même script réorganisé par le moteur Javascript : Hosting
+  :caption: Le même script réorganisé par le moteur Javascript : Hoisting
   :linenos:
   :emphasize-lines: 0
   
