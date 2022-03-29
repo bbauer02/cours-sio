@@ -242,7 +242,7 @@ La console retourne :
 
 
 Le mot clé ``const`` sert à déclarer une référence constante.
-**Attention**, une référence **constante** ne veut pas dire que la valeur derrière la référence est "**immutable**", mais  que la référence elle-même est **immutable**.
+**Attention**, une référence **constante** ne veut pas dire que la valeur derrière la référence est "**immutable**", mais que la référence elle-même est **immutable**.
 
 .. code-block:: javascript
   :linenos:

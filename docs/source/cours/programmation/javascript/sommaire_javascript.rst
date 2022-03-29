@@ -10,4 +10,4 @@ Javascript peut être déroutant à cause de certains concepts comme ``Prototype
 
   scope
   hoisting
-
+  this
