@@ -1,4 +1,4 @@
-﻿Comprendre les fonctions et le mot clé ``This`` (ES2017)
+﻿Comprendre les fonctions et le mot clé ``This``
 ###########################################################
 
 Le mot clé ``This``
